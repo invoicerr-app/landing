@@ -60,6 +60,7 @@ function App() {
         </PostIt>
       </section>
       <section id='content-text' className='flex flex-col items-center space-y-8'>
+        <section className='h-[50dvh]'></section>
         <section className="w-1/3 text-center self-end">
           <TextReveal description='Generate quotes, invoices, and receipts in seconds.\nInvoicerr keeps everything organized, so you stay focused\non your work, not the paperwork.'>Create, send, and get paid, faster.</TextReveal>
         </section>
