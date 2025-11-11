@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { AnimatedPdf } from './components/animated-pdf';
 import Header from './components/header'
 import Home from './components/home'
+import Phone from './components/phone';
 import { PostIt } from './components/post-it'
 import clientApproval from './assets/writings/client-approval-pending.svg';
 import { createRoot } from 'react-dom/client'
@@ -30,7 +31,7 @@ function App() {
   ];
 
   return (
-    <main className='min-h-screen h-[500dvh]'>
+    <main className='min-h-screen h-[100000dvh]'>
       <Header />
       <Home />
       <section className='fixed w-screen h-screen'>
@@ -44,6 +45,7 @@ function App() {
             assetAlt={`Document ${index + 1}`}
           />
         ))}
+        <Phone />
       </section>
       <section id='content-overlay'>
         <PostIt left={25} top={15} color="pink" rotation={20}>
