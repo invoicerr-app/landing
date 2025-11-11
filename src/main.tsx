@@ -1,20 +1,18 @@
 import './index.css'
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AnimatedPdf } from './components/animated-pdf';
 import Header from './components/header'
 import Home from './components/home'
-import Invoice1 from './components/documents/invoice1';
-import Invoice2 from './components/documents/invoice2';
 import { PostIt } from './components/post-it'
-import Quote1 from './components/documents/quote1';
 import clientApproval from './assets/writings/client-approval-pending.svg';
 import { createRoot } from 'react-dom/client'
 import depositWaiting from './assets/writings/30p-deposit-waiting.svg';
+import doc1 from './assets/documents/doc-1.svg';
+import doc2 from './assets/documents/doc-2.svg';
+import doc3 from './assets/documents/doc-3.svg';
 import firstMonthUnpaid from './assets/writings/first-month-unpaid.svg';
-
-const documents = [Invoice1, Invoice2, Quote1]
 
 function App() {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -26,9 +24,9 @@ function App() {
   }, []);
 
   const boxes = [
-    { startX: 0, startY: -windowSize.height * 0.975, startRot: 13.6 },
-    { startX: windowSize.width * 0.87, startY: -windowSize.height * 1.1, startRot: -25 },
-    { startX: (windowSize.width / 100) * 3, startY: -windowSize.height / 1.75, startRot: -30 },
+    { asset: doc1, startX: 0, startY: -windowSize.height * 0.975, startRot: 13.6 },
+    { asset: doc3, startX: windowSize.width * 0.87, startY: -windowSize.height * 1.1, startRot: -25 },
+    { asset: doc2, startX: (windowSize.width / 100) * 3, startY: -windowSize.height / 1.75, startRot: -30 },
   ];
 
   return (
@@ -42,9 +40,9 @@ function App() {
             startX={box.startX}
             startY={box.startY}
             startRot={box.startRot}
-          >
-            {React.createElement(documents[index])}
-          </AnimatedPdf>
+            asset={box.asset}
+            assetAlt={`Document ${index + 1}`}
+          />
         ))}
       </section>
       <section id='content-overlay'>

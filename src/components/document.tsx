@@ -52,28 +52,45 @@ export const Document: React.FC<DocumentProps> = ({
     const typeLabel = type === "invoice" ? "FACTURE" : "DEVIS"
 
     return (
-        <div className="w-full bg-white text-black" id="document-content">
-            {/* A4 Page Style */}
-            <div className="mx-auto bg-white" style={{ width: "210mm", height: "297mm", padding: "40px" }}>
+        <div className="flex justify-center bg-gray-100 p-4 overflow-auto w-full h-full">
+            {/* Container responsive avec ratio A4 */}
+            <div
+                className="relative bg-white text-black shadow-lg origin-top-left"
+                style={{
+                    aspectRatio: "210 / 297", // ratio A4
+                    width: "100%",
+                    maxWidth: "210mm",
+                    fontSize: "calc(0.9vw + 0.3rem)", // le texte s’adapte à la largeur
+                    padding: "2.5vw",
+                    lineHeight: 1.4,
+                }}
+                id="document-content"
+            >
                 {/* Header */}
                 <div className="flex justify-between items-start border-b-2 border-black pb-4 mb-8">
                     <div>
-                        <h1 className="text-4xl font-bold uppercase tracking-wider">{typeLabel}</h1>
-                        <p className="text-xs text-gray-600 mt-1">{client.description}</p>
+                        <h1 className="font-bold uppercase tracking-wider text-[2.5em] leading-none">
+                            {typeLabel}
+                        </h1>
+                        <p className="text-gray-600 mt-1 text-[0.7em]">{client.description}</p>
                     </div>
                     <div className="text-right">
-                        <p className="text-sm font-bold mb-2">
+                        <p className="font-bold mb-2 text-[0.9em]">
                             {typeLabel} N° {number}
                         </p>
-                        <p className="text-xs text-gray-600 mb-1">Créée le: {date}</p>
-                        {type === "invoice" && <p className="text-xs text-gray-600">Échéance: {dueDate}</p>}
+                        <p className="text-gray-600 mb-1 text-[0.7em]">Créée le: {date}</p>
+                        {type === "invoice" && (
+                            <p className="text-gray-600 text-[0.7em]">Échéance: {dueDate}</p>
+                        )}
                     </div>
                 </div>
 
                 {/* Client Info */}
                 <div className="mb-6">
-                    <h2 className="text-xs font-bold uppercase border-b border-gray-300 pb-1 mb-3">Facturation</h2>
-                    <div className="text-xs space-y-0.5 text-gray-800">
+                    <h2 className="font-bold uppercase border-b border-gray-300 pb-1 mb-3 text-[0.8em]">
+                        Facturation
+                    </h2>
+                    <div className="space-y-0.5 text-gray-800 text-[0.75em]">
                         <p>{client.name}</p>
                         <p>{client.address}</p>
                         <p>
@@ -86,7 +103,7 @@ export const Document: React.FC<DocumentProps> = ({
                 </div>
 
                 {/* Items Table */}
-                <table className="w-full border border-gray-300 mb-6 text-xs">
+                <table className="w-full border border-gray-300 mb-6 text-[0.75em]">
                     <thead>
                         <tr className="bg-gray-100 border-b-2 border-black">
                             <th className="text-left p-2 w-2/5">Description</th>
@@ -97,10 +114,10 @@ export const Document: React.FC<DocumentProps> = ({
                     </thead>
                     <tbody>
                         {items.map((item, index) => (
-                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50">
+                            <tr key={index} className="border-b border-gray-200">
                                 <td className="p-2">
                                     {item.description}
-                                    <span className="text-gray-500 text-xs ml-1">({item.type})</span>
+                                    <span className="text-gray-500 ml-1 text-[0.7em]">({item.type})</span>
                                 </td>
                                 <td className="text-right p-2">{item.quantity}</td>
                                 <td className="text-right p-2">{item.unitPrice}</td>
@@ -112,20 +129,20 @@ export const Document: React.FC<DocumentProps> = ({
 
                 {/* Totals */}
                 <div className="flex justify-end mb-8">
-                    <div className="w-64">
-                        <div className="flex justify-between text-xs mb-2">
+                    <div className="w-64 text-[0.8em]">
+                        <div className="flex justify-between mb-2">
                             <span>Sous-total HT:</span>
                             <span>
                                 {currency} {totalHT}
                             </span>
                         </div>
-                        <div className="flex justify-between text-xs mb-3">
+                        <div className="flex justify-between mb-3">
                             <span>TVA (20%):</span>
                             <span>
                                 {currency} {totalVAT}
                             </span>
                         </div>
-                        <div className="flex justify-between font-bold text-sm border-t-2 border-black pt-2">
+                        <div className="flex justify-between font-bold border-t-2 border-black pt-2 text-[0.9em]">
                             <span>TOTAL TTC:</span>
                             <span>
                                 {currency} {totalTTC}
@@ -135,7 +152,7 @@ export const Document: React.FC<DocumentProps> = ({
                 </div>
 
                 {/* Footer */}
-                <div className="flex justify-between text-xs border-t border-gray-300 pt-3 pb-4">
+                <div className="flex justify-between border-t border-gray-300 pt-3 pb-4 text-[0.75em]">
                     <div>
                         <p className="font-bold">Mode de paiement:</p>
                         <p>{paymentMethod}</p>
@@ -143,7 +160,11 @@ export const Document: React.FC<DocumentProps> = ({
                 </div>
 
                 {/* Notes */}
-                {notes && <div className="bg-gray-50 p-3 mt-4 text-xs italic text-gray-700 rounded">{notes}</div>}
+                {notes && (
+                    <div className="bg-gray-50 p-3 mt-4 italic text-gray-700 rounded text-[0.75em]">
+                        {notes}
+                    </div>
+                )}
             </div>
         </div>
     )
