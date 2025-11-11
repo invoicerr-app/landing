@@ -35,7 +35,7 @@ export default function Phone() {
 
     const opacitySuccessCard = useTransform(
         scrollY,
-        [8400, 8600, 11000],
+        [8450, 8500, 11000],
         [0, 1, 1]
     );
 
