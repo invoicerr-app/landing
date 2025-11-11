@@ -3,8 +3,8 @@ interface PostItProps {
     color: 'yellow' | 'pink' | 'blue';
     rotation: number;
     children?: React.ReactNode;
-    left?: number; // as vw
-    top?: number; // as vh
+    left?: number; // in vw
+    top?: number;  // in vh
 }
 
 const colors: Record<PostItProps['color'], string> = {
@@ -15,8 +15,33 @@ const colors: Record<PostItProps['color'], string> = {
 
 export function PostIt({ className, color = 'yellow', rotation = 0, children, left = 0, top = 0 }: PostItProps) {
     return (
-        <div className={`absolute w-48 h-48 ${colors[color]} shadow-lg transform p-4 ${className || ''}`} style={{ rotate: `${rotation}deg`, left: `${left}vw`, top: `${top}vh` }}>
-            {children}
+        <div
+            className="absolute"
+            style={{
+                left: `${left}vw`,
+                top: `${top}vh`,
+                rotate: `${rotation}deg`,
+            }}
+        >
+            {/* Ombre sous le Post-it */}
+            <div
+                className="absolute w-48 h-2 bg-black/50 filter blur-sm"
+                style={{
+                    top: 'calc(100% - 2px)',       // juste en dessous du Post-it
+                    left: 0,
+                    zIndex: -1,
+                    borderRadius: '0.25rem', // optionnel pour arrondir l'ombre
+                }}
+            />
+            {/* Le Post-it */}
+            <div
+                className={`w-48 h-48 ${colors[color]} transform p-4 ${className || ''}`}
+                style={{
+                    zIndex: 1,
+                }}
+            >
+                {children}
+            </div>
         </div>
     );
 }
