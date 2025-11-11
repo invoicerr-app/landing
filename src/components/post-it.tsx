@@ -25,7 +25,7 @@ export function PostIt({ className, color = 'yellow', rotation = 0, children, le
         >
             {/* Ombre sous le Post-it */}
             <div
-                className="absolute w-48 h-2 bg-black/50 filter blur-sm"
+                className="absolute w-42 h-2 bg-black/50 filter blur-sm"
                 style={{
                     top: 'calc(100% - 2px)',       // juste en dessous du Post-it
                     left: 0,
@@ -35,7 +35,7 @@ export function PostIt({ className, color = 'yellow', rotation = 0, children, le
             />
             {/* Le Post-it */}
             <div
-                className={`w-48 h-48 ${colors[color]} transform p-4 ${className || ''}`}
+                className={`w-42 h-42 ${colors[color]} transform p-4 ${className || ''}`}
                 style={{
                     zIndex: 1,
                 }}
