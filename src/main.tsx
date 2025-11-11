@@ -7,6 +7,7 @@ import Header from './components/header'
 import Home from './components/home'
 import Phone from './components/phone';
 import { PostIt } from './components/post-it'
+import { TextReveal } from './components/ui/text-reveal';
 import clientApproval from './assets/writings/client-approval-pending.svg';
 import { createRoot } from 'react-dom/client'
 import depositWaiting from './assets/writings/30p-deposit-waiting.svg';
@@ -31,7 +32,7 @@ function App() {
   ];
 
   return (
-    <main className='min-h-screen h-[500dvh]'>
+    <main className='min-h-screen h-[calc(12*100dvh)]'>
       <Header />
       <Home />
       <section className='fixed w-screen h-screen'>
@@ -58,7 +59,21 @@ function App() {
           <img src={firstMonthUnpaid} alt="First Month Unpaid" className="w-full h-full mx-auto mb-2 -rotate-16" />
         </PostIt>
       </section>
-    </main>
+      <section id='content-text' className='flex flex-col items-center space-y-8'>
+        <section className="w-1/3 text-center self-end">
+          <TextReveal>Create, send, and get paid, faster.</TextReveal>
+        </section>
+        <section className="w-1/3 text-left self-start">
+          <TextReveal>Built-in signatures. Plug-in power.</TextReveal>
+        </section>
+        <section className="w-1/3 text-center self-end">
+          <TextReveal>Smart insights for real decisions.</TextReveal>
+        </section>
+        <section className="w-1/3 text-left self-start">
+          <TextReveal>Your data. Your server. Your rules.</TextReveal>
+        </section>
+      </section>
+    </main >
   )
 }
 
