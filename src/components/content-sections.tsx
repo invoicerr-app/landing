@@ -1,5 +1,7 @@
 import type { ContentSection } from '../types';
+import { IntegrationCircle } from './integration-circle';
 import { TextReveal } from './ui/text-reveal';
+import { cn } from '@/lib/utils';
 
 const contentSections: ContentSection[] = [
     {
@@ -11,7 +13,7 @@ const contentSections: ContentSection[] = [
     {
         title: 'Built-in signatures. Plug-in power.',
         description: 'Sign documents directly inside Invoicerr or\nconnect your favorite tools like Documenso.\nYour workflow, your rules , with zero friction.',
-        alignment: 'left',
+        alignment: 'center',
         position: 'start',
     },
     {
@@ -23,7 +25,7 @@ const contentSections: ContentSection[] = [
     {
         title: 'Your data. Your server. Your rules.',
         description: 'Invoicerr is fully self-hosted.\nNo trackers, no hidden syncs, no third-party access.',
-        alignment: 'left',
+        alignment: 'center',
         position: 'start',
     },
 ];
@@ -36,11 +38,28 @@ function ContentSections() {
             {contentSections.map((section, index) => (
                 <section
                     key={index}
-                    className={`w-1/3 text-${section.alignment} self-${section.position}`}
+                    className={cn(
+                        index === 1
+                            ? "w-full flex flex-row justify-between items-start"
+                            : `w-1/3 text-${section.alignment} self-${section.position}`
+                    )}
                 >
-                    <TextReveal description={section.description}>
-                        {section.title}
-                    </TextReveal>
+                    <div className={index === 1 ? "w-1/3" : "w-full"}>
+                        <TextReveal description={section.description}>
+                            {section.title}
+                        </TextReveal>
+                    </div>
+
+                    {/* Ajouter le diagramme d'intégration après "Built-in signatures" */}
+                    {index === 1 && (
+                        <div className="w-1/3">
+                            <div className="relative z-0 h-[200vh]">
+                                <div className="sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20">
+                                    <IntegrationCircle />
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </section>
             ))}
         </section>

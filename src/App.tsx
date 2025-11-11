@@ -5,6 +5,7 @@ import Home from './components/home';
 import Phone from './components/phone';
 import { PostIt } from './components/post-it';
 import type { PostItData } from './types';
+import { Ripple } from './components/ui/ripple';
 import { getDocumentBoxes } from './data/documents';
 import { postItData } from './data/post-its';
 import { useWindowSize } from './hooks/useWindowSize';
@@ -17,6 +18,7 @@ function App() {
         <main className='min-h-screen h-[calc(12*100dvh)]'>
             <Header />
             <Home />
+            <Ripple className='-z-10' />
 
             <section className='fixed w-screen h-screen'>
                 {documentBoxes.map((box, index) => (
