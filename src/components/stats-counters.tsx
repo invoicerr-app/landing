@@ -1,5 +1,5 @@
 import { CardContent, CardFooter } from './ui/card';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
 import { MagicCard } from './ui/magic-card';
@@ -71,19 +71,51 @@ export function StatsCounters() {
         },
     ];
 
+    const targetRef = useRef<HTMLDivElement | null>(null)
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+        offset: ["start end", "end start"]
+    })
+
+    const card1XLinear = useTransform(scrollYProgress, [0, 1], ['-350px', '350px']);
+    const card3XLinear = useTransform(scrollYProgress, [0, 1], ['350px', '-350px']);
+
+    const card1X = useSpring(card1XLinear, {
+        stiffness: 120,
+        damping: 30,
+    });
+    const card3X = useSpring(card3XLinear, {
+        stiffness: 120,
+        damping: 30,
+    });
+
     return (
-        <div className="ml-[20%] w-4/5 flex flex-col items-center gap-6">
-            {stats.map((stat, index) => (
-                <ScrollBasedStatItem
-                    key={index}
-                    value={stat.value}
-                    label={stat.label}
-                    suffix={stat.suffix}
-                    decimalPlaces={index === 2 ? 1 : 0}
-                    className="p-4 w-3/5"
-                    style={{ alignSelf: index === 0 ? 'flex-start' : index === 1 ? 'center' : 'flex-end' }}
-                />
-            ))}
+        <div ref={targetRef} className="flex flex-col gap-2 w-full">
+            <div className="ml-[10%] w-4/5 flex flex-col items-center gap-6">
+                {stats.map((stat, index) => (
+                    <motion.div
+                        key={index}
+                        style={{
+                            marginLeft: index === 0 ? card1X : index === 2 ? card3X : '0px',
+                        }}
+                        className="w-3/5"
+                    >
+                        <ScrollBasedStatItem
+                            value={stat.value}
+                            label={stat.label}
+                            suffix={stat.suffix}
+                            decimalPlaces={index === 2 ? 1 : 0}
+                            className="p-4"
+                        />
+                    </motion.div>
+                ))}
+            </div>
+            {/* Description/Disclaimer */}
+            <div className="text-center text-gray-600">
+                <p className="text-[10px] leading-relaxed">
+                    The numbers above are fictitious,<br /> simply illustrating easy data tracking.
+                </p>
+            </div>
         </div>
     );
 }
