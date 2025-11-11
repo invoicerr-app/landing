@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-import { GithubIcon } from "lucide-react";
+import { Icons } from "./icons";
 
 export default function Header() {
     return (
@@ -24,7 +24,7 @@ export default function Header() {
                 </section>
                 <Button variant="default" className="rounded-full" size="lg" asChild>
                     <a href="https://github.com/Impre-visible/invoicerr/">
-                        <GithubIcon />
+                        <Icons.gitHub />
                         Download
                     </a>
                 </Button>
