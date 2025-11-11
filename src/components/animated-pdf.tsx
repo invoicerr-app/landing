@@ -51,6 +51,9 @@ export function AnimatedPdf({
     const y = useSpring(yLinear, { stiffness: 120, damping: 25 });
     const rotate = useSpring(rotateLinear, { stiffness: 120, damping: 25 });
 
+    const scaleLiner = useTransform(scrollY, [800, 2000], [1, 0.8]);
+    const scale = useSpring(scaleLiner, { stiffness: 120, damping: 25 });
+
     return (
         <motion.img
             src={asset}
@@ -58,6 +61,7 @@ export function AnimatedPdf({
             style={{
                 x,
                 y,
+                scale,
                 rotate,
                 width,
                 height,
