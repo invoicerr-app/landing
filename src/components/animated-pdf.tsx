@@ -6,8 +6,7 @@ interface AnimatedPdfProps {
     startY: number;
     startRot: number;
     stopStep?: number;
-    asset: string;
-    assetAlt?: string;
+    children?: React.ReactNode;
 }
 
 export function AnimatedPdf({
@@ -15,8 +14,7 @@ export function AnimatedPdf({
     startY,
     startRot,
     stopStep = 600,
-    asset,
-    assetAlt,
+    children,
 }: AnimatedPdfProps) {
     const { scrollY } = useScroll();
 
@@ -52,20 +50,22 @@ export function AnimatedPdf({
     const rotate = useSpring(rotateLinear, { stiffness: 120, damping: 25 });
 
     return (
-        <motion.img
-            src={asset}
-            alt={assetAlt || "Animated PDF Document"}
+        <motion.div
             style={{
                 x,
                 y,
                 rotate,
                 width,
                 height,
+                backgroundColor: "white",
                 margin: "0 auto",
                 display: "block",
                 position: "absolute",
                 filter: "drop-shadow(0 0 15px rgba(0, 0, 0, 0.1))",
+                willChange: "transform",
             }}
-        />
+        >
+            {children}
+        </motion.div>
     );
 }
