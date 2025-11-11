@@ -14,11 +14,11 @@ export function IntegrationCircle() {
         <div className="flex flex-col gap-0 w-full">
             <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="bg-green-50 border-4 border-green-500 rounded-full p-4 shadow-xl">
+                    <div className="border-4 border-gray-200 rounded-full p-4 shadow-xl">
                         <img
                             src="/favicon.svg"
                             alt="Invoicerr"
-                            className="size-10"
+                            className="size-8"
                         />
                     </div>
                 </div>
