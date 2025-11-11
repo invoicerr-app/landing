@@ -21,7 +21,7 @@ export default function Phone() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const scaleFactor = (windowSize.height / 885) * 1.1;
+    const scaleFactor = (windowSize.height / 885) * 1;
     const width = 400 * scaleFactor;
 
     const { scrollY } = useScroll();
@@ -29,7 +29,7 @@ export default function Phone() {
     const yPhoneLinear = useTransform(
         scrollY,
         [1200, 1800],
-        [windowSize.height * 1, windowSize.height * -0.05]
+        [windowSize.height * 1, windowSize.height * -0.1]
     );
     const yPhone = useSpring(yPhoneLinear, { stiffness: 120, damping: 25 });
 
@@ -48,10 +48,10 @@ export default function Phone() {
                 style={{
                     width: width * 0.85,
                     height: width * 2.16 * 0.85,
-                    marginTop: "-39%",
+                    marginTop: "-38%",
                     borderRadius: 30,
                     x: (windowSize.width - width) / 2 + width * 0.075,
-                    y: windowSize.height * -0.05,
+                    y: (windowSize.height - (width * 2.16 * 0.85)) * -0.22,
                     opacity: opacitySuccessCardSpring,
                 }}
             >
@@ -62,6 +62,7 @@ export default function Phone() {
             <motion.img
                 src={phoneImage}
                 alt="Phone Mockup"
+                className="pointer-events-none select-none"
                 style={{
                     width,
                     x: (windowSize.width - width) / 2,

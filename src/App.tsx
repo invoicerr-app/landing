@@ -1,0 +1,59 @@
+import { AnimatedPdf } from './components/animated-pdf';
+import ContentSections from './components/content-sections';
+import Header from './components/header';
+import Home from './components/home';
+import Phone from './components/phone';
+import { PostIt } from './components/post-it';
+import type { PostItData } from './types';
+import { getDocumentBoxes } from './data/documents';
+import { postItData } from './data/post-its';
+import { useWindowSize } from './hooks/useWindowSize';
+
+function App() {
+    const windowSize = useWindowSize();
+    const documentBoxes = getDocumentBoxes(windowSize);
+
+    return (
+        <main className='min-h-screen h-[calc(12*100dvh)]'>
+            <Header />
+            <Home />
+
+            <section className='fixed w-screen h-screen'>
+                {documentBoxes.map((box, index) => (
+                    <AnimatedPdf
+                        key={index}
+                        startX={box.startX}
+                        startY={box.startY}
+                        startRot={box.startRot}
+                        asset={box.asset}
+                        assetAlt={`Document ${index + 1}`}
+                    />
+                ))}
+                <Phone />
+            </section>
+
+            <section id='content-overlay'>
+                {postItData.map((postIt: PostItData, index: number) => (
+                    <PostIt
+                        key={index}
+                        left={postIt.left}
+                        top={postIt.top}
+                        color={postIt.color}
+                        rotation={postIt.rotation}
+                        className={postIt.className}
+                    >
+                        <img
+                            src={postIt.src}
+                            alt={postIt.alt}
+                            className={postIt.imgClassName}
+                        />
+                    </PostIt>
+                ))}
+            </section>
+
+            <ContentSections />
+        </main>
+    );
+}
+
+export default App;
