@@ -1,9 +1,8 @@
-import { Card, CardContent, CardFooter } from './ui/card';
+import { CardContent, CardFooter } from './ui/card';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
 import { MagicCard } from './ui/magic-card';
-import { NumberTicker } from '@/components/ui/number-ticker';
 import { cn } from '@/lib/utils';
 
 interface StatItemProps {
