@@ -61,16 +61,16 @@ function App() {
       </section>
       <section id='content-text' className='flex flex-col items-center space-y-8'>
         <section className="w-1/3 text-center self-end">
-          <TextReveal>Create, send, and get paid, faster.</TextReveal>
+          <TextReveal description='Generate quotes, invoices, and receipts in seconds.\nInvoicerr keeps everything organized, so you stay focused\non your work, not the paperwork.'>Create, send, and get paid, faster.</TextReveal>
         </section>
         <section className="w-1/3 text-left self-start">
-          <TextReveal>Built-in signatures. Plug-in power.</TextReveal>
+          <TextReveal description='Sign documents directly inside Invoicerr or\nconnect your favorite tools like Documenso.\nYour workflow, your rules , with zero friction.'>Built-in signatures. Plug-in power.</TextReveal>
         </section>
         <section className="w-1/3 text-center self-end">
-          <TextReveal>Smart insights for real decisions.</TextReveal>
+          <TextReveal description='Track payments, monitor clients,\nand visualize your business growth.'>Smart insights for real decisions.</TextReveal>
         </section>
         <section className="w-1/3 text-left self-start">
-          <TextReveal>Your data. Your server. Your rules.</TextReveal>
+          <TextReveal description='Invoicerr is fully self-hosted.\nNo trackers, no hidden syncs, no third-party access.'>Your data. Your server. Your rules.</TextReveal>
         </section>
       </section>
     </main >
