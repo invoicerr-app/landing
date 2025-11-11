@@ -51,7 +51,7 @@ export function AnimatedPdf({
     const y = useSpring(yLinear, { stiffness: 120, damping: 25 });
     const rotate = useSpring(rotateLinear, { stiffness: 120, damping: 25 });
 
-    const scaleLiner = useTransform(scrollY, [800, 2000], [1, 0.8]);
+    const scaleLiner = useTransform(scrollY, [800, 1800, 2400], [1, 0.75, 0.6]);
     const scale = useSpring(scaleLiner, { stiffness: 120, damping: 25 });
 
     return (
