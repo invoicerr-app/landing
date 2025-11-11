@@ -4,7 +4,7 @@ import { GithubIcon } from "lucide-react";
 
 export default function Header() {
     return (
-        <Card className="fixed top-2 left-1/2 transform -translate-x-1/2 w-fit rounded-full flex flex-row items-center gap-64 px-2 py-2">
+        <Card className="z-0 fixed top-2 left-1/2 transform -translate-x-1/2 w-fit rounded-full flex flex-row items-center gap-64 px-2 py-2">
             <section className="pl-4 flex items-center gap-2 h-fit">
                 <Button variant="link" size="lg" asChild>
                     <a className="px-0! w-fit h-fit text-xl" href="/">
