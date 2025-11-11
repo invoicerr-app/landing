@@ -23,14 +23,12 @@ export default function Phone() {
     const scaleFactor = (windowSize.height / 885) * 1.1;
     const width = 400 * scaleFactor;
 
-    // Récupère la position du scroll
     const { scrollY } = useScroll();
 
-    // Définition de la position verticale : part du bas vers le centre
     const yLinear = useTransform(
         scrollY,
-        [1200, 1800], // plage de scroll
-        [windowSize.height * 1, windowSize.height * -0.05] // déplacement vertical
+        [1200, 1800],
+        [windowSize.height * 1, windowSize.height * -0.05]
     );
 
     const y = useSpring(yLinear, { stiffness: 120, damping: 25 });

@@ -31,7 +31,7 @@ function App() {
   ];
 
   return (
-    <main className='min-h-screen h-[100000dvh]'>
+    <main className='min-h-screen h-[500dvh]'>
       <Header />
       <Home />
       <section className='fixed w-screen h-screen'>

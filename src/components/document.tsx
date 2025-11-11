@@ -53,20 +53,18 @@ export const Document: React.FC<DocumentProps> = ({
 
     return (
         <div className="flex justify-center bg-gray-100 p-4 overflow-auto w-full h-full">
-            {/* Container responsive avec ratio A4 */}
             <div
                 className="relative bg-white text-black shadow-lg origin-top-left"
                 style={{
-                    aspectRatio: "210 / 297", // ratio A4
+                    aspectRatio: "210 / 297",
                     width: "100%",
                     maxWidth: "210mm",
-                    fontSize: "calc(0.9vw + 0.3rem)", // le texte s’adapte à la largeur
+                    fontSize: "calc(0.9vw + 0.3rem)",
                     padding: "2.5vw",
                     lineHeight: 1.4,
                 }}
                 id="document-content"
             >
-                {/* Header */}
                 <div className="flex justify-between items-start border-b-2 border-black pb-4 mb-8">
                     <div>
                         <h1 className="font-bold uppercase tracking-wider text-[2.5em] leading-none">
@@ -85,7 +83,6 @@ export const Document: React.FC<DocumentProps> = ({
                     </div>
                 </div>
 
-                {/* Client Info */}
                 <div className="mb-6">
                     <h2 className="font-bold uppercase border-b border-gray-300 pb-1 mb-3 text-[0.8em]">
                         Facturation
@@ -102,7 +99,6 @@ export const Document: React.FC<DocumentProps> = ({
                     </div>
                 </div>
 
-                {/* Items Table */}
                 <table className="w-full border border-gray-300 mb-6 text-[0.75em]">
                     <thead>
                         <tr className="bg-gray-100 border-b-2 border-black">
@@ -127,7 +123,6 @@ export const Document: React.FC<DocumentProps> = ({
                     </tbody>
                 </table>
 
-                {/* Totals */}
                 <div className="flex justify-end mb-8">
                     <div className="w-64 text-[0.8em]">
                         <div className="flex justify-between mb-2">
@@ -151,7 +146,6 @@ export const Document: React.FC<DocumentProps> = ({
                     </div>
                 </div>
 
-                {/* Footer */}
                 <div className="flex justify-between border-t border-gray-300 pt-3 pb-4 text-[0.75em]">
                     <div>
                         <p className="font-bold">Mode de paiement:</p>
@@ -159,7 +153,6 @@ export const Document: React.FC<DocumentProps> = ({
                     </div>
                 </div>
 
-                {/* Notes */}
                 {notes && (
                     <div className="bg-gray-50 p-3 mt-4 italic text-gray-700 rounded text-[0.75em]">
                         {notes}

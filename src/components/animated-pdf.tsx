@@ -14,7 +14,7 @@ export function AnimatedPdf({
     startX,
     startY,
     startRot,
-    stopStep = 600,
+    stopStep = 1000,
     asset,
     assetAlt,
 }: AnimatedPdfProps) {
