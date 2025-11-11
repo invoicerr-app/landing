@@ -1,5 +1,6 @@
 import type { ContentSection } from '../types';
 import { IntegrationCircle } from './integration-circle';
+import { StatsCounters } from './stats-counters';
 import { TextReveal } from './ui/text-reveal';
 import { cn } from '@/lib/utils';
 
@@ -41,10 +42,24 @@ function ContentSections() {
                     className={cn(
                         index === 1
                             ? "w-full flex flex-row justify-between items-start"
-                            : `w-1/3 text-${section.alignment} self-${section.position}`
+                            : index === 2
+                                ? "w-full flex flex-row justify-between items-start"
+                                : `w-1/3 text-${section.alignment} self-${section.position}`
                     )}
                 >
-                    <div className={index === 1 ? "w-1/3" : "w-full"}>
+
+                    {/* Ajouter les compteurs de stats après "Smart insights" */}
+                    {index === 2 && (
+                        <div className="w-1/3">
+                            <div className="relative z-0 h-[200vh]">
+                                <div className="sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20">
+                                    <StatsCounters />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className={index === 1 || index === 2 ? "w-1/3" : "w-full"}>
                         <TextReveal description={section.description}>
                             {section.title}
                         </TextReveal>
