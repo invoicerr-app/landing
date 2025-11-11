@@ -18,9 +18,6 @@ export default function Header() {
                     <Button variant="link" size="lg" asChild>
                         <a className="px-0! w-fit h-fit text-xl" href="/about">About</a>
                     </Button>
-                    <Button variant="link" size="lg" asChild>
-                        <a className="px-0! w-fit h-fit text-xl" href="https://docs.invoicerr.app/">Documentation</a>
-                    </Button>
                 </section>
                 <Button variant="default" className="rounded-full" size="lg" asChild>
                     <a href="https://github.com/Impre-visible/invoicerr/">
