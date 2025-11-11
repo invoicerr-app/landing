@@ -1,5 +1,6 @@
 import type { ContentSection } from '../types';
 import { IntegrationCircle } from './integration-circle';
+import { ServerConnections } from './server-connections';
 import { StatsCounters } from './stats-counters';
 import { TextReveal } from './ui/text-reveal';
 import { cn } from '@/lib/utils';
@@ -44,7 +45,9 @@ function ContentSections() {
                             ? "w-full flex flex-row justify-between items-start"
                             : index === 2
                                 ? "w-full flex flex-row justify-between items-start"
-                                : `w-1/3 text-${section.alignment} self-${section.position}`
+                                : index === 3
+                                    ? "w-full flex flex-row justify-between items-start"
+                                    : `w-1/3 text-${section.alignment} self-${section.position}`
                     )}
                 >
 
@@ -59,7 +62,7 @@ function ContentSections() {
                         </div>
                     )}
 
-                    <div className={index === 1 || index === 2 ? "w-1/3" : "w-full"}>
+                    <div className={index === 1 || index === 2 || index === 3 ? "w-1/3" : "w-full"}>
                         <TextReveal description={section.description}>
                             {section.title}
                         </TextReveal>
@@ -71,6 +74,16 @@ function ContentSections() {
                             <div className="relative z-0 h-[200vh]">
                                 <div className="sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20">
                                     <IntegrationCircle />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {index === 3 && (
+                        <div className="w-1/3">
+                            <div className="relative z-0 h-[200vh]">
+                                <div className="sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20">
+                                    <ServerConnections />
                                 </div>
                             </div>
                         </div>
