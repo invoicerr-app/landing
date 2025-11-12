@@ -48,10 +48,9 @@ export default function Phone() {
                 style={{
                     width: width * 0.85,
                     height: width * 2.16 * 0.85,
-                    marginTop: "-38%",
                     borderRadius: 30,
                     x: (windowSize.width - width) / 2 + width * 0.075,
-                    y: (windowSize.height - (width * 2.16 * 0.85)) * -0.22,
+                    y: -(width * 2.16 * 0.9),
                     opacity: opacitySuccessCardSpring,
                 }}
             >
