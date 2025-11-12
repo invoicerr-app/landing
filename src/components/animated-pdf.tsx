@@ -1,5 +1,4 @@
 import { motion, MotionValue, useSpring, useTransform } from "motion/react";
-import { useEffect, useState } from "react";
 
 interface AnimatedPdfProps {
     scrollYProgress: MotionValue<number>;
@@ -28,24 +27,6 @@ export function AnimatedPdf({
     asset,
     assetAlt,
 }: AnimatedPdfProps) {
-
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-
     const xLinear = useTransform(scrollYProgress, scrollXSteps, scrollXValues);
     const yLinear = useTransform(scrollYProgress, scrollYSteps, scrollYValues);
     const rotateLinear = useTransform(scrollYProgress, rotateSteps, rotateValues);
