@@ -33,7 +33,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
     const yPhoneLinear = useTransform(
         scrollYProgress,
         [0.09, 0.095],
-        [windowSize.height * 1, windowSize.height * -0.1]
+        [windowSize.height * 1, windowSize.height * -0.12]
     );
 
     const yPhone = useSpring(yPhoneLinear, { stiffness: 120, damping: 25 });
@@ -133,9 +133,9 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
                 style={{
                     width: width * 0.85,
                     height: width * 2.16 * 0.85,
-                    borderRadius: 30,
+                    borderRadius: "6vh",
                     x: (windowSize.width - width) / 2 + width * 0.075,
-                    y: -(width * 2.16 * 0.9),
+                    y: (-width * 2.16 * 0.91),
                     opacity: opacitySuccessCardSpring,
                 }}
             >
