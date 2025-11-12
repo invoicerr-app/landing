@@ -1,9 +1,8 @@
 import { motion, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { CheckCircle, Bell } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import phoneImage from "../assets/phone.png";
-import invoicerrIcon from '../../public/favicon.svg'
 import { Notification } from "./ui/animated-list";
 import { Icons } from "./icons";
 

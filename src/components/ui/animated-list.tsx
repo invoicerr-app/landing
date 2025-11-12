@@ -45,7 +45,7 @@ export const Notification = ({ name, description, icon, color, time }: Item) => 
         // inner glow
         "before:absolute before:inset-0 before:rounded-2xl before:bg-linear-to-br before:from-white/60 before:to-transparent before:opacity-50 before:pointer-events-none",
         // shimmer effect
-        "after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-br after:from-transparent after:via-white/10 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100 after:pointer-events-none",
+        "after:absolute after:inset-0 after:rounded-2xl after:bg-linear-to-br after:from-transparent after:via-white/10 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100 after:pointer-events-none",
         // dark mode liquid glass
         "dark:bg-black/20 dark:backdrop-blur-2xl dark:backdrop-saturate-150",
         "dark:border-white/10 dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.4)]",
