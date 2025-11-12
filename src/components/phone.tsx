@@ -48,20 +48,20 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
 
     const opacityNotification = useTransform(
         scrollYProgress,
-        [0.18, 0.19, 0.21, 0.22],
+        [0.18, 0.19, 0.22, 0.24],
         [0, 1, 1, 0]
     );
 
     const scaleNotification = useTransform(
         scrollYProgress,
         [0.18, 0.2],
-        [0.8, 0.85]
+        [0.5, 0.85]
     );
 
     const yNotification = useTransform(
         scrollYProgress,
-        [0.18, 0.19, 0.21, 0.22],
-        [-60, -20, -20, 0]
+        [0.18, 0.19, 0.22, 0.24],
+        [-70, -20, -10, 0]
     );
 
     const opacityNotification2 = useTransform(
@@ -73,13 +73,13 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
     const scaleNotification2 = useTransform(
         scrollYProgress,
         [0.21, 0.23],
-        [0.8, 0.85]
+        [0.5, 0.85]
     );
 
     const yNotification2 = useTransform(
         scrollYProgress,
         [0.21, 0.22, 0.25, 0.27],
-        [-60, -20, -20, 0]
+        [-70, -20, -20, 0]
     );
 
     return (
