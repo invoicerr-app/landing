@@ -3,19 +3,28 @@ import { useEffect, useState } from "react";
 
 interface AnimatedPdfProps {
     scrollYProgress: MotionValue<number>;
-    startX: number;
-    startY: number;
-    startRot: number;
-    stopStep?: number;
+    scrollYSteps?: number[]
+    scrollXSteps?: number[]
+    scrollYValues: number[]
+    scrollXValues: number[]
+    rotateSteps: number[]
+    rotateValues: number[]
+    width?: number;
+    height?: number;
     asset: string;
     assetAlt?: string;
 }
 
 export function AnimatedPdf({
     scrollYProgress,
-    startX,
-    startY,
-    startRot,
+    scrollYSteps = [0, 0.07],
+    scrollXSteps = [0, 0.07],
+    scrollYValues = [0, 0],
+    scrollXValues = [0, 0],
+    rotateSteps = [0, 0.085],
+    rotateValues = [0, 0],
+    width = 400,
+    height = 566,
     asset,
     assetAlt,
 }: AnimatedPdfProps) {
@@ -36,16 +45,10 @@ export function AnimatedPdf({
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const scaleFactor = (windowSize.height / 885) * 1.1;
-    const height = 566 * scaleFactor;
-    const width = 400 * scaleFactor;
 
-    const finalX = (windowSize.width - width) / 2;
-    const finalY = (windowSize.height - height) / 2 - windowSize.height;
-
-    const xLinear = useTransform(scrollYProgress, [0, 0.07], [startX, finalX]);
-    const yLinear = useTransform(scrollYProgress, [0, 0.07], [startY, finalY]);
-    const rotateLinear = useTransform(scrollYProgress, [0, 0.085], [startRot, 0]);
+    const xLinear = useTransform(scrollYProgress, scrollXSteps, scrollXValues);
+    const yLinear = useTransform(scrollYProgress, scrollYSteps, scrollYValues);
+    const rotateLinear = useTransform(scrollYProgress, rotateSteps, rotateValues);
 
     const x = useSpring(xLinear, { stiffness: 120, damping: 25 });
     const y = useSpring(yLinear, { stiffness: 120, damping: 25 });

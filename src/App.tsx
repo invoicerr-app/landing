@@ -14,9 +14,13 @@ import { useRef } from 'react';
 
 function App() {
     const windowSize = useWindowSize();
-    const documentBoxes = getDocumentBoxes(windowSize);
+    const scaleFactor = (windowSize.height / 885) * 1.1;
+    const height = 566 * scaleFactor;
+    const width = 400 * scaleFactor;
+    const documentBoxes = getDocumentBoxes({ ...windowSize, documentHeight: height, documentWidth: width });
     const mainRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll();
+
 
     return (
         <main ref={mainRef} className='min-h-screen h-[calc(12*100dvh)]'>
@@ -28,9 +32,14 @@ function App() {
                 {documentBoxes.map((box, index) => (
                     <AnimatedPdf
                         key={index}
-                        startX={box.startX}
-                        startY={box.startY}
-                        startRot={box.startRot}
+                        width={width}
+                        height={height}
+                        scrollXValues={box.scrollXValues}
+                        scrollXSteps={box.scrollXSteps}
+                        scrollYValues={box.scrollYValues}
+                        scrollYSteps={box.scrollYSteps}
+                        rotateSteps={box.rotateSteps}
+                        rotateValues={box.rotateValues}
                         asset={box.asset}
                         assetAlt={`Document ${index + 1}`}
                         scrollYProgress={scrollYProgress}

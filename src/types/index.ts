@@ -1,13 +1,18 @@
 export interface WindowSize {
     width: number;
     height: number;
+    documentWidth?: number;
+    documentHeight?: number;
 }
 
 export interface DocumentBox {
     asset: string;
-    startX: number;
-    startY: number;
-    startRot: number;
+    scrollXValues: number[];
+    scrollYValues: number[];
+    rotateValues: number[];
+    scrollXSteps: number[];
+    scrollYSteps: number[];
+    rotateSteps: number[];
 }
 
 export interface PostItData {
