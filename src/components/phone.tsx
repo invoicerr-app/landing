@@ -99,7 +99,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
             >
                 <Notification
                     name="Sent successfully"
-                    description="Invoice sent to the client"
+                    description="Invoice sent to the client."
                     icon={<Icons.invoicerr />}
                     color="#fff"
                     time="now"
@@ -121,7 +121,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
             >
                 <Notification
                     name="Paid successfully"
-                    description="Invoice paid by the client"
+                    description="Invoice paid by the client."
                     icon={<Icons.invoicerr />}
                     color="#fff"
                     time="now"

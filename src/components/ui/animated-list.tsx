@@ -52,22 +52,19 @@ export const Notification = ({ name, description, icon, color, time }: Item) => 
         "dark:before:from-white/10 dark:before:to-transparent"
       )}
     >
-      <div className="flex flex-row gap-3 relative z-10">
-        {/* Icon - prend toute la hauteur avec effet glass */}
+      <div className="flex items-center flex-row gap-3 relative z-10">
         <div
           className="flex items-center justify-center shrink-0"
           style={{
             backgroundColor: color,
-            width: "48px",
-            height: "48px",
+            width: "32px",
+            height: "32px",
           }}
         >
           <span className="text-xl">{icon}</span>
         </div>
 
-        {/* Content wrapper */}
         <div className="flex-1 flex flex-col min-w-0">
-          {/* Header avec titre et time */}
           <div className="flex items-start justify-between gap-2 mb-0.5">
             <figcaption className="text-sm font-semibold text-gray-900 dark:text-white truncate drop-shadow-sm">
               {name}
@@ -77,7 +74,6 @@ export const Notification = ({ name, description, icon, color, time }: Item) => 
             </span>
           </div>
 
-          {/* Description */}
           <p className="text-sm text-gray-700 dark:text-gray-200 line-clamp-2 drop-shadow-sm">
             {description}
           </p>
