@@ -6,7 +6,7 @@ export const Icons = {
         />
     ),
     invoicerr: () => (
-        <img src="public/favicon.svg"
+        <img src="/favicon.svg"
             alt="Invoicerr Logo"
             className="w-6 h-6"
         />
