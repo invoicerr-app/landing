@@ -9,13 +9,17 @@ import { Ripple } from './components/ui/ripple';
 import { getDocumentBoxes } from './data/documents';
 import { postItData } from './data/post-its';
 import { useWindowSize } from './hooks/useWindowSize';
+import { useScroll } from 'motion/react';
+import { useRef } from 'react';
 
 function App() {
     const windowSize = useWindowSize();
     const documentBoxes = getDocumentBoxes(windowSize);
+    const mainRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll();
 
     return (
-        <main className='min-h-screen h-[calc(12*100dvh)]'>
+        <main ref={mainRef} className='min-h-screen h-[calc(12*100dvh)]'>
             <Header />
             <Home />
             <Ripple className='-z-10' />
@@ -29,9 +33,10 @@ function App() {
                         startRot={box.startRot}
                         asset={box.asset}
                         assetAlt={`Document ${index + 1}`}
+                        scrollYProgress={scrollYProgress}
                     />
                 ))}
-                <Phone />
+                <Phone scrollYProgress={scrollYProgress} />
             </section>
 
             <section id='content-overlay'>
@@ -53,7 +58,7 @@ function App() {
                 ))}
             </section>
 
-            <ContentSections />
+            <ContentSections scrollYProgress={scrollYProgress} />
         </main>
     );
 }

@@ -1,5 +1,5 @@
 import { CardContent, CardFooter } from './ui/card';
-import { motion, useScroll, useSpring, useTransform } from 'motion/react';
+import { motion, useScroll, useSpring, useTransform, type MotionValue } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
 import { MagicCard } from './ui/magic-card';
@@ -52,7 +52,11 @@ const ScrollBasedStatItem = ({ value, label, prefix, suffix, className, decimalP
     );
 };
 
-export function StatsCounters() {
+interface StatsCountersProps {
+    scrollYProgress: MotionValue<number>;
+}
+
+export function StatsCounters({ scrollYProgress }: StatsCountersProps) {
     const stats = [
         {
             value: 3212,
@@ -71,14 +75,8 @@ export function StatsCounters() {
         },
     ];
 
-    const targetRef = useRef<HTMLDivElement | null>(null)
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ["start end", "end start"]
-    })
-
-    const card1XLinear = useTransform(scrollYProgress, [0, 1], ['-350px', '350px']);
-    const card3XLinear = useTransform(scrollYProgress, [0, 1], ['350px', '-350px']);
+    const card1XLinear = useTransform(scrollYProgress, [0.45, 0.65], ['-350px', '350px']);
+    const card3XLinear = useTransform(scrollYProgress, [0.45, 0.65], ['350px', '-350px']);
 
     const card1X = useSpring(card1XLinear, {
         stiffness: 120,
@@ -90,7 +88,7 @@ export function StatsCounters() {
     });
 
     return (
-        <div ref={targetRef} className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-2 w-full">
             <div className="ml-[10%] w-4/5 flex flex-col items-center gap-6">
                 {stats.map((stat, index) => (
                     <motion.div

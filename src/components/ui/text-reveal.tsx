@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
   children: string
-  description?: string // Added optional description prop
+  description?: string
 }
 
 export const TextReveal: FC<TextRevealProps> = ({ children, description, className }) => {

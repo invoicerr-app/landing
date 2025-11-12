@@ -1,4 +1,5 @@
 import type { ContentSection } from '../types';
+import type { MotionValue } from 'motion/react';
 import { IntegrationCircle } from './integration-circle';
 import { ServerConnections } from './server-connections';
 import { StatsCounters } from './stats-counters';
@@ -32,7 +33,11 @@ const contentSections: ContentSection[] = [
     },
 ];
 
-function ContentSections() {
+interface ContentSectionsProps {
+    scrollYProgress: MotionValue<number>;
+}
+
+function ContentSections({ scrollYProgress }: ContentSectionsProps) {
     return (
         <section id='content-text' className='flex flex-col items-center space-y-8'>
             <section className='h-[50dvh]'></section>
@@ -51,12 +56,11 @@ function ContentSections() {
                     )}
                 >
 
-                    {/* Ajouter les compteurs de stats après "Smart insights" */}
                     {index === 2 && (
                         <div className="w-1/3">
                             <div className="relative z-0 h-[200vh]">
                                 <div className="sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20">
-                                    <StatsCounters />
+                                    <StatsCounters scrollYProgress={scrollYProgress} />
                                 </div>
                             </div>
                         </div>
@@ -68,7 +72,6 @@ function ContentSections() {
                         </TextReveal>
                     </div>
 
-                    {/* Ajouter le diagramme d'intégration après "Built-in signatures" */}
                     {index === 1 && (
                         <div className="w-1/3">
                             <div className="relative z-0 h-[200vh]">

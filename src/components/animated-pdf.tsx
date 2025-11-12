@@ -1,7 +1,8 @@
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, MotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 
 interface AnimatedPdfProps {
+    scrollYProgress: MotionValue<number>;
     startX: number;
     startY: number;
     startRot: number;
@@ -11,14 +12,13 @@ interface AnimatedPdfProps {
 }
 
 export function AnimatedPdf({
+    scrollYProgress,
     startX,
     startY,
     startRot,
-    stopStep = 1000,
     asset,
     assetAlt,
 }: AnimatedPdfProps) {
-    const { scrollY } = useScroll();
 
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
@@ -43,15 +43,15 @@ export function AnimatedPdf({
     const finalX = (windowSize.width - width) / 2;
     const finalY = (windowSize.height - height) / 2 - windowSize.height;
 
-    const xLinear = useTransform(scrollY, [0, stopStep * 1.2], [startX, finalX]);
-    const yLinear = useTransform(scrollY, [0, stopStep * 1], [startY, finalY]);
-    const rotateLinear = useTransform(scrollY, [0, stopStep * 1.3], [startRot, 0]);
+    const xLinear = useTransform(scrollYProgress, [0, 0.07], [startX, finalX]);
+    const yLinear = useTransform(scrollYProgress, [0, 0.07], [startY, finalY]);
+    const rotateLinear = useTransform(scrollYProgress, [0, 0.085], [startRot, 0]);
 
     const x = useSpring(xLinear, { stiffness: 120, damping: 25 });
     const y = useSpring(yLinear, { stiffness: 120, damping: 25 });
     const rotate = useSpring(rotateLinear, { stiffness: 120, damping: 25 });
 
-    const scaleLiner = useTransform(scrollY, [800, 1800, 2400], [1, 0.75, 0.6]);
+    const scaleLiner = useTransform(scrollYProgress, [0.085, 0.09, 0.1], [1, 0.75, 0.6]);
     const scale = useSpring(scaleLiner, { stiffness: 120, damping: 25 });
 
     return (

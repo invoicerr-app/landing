@@ -1,10 +1,14 @@
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { CheckCircle } from "lucide-react";
 import phoneImage from "../assets/phone.png";
 
-export default function Phone() {
+interface PhoneProps {
+    scrollYProgress: MotionValue<number>;
+}
+
+export default function Phone({ scrollYProgress }: PhoneProps) {
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -24,19 +28,18 @@ export default function Phone() {
     const scaleFactor = (windowSize.height / 885) * 1;
     const width = 400 * scaleFactor;
 
-    const { scrollY } = useScroll();
-
     const yPhoneLinear = useTransform(
-        scrollY,
-        [1200, 1800],
+        scrollYProgress,
+        [0.09, 0.095],
         [windowSize.height * 1, windowSize.height * -0.1]
     );
+
     const yPhone = useSpring(yPhoneLinear, { stiffness: 120, damping: 25 });
 
     const opacitySuccessCard = useTransform(
-        scrollY,
-        [8450, 8500, 11000],
-        [0, 1, 1]
+        scrollYProgress,
+        [0.8, 0.82],
+        [0, 1]
     );
 
     const opacitySuccessCardSpring = useSpring(opacitySuccessCard, { stiffness: 120, damping: 25 });
@@ -56,7 +59,7 @@ export default function Phone() {
             >
                 <CheckCircle className="mx-auto mt-10 mb-4" size={64} color="white" />
                 <h2 className="text-4xl font-bold text-white">Success</h2>
-                <h3 className="text-xl font-medium text-white">You’ve just made<br />invoicing simple.</h3>
+                <h3 className="text-xl font-medium text-white">You've just made<br />invoicing simple.</h3>
             </motion.div>
             <motion.img
                 src={phoneImage}
