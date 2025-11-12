@@ -34,7 +34,7 @@ export function getDocumentBoxes(windowSize: WindowSize): DocumentBox[] {
             rotateValues: [-30, 0,],
             
             scrollXSteps: [0, 0.07],
-            scrollYSteps: [0, 0.07, 0.18, 0.24],
+            scrollYSteps: [0, 0.07, 0.15, 0.2],
             rotateSteps: [0, 0.085],
         },
     ];

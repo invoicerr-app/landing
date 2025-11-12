@@ -1,8 +1,11 @@
 import { motion, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Bell } from "lucide-react";
 import phoneImage from "../assets/phone.png";
+import invoicerrIcon from '../../public/favicon.svg'
+import { Notification } from "./ui/animated-list";
+import { Icons } from "./icons";
 
 interface PhoneProps {
     scrollYProgress: MotionValue<number>;
@@ -44,8 +47,88 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
 
     const opacitySuccessCardSpring = useSpring(opacitySuccessCard, { stiffness: 120, damping: 25 });
 
+    const opacityNotification = useTransform(
+        scrollYProgress,
+        [0.18, 0.19, 0.21, 0.22],
+        [0, 1, 1, 0]
+    );
+
+    const scaleNotification = useTransform(
+        scrollYProgress,
+        [0.18, 0.2],
+        [0.8, 0.85]
+    );
+
+    const yNotification = useTransform(
+        scrollYProgress,
+        [0.18, 0.19, 0.21, 0.22],
+        [-60, -20, -20, 0]
+    );
+
+    const opacityNotification2 = useTransform(
+        scrollYProgress,
+        [0.2, 0.21, 0.25, 0.27],
+        [0, 1, 1, 0]
+    );
+
+    const scaleNotification2 = useTransform(
+        scrollYProgress,
+        [0.21, 0.23],
+        [0.8, 0.85]
+    );
+
+    const yNotification2 = useTransform(
+        scrollYProgress,
+        [0.21, 0.22, 0.25, 0.27],
+        [-60, -20, -20, 0]
+    );
+
     return (
         <>
+            <motion.div
+                style={{
+                    position: "fixed",
+                    x: (windowSize.width - width) / 2 + width * 0.15,
+                    y: yPhone,
+                    width: width * 0.7,
+                    opacity: opacityNotification,
+                    scale: scaleNotification,
+                    top: windowSize.height * 0.3,
+                    translateY: yNotification,
+                    pointerEvents: "none",
+                }}
+            >
+                <Notification
+                    name="Sent successfully"
+                    description="Invoice sent to the client"
+                    icon={<Icons.invoicerr />}
+                    color="#fff"
+                    time="now"
+                />
+            </motion.div>
+
+            <motion.div
+                style={{
+                    position: "fixed",
+                    x: (windowSize.width - width) / 2 + width * 0.15,
+                    y: yPhone,
+                    width: width * 0.7,
+                    opacity: opacityNotification2,
+                    scale: scaleNotification2,
+                    top: windowSize.height * 0.3,
+                    translateY: yNotification2,
+                    pointerEvents: "none",
+                }}
+            >
+                <Notification
+                    name="Paid successfully"
+                    description="Invoice paid by the client"
+                    icon={<Icons.invoicerr />}
+                    color="#fff"
+                    time="now"
+                />
+            </motion.div>
+
             <motion.div
                 className="bg-green-400 flex flex-col items-center justify-center"
                 style={{
