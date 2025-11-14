@@ -1,14 +1,14 @@
-import { AnimatedPdf } from './components/animated-pdf';
-import ContentSections from './components/content-sections';
-import Header from './components/header';
-import Home from './components/home';
-import Phone from './components/phone';
-import { PostIt } from './components/post-it';
-import type { PostItData } from './types';
-import { Ripple } from './components/ui/ripple';
-import { getDocumentBoxes } from './data/documents';
-import { postItData } from './data/post-its';
-import { useWindowSize } from './hooks/useWindowSize';
+import { AnimatedPdf } from '@/components/animated-pdf';
+import ContentSections from '@/components/content-sections';
+import Header from '@/components/header';
+import Home from '@/components/home';
+import Phone from '@/components/phone';
+import { PostIt } from '@/components/post-it';
+import type { PostItData } from '@/types';
+import { Ripple } from '@/components/ui/ripple';
+import { getDocumentBoxes } from '@/data/documents';
+import { postItData } from '@/data/post-its';
+import { useWindowSize } from '@/hooks/useWindowSize';
 import { useScroll } from 'motion/react';
 import { useRef } from 'react';
 
