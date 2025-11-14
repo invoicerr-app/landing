@@ -1,4 +1,4 @@
-import { motion, useSpring, useTransform, type MotionValue } from "motion/react";
+import { motion, useSpring, useTransform, useMotionValue, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { CheckCircle } from "lucide-react";
@@ -16,6 +16,8 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
         height: window.innerHeight,
     });
 
+    const scrollOffset = useMotionValue(0);
+
     useEffect(() => {
         const handleResize = () => {
             setWindowSize({
@@ -27,16 +29,50 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const progress = scrollYProgress.get();
+            if (progress >= 0.95) {
+                const totalScrollHeight = document.documentElement.scrollHeight - windowSize.height;
+                const scrollAt95Percent = totalScrollHeight * 0.95;
+                const currentScroll = window.scrollY;
+                const offset = currentScroll - scrollAt95Percent;
+                scrollOffset.set(-offset);
+            } else {
+                scrollOffset.set(0);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [scrollYProgress, windowSize.height, scrollOffset]);
+
     const scaleFactor = (windowSize.height / 885) * 1;
     const width = 400 * scaleFactor;
 
-    const yPhoneLinear = useTransform(
+    // Calculer l'offset proportionnel au scaleFactor
+    const successCardOffset = 105 * scaleFactor;
+
+    const yPhoneBase = useTransform(
         scrollYProgress,
-        [0.09, 0.095],
-        [windowSize.height * 1, windowSize.height * -0.12]
+        [0.09, 0.095, 0.95, 1],
+        [
+            windowSize.height * 1,
+            windowSize.height * -0.12,
+            windowSize.height * -0.12,
+            windowSize.height * -0.12
+        ]
     );
 
-    const yPhone = useSpring(yPhoneLinear, { stiffness: 120, damping: 25 });
+    const scrollOffsetSpring = useSpring(scrollOffset, { stiffness: 120, damping: 25 });
+
+    const yPhoneFinal = useTransform(
+        [yPhoneBase, scrollOffsetSpring],
+        (values: number[]) => values[0] + values[1]
+    );
+
+    // Ajouter un offset proportionnel pour le fond vert
+    const ySuccessCard = useTransform(yPhoneFinal, (y) => y + successCardOffset);
 
     const opacitySuccessCard = useTransform(
         scrollYProgress,
@@ -88,7 +124,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
                 style={{
                     position: "fixed",
                     x: (windowSize.width - width) / 2 + width * 0.15,
-                    y: yPhone,
+                    y: yPhoneFinal,
                     width: width * 0.7,
                     opacity: opacityNotification,
                     scale: scaleNotification,
@@ -110,7 +146,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
                 style={{
                     position: "fixed",
                     x: (windowSize.width - width) / 2 + width * 0.15,
-                    y: yPhone,
+                    y: yPhoneFinal,
                     width: width * 0.7,
                     opacity: opacityNotification2,
                     scale: scaleNotification2,
@@ -131,11 +167,13 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
             <motion.div
                 className="bg-green-400 flex flex-col items-center justify-center"
                 style={{
+                    position: "fixed",
                     width: width * 0.85,
                     height: width * 2.16 * 0.85,
                     borderRadius: "6vh",
                     x: (windowSize.width - width) / 2 + width * 0.075,
-                    y: (-width * 2.16 * 0.91),
+                    y: ySuccessCard,
+                    translateY: (-width * 2.16 * 0.91),
                     opacity: opacitySuccessCardSpring,
                 }}
             >
@@ -150,7 +188,7 @@ export default function Phone({ scrollYProgress }: PhoneProps) {
                 style={{
                     width,
                     x: (windowSize.width - width) / 2,
-                    y: yPhone,
+                    y: yPhoneFinal,
                     scale: 1.3,
                     position: "fixed",
                     bottom: 0,
