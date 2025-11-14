@@ -38,6 +38,9 @@ export function AnimatedPdf({
     const scaleLiner = useTransform(scrollYProgress, [0.085, 0.09, 0.1], [1, 0.75, 0.6]);
     const scale = useSpring(scaleLiner, { stiffness: 120, damping: 25 });
 
+    const opacity = useTransform(scrollYProgress, [0.82, 0.83], [1, 0]);
+
+
     return (
         <motion.img
             src={asset}
@@ -49,6 +52,7 @@ export function AnimatedPdf({
                 rotate,
                 width,
                 height,
+                opacity,
                 backgroundColor: "white",
                 margin: "0 auto",
                 display: "block",
