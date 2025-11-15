@@ -45,13 +45,11 @@ export function ServerConnections() {
                         <Circle ref={desktopRef} className="border-blue-500 bg-blue-50">
                             <ComputerIcon className="size-8 text-blue-600" />
                         </Circle>
-
                         <Circle ref={phoneRef} className="border-orange-500 bg-orange-50">
                             <SmartphoneIcon className="size-8 text-orange-600" />
                         </Circle>
                     </div>
 
-                    {/* Middle row - Server center, Laptop left, Phone right */}
                     <div className="flex flex-row items-center justify-center">
                         <Circle ref={serverRef} className="size-20 border-purple-500 bg-purple-50 border-4">
                             <ServerIcon className="size-10 text-purple-600" />
@@ -65,6 +63,7 @@ export function ServerConnections() {
                     </div>
                 </div>
 
+                {/* DB Server */}
                 <AnimatedBeam
                     containerRef={containerRef}
                     fromRef={databaseRef}
@@ -75,6 +74,7 @@ export function ServerConnections() {
                     delay={0}
                 />
 
+                {/* Server Devices  */}
                 <AnimatedBeam
                     containerRef={containerRef}
                     fromRef={serverRef}
@@ -83,6 +83,7 @@ export function ServerConnections() {
                     gradientStopColor="#059669"
                     duration={2}
                     delay={3}
+                    reverse
                 />
                 <AnimatedBeam
                     containerRef={containerRef}
@@ -90,8 +91,9 @@ export function ServerConnections() {
                     toRef={desktopRef}
                     gradientStartColor="#3b82f6"
                     gradientStopColor="#1d4ed8"
-                    duration={2}
+                    duration={2.2}
                     delay={3}
+                    reverse
                 />
                 <AnimatedBeam
                     containerRef={containerRef}
@@ -99,15 +101,9 @@ export function ServerConnections() {
                     toRef={phoneRef}
                     gradientStartColor="#f97316"
                     gradientStopColor="#ea580c"
-                    duration={2}
+                    duration={2.4}
                     delay={3}
                 />
-            </div>
-            <div className="text-center text-gray-600">
-                <p className="text-sm leading-relaxed">
-                    Your data <span className="text-yellow-600 font-medium">centralized</span> and
-                    <span className="text-purple-600 font-medium"> distributed</span> securely.
-                </p>
             </div>
         </div>
     );
