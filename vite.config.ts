@@ -2,19 +2,19 @@ import { defineConfig } from 'vite'
 import path from "path"
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite"
-import generouted from '@generouted/react-router/plugin'
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: "/",
   plugins: [
+    TanStackRouterVite(),
     react({
       babel: {
         plugins: [['babel-plugin-react-compiler']],
       },
     }),
     tailwindcss(),
-    generouted()
   ],
   resolve: {
     alias: {
