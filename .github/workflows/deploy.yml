@@ -1,40 +1,64 @@
-name: Build & Deploy Frontend
+name: Build and Deploy Landing
 
+# Same hosting as the documentation: built here, served by GitHub Pages on a custom domain
+# (public/CNAME), with Cloudflare in front of it for DNS.
 on:
   push:
     branches:
       - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 22
+          cache: npm
 
-      - name: Get short commit hash
-        id: vars
-        run: echo "COMMIT_HASH=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build and push Docker image
-        run: |
-          docker buildx build \
-            --platform linux/amd64 \
-            -t ghcr.io/${{ github.repository_owner }}/landing:${COMMIT_HASH} \
-            -t ghcr.io/${{ github.repository_owner }}/landing:latest \
-            --push \
-            .
+      - name: Build landing page
+        run: npm run build
+
+      # GitHub Pages serves 404.html for any unknown path: handing it the app shell lets the
+      # client-side router resolve the URL instead.
+      - name: Add the single-page fallback
+        run: cp dist/index.html dist/404.html
+
+      - name: Setup Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
