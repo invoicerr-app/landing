@@ -1,5 +1,5 @@
 import { Plus } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 
 import { Reveal } from '@/components/reveal'
@@ -59,6 +59,7 @@ export function Faq() {
                             <h3>
                                 <button
                                     type="button"
+                                    id={`faq-question-${index}`}
                                     aria-expanded={expanded}
                                     aria-controls={`faq-${index}`}
                                     onClick={() => setOpen(expanded ? null : index)}
@@ -68,20 +69,22 @@ export function Faq() {
                                     <Plus className={cn('size-4 shrink-0 text-muted-foreground transition-transform duration-300', expanded && 'rotate-45')} />
                                 </button>
                             </h3>
-                            <AnimatePresence initial={false}>
-                                {expanded && (
-                                    <motion.div
-                                        id={`faq-${index}`}
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-                                        className="overflow-hidden"
-                                    >
-                                        <p className="max-w-2xl pb-6 leading-relaxed text-muted-foreground">{item.answer}</p>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            {/*
+                                Every answer stays mounted and collapses to zero height, instead of being
+                                unmounted. An answer that is not in the markup is an answer no crawler reads
+                                — and the FAQPage structured data in index.html quotes all six of them.
+                            */}
+                            <motion.div
+                                id={`faq-${index}`}
+                                role="region"
+                                aria-labelledby={`faq-question-${index}`}
+                                initial={false}
+                                animate={{ height: expanded ? 'auto' : 0 }}
+                                transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                                className="overflow-hidden"
+                            >
+                                <p className="max-w-2xl pb-6 leading-relaxed text-muted-foreground">{item.answer}</p>
+                            </motion.div>
                         </div>
                     )
                 })}

@@ -1,24 +1,14 @@
 import { Archive, FileCode2, Send } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 
 import { Reveal } from '@/components/reveal'
-import { countries } from '@/data/countries'
+import { type CountryFacts, countries } from '@/data/countries'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
-const swap = {
-    initial: { opacity: 0, y: 8, filter: 'blur(4px)' },
-    animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
-    exit: { opacity: 0, y: -8, filter: 'blur(4px)' },
-    transition: { duration: 0.25 },
-}
-
-export function Countries() {
-    const [code, setCode] = useState(countries[0].code)
-    const country = countries.find((entry) => entry.code === code) ?? countries[0]
-
-    const facts = [
+function factsFor(country: CountryFacts) {
+    return [
         country.format && { icon: FileCode2, label: 'E-invoice format', value: country.format, detail: 'Generated next to the PDF, validated before it leaves.' },
         { icon: Send, label: 'Sent through', value: country.channel.name, detail: country.channel.detail },
         country.retention && {
@@ -28,6 +18,10 @@ export function Countries() {
             detail: `Kept and hashed for as long as ${country.retention.source} asks.`,
         },
     ].filter((fact) => !!fact)
+}
+
+export function Countries() {
+    const [code, setCode] = useState(countries[0].code)
 
     return (
         <section id="countries" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
@@ -42,13 +36,15 @@ export function Countries() {
             <Reveal delay={0.1} className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[14rem_minmax(0,1fr)]">
                 <div role="tablist" aria-label="Country" className="flex min-w-0 gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
                     {countries.map((entry) => {
-                        const active = entry.code === country.code
+                        const active = entry.code === code
                         return (
                             <button
                                 key={entry.code}
+                                id={`country-tab-${entry.code}`}
                                 role="tab"
                                 type="button"
                                 aria-selected={active}
+                                aria-controls={`country-panel-${entry.code}`}
                                 onClick={() => setCode(entry.code)}
                                 className={cn(
                                     'relative flex shrink-0 items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors',
@@ -63,51 +59,67 @@ export function Countries() {
                     })}
                 </div>
 
-                <div className="grid min-w-0 gap-4 rounded-2xl border border-border bg-card p-5 sm:p-8 md:grid-cols-2">
-                    <div>
-                        <p className="text-sm font-medium">Company settings</p>
-                        <p className="mt-1 text-sm text-muted-foreground">What the app asks a company in {country.name}.</p>
-                        <AnimatePresence mode="wait" initial={false}>
-                            <motion.div key={country.code} {...swap} className="mt-6 space-y-4">
-                                {country.identifiers.map((identifier) => (
-                                    <div key={identifier.label}>
-                                        <p className="mb-1.5 text-sm font-medium">
-                                            {identifier.label}
-                                            {identifier.required && <span className="ml-1 text-destructive">*</span>}
-                                        </p>
-                                        <div className="flex h-9 items-center rounded-md border border-input bg-background px-3 text-sm text-muted-foreground/70">
-                                            {identifier.hint}
+                {/*
+                    All five panels stay in the markup, the inactive ones collapsed by `hidden`. Only the
+                    selected country used to be rendered, which left four fifths of this section — the
+                    formats, the channels, the retention citations — out of the HTML a reader or a crawler
+                    receives. It also gives the tablist above the tabpanels it was already claiming to
+                    control. The swap animation moved to `.panel-swap` in src/index.css, which restarts on
+                    its own each time `hidden` flips.
+                */}
+                <div className="min-w-0">
+                    {countries.map((country) => (
+                        <div
+                            key={country.code}
+                            id={`country-panel-${country.code}`}
+                            role="tabpanel"
+                            aria-labelledby={`country-tab-${country.code}`}
+                            hidden={country.code !== code}
+                        >
+                            <div className="panel-swap grid min-w-0 gap-4 rounded-2xl border border-border bg-card p-5 sm:p-8 md:grid-cols-2">
+                                <div>
+                                    <p className="text-sm font-medium">Company settings</p>
+                                    <p className="mt-1 text-sm text-muted-foreground">What the app asks a company in {country.name}.</p>
+                                    <div className="mt-6 space-y-4">
+                                        {country.identifiers.map((identifier) => (
+                                            <div key={identifier.label}>
+                                                <p className="mb-1.5 text-sm font-medium">
+                                                    {identifier.label}
+                                                    {identifier.required && <span className="ml-1 text-destructive">*</span>}
+                                                </p>
+                                                <div className="flex h-9 items-center rounded-md border border-input bg-background px-3 text-sm text-muted-foreground/70">
+                                                    {identifier.hint}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <div>
+                                            <p className="mb-1.5 text-sm font-medium">VAT rates on a new line</p>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {country.vatRates.map((rate) => (
+                                                    <span key={rate} className="rounded-md bg-secondary px-2 py-1 font-mono text-xs text-secondary-foreground">
+                                                        {rate}%
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                ))}
-                                <div>
-                                    <p className="mb-1.5 text-sm font-medium">VAT rates on a new line</p>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {country.vatRates.map((rate) => (
-                                            <span key={rate} className="rounded-md bg-secondary px-2 py-1 font-mono text-xs text-secondary-foreground">
-                                                {rate}%
-                                            </span>
-                                        ))}
-                                    </div>
                                 </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
 
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.dl key={country.code} {...swap} className="space-y-3 md:border-l md:border-border md:pl-8">
-                            {facts.map((fact) => (
-                                <div key={fact.label} className="flex gap-4 rounded-xl bg-muted/50 p-4">
-                                    <fact.icon className="mt-0.5 size-5 shrink-0 text-primary" />
-                                    <div>
-                                        <dt className="text-sm text-muted-foreground">{fact.label}</dt>
-                                        <dd className="mt-0.5 font-heading text-xl font-semibold tracking-tight">{fact.value}</dd>
-                                        <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.detail}</dd>
-                                    </div>
-                                </div>
-                            ))}
-                        </motion.dl>
-                    </AnimatePresence>
+                                <dl className="space-y-3 md:border-l md:border-border md:pl-8">
+                                    {factsFor(country).map((fact) => (
+                                        <div key={fact.label} className="flex gap-4 rounded-xl bg-muted/50 p-4">
+                                            <fact.icon className="mt-0.5 size-5 shrink-0 text-primary" />
+                                            <div>
+                                                <dt className="text-sm text-muted-foreground">{fact.label}</dt>
+                                                <dd className="mt-0.5 font-heading text-xl font-semibold tracking-tight">{fact.value}</dd>
+                                                <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.detail}</dd>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </Reveal>
 

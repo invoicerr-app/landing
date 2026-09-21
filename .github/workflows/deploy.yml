@@ -36,10 +36,10 @@ jobs:
       - name: Build landing page
         run: npm run build
 
-      # GitHub Pages serves 404.html for any unknown path: handing it the app shell lets the
-      # client-side router resolve the URL instead.
-      - name: Add the single-page fallback
-        run: cp dist/index.html dist/404.html
+      # The single-page fallback GitHub Pages serves for any unknown path is written by
+      # scripts/prerender.mjs, at the end of `npm run build`: dist/index.html now carries the page
+      # already rendered, which belongs to "/" alone, so 404.html keeps the plain shell and a
+      # noindex directive rather than being a copy of it.
 
       - name: Setup Pages
         if: github.event_name != 'pull_request'

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  One page, one URL. No <lastmod>: a date that does not track the content is worse than none,
+  and this file is hand-written rather than generated. The documentation site publishes its own
+  sitemap at https://docs.invoicerr.app/sitemap.xml — a sitemap only covers its own host.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://invoicerr.app/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

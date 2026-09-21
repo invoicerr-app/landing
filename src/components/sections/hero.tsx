@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button'
 import { WindowFrame } from '@/components/window-frame'
 import { links } from '@/lib/links'
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const
-
 export function Hero() {
     const stage = useRef<HTMLDivElement>(null)
     const reduced = useReducedMotion()
@@ -31,6 +29,9 @@ export function Hero() {
     const farX = useTransform(smoothX, (x) => x * 24)
     const farY = useTransform(smoothY, (y) => y * 18)
 
+    // The entrances below are the `enter*` classes from src/index.css rather than animation-library
+    // props: the library writes its first frame into the markup as `style="opacity:0"`, and this
+    // block holds the page's headline, which has to be legible in the HTML a crawler receives.
     return (
         <section className="relative overflow-hidden pt-28 sm:pt-36">
             <BrandMark
@@ -39,35 +40,18 @@ export function Hero() {
             />
 
             <div className="relative mx-auto max-w-6xl px-5">
-                <motion.div
-                    initial="hidden"
-                    animate="shown"
-                    variants={{ shown: { transition: { staggerChildren: 0.09 } } }}
-                    className="max-w-3xl"
-                >
-                    <motion.p
-                        variants={{ hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
-                        className="mb-6 inline-flex items-center rounded-full border border-border bg-card px-3.5 py-1 text-sm text-muted-foreground"
-                    >
+                <div className="max-w-3xl">
+                    <p className="enter mb-6 inline-flex items-center rounded-full border border-border bg-card px-3.5 py-1 text-sm text-muted-foreground">
                         Open source. Hosted by us, or by you.
-                    </motion.p>
-                    <motion.h1
-                        variants={{ hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
-                        className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.05]"
-                    >
+                    </p>
+                    <h1 className="enter text-balance text-4xl font-semibold tracking-tight [animation-delay:90ms] sm:text-5xl lg:text-6xl lg:leading-[1.05]">
                         The invoicing app that keeps up with you.
-                    </motion.h1>
-                    <motion.p
-                        variants={{ hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
-                        className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground"
-                    >
+                    </h1>
+                    <p className="enter mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground [animation-delay:180ms]">
                         Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Use our cloud
                         or host it yourself.
-                    </motion.p>
-                    <motion.div
-                        variants={{ hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }}
-                        className="mt-9 flex flex-wrap items-center gap-3"
-                    >
+                    </p>
+                    <div className="enter mt-9 flex flex-wrap items-center gap-3 [animation-delay:270ms]">
                         <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href={links.app}>
                                 Start free trial
@@ -77,14 +61,11 @@ export function Hero() {
                         <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href="#hosting">Self-host it</a>
                         </Button>
-                    </motion.div>
-                </motion.div>
+                    </div>
+                </div>
 
-                <motion.div
+                <div
                     ref={stage}
-                    initial={{ opacity: 0, y: 48 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.35, ease }}
                     onPointerMove={(event) => {
                         if (reduced || event.pointerType !== 'mouse') return
                         const box = event.currentTarget.getBoundingClientRect()
@@ -95,7 +76,7 @@ export function Hero() {
                         pointerX.set(0)
                         pointerY.set(0)
                     }}
-                    className="relative mt-16 pb-24 [perspective:1600px] sm:mt-20"
+                    className="enter-stage relative mt-16 pb-24 [perspective:1600px] sm:mt-20"
                 >
                     <motion.div style={{ rotateX: tiltX, rotateY: tiltY, scale, transformOrigin: '50% 0%' }}>
                         <WindowFrame address="my.invoicerr.app">
@@ -106,6 +87,7 @@ export function Hero() {
                                 alt="The Invoicerr dashboard: open quotes, invoiced and overdue totals, pending invoices and a revenue chart."
                                 className="block w-full dark:hidden"
                                 fetchPriority="high"
+                                decoding="async"
                             />
                             <img
                                 src="/screens/dashboard-dark.webp"
@@ -113,16 +95,14 @@ export function Hero() {
                                 height={900}
                                 alt="The Invoicerr dashboard in its dark theme."
                                 className="hidden w-full dark:block"
+                                decoding="async"
                             />
                         </WindowFrame>
                     </motion.div>
 
                     <motion.div
                         style={{ x: nearX, y: nearY }}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 1.1, ease }}
-                        className="absolute -left-3 bottom-40 hidden w-64 rounded-xl border border-border bg-popover p-4 shadow-xl shadow-foreground/10 lg:-left-10 lg:block dark:shadow-black/40"
+                        className="enter-pop absolute -left-3 bottom-40 hidden w-64 rounded-xl border border-border bg-popover p-4 shadow-xl shadow-foreground/10 [animation-delay:1.1s] lg:-left-10 lg:block dark:shadow-black/40"
                     >
                         <div className="flex items-center gap-2 text-sm font-medium">
                             <Landmark className="size-4 text-primary" />
@@ -134,10 +114,7 @@ export function Hero() {
 
                     <motion.div
                         style={{ x: farX, y: farY }}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 1.3, ease }}
-                        className="absolute -right-3 top-24 hidden w-72 rounded-xl border border-border bg-popover p-4 shadow-xl shadow-foreground/10 lg:-right-8 lg:block dark:shadow-black/40"
+                        className="enter-pop absolute -right-3 top-24 hidden w-72 rounded-xl border border-border bg-popover p-4 shadow-xl shadow-foreground/10 [animation-delay:1.3s] lg:-right-8 lg:block dark:shadow-black/40"
                     >
                         <p className="font-mono text-xs text-muted-foreground">INVOICE-2026-0006</p>
                         <div className="mt-2 flex items-center justify-between gap-3">
@@ -148,7 +125,7 @@ export function Hero() {
                             </span>
                         </div>
                     </motion.div>
-                </motion.div>
+                </div>
             </div>
         </section>
     )

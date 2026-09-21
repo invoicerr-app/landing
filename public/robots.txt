@@ -1,0 +1,6 @@
+# invoicerr.app — the marketing site. Everything on it is meant to be read and quoted,
+# by search engines and by the answer engines alike, so nothing is disallowed.
+User-agent: *
+Allow: /
+
+Sitemap: https://invoicerr.app/sitemap.xml
