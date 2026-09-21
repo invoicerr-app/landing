@@ -29,12 +29,23 @@ const columns = [
             { label: 'Translate on Weblate', href: links.weblate },
         ],
     },
+    {
+        title: 'Legal',
+        items: [
+            { label: 'Terms of Service', href: links.termsOfService },
+            { label: 'Privacy Policy', href: links.privacyPolicy },
+            { label: 'Data Processing Agreement', href: links.dataProcessingAgreement },
+            { label: 'Legal Notice', href: links.legalNotice },
+            { label: 'Cookies & Acceptable Use', href: links.cookiesAcceptableUse },
+            { label: 'Commercial license', href: links.commercialLicense },
+        ],
+    },
 ]
 
 export default function Footer() {
     return (
         <footer className="border-t border-border">
-            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[2fr_1fr_1fr_1fr]">
+            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
                 <div>
                     <a href="/" className="flex w-fit items-center gap-2.5" aria-label="Invoicerr home">
                         <BrandMark className="h-6" />
