@@ -37,7 +37,6 @@ const columns = [
             { label: 'Data Processing Agreement', href: links.dataProcessingAgreement },
             { label: 'Legal Notice', href: links.legalNotice },
             { label: 'Cookies & Acceptable Use', href: links.cookiesAcceptableUse },
-            { label: 'Commercial license', href: links.commercialLicense },
         ],
     },
 ]
