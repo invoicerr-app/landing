@@ -9,16 +9,8 @@ import { cn } from '@/lib/utils'
 const questions = [
     {
         question: 'Is the self-hosted version really free?',
-        answer: (
-            <>
-                Yes. It is the same app with every feature and no seat limit, under the AGPL-3.0 license. Selling Invoicerr as a service
-                to other people needs a{' '}
-                <a href={links.commercialLicense} className="underline underline-offset-4">
-                    commercial license
-                </a>
-                .
-            </>
-        ),
+        answer:
+            'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license — which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
     },
     {
         question: 'What can I do during the cloud trial?',
@@ -47,7 +39,7 @@ const questions = [
     },
     {
         question: 'What do I need to self-host it?',
-        answer: 'Docker, PostgreSQL and Redis. The compose file in the install guide starts all three. For larger setups there is a Helm chart.',
+        answer: "Docker, PostgreSQL and Redis — the app won't boot without all three. The compose file in the install guide starts Postgres alongside it; add a Redis service and point REDIS_URL at it. For larger setups there is a Helm chart.",
     },
 ]
 

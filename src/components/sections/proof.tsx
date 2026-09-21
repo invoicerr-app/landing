@@ -21,7 +21,7 @@ export function Proof() {
 
     const facts = [
         { value: stars, label: 'stars on GitHub', href: links.github },
-        { value: '18', label: 'contributors, plus translators' },
+        { value: '22', label: 'contributors, plus translators' },
         { value: '18', label: 'interface languages' },
         { value: 'AGPL-3.0', label: 'open-source license', href: links.license },
     ]

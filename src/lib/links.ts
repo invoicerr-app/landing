@@ -8,7 +8,6 @@ export const links = {
     changelog: 'https://docs.invoicerr.app/changelog',
     github: 'https://github.com/invoicerr-app/invoicerr',
     license: 'https://github.com/invoicerr-app/invoicerr/blob/dev/LICENSE',
-    commercialLicense: 'https://github.com/invoicerr-app/invoicerr/blob/dev/LICENSE.COMMERCIAL.md',
     weblate: 'https://hosted.weblate.org/engage/invoicerr/',
     // Docs pages built by the `docs` plugin instance, hence the `/docs/legal/` prefix (same pattern
     // as `selfHost`/`kubernetes`/`api` above) rather than the bare `/legal/` a naive guess would use.
