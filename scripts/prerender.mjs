@@ -4,6 +4,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import TurndownService from 'turndown'
 import { createServer } from 'vite'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -50,7 +51,29 @@ try {
     }
     await writeFile(path.join(root, 'dist', '404.html'), notFound)
 
-    console.log(`prerender: ${(body.length / 1024).toFixed(1)} kB of markup, ${hero.length} preload(s) hoisted into <head>, 404.html written`)
+    // llms-full.txt (https://llmstxt.org): the page's own text as Markdown, converted from the
+    // markup rendered just above rather than written by hand, so it can never say something the
+    // page does not. Screenshots and icons carry nothing a reader of plain text could use, so they
+    // are dropped instead of left as empty image links.
+    const turndown = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' })
+    turndown.remove(['svg', 'picture', 'script', 'style'])
+    // `remove` skips void elements, so images need a rule of their own.
+    turndown.addRule('no-images', { filter: 'img', replacement: () => '' })
+    const markdown = turndown
+        .turndown(body)
+        // An icon-only link (the GitHub mark) has no text left once its svg is gone.
+        .replace(/\[\]\([^)]*\)/g, '')
+        // Read outside the page, a relative link points nowhere.
+        .replace(/\]\(\//g, '](https://invoicerr.app/')
+        .replace(/\]\(#/g, '](https://invoicerr.app/#')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim()
+    await writeFile(
+        path.join(root, 'dist', 'llms-full.txt'),
+        `# Invoicerr — full text of https://invoicerr.app/\n\n${markdown}\n`,
+    )
+
+    console.log(`prerender: ${(body.length / 1024).toFixed(1)} kB of markup, ${hero.length} preload(s) hoisted into <head>, 404.html and llms-full.txt written`)
 } finally {
     await vite.close()
 }
