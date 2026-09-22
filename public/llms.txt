@@ -1,0 +1,26 @@
+# Invoicerr
+
+> Open-source invoicing app (AGPL-3.0): quotes, invoices, payments and e-invoicing to the tax office. Country rules ship for France, Germany, Italy, Poland and Portugal. Self-host it free with Docker or Helm, or use the hosted cloud version.
+
+This site is a single page. Its full text is in [llms-full.txt](https://invoicerr.app/llms-full.txt). The product documentation has its own index at [docs.invoicerr.app/llms.txt](https://docs.invoicerr.app/llms.txt).
+
+## Product
+
+- [Product](https://invoicerr.app/#product): from quote to invoice, payment matching and legal archive
+- [Countries](https://invoicerr.app/#countries): what the app asks and sends for each supported country
+- [Self-hosting](https://invoicerr.app/#hosting): Docker image for amd64, arm64 and arm/v7, and a Helm chart
+- [Pricing](https://invoicerr.app/#pricing): per-company cloud pricing, self-hosting free
+
+## Docs
+
+- [Documentation index for LLMs](https://docs.invoicerr.app/llms.txt): every documentation page, with a summary
+- [Docker installation](https://docs.invoicerr.app/docs/user-guide/docker-installation): the recommended way to self-host
+- [Country support matrix](https://docs.invoicerr.app/docs/developer-guide/country-support): identifiers, VAT rates, formats and channels per country
+- [API reference](https://docs.invoicerr.app/docs/developer-guide/api-reference)
+
+## Optional
+
+- [Source code](https://github.com/invoicerr-app/invoicerr)
+- [Changelog](https://docs.invoicerr.app/changelog)
+- [Terms of Service](https://docs.invoicerr.app/docs/legal/terms-of-service)
+- [Privacy Policy](https://docs.invoicerr.app/docs/legal/privacy-policy)
