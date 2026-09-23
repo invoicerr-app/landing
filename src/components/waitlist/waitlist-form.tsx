@@ -27,10 +27,14 @@ export function WaitlistForm({ copy, language }: { copy: WaitlistCopy; language:
     const [status, setStatus] = useState<Status>('idle')
     const [fieldError, setFieldError] = useState<FieldError>(null)
     const [failed, setFailed] = useState(false)
+    // The Worker's 429. Kept apart from `failed` because it is not a fault the visitor can fix by
+    // trying again straight away, and the message it shows says so.
+    const [rateLimited, setRateLimited] = useState(false)
 
     async function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setFailed(false)
+        setRateLimited(false)
 
         if (!EMAIL.test(email.trim())) return setFieldError('email')
         if (!country) return setFieldError('country')
@@ -54,6 +58,11 @@ export function WaitlistForm({ copy, language }: { copy: WaitlistCopy; language:
                 }),
             })
             if (!response.ok) {
+                if (response.status === 429) {
+                    setRateLimited(true)
+                    setStatus('idle')
+                    return
+                }
                 const body = (await response.json().catch(() => null)) as { field?: string } | null
                 if (body?.field === 'email' || body?.field === 'country' || body?.field === 'companySize') {
                     setFieldError(body.field)
@@ -84,7 +93,13 @@ export function WaitlistForm({ copy, language }: { copy: WaitlistCopy; language:
         )
     }
 
-    const message = failed ? copy.errors.network : fieldError ? copy.errors[fieldError] : null
+    const message = rateLimited
+        ? copy.errors.rateLimited
+        : failed
+          ? copy.errors.network
+          : fieldError
+            ? copy.errors[fieldError]
+            : null
 
     return (
         <form

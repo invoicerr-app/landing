@@ -31,8 +31,11 @@ import {
 export interface Env {
     /** The landing's own dist/, uploaded alongside this Worker. */
     ASSETS: Fetcher
-    /** One key per address: `entry:<lowercased e-mail>`. */
+    /** One key per address: `entry:<lowercased e-mail>`, plus the rate counters: `rate:<window>:<ip>`. */
     WAITLIST: KVNamespace
+    /** POSTs one address may spend per window. See takeRateLimitSlot() for how the number was picked. */
+    WAITLIST_RATE_LIMIT: string | number
+    WAITLIST_RATE_WINDOW_SECONDS: string | number
     /** A Worker secret, not a var. Absent means the mail is skipped and the miss is logged. */
     RESEND_API_KEY?: string
     WAITLIST_MAIL_TO: string
@@ -178,6 +181,70 @@ function pageLanguage(pathname: string): Language {
     return WAITLIST_PATHS.get(pathname) ?? DEFAULT_LANGUAGE
 }
 
+/**
+ * Per IP rate limit on the POST, counted in KV.
+ *
+ * What an abusive POST really costs is one KV write and one mail through Resend, and the mail is
+ * the expensive half: it lands in a human inbox and it eats a sending quota that the application
+ * itself depends on. So the limit is checked before the body is read, and a refused request writes
+ * nothing and sends nothing.
+ *
+ * Counted per fixed window rather than per rolling one: the window is part of the key, so the
+ * counter releases by expiring rather than by being cleaned up, and its whole state can be read
+ * back with `wrangler kv key get`, which is what makes it provable. The price of a fixed window is
+ * that a caller straddling the boundary can spend two windows' worth inside one window's length.
+ *
+ * Every POST that gets this far spends one slot, including one that is about to be refused as
+ * malformed: a bad body still costs a request, and counting only the valid ones would let a flood
+ * of junk through for free.
+ */
+interface RateDecision {
+    allowed: boolean
+    client: string
+    count: number
+    retryAfter: number
+}
+
+async function takeRateLimitSlot(request: Request, env: Env): Promise<RateDecision> {
+    const limit = Number(env.WAITLIST_RATE_LIMIT)
+    const window = Number(env.WAITLIST_RATE_WINDOW_SECONDS)
+    // A misconfigured var must not silently turn the limit off.
+    if (!Number.isFinite(limit) || limit < 1 || !Number.isFinite(window) || window < 1) {
+        throw new Error(`waitlist: WAITLIST_RATE_LIMIT / WAITLIST_RATE_WINDOW_SECONDS are not usable (${env.WAITLIST_RATE_LIMIT} / ${env.WAITLIST_RATE_WINDOW_SECONDS})`)
+    }
+
+    const client = clientAddress(request)
+    const seconds = Math.floor(Date.now() / 1000)
+    const windowStart = Math.floor(seconds / window) * window
+    const key = `rate:${windowStart}:${client}`
+
+    const stored = await env.WAITLIST.get(key)
+    const count = stored ? Number.parseInt(stored, 10) || 0 : 0
+    const retryAfter = windowStart + window - seconds
+
+    // At the limit: refuse without writing. The counter is already where it needs to be, and a
+    // write per refused request is exactly the cost this is here to avoid.
+    if (count >= limit) return { allowed: false, client, count, retryAfter }
+
+    // KV's shortest expiry is 60 seconds. The window is what decides correctness, not the expiry:
+    // the next window has a different key, so an entry outliving its window is only tidying.
+    await env.WAITLIST.put(key, String(count + 1), { expirationTtl: Math.max(60, window + 60) })
+    return { allowed: true, client, count: count + 1, retryAfter }
+}
+
+/**
+ * Cloudflare sets CF-Connecting-IP on every request it proxies and a client cannot forge it: it is
+ * overwritten at the edge. The other two are only read so that a local run has something to key on,
+ * and they are the reason this must never be the only thing between a bot and the mail.
+ */
+function clientAddress(request: Request): string {
+    const direct = request.headers.get('cf-connecting-ip')
+    if (direct) return direct
+    const forwarded = request.headers.get('x-forwarded-for')
+    if (forwarded) return forwarded.split(',')[0].trim()
+    return 'unknown'
+}
+
 async function submit(request: Request, env: Env): Promise<Response> {
     const cors = corsHeaders(request)
 
@@ -186,6 +253,14 @@ async function submit(request: Request, env: Env): Promise<Response> {
     const origin = request.headers.get('origin')
     if (origin && !cors['access-control-allow-origin']) {
         return json({ ok: false, error: 'origin_not_allowed' }, 403, {})
+    }
+
+    // Before the body is even read, because what this protects is the two expensive things further
+    // down and the cheapest possible refusal is one that has parsed nothing.
+    const rate = await takeRateLimitSlot(request, env)
+    if (!rate.allowed) {
+        console.warn(`waitlist: rate limit reached for ${rate.client}, ${rate.count} in the current window`)
+        return json({ ok: false, error: 'rate_limited' }, 429, { ...cors, 'retry-after': String(rate.retryAfter) })
     }
 
     const raw = await request.text()

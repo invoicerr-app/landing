@@ -41,7 +41,7 @@ export interface WaitlistCopy {
         submit: string
         submitting: string
     }
-    errors: { email: string; country: string; companySize: string; network: string }
+    errors: { email: string; country: string; companySize: string; network: string; rateLimited: string }
     success: { title: string; body: string }
     /** One line: who processes the data, why, for how long, and how to be removed. */
     privacy: { before: string; linkLabel: string; after: string }
@@ -114,6 +114,7 @@ const en: WaitlistCopy = {
         country: 'Choose a country.',
         companySize: 'Choose a company size.',
         network: 'The list could not be reached. Try again in a moment.',
+        rateLimited: 'Too many submissions have come from your connection in the last hour. Wait an hour and try again, or write to contact@invoicerr.app and we will add you by hand.',
     },
     success: {
         title: 'You are on the list.',
@@ -193,6 +194,7 @@ const fr: WaitlistCopy = {
         country: 'Choisissez un pays.',
         companySize: "Choisissez une taille d'entreprise.",
         network: "La liste n'a pas pu être jointe. Réessayez dans un instant.",
+        rateLimited: "Trop d'envois sont partis de votre connexion dans la dernière heure. Attendez une heure et réessayez, ou écrivez à contact@invoicerr.app et nous vous ajouterons à la main.",
     },
     success: {
         title: 'Vous êtes sur la liste.',
@@ -272,6 +274,7 @@ const de: WaitlistCopy = {
         country: 'Wählen Sie ein Land aus.',
         companySize: 'Wählen Sie eine Unternehmensgröße aus.',
         network: 'Die Liste war nicht erreichbar. Versuchen Sie es gleich noch einmal.',
+        rateLimited: 'Aus Ihrem Anschluss sind in der letzten Stunde zu viele Einträge gekommen. Warten Sie eine Stunde und versuchen Sie es erneut, oder schreiben Sie an contact@invoicerr.app, dann tragen wir Sie von Hand ein.',
     },
     success: {
         title: 'Sie stehen auf der Liste.',
@@ -351,6 +354,7 @@ const it: WaitlistCopy = {
         country: 'Scegli un paese.',
         companySize: "Scegli una dimensione dell'azienda.",
         network: 'Non è stato possibile raggiungere la lista. Riprova tra un istante.',
+        rateLimited: "Dalla tua connessione sono arrivati troppi invii nell'ultima ora. Aspetta un'ora e riprova, oppure scrivi a contact@invoicerr.app e ti aggiungiamo a mano.",
     },
     success: {
         title: "Sei nella lista d'attesa.",
@@ -430,6 +434,7 @@ const pl: WaitlistCopy = {
         country: 'Wybierz kraj.',
         companySize: 'Wybierz wielkość firmy.',
         network: 'Nie udało się połączyć z listą. Spróbuj ponownie za chwilę.',
+        rateLimited: 'Z Twojego łącza przyszło w ciągu ostatniej godziny zbyt wiele zgłoszeń. Odczekaj godzinę i spróbuj ponownie albo napisz na contact@invoicerr.app, a dopiszemy Cię ręcznie.',
     },
     success: {
         title: 'Jesteś na liście.',
@@ -509,6 +514,7 @@ const pt: WaitlistCopy = {
         country: 'Escolha um país.',
         companySize: 'Escolha uma dimensão de empresa.',
         network: 'Não foi possível contactar a lista. Tente novamente daqui a pouco.',
+        rateLimited: 'Chegaram demasiados envios da sua ligação na última hora. Espere uma hora e tente outra vez, ou escreva para contact@invoicerr.app e adicionamo-lo à mão.',
     },
     success: {
         title: 'Está na lista.',

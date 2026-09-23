@@ -36,6 +36,21 @@ binding = "WAITLIST"
 id = "REPLACE_WITH_THE_KV_NAMESPACE_ID"
 
 [vars]
+# Eleven POSTs per IP address per hour.
+#
+# Not a round number, and every unit of it is accounted for. One submission is what a visitor
+# normally sends. A second is what they send after spotting a typo in their own address, since the
+# success panel replaces the form and correcting means loading the page again. The case that sets
+# the ceiling is not one person but one office: several colleagues signing up the same afternoon
+# share a single public address, and the form's own modal bracket is "2 to 5 people". So five
+# people, each allowed one correction, is ten, plus one for the visitor who retries after a network
+# error they did not understand. Eleven.
+#
+# A team of more than five behind one address can still reach it. That is why the page says, in all
+# six languages, to wait an hour or to write to contact@invoicerr.app.
+WAITLIST_RATE_LIMIT = 11
+WAITLIST_RATE_WINDOW_SECONDS = 3600
+
 WAITLIST_MAIL_TO = "contact@invoicerr.app"
 # Must be a sender on a domain verified in Resend, or every send is refused.
 WAITLIST_MAIL_FROM = "Invoicerr waiting list <noreply@invoicerr.app>"
