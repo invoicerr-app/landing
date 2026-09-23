@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as FacturationElectroniqueRouteImport } from './routes/facturation-electronique'
 import { Route as IndexRouteImport } from './routes/index'
 
+const FacturationElectroniqueRoute = FacturationElectroniqueRouteImport.update({
+  id: '/facturation-electronique',
+  path: '/facturation-electronique',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/facturation-electronique': typeof FacturationElectroniqueRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/facturation-electronique': typeof FacturationElectroniqueRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/facturation-electronique': typeof FacturationElectroniqueRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/facturation-electronique'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/facturation-electronique'
+  id: '__root__' | '/' | '/facturation-electronique'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FacturationElectroniqueRoute: typeof FacturationElectroniqueRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/facturation-electronique': {
+      id: '/facturation-electronique'
+      path: '/facturation-electronique'
+      fullPath: '/facturation-electronique'
+      preLoaderRoute: typeof FacturationElectroniqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FacturationElectroniqueRoute: FacturationElectroniqueRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
