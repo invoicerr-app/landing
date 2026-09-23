@@ -19,7 +19,6 @@ import {
     COMPANY_SIZE_VALUES,
     COUNTRY_VALUES,
     DEFAULT_LANGUAGE,
-    isLanguage,
     LANGUAGES,
     pagePath,
     resolveLanguage,
@@ -80,15 +79,24 @@ const ASSET_EXTENSIONS = new Set([
     'xml',
 ])
 
+/**
+ * Everything that is kept about a person, and there is nothing else anywhere.
+ *
+ * Four fields, which is what the privacy policy declares. The page language and the page the reader
+ * came from were stored until the policy was written against this file and the two did not match:
+ * resolving a language to serve is one thing, keeping a record of what somebody read is another,
+ * and the second was never asked for. They are not collected any more, by the Worker or by the page.
+ *
+ * `createdAt` is not bookkeeping. The declared legal basis is consent (GDPR Art. 6(1)(a)), and
+ * Art. 7(1) requires being able to demonstrate that consent was given. This timestamp is that
+ * evidence, and it is the only reason a date is kept at all.
+ */
 interface Entry {
     email: string
     country: CountryValue
     companySize: CompanySizeValue
-    language: Language
-    /** Where they came from. The guide, when a guide sent them. */
-    referer: string
+    /** Proof of consent: when it was given. Never rewritten, see the submit handler. */
     createdAt: string
-    updatedAt: string
 }
 
 export default {
@@ -296,26 +304,22 @@ async function submit(request: Request, env: Env): Promise<Response> {
         return json({ ok: false, field: 'companySize' }, 400, cors)
     }
 
-    const language = isLanguage(body.language) ? body.language : DEFAULT_LANGUAGE
-    // The Referer of this POST is the waiting list page itself. What matters is the page the reader
-    // was on when they clicked through, which the page sends as `source`; the header is the
-    // fallback for a browser that strips it.
-    const source = typeof body.source === 'string' ? body.source.slice(0, 500) : ''
-    const referer = source || request.headers.get('referer') || ''
-
-    const now = new Date().toISOString()
     const key = `entry:${email}`
 
-    // Store first. One key per address, so a second submit updates the row rather than adding one.
+    // Store first. One key per address, so a second submit updates the answers rather than adding a
+    // second row.
+    //
+    // `createdAt` survives that update untouched. It records when this person gave their consent,
+    // and the first time they gave it is the date that is certainly true: stamping the row with the
+    // later submission would leave the record claiming consent began after it actually did, which
+    // is the one direction that cannot be defended if it is ever asked for. A second submission
+    // corrects an answer; it does not start the consent over.
     const existing = await env.WAITLIST.get<Entry>(key, 'json').catch(() => null)
     const entry: Entry = {
         email,
         country: country as CountryValue,
         companySize: companySize as CompanySizeValue,
-        language,
-        referer,
-        createdAt: existing?.createdAt ?? now,
-        updatedAt: now,
+        createdAt: existing?.createdAt ?? new Date().toISOString(),
     }
     await env.WAITLIST.put(key, JSON.stringify(entry))
 
@@ -334,14 +338,13 @@ async function sendMail(env: Env, entry: Entry): Promise<void> {
         return
     }
 
+    // The same four fields that are in KV, and no others: a mail that carried more would be a
+    // second copy of data the privacy policy does not declare.
     const lines = [
         `E-mail: ${entry.email}`,
         `Country: ${entry.country}`,
         `Company size: ${entry.companySize}`,
-        `Page language: ${entry.language}`,
-        `Came from: ${entry.referer || 'not provided'}`,
-        `First seen: ${entry.createdAt}`,
-        `This submission: ${entry.updatedAt}`,
+        `Consent given: ${entry.createdAt}`,
     ]
 
     const response = await fetch(env.WAITLIST_MAIL_ENDPOINT, {

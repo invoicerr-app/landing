@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { WaitlistCopy } from '@/waitlist/copy'
 import { waitlistEndpoint } from '@/waitlist/endpoint'
-import { COMPANY_SIZE_VALUES, COUNTRY_VALUES, type Language } from '@/waitlist/languages'
+import { COMPANY_SIZE_VALUES, COUNTRY_VALUES } from '@/waitlist/languages'
 
 // Same shape the Worker validates against, so a field that passes here passes there. The Worker
 // validates again regardless: this one only exists to answer the visitor without a round trip.
@@ -18,7 +18,9 @@ type FieldError = 'email' | 'country' | 'companySize' | null
 const selectClass =
     'h-11 w-full rounded-md border border-input bg-background px-3 text-base text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40'
 
-export function WaitlistForm({ copy, language }: { copy: WaitlistCopy; language: Language }) {
+// No `language` prop any more: the form used to send the page's language along with the answers and
+// it is not collected. Which language the page is in still decides the copy, and `copy` carries that.
+export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
     const [email, setEmail] = useState('')
     const [country, setCountry] = useState('')
     const [companySize, setCompanySize] = useState('')
@@ -46,14 +48,13 @@ export function WaitlistForm({ copy, language }: { copy: WaitlistCopy; language:
             const response = await fetch(waitlistEndpoint(), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                // The three answered fields and the honeypot, and nothing else. The page used to
+                // send its own language and the page the visitor came from; neither is collected
+                // any more, and the cleanest way not to store something is not to send it.
                 body: JSON.stringify({
                     email: email.trim(),
                     country,
                     companySize,
-                    language,
-                    // What the visitor was reading when they clicked through. The Worker reads the
-                    // Referer header too; this covers the case where the browser sends none.
-                    source: typeof document === 'undefined' ? '' : document.referrer,
                     website: honeypot,
                 }),
             })

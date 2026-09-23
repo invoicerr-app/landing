@@ -77,7 +77,7 @@ export function WaitlistPage({ language }: { language: Language }) {
 
                 <section id="form" className="mx-auto max-w-3xl px-5 py-12">
                     <Reveal>
-                        <WaitlistForm copy={copy} language={language} />
+                        <WaitlistForm copy={copy} />
                         <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                             {copy.privacy.before}
                             <a

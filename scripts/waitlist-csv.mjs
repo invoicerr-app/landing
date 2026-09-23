@@ -46,8 +46,10 @@ function csvCell(value) {
     return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text
 }
 
-const COLUMNS = ['email', 'country', 'companySize', 'language', 'referer', 'createdAt', 'updatedAt']
-const HEADER = ['email', 'country', 'company_size', 'page_language', 'came_from', 'created_at', 'updated_at']
+// The four fields the Worker stores, and the four the privacy policy declares. Adding a column here
+// would either be empty or mean something is being kept that was not declared.
+const COLUMNS = ['email', 'country', 'companySize', 'createdAt']
+const HEADER = ['email', 'country', 'company_size', 'consent_given_at']
 
 const keys = parseJson(await wrangler(['kv', 'key', 'list', ...binding, '--prefix', 'entry:']))
 
