@@ -189,6 +189,80 @@ try {
                 },
             },
         },
+        {
+            url: '/ksef',
+            outDir: path.join(root, 'dist', 'ksef'),
+            head: {
+                title: 'KSeF w Polsce: obowiązkowe fakturowanie elektroniczne · Invoicerr',
+                description:
+                    'Kogo dotyczy obowiązek, od kiedy według progu obrotu, co zmienia format FA(3) i Krajowy System e-Faktur. Źródła urzędowe cytowane i linkowane, bez porównania narzędzi.',
+                canonical: `${SITE}/ksef/`,
+                lang: 'pl',
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${SITE}/ksef/#webpage`,
+                            url: `${SITE}/ksef/`,
+                            name: 'KSeF w Polsce: obowiązkowe fakturowanie elektroniczne',
+                            description:
+                                'Kogo dotyczy obowiązek, od kiedy według progu obrotu, co zmienia format FA(3) i Krajowy System e-Faktur. Źródła urzędowe cytowane i linkowane, bez porównania narzędzi.',
+                            inLanguage: 'pl',
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${SITE}/ksef/#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${SITE}/ksef/#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                { '@type': 'ListItem', position: 2, name: 'KSeF', item: `${SITE}/ksef/` },
+                            ],
+                        },
+                    ],
+                },
+            },
+        },
+        {
+            url: '/faturacao-eletronica',
+            outDir: path.join(root, 'dist', 'faturacao-eletronica'),
+            head: {
+                title: 'Faturação eletrónica em Portugal: ATCUD e SAF-T (PT) · Invoicerr',
+                description:
+                    'Quem é abrangido, desde quando, o que muda com o ATCUD, o software certificado e o SAF-T (PT). Fontes oficiais citadas e ligadas, sem comparação de produtos.',
+                canonical: `${SITE}/faturacao-eletronica/`,
+                lang: 'pt',
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${SITE}/faturacao-eletronica/#webpage`,
+                            url: `${SITE}/faturacao-eletronica/`,
+                            name: 'Faturação eletrónica em Portugal: ATCUD e SAF-T (PT)',
+                            description:
+                                'Quem é abrangido, desde quando, o que muda com o ATCUD, o software certificado e o SAF-T (PT). Fontes oficiais citadas e ligadas, sem comparação de produtos.',
+                            inLanguage: 'pt',
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${SITE}/faturacao-eletronica/#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${SITE}/faturacao-eletronica/#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                { '@type': 'ListItem', position: 2, name: 'Faturação eletrónica', item: `${SITE}/faturacao-eletronica/` },
+                            ],
+                        },
+                    ],
+                },
+            },
+        },
     ]
 
     const turndown = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' })
