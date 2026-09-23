@@ -9,9 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as KsefRouteImport } from './routes/ksef'
+import { Route as FaturacaoEletronicaRouteImport } from './routes/faturacao-eletronica'
 import { Route as FacturationElectroniqueRouteImport } from './routes/facturation-electronique'
 import { Route as IndexRouteImport } from './routes/index'
 
+const KsefRoute = KsefRouteImport.update({
+  id: '/ksef',
+  path: '/ksef',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaturacaoEletronicaRoute = FaturacaoEletronicaRouteImport.update({
+  id: '/faturacao-eletronica',
+  path: '/faturacao-eletronica',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FacturationElectroniqueRoute = FacturationElectroniqueRouteImport.update({
   id: '/facturation-electronique',
   path: '/facturation-electronique',
@@ -26,31 +38,62 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
+  '/ksef': typeof KsefRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
+  '/ksef': typeof KsefRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
+  '/ksef': typeof KsefRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/facturation-electronique'
+  fullPaths:
+    | '/'
+    | '/facturation-electronique'
+    | '/faturacao-eletronica'
+    | '/ksef'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/facturation-electronique'
-  id: '__root__' | '/' | '/facturation-electronique'
+  to: '/' | '/facturation-electronique' | '/faturacao-eletronica' | '/ksef'
+  id:
+    | '__root__'
+    | '/'
+    | '/facturation-electronique'
+    | '/faturacao-eletronica'
+    | '/ksef'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FacturationElectroniqueRoute: typeof FacturationElectroniqueRoute
+  FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
+  KsefRoute: typeof KsefRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/ksef': {
+      id: '/ksef'
+      path: '/ksef'
+      fullPath: '/ksef'
+      preLoaderRoute: typeof KsefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faturacao-eletronica': {
+      id: '/faturacao-eletronica'
+      path: '/faturacao-eletronica'
+      fullPath: '/faturacao-eletronica'
+      preLoaderRoute: typeof FaturacaoEletronicaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/facturation-electronique': {
       id: '/facturation-electronique'
       path: '/facturation-electronique'
@@ -71,6 +114,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FacturationElectroniqueRoute: FacturationElectroniqueRoute,
+  FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
+  KsefRoute: KsefRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

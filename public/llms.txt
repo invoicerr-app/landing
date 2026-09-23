@@ -13,10 +13,12 @@ This site's full text, home page and every page below, is in [llms-full.txt](htt
 
 ## Guides
 
-In French, for a French audience — no product comparison, every date and threshold sourced to the
-legal text or the tax administration.
+Each in the reader's own language, for a national audience: no product comparison, every date and
+threshold sourced to the legal text or the national tax administration.
 
-- [Facturation électronique en France](https://invoicerr.app/facturation-electronique): who must receive and issue electronic invoices, from when by company size, what a PDP is, accepted formats and archiving duration
+- [Facturation électronique en France](https://invoicerr.app/facturation-electronique) (French): who must receive and issue electronic invoices, from when by company size, what a PDP is, accepted formats and archiving duration
+- [KSeF w Polsce](https://invoicerr.app/ksef) (Polish): who must use Poland's national e-invoicing system, the turnover-staged mandate and its current dates, the FA(3) format and archiving duration
+- [Faturação eletrónica em Portugal](https://invoicerr.app/faturacao-eletronica) (Portuguese): the ATCUD code, certified invoicing software, SAF-T (PT) reporting and retention duration
 
 ## Docs
 
