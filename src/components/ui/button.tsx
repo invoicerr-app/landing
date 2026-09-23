@@ -57,4 +57,7 @@ function Button({
   )
 }
 
+// buttonVariants is a plain cva() config, not a component; shadcn/ui ships this same shape, and
+// splitting it into its own file for one rule would be a bigger, unrelated diff than this needs.
+// eslint-disable-next-line react-refresh/only-export-components
 export { Button, buttonVariants }

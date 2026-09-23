@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  One page, one URL. No <lastmod>: a date that does not track the content is worse than none,
+  Two pages, two URLs. No <lastmod>: a date that does not track the content is worse than none,
   and this file is hand-written rather than generated. The documentation site publishes its own
   sitemap at https://docs.invoicerr.app/sitemap.xml — a sitemap only covers its own host.
 -->
@@ -9,5 +9,10 @@
     <loc>https://invoicerr.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/facturation-electronique/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
