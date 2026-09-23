@@ -15,6 +15,12 @@ import { Route as FatturazioneElettronicaRouteImport } from './routes/fatturazio
 import { Route as FacturationElectroniqueRouteImport } from './routes/facturation-electronique'
 import { Route as ERechnungRouteImport } from './routes/e-rechnung'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WaitlistIndexRouteImport } from './routes/waitlist.index'
+import { Route as WaitlistPtRouteImport } from './routes/waitlist.pt'
+import { Route as WaitlistPlRouteImport } from './routes/waitlist.pl'
+import { Route as WaitlistItRouteImport } from './routes/waitlist.it'
+import { Route as WaitlistFrRouteImport } from './routes/waitlist.fr'
+import { Route as WaitlistDeRouteImport } from './routes/waitlist.de'
 
 const KsefRoute = KsefRouteImport.update({
   id: '/ksef',
@@ -46,6 +52,36 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WaitlistIndexRoute = WaitlistIndexRouteImport.update({
+  id: '/waitlist/',
+  path: '/waitlist/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistPtRoute = WaitlistPtRouteImport.update({
+  id: '/waitlist/pt',
+  path: '/waitlist/pt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistPlRoute = WaitlistPlRouteImport.update({
+  id: '/waitlist/pl',
+  path: '/waitlist/pl',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistItRoute = WaitlistItRouteImport.update({
+  id: '/waitlist/it',
+  path: '/waitlist/it',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistFrRoute = WaitlistFrRouteImport.update({
+  id: '/waitlist/fr',
+  path: '/waitlist/fr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitlistDeRoute = WaitlistDeRouteImport.update({
+  id: '/waitlist/de',
+  path: '/waitlist/de',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +90,12 @@ export interface FileRoutesByFullPath {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/waitlist/de': typeof WaitlistDeRoute
+  '/waitlist/fr': typeof WaitlistFrRoute
+  '/waitlist/it': typeof WaitlistItRoute
+  '/waitlist/pl': typeof WaitlistPlRoute
+  '/waitlist/pt': typeof WaitlistPtRoute
+  '/waitlist': typeof WaitlistIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +104,12 @@ export interface FileRoutesByTo {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/waitlist/de': typeof WaitlistDeRoute
+  '/waitlist/fr': typeof WaitlistFrRoute
+  '/waitlist/it': typeof WaitlistItRoute
+  '/waitlist/pl': typeof WaitlistPlRoute
+  '/waitlist/pt': typeof WaitlistPtRoute
+  '/waitlist': typeof WaitlistIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +119,12 @@ export interface FileRoutesById {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/waitlist/de': typeof WaitlistDeRoute
+  '/waitlist/fr': typeof WaitlistFrRoute
+  '/waitlist/it': typeof WaitlistItRoute
+  '/waitlist/pl': typeof WaitlistPlRoute
+  '/waitlist/pt': typeof WaitlistPtRoute
+  '/waitlist/': typeof WaitlistIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +135,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/waitlist/de'
+    | '/waitlist/fr'
+    | '/waitlist/it'
+    | '/waitlist/pl'
+    | '/waitlist/pt'
+    | '/waitlist'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +149,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/waitlist/de'
+    | '/waitlist/fr'
+    | '/waitlist/it'
+    | '/waitlist/pl'
+    | '/waitlist/pt'
+    | '/waitlist'
   id:
     | '__root__'
     | '/'
@@ -97,6 +163,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/waitlist/de'
+    | '/waitlist/fr'
+    | '/waitlist/it'
+    | '/waitlist/pl'
+    | '/waitlist/pt'
+    | '/waitlist/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +178,12 @@ export interface RootRouteChildren {
   FatturazioneElettronicaRoute: typeof FatturazioneElettronicaRoute
   FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
   KsefRoute: typeof KsefRoute
+  WaitlistDeRoute: typeof WaitlistDeRoute
+  WaitlistFrRoute: typeof WaitlistFrRoute
+  WaitlistItRoute: typeof WaitlistItRoute
+  WaitlistPlRoute: typeof WaitlistPlRoute
+  WaitlistPtRoute: typeof WaitlistPtRoute
+  WaitlistIndexRoute: typeof WaitlistIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -152,6 +230,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/waitlist/': {
+      id: '/waitlist/'
+      path: '/waitlist'
+      fullPath: '/waitlist'
+      preLoaderRoute: typeof WaitlistIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/pt': {
+      id: '/waitlist/pt'
+      path: '/waitlist/pt'
+      fullPath: '/waitlist/pt'
+      preLoaderRoute: typeof WaitlistPtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/pl': {
+      id: '/waitlist/pl'
+      path: '/waitlist/pl'
+      fullPath: '/waitlist/pl'
+      preLoaderRoute: typeof WaitlistPlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/it': {
+      id: '/waitlist/it'
+      path: '/waitlist/it'
+      fullPath: '/waitlist/it'
+      preLoaderRoute: typeof WaitlistItRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/fr': {
+      id: '/waitlist/fr'
+      path: '/waitlist/fr'
+      fullPath: '/waitlist/fr'
+      preLoaderRoute: typeof WaitlistFrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waitlist/de': {
+      id: '/waitlist/de'
+      path: '/waitlist/de'
+      fullPath: '/waitlist/de'
+      preLoaderRoute: typeof WaitlistDeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -162,6 +282,12 @@ const rootRouteChildren: RootRouteChildren = {
   FatturazioneElettronicaRoute: FatturazioneElettronicaRoute,
   FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
   KsefRoute: KsefRoute,
+  WaitlistDeRoute: WaitlistDeRoute,
+  WaitlistFrRoute: WaitlistFrRoute,
+  WaitlistItRoute: WaitlistItRoute,
+  WaitlistPlRoute: WaitlistPlRoute,
+  WaitlistPtRoute: WaitlistPtRoute,
+  WaitlistIndexRoute: WaitlistIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

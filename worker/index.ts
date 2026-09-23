@@ -1,0 +1,316 @@
+/**
+ * my.invoicerr.app.
+ *
+ * Thirteen call to action buttons point at this hostname: eight on the landing page and one at the
+ * foot of each of the five country guides. Until now it answered 301 to the landing root, so every
+ * reader those buttons sent here landed back where they started and nothing recorded that they came.
+ * The hosted version does not open before 1 November 2026, so what this serves instead is the
+ * waiting list page, in the reader's own language, and it takes the form's POST. GitHub Pages
+ * serves static files only, which is why the POST cannot live on invoicerr.app.
+ *
+ * The pages themselves are the ones the landing build prerenders into dist/waitlist/<lang>/. They
+ * are uploaded with the Worker as static assets, so the Worker serves exactly the markup GitHub
+ * Pages serves, out of the same build, and the hashed JS and CSS under /assets/ are there for it to
+ * hydrate with.
+ *
+ * Nothing here ever returns the list, a count, or a stored address.
+ */
+import {
+    COMPANY_SIZE_VALUES,
+    COUNTRY_VALUES,
+    DEFAULT_LANGUAGE,
+    isLanguage,
+    LANGUAGES,
+    pagePath,
+    resolveLanguage,
+    type CompanySizeValue,
+    type CountryValue,
+    type Language,
+} from '../src/waitlist/languages'
+
+export interface Env {
+    /** The landing's own dist/, uploaded alongside this Worker. */
+    ASSETS: Fetcher
+    /** One key per address: `entry:<lowercased e-mail>`. */
+    WAITLIST: KVNamespace
+    /** A Worker secret, not a var. Absent means the mail is skipped and the miss is logged. */
+    RESEND_API_KEY?: string
+    WAITLIST_MAIL_TO: string
+    WAITLIST_MAIL_FROM: string
+    /** Overridable so a local run can point the mail at a stub instead of at Resend. */
+    WAITLIST_MAIL_ENDPOINT: string
+}
+
+/**
+ * Origins allowed to post the form.
+ *
+ * The page is served from two places out of one build: by this Worker at my.invoicerr.app, where
+ * the post is same-origin, and by GitHub Pages at invoicerr.app, where it is not. The second case is
+ * the reason this list exists. A request whose Origin is the Worker's own origin is allowed too,
+ * which covers `wrangler dev` on localhost without naming a port here.
+ */
+const CORS_ORIGINS = new Set(['https://invoicerr.app', 'https://www.invoicerr.app', 'https://my.invoicerr.app'])
+
+/** Anything larger than this is not a three field form. */
+const MAX_BODY_BYTES = 4096
+
+/** Same expression the page validates with, so a field that passes there passes here. */
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+/** Extensions the build emits. Everything else on this host is a path that does not belong to it. */
+const ASSET_EXTENSIONS = new Set([
+    'js',
+    'css',
+    'map',
+    'svg',
+    'png',
+    'jpg',
+    'jpeg',
+    'webp',
+    'avif',
+    'ico',
+    'woff',
+    'woff2',
+    'ttf',
+    'json',
+    'txt',
+    'xml',
+])
+
+interface Entry {
+    email: string
+    country: CountryValue
+    companySize: CompanySizeValue
+    language: Language
+    /** Where they came from. The guide, when a guide sent them. */
+    referer: string
+    createdAt: string
+    updatedAt: string
+}
+
+export default {
+    async fetch(request: Request, env: Env): Promise<Response> {
+        const url = new URL(request.url)
+
+        if (url.pathname === '/api/waitlist') {
+            if (request.method === 'OPTIONS') return preflight(request)
+            if (request.method !== 'POST') {
+                return json({ ok: false, error: 'method_not_allowed' }, 405, corsHeaders(request))
+            }
+            return submit(request, env)
+        }
+
+        if (request.method !== 'GET' && request.method !== 'HEAD') {
+            return new Response('Method not allowed', { status: 405 })
+        }
+
+        if (url.pathname === '/robots.txt') {
+            // This host serves one page. Its canonical is on invoicerr.app (the prerendered markup
+            // says so), and the sitemap lives there too, so there is none to point at from here.
+            return new Response('User-agent: *\nAllow: /\n', {
+                headers: { 'content-type': 'text/plain; charset=utf-8' },
+            })
+        }
+
+        if (url.pathname === '/') return resolveAndRedirect(request, url)
+
+        if (WAITLIST_PATHS.has(withTrailingSlash(url.pathname))) return servePage(request, env, url)
+
+        const extension = url.pathname.split('/').pop()?.split('.').slice(1).pop()
+        if (extension && ASSET_EXTENSIONS.has(extension)) {
+            return env.ASSETS.fetch(new Request(new URL(url.pathname, url.origin), { method: 'GET' }))
+        }
+
+        // Every other path on this host is a leftover deep link into the app that does not exist
+        // yet. It goes where it went before this Worker existed.
+        return Response.redirect('https://invoicerr.app/', 302)
+    },
+} satisfies ExportedHandler<Env>
+
+/**
+ * The root of this host: Referer, then Accept-Language, then English, with `?lang=` overriding both.
+ *
+ * It answers a redirect rather than the markup itself. The page is a route of a client-side router,
+ * and that router resolves the URL in the address bar: markup for /waitlist/fr/ served under "/"
+ * would hydrate, find that "/" is the landing home page, and replace the waiting list with it. The
+ * redirect also leaves the reader on a URL that names the language they were given, which is the
+ * part of "never serve a language silently" that no wording on the page can do.
+ */
+function resolveAndRedirect(request: Request, url: URL): Response {
+    const { language, by } = resolveLanguage({
+        lang: url.searchParams.get('lang'),
+        referer: request.headers.get('referer'),
+        acceptLanguage: request.headers.get('accept-language'),
+    })
+
+    return new Response(null, {
+        status: 302,
+        headers: {
+            location: pagePath(language),
+            // The answer depends on both headers, so no shared cache may hand one reader's version
+            // to the next, and none may keep the `?lang=` override at all.
+            vary: 'Accept-Language, Referer',
+            'cache-control': 'no-store',
+            // Readable from outside, which is how the rule is checked without following anything.
+            'x-waitlist-language': language,
+            'x-waitlist-resolved-by': by,
+        },
+    })
+}
+
+/** The six prerendered pages, served from the landing build this Worker was deployed with. */
+async function servePage(request: Request, env: Env, url: URL): Promise<Response> {
+    const language = pageLanguage(withTrailingSlash(url.pathname))
+    const page = await env.ASSETS.fetch(new Request(new URL(pagePath(language), url.origin), { method: 'GET' }))
+    const headers = new Headers(page.headers)
+    headers.set('content-language', language)
+    headers.set('x-waitlist-language', language)
+    return new Response(request.method === 'HEAD' ? null : page.body, { status: page.status, headers })
+}
+
+function withTrailingSlash(pathname: string): string {
+    return pathname.endsWith('/') ? pathname : `${pathname}/`
+}
+
+const WAITLIST_PATHS = new Map(LANGUAGES.map((language) => [pagePath(language), language]))
+
+function pageLanguage(pathname: string): Language {
+    return WAITLIST_PATHS.get(pathname) ?? DEFAULT_LANGUAGE
+}
+
+async function submit(request: Request, env: Env): Promise<Response> {
+    const cors = corsHeaders(request)
+
+    // A browser always sends Origin on a POST. One that is not on the list would have its answer
+    // thrown away by the browser anyway; refusing it here means the entry is not written first.
+    const origin = request.headers.get('origin')
+    if (origin && !cors['access-control-allow-origin']) {
+        return json({ ok: false, error: 'origin_not_allowed' }, 403, {})
+    }
+
+    const raw = await request.text()
+    if (raw.length > MAX_BODY_BYTES) return json({ ok: false, error: 'too_large' }, 413, cors)
+
+    let body: Record<string, unknown>
+    try {
+        const parsed: unknown = JSON.parse(raw)
+        if (typeof parsed !== 'object' || parsed === null) throw new Error('not an object')
+        body = parsed as Record<string, unknown>
+    } catch {
+        return json({ ok: false, error: 'bad_json' }, 400, cors)
+    }
+
+    // A field no human ever sees. Answer a bot the way a success looks, and store nothing.
+    if (typeof body.website === 'string' && body.website.trim() !== '') {
+        console.warn('waitlist: honeypot filled, submission dropped')
+        return json({ ok: true }, 200, cors)
+    }
+
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
+    if (email.length < 3 || email.length > 254 || !EMAIL.test(email)) {
+        return json({ ok: false, field: 'email' }, 400, cors)
+    }
+
+    const country = typeof body.country === 'string' ? body.country : ''
+    if (!(COUNTRY_VALUES as readonly string[]).includes(country)) {
+        return json({ ok: false, field: 'country' }, 400, cors)
+    }
+
+    const companySize = typeof body.companySize === 'string' ? body.companySize : ''
+    if (!(COMPANY_SIZE_VALUES as readonly string[]).includes(companySize)) {
+        return json({ ok: false, field: 'companySize' }, 400, cors)
+    }
+
+    const language = isLanguage(body.language) ? body.language : DEFAULT_LANGUAGE
+    // The Referer of this POST is the waiting list page itself. What matters is the page the reader
+    // was on when they clicked through, which the page sends as `source`; the header is the
+    // fallback for a browser that strips it.
+    const source = typeof body.source === 'string' ? body.source.slice(0, 500) : ''
+    const referer = source || request.headers.get('referer') || ''
+
+    const now = new Date().toISOString()
+    const key = `entry:${email}`
+
+    // Store first. One key per address, so a second submit updates the row rather than adding one.
+    const existing = await env.WAITLIST.get<Entry>(key, 'json').catch(() => null)
+    const entry: Entry = {
+        email,
+        country: country as CountryValue,
+        companySize: companySize as CompanySizeValue,
+        language,
+        referer,
+        createdAt: existing?.createdAt ?? now,
+        updatedAt: now,
+    }
+    await env.WAITLIST.put(key, JSON.stringify(entry))
+
+    // Mail second, and never at the expense of the entry: the address is already safe, so a Resend
+    // outage is a line in the log rather than an error shown to somebody who did their part.
+    await sendMail(env, entry).catch((error: unknown) => {
+        console.error(`waitlist: mail failed for ${entry.email}:`, error)
+    })
+
+    return json({ ok: true }, 200, cors)
+}
+
+async function sendMail(env: Env, entry: Entry): Promise<void> {
+    if (!env.RESEND_API_KEY) {
+        console.error(`waitlist: RESEND_API_KEY is not set, no mail sent for ${entry.email}`)
+        return
+    }
+
+    const lines = [
+        `E-mail: ${entry.email}`,
+        `Country: ${entry.country}`,
+        `Company size: ${entry.companySize}`,
+        `Page language: ${entry.language}`,
+        `Came from: ${entry.referer || 'not provided'}`,
+        `First seen: ${entry.createdAt}`,
+        `This submission: ${entry.updatedAt}`,
+    ]
+
+    const response = await fetch(env.WAITLIST_MAIL_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            authorization: `Bearer ${env.RESEND_API_KEY}`,
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            from: env.WAITLIST_MAIL_FROM,
+            to: [env.WAITLIST_MAIL_TO],
+            subject: `Waiting list: ${entry.email} (${entry.country}, ${entry.companySize})`,
+            text: `${lines.join('\n')}\n`,
+        }),
+    })
+
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}: ${(await response.text()).slice(0, 500)}`)
+    }
+}
+
+function corsHeaders(request: Request): Record<string, string> {
+    const origin = request.headers.get('origin')
+    if (!origin) return {}
+    const allowed = CORS_ORIGINS.has(origin) || origin === new URL(request.url).origin
+    if (!allowed) return {}
+    return {
+        'access-control-allow-origin': origin,
+        'access-control-allow-methods': 'POST, OPTIONS',
+        'access-control-allow-headers': 'content-type',
+        'access-control-max-age': '86400',
+        vary: 'Origin',
+    }
+}
+
+function preflight(request: Request): Response {
+    const cors = corsHeaders(request)
+    // No allow-origin header means the origin is not on the list, and the browser blocks the POST.
+    return new Response(null, { status: cors['access-control-allow-origin'] ? 204 : 403, headers: cors })
+}
+
+function json(payload: unknown, status: number, cors: Record<string, string>): Response {
+    return new Response(JSON.stringify(payload), {
+        status,
+        headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...cors },
+    })
+}

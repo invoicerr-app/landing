@@ -41,6 +41,24 @@ jobs:
       # already rendered, which belongs to "/" alone, so 404.html keeps the plain shell and a
       # noindex directive rather than being a copy of it.
 
+      # my.invoicerr.app is a Cloudflare Worker, not a GitHub Pages path: GitHub Pages serves static
+      # files only and the waiting list form has to POST somewhere. The Worker serves the six
+      # prerendered dist/waitlist/<lang>/ pages of the build that just ran, so it is deployed from
+      # here, out of the same dist/, rather than from a workflow of its own that would build again
+      # and could drift.
+      - name: Deploy the waiting list Worker
+        if: github.event_name != 'pull_request'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # The Resend key is a Worker secret, pushed on every deploy so that rotating the
+          # repository secret is all it takes. Worker secrets survive a deploy, so this is an update
+          # rather than a first write after the first run.
+          secrets: |
+            RESEND_API_KEY
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+
       - name: Setup Pages
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5

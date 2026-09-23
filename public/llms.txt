@@ -23,6 +23,10 @@ administration.
 - [KSeF w Polsce](https://invoicerr.app/ksef): who must use Poland's national e-invoicing system, the turnover-staged mandate and its current dates, the FA(3) format and archiving duration
 - [Faturação eletrónica em Portugal](https://invoicerr.app/faturacao-eletronica): the ATCUD code, certified invoicing software, SAF-T (PT) reporting and retention duration
 
+## Hosted version
+
+- [Waiting list](https://invoicerr.app/waitlist/): the hosted version opens in November 2026. The page states plainly that billing runs in Polar's sandbox during the beta, that the legal documents are still marked as drafts, and that invoices issued from the beta must not be used for real. Also written in [French](https://invoicerr.app/waitlist/fr/), [German](https://invoicerr.app/waitlist/de/), [Italian](https://invoicerr.app/waitlist/it/), [Polish](https://invoicerr.app/waitlist/pl/) and [Portuguese](https://invoicerr.app/waitlist/pt/).
+
 ## Docs
 
 - [Documentation index for LLMs](https://docs.invoicerr.app/llms.txt): every documentation page, with a summary

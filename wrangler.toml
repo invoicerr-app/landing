@@ -1,0 +1,50 @@
+# my.invoicerr.app: the waiting list page and the endpoint its form posts to.
+#
+# The page itself is built by `npm run build` in this same repository. `assets.directory` points at
+# that build output, so the Worker serves the very markup GitHub Pages serves, out of one build,
+# with the hashed JS and CSS it hydrates with. Deploy order therefore matters: build, then deploy.
+
+name = "invoicerr-waitlist"
+main = "worker/index.ts"
+compatibility_date = "2025-09-23"
+
+# Left on so the first deploy is reachable and checkable at
+# invoicerr-waitlist.<account>.workers.dev before my.invoicerr.app is pointed at it. The Worker only
+# answers the waiting list page, its assets and /api/waitlist; every other path redirects to
+# invoicerr.app, so nothing else of the site is mirrored there.
+workers_dev = true
+
+# Pointing my.invoicerr.app at this Worker is a separate, deliberate step: it replaces the redirect
+# that hostname serves today. Uncomment once the deploy has been checked on the workers.dev URL.
+# [[routes]]
+# pattern = "my.invoicerr.app"
+# custom_domain = true
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+# The Worker has to see every request, including "/", because which prerendered page "/" resolves to
+# depends on the Referer and Accept-Language of that request. Left to itself the asset server would
+# answer "/" with dist/index.html, which is the landing home page and not this.
+run_worker_first = true
+
+# Created once with: npx wrangler kv namespace create WAITLIST
+# then paste the id it prints over the placeholder below. The deploy fails until this is a real id,
+# which is deliberate: a Worker that silently stores nothing is the worst outcome here.
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "REPLACE_WITH_THE_KV_NAMESPACE_ID"
+
+[vars]
+WAITLIST_MAIL_TO = "contact@invoicerr.app"
+# Must be a sender on a domain verified in Resend, or every send is refused.
+WAITLIST_MAIL_FROM = "Invoicerr waiting list <noreply@invoicerr.app>"
+# Overridable so a local run can point the mail at a stub and nothing leaves the machine.
+WAITLIST_MAIL_ENDPOINT = "https://api.resend.com/emails"
+
+# RESEND_API_KEY is a secret, never a var and never in this file:
+#   echo -n "<key>" | npx wrangler secret put RESEND_API_KEY
+# The deploy workflow does the same from the repository secret of the same name.
+
+[observability]
+enabled = true

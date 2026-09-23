@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Four pages, four URLs. No <lastmod>: a date that does not track the content is worse than none,
-  and this file is hand-written rather than generated. The documentation site publishes its own
-  sitemap at https://docs.invoicerr.app/sitemap.xml, since a sitemap only covers its own host.
+  No <lastmod>: a date that does not track the content is worse than none, and this file is
+  hand-written rather than generated. The documentation site publishes its own sitemap at
+  https://docs.invoicerr.app/sitemap.xml, since a sitemap only covers its own host.
+
+  The six waiting list URLs are the canonical home of that page. my.invoicerr.app serves the same
+  markup, resolved to the reader's language, and that markup points back here; a sitemap cannot
+  cover that other host, so it is not listed.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -34,5 +38,35 @@
     <loc>https://invoicerr.app/faturacao-eletronica/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/fr/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/de/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/it/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/pl/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/waitlist/pt/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

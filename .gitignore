@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Wrangler's local state: the local KV the waiting list Worker is developed against, and the
+# local secrets a `wrangler dev` run reads. Neither belongs in the repository.
+.wrangler
+.dev.vars
