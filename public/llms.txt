@@ -13,10 +13,13 @@ This site's full text, home page and every page below, is in [llms-full.txt](htt
 
 ## Guides
 
-In French, for a French audience — no product comparison, every date and threshold sourced to the
-legal text or the tax administration.
+Country-specific e-invoicing guides, each written in its own country's language for that country's
+audience: no product comparison, every date and threshold sourced to the legal text or the tax
+administration.
 
 - [Facturation électronique en France](https://invoicerr.app/facturation-electronique): who must receive and issue electronic invoices, from when by company size, what a PDP is, accepted formats and archiving duration
+- [E-Rechnung in Deutschland](https://invoicerr.app/e-rechnung): who is concerned, the 2025 to 2028 phase-in, XRechnung and ZUGFeRD formats, and the eight-year archiving duration
+- [Fatturazione elettronica in Italia](https://invoicerr.app/fatturazione-elettronica): who is concerned, mandatory since 2019 with the forfettari regime added in 2022 and 2024, the Sistema di Interscambio and FatturaPA format
 
 ## Docs
 
