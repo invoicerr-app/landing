@@ -17,9 +17,6 @@ export function EInvoicingGuideFr() {
     return (
         <>
             <section className="mx-auto max-w-3xl px-5 pb-4 pt-28 sm:pt-36">
-                <p className="enter mb-6 inline-flex items-center rounded-full border border-border bg-card px-3.5 py-1 text-sm text-muted-foreground">
-                    Guide, pas un comparatif
-                </p>
                 <h1 className="enter text-balance text-4xl font-semibold tracking-tight [animation-delay:90ms] sm:text-5xl">
                     La facturation électronique en France : qui est concerné, et à partir de quand
                 </h1>
@@ -323,16 +320,16 @@ export function EInvoicingGuideFr() {
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
-                                <a href={links.selfHost}>
-                                    Héberger Invoicerr soi-même, gratuitement
+                                <a href={links.app}>
+                                    Utiliser Invoicerr dès maintenant
                                     <ArrowRight />
                                 </a>
                             </Button>
                             <a
-                                href={links.github}
+                                href={links.selfHost}
                                 className="text-sm font-medium text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-primary"
                             >
-                                ou regarder le code source sur GitHub
+                                ou l'héberger vous-même, gratuitement
                             </a>
                         </div>
                     </div>
