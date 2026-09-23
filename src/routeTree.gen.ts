@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as KsefRouteImport } from './routes/ksef'
 import { Route as FaturacaoEletronicaRouteImport } from './routes/faturacao-eletronica'
+import { Route as FatturazioneElettronicaRouteImport } from './routes/fatturazione-elettronica'
 import { Route as FacturationElectroniqueRouteImport } from './routes/facturation-electronique'
+import { Route as ERechnungRouteImport } from './routes/e-rechnung'
 import { Route as IndexRouteImport } from './routes/index'
 
 const KsefRoute = KsefRouteImport.update({
@@ -24,9 +26,19 @@ const FaturacaoEletronicaRoute = FaturacaoEletronicaRouteImport.update({
   path: '/faturacao-eletronica',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FatturazioneElettronicaRoute = FatturazioneElettronicaRouteImport.update({
+  id: '/fatturazione-elettronica',
+  path: '/fatturazione-elettronica',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FacturationElectroniqueRoute = FacturationElectroniqueRouteImport.update({
   id: '/facturation-electronique',
   path: '/facturation-electronique',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ERechnungRoute = ERechnungRouteImport.update({
+  id: '/e-rechnung',
+  path: '/e-rechnung',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,20 +49,26 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
+  '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
 }
@@ -58,22 +76,34 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/e-rechnung'
     | '/facturation-electronique'
+    | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/facturation-electronique' | '/faturacao-eletronica' | '/ksef'
+  to:
+    | '/'
+    | '/e-rechnung'
+    | '/facturation-electronique'
+    | '/fatturazione-elettronica'
+    | '/faturacao-eletronica'
+    | '/ksef'
   id:
     | '__root__'
     | '/'
+    | '/e-rechnung'
     | '/facturation-electronique'
+    | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ERechnungRoute: typeof ERechnungRoute
   FacturationElectroniqueRoute: typeof FacturationElectroniqueRoute
+  FatturazioneElettronicaRoute: typeof FatturazioneElettronicaRoute
   FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
   KsefRoute: typeof KsefRoute
 }
@@ -94,11 +124,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaturacaoEletronicaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fatturazione-elettronica': {
+      id: '/fatturazione-elettronica'
+      path: '/fatturazione-elettronica'
+      fullPath: '/fatturazione-elettronica'
+      preLoaderRoute: typeof FatturazioneElettronicaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/facturation-electronique': {
       id: '/facturation-electronique'
       path: '/facturation-electronique'
       fullPath: '/facturation-electronique'
       preLoaderRoute: typeof FacturationElectroniqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/e-rechnung': {
+      id: '/e-rechnung'
+      path: '/e-rechnung'
+      fullPath: '/e-rechnung'
+      preLoaderRoute: typeof ERechnungRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,7 +157,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ERechnungRoute: ERechnungRoute,
   FacturationElectroniqueRoute: FacturationElectroniqueRoute,
+  FatturazioneElettronicaRoute: FatturazioneElettronicaRoute,
   FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
   KsefRoute: KsefRoute,
 }

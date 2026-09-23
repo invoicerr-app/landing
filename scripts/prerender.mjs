@@ -116,6 +116,80 @@ try {
             },
         },
         {
+            url: '/e-rechnung',
+            outDir: path.join(root, 'dist', 'e-rechnung'),
+            head: {
+                title: 'E-Rechnung in Deutschland: vollständiger Leitfaden · Invoicerr',
+                description:
+                    'Wer betroffen ist, ab wann nach der Übergangsregelung bis 2028, was sich mit XRechnung und ZUGFeRD ändert. Offizielle Quellen zitiert und verlinkt, ohne Produktvergleich.',
+                canonical: `${SITE}/e-rechnung/`,
+                lang: 'de',
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${SITE}/e-rechnung/#webpage`,
+                            url: `${SITE}/e-rechnung/`,
+                            name: 'E-Rechnung in Deutschland: vollständiger Leitfaden',
+                            description:
+                                'Wer betroffen ist, ab wann nach der Übergangsregelung bis 2028, was sich mit XRechnung und ZUGFeRD ändert. Offizielle Quellen zitiert und verlinkt, ohne Produktvergleich.',
+                            inLanguage: 'de',
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${SITE}/e-rechnung/#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${SITE}/e-rechnung/#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                { '@type': 'ListItem', position: 2, name: 'E-Rechnung', item: `${SITE}/e-rechnung/` },
+                            ],
+                        },
+                    ],
+                },
+            },
+        },
+        {
+            url: '/fatturazione-elettronica',
+            outDir: path.join(root, 'dist', 'fatturazione-elettronica'),
+            head: {
+                title: 'Fatturazione elettronica in Italia: guida completa · Invoicerr',
+                description:
+                    'Chi è interessato, da quando secondo il regime, cosa cambia con il Sistema di Interscambio e il formato FatturaPA. Fonti ufficiali citate e collegate, senza confronto tra prodotti.',
+                canonical: `${SITE}/fatturazione-elettronica/`,
+                lang: 'it',
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${SITE}/fatturazione-elettronica/#webpage`,
+                            url: `${SITE}/fatturazione-elettronica/`,
+                            name: 'Fatturazione elettronica in Italia: guida completa',
+                            description:
+                                'Chi è interessato, da quando secondo il regime, cosa cambia con il Sistema di Interscambio e il formato FatturaPA. Fonti ufficiali citate e collegate, senza confronto tra prodotti.',
+                            inLanguage: 'it',
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${SITE}/fatturazione-elettronica/#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${SITE}/fatturazione-elettronica/#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                { '@type': 'ListItem', position: 2, name: 'Fatturazione elettronica', item: `${SITE}/fatturazione-elettronica/` },
+                            ],
+                        },
+                    ],
+                },
+            },
+        },
+        {
             url: '/ksef',
             outDir: path.join(root, 'dist', 'ksef'),
             head: {
