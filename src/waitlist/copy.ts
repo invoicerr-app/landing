@@ -121,7 +121,7 @@ const en: WaitlistCopy = {
         body: 'We will write to you once, on the day the hosted version opens. Your address is used for that and for nothing else.',
     },
     privacy: {
-        before: 'Invoicerr processes your e-mail address, your country and your company size for one purpose: telling you when the hosted version opens. They are kept until it opens and for twelve months after that, then deleted. Write to contact@invoicerr.app to be removed at any time. ',
+        before: 'Invoicerr processes your e-mail address, your country and your company size for one purpose: telling you when the hosted version opens. They are kept until it opens and for twelve months after that, and in no case for more than one year after you signed up, whichever of the two comes first. Then they are deleted. Write to contact@invoicerr.app to be removed at any time. ',
         linkLabel: 'Privacy policy',
         after: '.',
     },
@@ -201,7 +201,7 @@ const fr: WaitlistCopy = {
         body: "Nous vous écrirons une seule fois, le jour de l'ouverture de la version hébergée. Votre adresse ne sert qu'à cela.",
     },
     privacy: {
-        before: "Invoicerr traite votre adresse e-mail, votre pays et la taille de votre entreprise dans un seul but : vous prévenir de l'ouverture de la version hébergée. Ces données sont conservées jusqu'à l'ouverture, puis douze mois, et ensuite supprimées. Écrivez à contact@invoicerr.app pour être retiré à tout moment. ",
+        before: "Invoicerr traite votre adresse e-mail, votre pays et la taille de votre entreprise dans un seul but : vous prévenir de l'ouverture de la version hébergée. Ces données sont conservées jusqu'à l'ouverture, puis douze mois, et en aucun cas plus d'un an après votre inscription : c'est la première des deux échéances qui s'applique. Elles sont ensuite supprimées. Écrivez à contact@invoicerr.app pour être retiré à tout moment. ",
         linkLabel: 'Politique de confidentialité',
         after: '.',
     },
@@ -281,7 +281,7 @@ const de: WaitlistCopy = {
         body: 'Wir schreiben Ihnen ein einziges Mal, am Tag des Starts der gehosteten Version. Ihre Adresse wird für nichts anderes verwendet.',
     },
     privacy: {
-        before: 'Invoicerr verarbeitet Ihre E-Mail-Adresse, Ihr Land und Ihre Unternehmensgröße zu einem einzigen Zweck: Ihnen den Start der gehosteten Version mitzuteilen. Die Daten werden bis zum Start und danach zwölf Monate aufbewahrt und anschließend gelöscht. Schreiben Sie an contact@invoicerr.app, um jederzeit gelöscht zu werden. ',
+        before: 'Invoicerr verarbeitet Ihre E-Mail-Adresse, Ihr Land und Ihre Unternehmensgröße zu einem einzigen Zweck: Ihnen den Start der gehosteten Version mitzuteilen. Die Daten werden bis zum Start und danach zwölf Monate aufbewahrt, in keinem Fall aber länger als ein Jahr nach Ihrer Eintragung; es gilt, was zuerst eintritt. Danach werden sie gelöscht. Schreiben Sie an contact@invoicerr.app, um jederzeit gelöscht zu werden. ',
         linkLabel: 'Datenschutzerklärung',
         after: '.',
     },
@@ -361,7 +361,7 @@ const it: WaitlistCopy = {
         body: "Ti scriveremo una sola volta, il giorno dell'apertura della versione ospitata. Il tuo indirizzo serve a questo e a nient'altro.",
     },
     privacy: {
-        before: "Invoicerr tratta il tuo indirizzo e-mail, il tuo paese e la dimensione della tua azienda per un solo scopo: avvisarti dell'apertura della versione ospitata. I dati sono conservati fino all'apertura e per dodici mesi dopo, poi cancellati. Scrivi a contact@invoicerr.app per essere rimosso in qualsiasi momento. ",
+        before: "Invoicerr tratta il tuo indirizzo e-mail, il tuo paese e la dimensione della tua azienda per un solo scopo: avvisarti dell'apertura della versione ospitata. I dati sono conservati fino all'apertura e per dodici mesi dopo, e in nessun caso per più di un anno dalla tua iscrizione: vale la scadenza che arriva prima. Poi vengono cancellati. Scrivi a contact@invoicerr.app per essere rimosso in qualsiasi momento. ",
         linkLabel: 'Informativa sulla privacy',
         after: '.',
     },
@@ -441,7 +441,7 @@ const pl: WaitlistCopy = {
         body: 'Napiszemy do Ciebie jeden raz, w dniu uruchomienia wersji hostowanej. Twój adres służy tylko do tego.',
     },
     privacy: {
-        before: 'Invoicerr przetwarza Twój adres e-mail, kraj i wielkość firmy w jednym celu: aby powiadomić Cię o uruchomieniu wersji hostowanej. Dane są przechowywane do uruchomienia i przez dwanaście miesięcy po nim, a następnie usuwane. Napisz na contact@invoicerr.app, aby zostać usuniętym w dowolnym momencie. ',
+        before: 'Invoicerr przetwarza Twój adres e-mail, kraj i wielkość firmy w jednym celu: aby powiadomić Cię o uruchomieniu wersji hostowanej. Dane są przechowywane do uruchomienia i przez dwanaście miesięcy po nim, a w żadnym razie nie dłużej niż rok od zapisania się: liczy się ten z dwóch terminów, który nastąpi wcześniej. Potem są usuwane. Napisz na contact@invoicerr.app, aby zostać usuniętym w dowolnym momencie. ',
         linkLabel: 'Polityka prywatności',
         after: '.',
     },
@@ -521,7 +521,7 @@ const pt: WaitlistCopy = {
         body: 'Escrevemos-lhe uma única vez, no dia em que a versão alojada abrir. O seu endereço serve para isso e para mais nada.',
     },
     privacy: {
-        before: 'A Invoicerr trata o seu endereço de e-mail, o seu país e a dimensão da sua empresa com uma única finalidade: avisá-lo da abertura da versão alojada. Os dados são conservados até à abertura e durante doze meses depois disso, e a seguir apagados. Escreva para contact@invoicerr.app para ser removido a qualquer momento. ',
+        before: 'A Invoicerr trata o seu endereço de e-mail, o seu país e a dimensão da sua empresa com uma única finalidade: avisá-lo da abertura da versão alojada. Os dados são conservados até à abertura e durante doze meses depois disso, e em caso algum por mais de um ano após a sua inscrição: aplica-se o prazo que ocorrer primeiro. A seguir são apagados. Escreva para contact@invoicerr.app para ser removido a qualquer momento. ',
         linkLabel: 'Política de privacidade',
         after: '.',
     },

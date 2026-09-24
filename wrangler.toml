@@ -28,12 +28,16 @@ binding = "ASSETS"
 # answer "/" with dist/index.html, which is the landing home page and not this.
 run_worker_first = true
 
-# Created once with: npx wrangler kv namespace create WAITLIST
-# then paste the id it prints over the placeholder below. The deploy fails until this is a real id,
-# which is deliberate: a Worker that silently stores nothing is the worst outcome here.
+# Created with `npx wrangler kv namespace create WAITLIST` and filled in below. A namespace id is an
+# identifier, not a credential: it names the namespace and grants nothing, which is why it lives in
+# this committed file while the API token that can reach it does not.
+#
+# It holds two kinds of key, and only two. `entry:<lowercased e-mail>` is one person's four fields
+# and expires a year after the write that put it there. `rate:<window start>:<client ip>` is a
+# counter and expires with its window, a little over an hour.
 [[kv_namespaces]]
 binding = "WAITLIST"
-id = "REPLACE_WITH_THE_KV_NAMESPACE_ID"
+id = "a4257894291d03096269864feca8de9c"
 
 [vars]
 # Eleven POSTs per IP address per hour.

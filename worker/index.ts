@@ -56,6 +56,17 @@ const CORS_ORIGINS = new Set(['https://invoicerr.app', 'https://www.invoicerr.ap
 /** Anything larger than this is not a three field form. */
 const MAX_BODY_BYTES = 4096
 
+/**
+ * One year, in seconds. How long a waiting list entry lives in KV before Cloudflare removes it
+ * without anybody having to remember to.
+ *
+ * The page says the same thing in all six languages, and says it as two bounds because they are two
+ * different clocks: until the hosted version opens plus twelve months, and in no case more than a
+ * year after signing up. Whichever comes first is what happens, and this constant is the second one.
+ * Changing it means changing the copy in src/waitlist/copy.ts and the privacy policy with it.
+ */
+const ENTRY_TTL_SECONDS = 31536000
+
 /** Same expression the page validates with, so a field that passes there passes here. */
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
@@ -321,7 +332,14 @@ async function submit(request: Request, env: Env): Promise<Response> {
         companySize: companySize as CompanySizeValue,
         createdAt: existing?.createdAt ?? new Date().toISOString(),
     }
-    await env.WAITLIST.put(key, JSON.stringify(entry))
+    // One year, and it is the only thing that makes the page's promise of deletion true: without an
+    // expiry the entry lives until somebody removes it by hand, which is not a retention policy.
+    //
+    // A resubmission rewrites the entry, so the year restarts from that write. That is intended and
+    // not a leak to be tidied up: the person came back and gave their answer again, which is fresh
+    // consent, and deleting them a year after a submission they have since replaced would be
+    // counting from the wrong event. The page announces both bounds for exactly this reason.
+    await env.WAITLIST.put(key, JSON.stringify(entry), { expirationTtl: ENTRY_TTL_SECONDS })
 
     // Mail second, and never at the expense of the entry: the address is already safe, so a Resend
     // outage is a line in the log rather than an error shown to somebody who did their part.
