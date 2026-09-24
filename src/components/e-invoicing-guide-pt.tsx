@@ -236,12 +236,13 @@ export function EInvoicingGuidePt() {
                             O Invoicerr é uma das formas de responder a estas obrigações: um software de faturação
                             de código aberto que atribui um ATCUD a cada fatura e comunica os seus elementos à AT.
                             Não é a única forma possível, e este parágrafo não procura convencer do contrário: as
-                            perguntas acima aplicam-se a qualquer ferramenta, incluindo esta.
+                            perguntas acima aplicam-se a qualquer ferramenta, incluindo esta. A versão alojada abre em
+                            novembro de 2026 e até lá existe apenas a lista de espera.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                                 <a href={links.app}>
-                                    Usar o Invoicerr já
+                                    Entrar na lista de espera
                                     <ArrowRight />
                                 </a>
                             </Button>

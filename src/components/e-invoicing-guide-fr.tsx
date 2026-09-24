@@ -334,12 +334,13 @@ export function EInvoicingGuideFr() {
                             plateforme accréditée de votre choix, et applique la bascule vers le canal
                             électronique à la date que porte votre facture. Ce n'est pas la seule façon de faire,
                             et ce paragraphe ne cherche pas à vous convaincre du contraire : les questions
-                            ci-dessus valent pour n'importe quel outil, y compris celui-ci.
+                            ci-dessus valent pour n'importe quel outil, y compris celui-ci. La version hébergée ouvre en
+                            novembre 2026 : d'ici là, il n'y a qu'une liste d'attente à rejoindre.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                                 <a href={links.app}>
-                                    Utiliser Invoicerr dès maintenant
+                                    Rejoindre la liste d'attente
                                     <ArrowRight />
                                 </a>
                             </Button>

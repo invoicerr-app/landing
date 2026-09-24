@@ -262,12 +262,13 @@ export function EInvoicingGuideIt() {
                             fatturazione open source che genera la fattura nel formato FatturaPA e la
                             instrada verso il Sistema di Interscambio tramite il canale accreditato SDICoop.
                             Non è l'unico modo di procedere, e questo paragrafo non cerca di convincervi del
-                            contrario: le domande qui sopra valgono per qualsiasi strumento, compreso questo.
+                            contrario: le domande qui sopra valgono per qualsiasi strumento, compreso questo. La versione
+                            ospitata apre a novembre 2026: fino ad allora c'è solo la lista d'attesa.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                                 <a href={links.app}>
-                                    Usa Invoicerr subito
+                                    Iscriviti alla lista d'attesa
                                     <ArrowRight />
                                 </a>
                             </Button>

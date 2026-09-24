@@ -14,11 +14,17 @@ compatibility_date = "2025-09-23"
 # invoicerr.app, so nothing else of the site is mirrored there.
 workers_dev = true
 
-# Pointing my.invoicerr.app at this Worker is a separate, deliberate step: it replaces the redirect
-# that hostname serves today. Uncomment once the deploy has been checked on the workers.dev URL.
-# [[routes]]
-# pattern = "my.invoicerr.app"
-# custom_domain = true
+# my.invoicerr.app is attached to this Worker as a custom domain. Two things had to be undone in
+# Cloudflare first, and both are worth knowing before this line is ever changed:
+#
+#   - a Redirect Rule named "My to WWW" on the invoicerr.app zone answered 301 to the landing for
+#     every path of this hostname. It is disabled, not deleted, so re-enabling it silently takes
+#     the hostname back: a Redirect Rule runs before the Worker in the request pipeline.
+#   - the A and AAAA records for "my" had to go. A custom domain manages its own record, and
+#     Cloudflare refuses to attach one over records it did not create.
+[[routes]]
+pattern = "my.invoicerr.app"
+custom_domain = true
 
 [assets]
 directory = "dist"
