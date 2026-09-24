@@ -47,7 +47,7 @@ function escapeHtml(value) {
 // both of which a plain regex replace on title/description would otherwise leave stuck on English.
 // `alternates` is optional too, and only the waiting list uses it: the same page written six times
 // over needs every version to name the other five, plus an x-default. `referrerPolicy` is optional
-// as well and only the five guides set it; the comment where they do says why.
+// as well and only the guides the Worker reads set it; the comment where they do says why.
 function injectHead(shell, { title, description, canonical, jsonLd, lang, alternates, referrerPolicy }) {
     const escapedTitle = escapeHtml(title)
     const escapedDescription = escapeHtml(description)
@@ -137,6 +137,58 @@ try {
         }
     })
 
+    // The country guides and the pages around them describe themselves in src/content/pages.ts, the
+    // same table the pages read to link to each other. Each is written in one language and has no
+    // translation, so none of them carries hreflang: that attribute tells a search engine two URLs
+    // are the same content in two languages, which is not true of a French guide and a German one.
+    const { CONTENT_PAGES } = await vite.ssrLoadModule('/src/content/pages.ts')
+
+    const contentPages = CONTENT_PAGES.map((page) => {
+        const canonical = `${SITE}${page.path}/`
+        return {
+            url: page.path,
+            outDir: path.join(root, 'dist', ...page.path.split('/').filter(Boolean)),
+            head: {
+                title: page.title,
+                description: page.description,
+                canonical,
+                // English is the shell's own language, and passing it would turn og:locale into the
+                // nonexistent "en_EN".
+                lang: page.lang === 'en' ? undefined : page.lang,
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${canonical}#webpage`,
+                            url: canonical,
+                            name: page.name,
+                            description: page.description,
+                            inLanguage: page.lang,
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${canonical}#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${canonical}#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                ...page.breadcrumb.map((crumb, index) => ({
+                                    '@type': 'ListItem',
+                                    position: index + 2,
+                                    name: crumb.name,
+                                    item: `${SITE}${crumb.path}/`,
+                                })),
+                            ],
+                        },
+                    ],
+                },
+            },
+        }
+    })
+
     const shell = await readFile(shellPath, 'utf8')
     if (!shell.includes('<div id="root"></div>')) {
         throw new Error('dist/index.html no longer holds an empty <div id="root"></div> to fill.')
@@ -146,191 +198,7 @@ try {
     // carries the right <title>, description, canonical and JSON-LD for "/".
     const pages = [
         { url: '/', outDir: path.join(root, 'dist'), head: null },
-        {
-            url: '/facturation-electronique',
-            outDir: path.join(root, 'dist', 'facturation-electronique'),
-            head: {
-                title: "Facturation électronique en France : guide complet · Invoicerr",
-                description:
-                    "Qui est concerné, à partir de quand selon la taille de l'entreprise, ce qui change avec le PDP et les formats acceptés. Sources officielles citées et liées, sans comparatif produit.",
-                canonical: `${SITE}/facturation-electronique/`,
-                lang: 'fr',
-                jsonLd: {
-                    '@context': 'https://schema.org',
-                    '@graph': [
-                        organization,
-                        website,
-                        {
-                            '@type': 'WebPage',
-                            '@id': `${SITE}/facturation-electronique/#webpage`,
-                            url: `${SITE}/facturation-electronique/`,
-                            name: 'Facturation électronique en France : guide complet',
-                            description:
-                                "Qui est concerné, à partir de quand selon la taille de l'entreprise, ce qui change avec le PDP et les formats acceptés. Sources officielles citées et liées, sans comparatif produit.",
-                            inLanguage: 'fr',
-                            isPartOf: { '@id': `${SITE}/#website` },
-                            breadcrumb: { '@id': `${SITE}/facturation-electronique/#breadcrumb` },
-                        },
-                        {
-                            '@type': 'BreadcrumbList',
-                            '@id': `${SITE}/facturation-electronique/#breadcrumb`,
-                            itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-                                { '@type': 'ListItem', position: 2, name: 'Facturation électronique', item: `${SITE}/facturation-electronique/` },
-                            ],
-                        },
-                    ],
-                },
-            },
-        },
-        {
-            url: '/e-rechnung',
-            outDir: path.join(root, 'dist', 'e-rechnung'),
-            head: {
-                title: 'E-Rechnung in Deutschland: vollständiger Leitfaden · Invoicerr',
-                description:
-                    'Wer betroffen ist, ab wann nach der Übergangsregelung bis 2028, was sich mit XRechnung und ZUGFeRD ändert. Offizielle Quellen zitiert und verlinkt, ohne Produktvergleich.',
-                canonical: `${SITE}/e-rechnung/`,
-                lang: 'de',
-                jsonLd: {
-                    '@context': 'https://schema.org',
-                    '@graph': [
-                        organization,
-                        website,
-                        {
-                            '@type': 'WebPage',
-                            '@id': `${SITE}/e-rechnung/#webpage`,
-                            url: `${SITE}/e-rechnung/`,
-                            name: 'E-Rechnung in Deutschland: vollständiger Leitfaden',
-                            description:
-                                'Wer betroffen ist, ab wann nach der Übergangsregelung bis 2028, was sich mit XRechnung und ZUGFeRD ändert. Offizielle Quellen zitiert und verlinkt, ohne Produktvergleich.',
-                            inLanguage: 'de',
-                            isPartOf: { '@id': `${SITE}/#website` },
-                            breadcrumb: { '@id': `${SITE}/e-rechnung/#breadcrumb` },
-                        },
-                        {
-                            '@type': 'BreadcrumbList',
-                            '@id': `${SITE}/e-rechnung/#breadcrumb`,
-                            itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-                                { '@type': 'ListItem', position: 2, name: 'E-Rechnung', item: `${SITE}/e-rechnung/` },
-                            ],
-                        },
-                    ],
-                },
-            },
-        },
-        {
-            url: '/fatturazione-elettronica',
-            outDir: path.join(root, 'dist', 'fatturazione-elettronica'),
-            head: {
-                title: 'Fatturazione elettronica in Italia: guida completa · Invoicerr',
-                description:
-                    'Chi è interessato, da quando secondo il regime, cosa cambia con il Sistema di Interscambio e il formato FatturaPA. Fonti ufficiali citate e collegate, senza confronto tra prodotti.',
-                canonical: `${SITE}/fatturazione-elettronica/`,
-                lang: 'it',
-                jsonLd: {
-                    '@context': 'https://schema.org',
-                    '@graph': [
-                        organization,
-                        website,
-                        {
-                            '@type': 'WebPage',
-                            '@id': `${SITE}/fatturazione-elettronica/#webpage`,
-                            url: `${SITE}/fatturazione-elettronica/`,
-                            name: 'Fatturazione elettronica in Italia: guida completa',
-                            description:
-                                'Chi è interessato, da quando secondo il regime, cosa cambia con il Sistema di Interscambio e il formato FatturaPA. Fonti ufficiali citate e collegate, senza confronto tra prodotti.',
-                            inLanguage: 'it',
-                            isPartOf: { '@id': `${SITE}/#website` },
-                            breadcrumb: { '@id': `${SITE}/fatturazione-elettronica/#breadcrumb` },
-                        },
-                        {
-                            '@type': 'BreadcrumbList',
-                            '@id': `${SITE}/fatturazione-elettronica/#breadcrumb`,
-                            itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-                                { '@type': 'ListItem', position: 2, name: 'Fatturazione elettronica', item: `${SITE}/fatturazione-elettronica/` },
-                            ],
-                        },
-                    ],
-                },
-            },
-        },
-        {
-            url: '/ksef',
-            outDir: path.join(root, 'dist', 'ksef'),
-            head: {
-                title: 'KSeF w Polsce: obowiązkowe fakturowanie elektroniczne · Invoicerr',
-                description:
-                    'Kogo dotyczy obowiązek, od kiedy według progu obrotu, co zmienia format FA(3) i Krajowy System e-Faktur. Źródła urzędowe cytowane i linkowane, bez porównania narzędzi.',
-                canonical: `${SITE}/ksef/`,
-                lang: 'pl',
-                jsonLd: {
-                    '@context': 'https://schema.org',
-                    '@graph': [
-                        organization,
-                        website,
-                        {
-                            '@type': 'WebPage',
-                            '@id': `${SITE}/ksef/#webpage`,
-                            url: `${SITE}/ksef/`,
-                            name: 'KSeF w Polsce: obowiązkowe fakturowanie elektroniczne',
-                            description:
-                                'Kogo dotyczy obowiązek, od kiedy według progu obrotu, co zmienia format FA(3) i Krajowy System e-Faktur. Źródła urzędowe cytowane i linkowane, bez porównania narzędzi.',
-                            inLanguage: 'pl',
-                            isPartOf: { '@id': `${SITE}/#website` },
-                            breadcrumb: { '@id': `${SITE}/ksef/#breadcrumb` },
-                        },
-                        {
-                            '@type': 'BreadcrumbList',
-                            '@id': `${SITE}/ksef/#breadcrumb`,
-                            itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-                                { '@type': 'ListItem', position: 2, name: 'KSeF', item: `${SITE}/ksef/` },
-                            ],
-                        },
-                    ],
-                },
-            },
-        },
-        {
-            url: '/faturacao-eletronica',
-            outDir: path.join(root, 'dist', 'faturacao-eletronica'),
-            head: {
-                title: 'Faturação eletrónica em Portugal: ATCUD e SAF-T (PT) · Invoicerr',
-                description:
-                    'Quem é abrangido, desde quando, o que muda com o ATCUD, o software certificado e o SAF-T (PT). Fontes oficiais citadas e ligadas, sem comparação de produtos.',
-                canonical: `${SITE}/faturacao-eletronica/`,
-                lang: 'pt',
-                jsonLd: {
-                    '@context': 'https://schema.org',
-                    '@graph': [
-                        organization,
-                        website,
-                        {
-                            '@type': 'WebPage',
-                            '@id': `${SITE}/faturacao-eletronica/#webpage`,
-                            url: `${SITE}/faturacao-eletronica/`,
-                            name: 'Faturação eletrónica em Portugal: ATCUD e SAF-T (PT)',
-                            description:
-                                'Quem é abrangido, desde quando, o que muda com o ATCUD, o software certificado e o SAF-T (PT). Fontes oficiais citadas e ligadas, sem comparação de produtos.',
-                            inLanguage: 'pt',
-                            isPartOf: { '@id': `${SITE}/#website` },
-                            breadcrumb: { '@id': `${SITE}/faturacao-eletronica/#breadcrumb` },
-                        },
-                        {
-                            '@type': 'BreadcrumbList',
-                            '@id': `${SITE}/faturacao-eletronica/#breadcrumb`,
-                            itemListElement: [
-                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-                                { '@type': 'ListItem', position: 2, name: 'Faturação eletrónica', item: `${SITE}/faturacao-eletronica/` },
-                            ],
-                        },
-                    ],
-                },
-            },
-        },
+        ...contentPages,
         ...waitlistPages,
     ]
 
@@ -341,12 +209,27 @@ try {
     // the rule can never fire and every reader falls through to Accept-Language.
     //
     // The policy below is the pre-2020 default: the full URL travels to any https destination, and
-    // nothing at all travels to an http one. It is set on the five guides alone, which are the only
+    // nothing at all travels to an http one. It is set on the non-English guides alone, which are the only
     // pages whose own URL the Worker needs to read; the rest of the site keeps the browser default.
-    // Take it away and the language falls back to Accept-Language, silently.
-    const GUIDE_PATHS = new Set(['/facturation-electronique', '/e-rechnung', '/fatturazione-elettronica', '/ksef', '/faturacao-eletronica'])
+    // Take it away and the language falls back to Accept-Language, silently. The list is the Worker's
+    // own GUIDE_LANGUAGES table, so the two cannot name different pages.
+    const { GUIDE_LANGUAGES } = await vite.ssrLoadModule('/src/waitlist/languages.ts')
     for (const page of pages) {
-        if (GUIDE_PATHS.has(page.url)) page.head.referrerPolicy = 'no-referrer-when-downgrade'
+        if (page.url in GUIDE_LANGUAGES) page.head.referrerPolicy = 'no-referrer-when-downgrade'
+    }
+
+    // public/sitemap.xml is written by hand. A page rendered here but missing from it is never
+    // submitted; a URL listed there but not rendered here is served the noindex 404.html. Either
+    // one is silent in production, so it stops the build instead.
+    const sitemap = await readFile(path.join(root, 'public', 'sitemap.xml'), 'utf8')
+    const inSitemap = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]))
+    const rendered = new Set(pages.map((page) => (page.url === '/' ? `${SITE}/` : `${SITE}${page.url}/`)))
+    const notInSitemap = [...rendered].filter((url) => !inSitemap.has(url))
+    const notRendered = [...inSitemap].filter((url) => !rendered.has(url))
+    if (notInSitemap.length || notRendered.length) {
+        throw new Error(
+            `public/sitemap.xml and the rendered pages disagree.\n  rendered, not in the sitemap: ${notInSitemap.join(', ') || 'none'}\n  in the sitemap, not rendered: ${notRendered.join(', ') || 'none'}`,
+        )
     }
 
     const turndown = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' })

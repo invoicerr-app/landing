@@ -1,22 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { MotionConfig } from 'motion/react'
 
-import { EInvoicingGuideFr } from '@/components/e-invoicing-guide-fr'
+import { PlateformeAgreeeGuideFr } from '@/components/plateforme-agreee-guide-fr'
 import Footer from '@/components/footer'
 import { GuideLinks } from '@/components/guide-links'
 import Header from '@/components/header'
 
-export const Route = createFileRoute('/facturation-electronique')({
-    component: FactureElectroniqueRoute,
+export const Route = createFileRoute('/facturation-electronique_/plateforme-agreee')({
+    component: PlateformeAgreeeRoute,
 })
 
-function FactureElectroniqueRoute() {
+function PlateformeAgreeeRoute() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
             <main lang="fr">
-                <EInvoicingGuideFr />
-                <GuideLinks current="/facturation-electronique" />
+                <PlateformeAgreeeGuideFr />
+                <GuideLinks current="/facturation-electronique/plateforme-agreee" />
             </main>
             <Footer />
         </MotionConfig>

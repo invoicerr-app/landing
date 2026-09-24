@@ -1,22 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { MotionConfig } from 'motion/react'
 
-import { EInvoicingGuidePt } from '@/components/e-invoicing-guide-pt'
+import { VidaGuide } from '@/components/vida-guide'
 import Footer from '@/components/footer'
 import { GuideLinks } from '@/components/guide-links'
 import Header from '@/components/header'
 
-export const Route = createFileRoute('/faturacao-eletronica')({
-    component: FaturacaoEletronicaRoute,
+export const Route = createFileRoute('/europe/vida')({
+    component: VidaRoute,
 })
 
-function FaturacaoEletronicaRoute() {
+function VidaRoute() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
-            <main lang="pt">
-                <EInvoicingGuidePt />
-                <GuideLinks current="/faturacao-eletronica" />
+            <main>
+                <VidaGuide />
+                <GuideLinks current="/europe/vida" />
             </main>
             <Footer />
         </MotionConfig>

@@ -23,6 +23,15 @@ administration.
 - [KSeF w Polsce](https://invoicerr.app/ksef): who must use Poland's national e-invoicing system, the turnover-staged mandate and its current dates, the FA(3) format and archiving duration
 - [Faturação eletrónica em Portugal](https://invoicerr.app/faturacao-eletronica): the ATCUD code, certified invoicing software, SAF-T (PT) reporting and retention duration
 
+Around them, the pages that span the five countries, and two that go deeper into one:
+
+- [E-invoicing mandates in France, Germany, Italy, Poland and Portugal](https://invoicerr.app/europe/e-invoicing-mandates/): the five countries side by side, the three models behind them, and the EU rules above them
+- [ViDA, VAT in the Digital Age](https://invoicerr.app/europe/vida/): what Directive (EU) 2025/516 changes for invoices, article by article, and on which date
+- [EN 16931](https://invoicerr.app/e-invoicing/en-16931/): what the European standard for electronic invoices defines, its two syntaxes, and what it leaves to each country
+- [Peppol](https://invoicerr.app/e-invoicing/peppol/): the network, not the format: access points, participant identifiers, the four-corner model, and whether a business needs it
+- [Choisir sa plateforme agréée](https://invoicerr.app/facturation-electronique/plateforme-agreee/): in French, what an approved platform does in France, how to check that it is approved, and how to connect to it
+- [XRechnung oder ZUGFeRD?](https://invoicerr.app/e-rechnung/xrechnung/): in German, which format to send to which recipient: public or private buyer, Leitweg-ID, submission channel
+
 ## Hosted version
 
 - [Waiting list](https://invoicerr.app/waitlist/): the hosted version opens in November 2026. The page states plainly that billing runs in Polar's sandbox during the beta, that the legal documents are still marked as drafts, and that invoices issued from the beta must not be used for real. Also written in [French](https://invoicerr.app/waitlist/fr/), [German](https://invoicerr.app/waitlist/de/), [Italian](https://invoicerr.app/waitlist/it/), [Polish](https://invoicerr.app/waitlist/pl/) and [Portuguese](https://invoicerr.app/waitlist/pt/).

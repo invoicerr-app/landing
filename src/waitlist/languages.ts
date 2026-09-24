@@ -16,14 +16,18 @@ export const DEFAULT_LANGUAGE: Language = 'en'
 export const SITE = 'https://invoicerr.app'
 
 /**
- * The five country guides, and the language each one implies. A reader who clicked the call to
- * action at the foot of a guide is reading that language, so that is the version they get.
+ * The guides written in a language other than English, and the language each one implies. A reader
+ * who clicked the call to action at the foot of a guide is reading that language, so that is the
+ * version they get. The English guides are absent on purpose: English is what the Worker falls
+ * back to anyway, and a reader of an English guide may well prefer their own language.
  *
  * Keyed by pathname without a trailing slash; matchGuideLanguage() normalises before looking up.
  */
 export const GUIDE_LANGUAGES: Record<string, Language> = {
     '/facturation-electronique': 'fr',
+    '/facturation-electronique/plateforme-agreee': 'fr',
     '/e-rechnung': 'de',
+    '/e-rechnung/xrechnung': 'de',
     '/fatturazione-elettronica': 'it',
     '/ksef': 'pl',
     '/faturacao-eletronica': 'pt',
@@ -44,7 +48,7 @@ export function isLanguage(value: unknown): value is Language {
 }
 
 /**
- * Step 1 of the resolution order: the Referer, when it is one of the five guides.
+ * Step 1 of the resolution order: the Referer, when it is one of the guides above.
  *
  * The host is not checked. The guide paths are specific enough that a match means a guide, and
  * ignoring the host is what lets the rule be exercised against a local build without faking a
