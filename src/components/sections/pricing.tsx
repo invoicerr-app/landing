@@ -10,7 +10,15 @@ import { cn } from '@/lib/utils'
 
 const MAX_SEATS = 25
 
-const cloud = ['Hosted and updated by us', 'Every feature of the app', `${TRIAL_DAYS}-day trial, no limit except sending`, 'Your data exported if you leave']
+// The cloud opens in November 2026, so its plan is described in the future tense: the button below
+// the list leads to the waiting list, not to a sign-up form.
+const cloud = [
+    'Opens in November 2026',
+    'Hosted and updated by us',
+    'Every feature of the app',
+    `${TRIAL_DAYS}-day trial at opening, no limit except sending`,
+    'Your data exported if you leave',
+]
 const selfHosted = ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support']
 
 function Price({ value }: { value: number }) {
@@ -99,7 +107,7 @@ export function Pricing() {
                             ))}
                         </ul>
                         <Button size="lg" asChild className="h-11 shrink-0 px-6 text-base active:scale-[0.98]">
-                            <a href={links.app}>Start free trial</a>
+                            <a href={links.app}>Join the waiting list</a>
                         </Button>
                     </div>
                 </div>

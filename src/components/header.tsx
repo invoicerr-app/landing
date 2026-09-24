@@ -2,7 +2,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useState } from 'react'
 
-import { links } from '@/lib/links'
+import { hostedLoginOpen, links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
 import { BrandMark } from './brand-mark'
@@ -65,11 +65,13 @@ export default function Header() {
                         </a>
                     </Button>
                     <ThemeToggle />
-                    <Button variant="ghost" asChild className="hidden sm:inline-flex">
-                        <a href={links.app}>Log in</a>
-                    </Button>
+                    {hostedLoginOpen && (
+                        <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                            <a href={links.app}>Log in</a>
+                        </Button>
+                    )}
                     <Button asChild className="hidden sm:inline-flex">
-                        <a href={links.app}>Start free trial</a>
+                        <a href={links.app}>Join the waiting list</a>
                     </Button>
                     <Button
                         variant="ghost"
@@ -99,12 +101,14 @@ export default function Header() {
                             {item.label}
                         </a>
                     ))}
-                    <div className="mt-3 grid grid-cols-2 gap-2">
-                        <Button variant="outline" asChild>
-                            <a href={links.app}>Log in</a>
-                        </Button>
+                    <div className={cn('mt-3 grid gap-2', hostedLoginOpen && 'grid-cols-2')}>
+                        {hostedLoginOpen && (
+                            <Button variant="outline" asChild>
+                                <a href={links.app}>Log in</a>
+                            </Button>
+                        )}
                         <Button asChild>
-                            <a href={links.app}>Start free trial</a>
+                            <a href={links.app}>Join the waiting list</a>
                         </Button>
                     </div>
                 </motion.nav>
