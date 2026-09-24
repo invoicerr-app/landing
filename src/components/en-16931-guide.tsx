@@ -37,13 +37,18 @@ export function En16931Guide() {
                     A PDF sent by e-mail, however neat, is therefore not an electronic invoice in this sense.
                     The standard itself was issued by the European Committee for Standardisation (CEN) on 28
                     June 2017, and its reference published in the Official Journal by Commission Implementing
-                    Decision (EU) 2017/1870:
+                    Decision (EU) 2017/1870, Article 1, in two parts:
                 </p>
-                <Quote cite="Commission Implementing Decision (EU) 2017/1870, Article 1.">
-                    “‘EN 16931-1:2017, Electronic invoicing — Part 1: Semantic data model of the core elements
-                    of an electronic invoice’ and the list of syntaxes with reference ‘CEN/TS 16931-2:2017,
-                    Electronic invoicing — Part 2: List of syntaxes that comply with EN 16931-1’”
-                </Quote>
+                <List>
+                    <li>
+                        <Strong>EN 16931-1:2017</Strong>, Electronic invoicing, Part 1: Semantic data model of the
+                        core elements of an electronic invoice;
+                    </li>
+                    <li>
+                        <Strong>CEN/TS 16931-2:2017</Strong>, Electronic invoicing, Part 2: List of syntaxes that
+                        comply with EN 16931-1.
+                    </li>
+                </List>
             </GuideSection>
 
             <GuideSection icon={Layers} title="A data model, written in one of two syntaxes">

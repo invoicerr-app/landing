@@ -1,5 +1,5 @@
 // Renders every route to HTML at build time and writes each one into its own dist/<path>/index.html,
-// so that what a crawler — or a reader with JavaScript off — receives already contains the text,
+// so that what a crawler, or a reader with JavaScript off, receives already contains the text,
 // instead of an empty <div id="root">. The browser then hydrates that markup rather than building it
 // from scratch. Also writes 404.html and llms-full.txt, the way it always has.
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
@@ -14,7 +14,7 @@ const SITE = 'https://invoicerr.app'
 
 // Same Organization and WebSite nodes as the <script type="application/ld+json"> in index.html. Every
 // non-home page repeats them (each page's structured data is read independently, so there is no
-// cross-document @id resolution to rely on) — keep the three in sync by hand if any changes; there is
+// cross-document @id resolution to rely on). Keep the three in sync by hand if any changes; there is
 // no single source shared between the hand-written index.html and this file.
 const organization = {
     '@type': 'Organization',
@@ -40,8 +40,8 @@ function escapeHtml(value) {
 }
 
 // Swaps the per-page <title>, meta description, canonical, Open Graph/Twitter title+description and
-// JSON-LD out of the shared shell. Everything else — favicons, theme-color, the inline theme script,
-// og:image — stays the homepage's, since there is no separate image or icon for these pages yet.
+// JSON-LD out of the shared shell. Everything else (favicons, theme-color, the inline theme script,
+// og:image) stays the homepage's, since there is no separate image or icon for these pages yet.
 // `lang` is optional and only needed for a page written in a language other than the shell's own
 // English (today, only /facturation-electronique): it swaps the <html lang> attribute and og:locale,
 // both of which a plain regex replace on title/description would otherwise leave stuck on English.
@@ -246,7 +246,7 @@ try {
         // React 19 emits a <link rel="preload"> for every eagerly loaded image it renders. In the
         // browser those live in <head>; renderToString has no <head> to hoist them into, so they come
         // out at the top of the body markup and hydration then reports a mismatch. Take them out, and
-        // keep only the one the author marked as high priority — the hero screenshot on "/", the
+        // keep only the one the author marked as high priority: the hero screenshot on "/", the
         // largest element above its fold. /facturation-electronique renders no such image, so this is
         // a no-op for it.
         const preloads = body.match(/<link rel="preload"[^>]*\/>/g) ?? []
@@ -276,14 +276,14 @@ try {
             .replace(/\]\(#/g, `](${SITE}/#`)
             .replace(/\n{3,}/g, '\n\n')
             .trim()
-        llmsFullSections.push(`# ${title} — full text of ${canonical}\n\n${markdown}`)
+        llmsFullSections.push(`# ${title}: full text of ${canonical}\n\n${markdown}`)
     }
 
     // GitHub Pages serves 404.html for any unknown path, which is how the client-side router gets a
-    // chance to resolve the URL — for every path except the two above, which now have a real static
-    // file of their own and never reach this fallback. That page keeps the plain shell — the
+    // chance to resolve the URL, for every path except the ones above, which now have a real static
+    // file of their own and never reach this fallback. That page keeps the plain shell (the
     // prerendered markup belongs to specific URLs and hydrating it under a different one would only
-    // make React throw it away — and says noindex, because a page that answers 404 has no business in
+    // make React throw it away) and says noindex, because a page that answers 404 has no business in
     // an index.
     const notFound = shell.replace(/<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex" />')
     if (!notFound.includes('content="noindex"')) {
