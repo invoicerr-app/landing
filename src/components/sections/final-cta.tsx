@@ -13,12 +13,13 @@ export function FinalCta() {
                 <div className="relative max-w-xl">
                     <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-5xl">Send your next invoice from Invoicerr.</h2>
                     <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                        Try the cloud for 14 days, or pull the image and have it running on your own server tonight.
+                        Our cloud opens in November 2026 and the waiting list is open now. Or pull the image and have
+                        Invoicerr running on your own server tonight.
                     </p>
                     <div className="mt-9 flex flex-wrap gap-3">
                         <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href={links.app}>
-                                Start free trial
+                                Join the waiting list
                                 <ArrowRight />
                             </a>
                         </Button>

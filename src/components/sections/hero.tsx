@@ -48,13 +48,13 @@ export function Hero() {
                         The invoicing app that keeps up with you.
                     </h1>
                     <p className="enter mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground [animation-delay:180ms]">
-                        Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Use our cloud
-                        or host it yourself.
+                        Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it
+                        yourself today, or join the waiting list for our cloud, which opens in November 2026.
                     </p>
                     <div className="enter mt-9 flex flex-wrap items-center gap-3 [animation-delay:270ms]">
                         <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href={links.app}>
-                                Start free trial
+                                Join the waiting list
                                 <ArrowRight />
                             </a>
                         </Button>

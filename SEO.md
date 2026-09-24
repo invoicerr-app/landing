@@ -9,16 +9,19 @@ Everything below was measured on 2026-09-21. Re-measure before trusting a number
 
 ---
 
-## 0. Before any of this: the call-to-action goes nowhere
+## 0. Settled on 2026-09-24: the call-to-action now matches its destination
 
-`https://my.invoicerr.app` answers **301 → `https://invoicerr.app/`**. Every "Start free trial" and
-"Log in" button on the page, and the `links.app` entry they come from, sends a visitor back to the
-page they were already on. The hero, the pricing card and the closing section all promise a 14-day
-trial that cannot currently be started.
+`https://my.invoicerr.app` no longer sends visitors back to the page they were already on. It
+answers **302 → `/waitlist/<lang>/`** and serves the six-language waiting list page, the hosted
+version being due in November 2026.
 
-Nothing else in this file matters as much. Either point the subdomain at the hosted app, or change
-the buttons to what is genuinely available today (the install guide, the GitHub repository) until it
-is. Traffic that arrives to a circular button is traffic spent.
+The landing was changed to match. The ten buttons pointing at `links.app` now say "Join the waiting
+list" in the language of the page they sit on, reusing the exact wording of the waiting list page
+itself, and the sentences around them no longer promise a trial that cannot be started. The three
+"Log in" links are hidden behind `hostedLoginOpen` in `src/lib/links.ts`: there is nothing to log
+into yet, and one line brings all three back when there is.
+
+Re-check this section when the hosted version opens.
 
 ---
 

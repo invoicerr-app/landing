@@ -1,4 +1,4 @@
-import { links } from '@/lib/links'
+import { hostedLoginOpen, links } from '@/lib/links'
 
 import { BrandMark } from './brand-mark'
 
@@ -6,7 +6,8 @@ const columns = [
     {
         title: 'Product',
         items: [
-            { label: 'Log in', href: links.app },
+            // Restored by `hostedLoginOpen` in src/lib/links.ts on the day the hosted version opens.
+            ...(hostedLoginOpen ? [{ label: 'Log in', href: links.app }] : []),
             { label: 'Pricing', href: '#pricing' },
             { label: 'Countries', href: '#countries' },
             { label: 'Changelog', href: links.changelog },

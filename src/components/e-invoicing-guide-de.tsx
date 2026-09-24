@@ -292,12 +292,13 @@ export function EInvoicingGuideDe() {
                             Factur-X/ZUGFeRD-Format erstellt und sich über den Übertragungsweg Ihrer Wahl
                             versenden lässt, da das Gesetz keinen bestimmten Kanal vorschreibt. Das ist nicht
                             der einzige Weg, und dieser Absatz will Sie vom Gegenteil nicht überzeugen: Die
-                            obigen Fragen gelten für jedes Werkzeug, auch für dieses.
+                            obigen Fragen gelten für jedes Werkzeug, auch für dieses. Die gehostete Version startet im
+                            November 2026: bis dahin gibt es nur die Warteliste.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                                 <a href={links.app}>
-                                    Invoicerr jetzt nutzen
+                                    Auf die Warteliste
                                     <ArrowRight />
                                 </a>
                             </Button>

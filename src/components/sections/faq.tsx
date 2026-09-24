@@ -13,8 +13,8 @@ const questions = [
             'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license — which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
     },
     {
-        question: 'What can I do during the cloud trial?',
-        answer: 'Everything except sending documents. For 14 days you can set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
+        question: 'What will I be able to do during the cloud trial?',
+        answer: 'The cloud opens in November 2026, and the trial opens with it. Everything except sending documents: for 14 days you will be able to set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
     },
     {
         question: 'How does seat pricing work?',
