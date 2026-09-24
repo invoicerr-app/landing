@@ -37,7 +37,10 @@ run_worker_first = true
 # counter and expires with its window, a little over an hour.
 [[kv_namespaces]]
 binding = "WAITLIST"
-id = "a4257894291d03096269864feca8de9c"
+# The namespace id, not the account id. They are both 32 hex characters and they are easy to
+# confuse: the first deploy failed with "KV namespace not found" because the account id had been
+# written here. `wrangler kv namespace list` prints the real one.
+id = "3ea4f96e531041b1b5e51d421a28c60f"
 
 [vars]
 # Eleven POSTs per IP address per hour.
