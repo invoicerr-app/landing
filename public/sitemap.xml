@@ -15,6 +15,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://invoicerr.app/europe/e-invoicing-mandates/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://invoicerr.app/facturation-electronique/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -36,6 +41,31 @@
   </url>
   <url>
     <loc>https://invoicerr.app/faturacao-eletronica/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/facturation-electronique/plateforme-agreee/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/e-rechnung/xrechnung/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/europe/vida/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/e-invoicing/en-16931/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://invoicerr.app/e-invoicing/peppol/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

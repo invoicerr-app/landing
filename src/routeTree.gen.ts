@@ -21,6 +21,12 @@ import { Route as WaitlistPlRouteImport } from './routes/waitlist.pl'
 import { Route as WaitlistItRouteImport } from './routes/waitlist.it'
 import { Route as WaitlistFrRouteImport } from './routes/waitlist.fr'
 import { Route as WaitlistDeRouteImport } from './routes/waitlist.de'
+import { Route as FacturationElectroniquePlateformeAgreeeRouteImport } from './routes/facturation-electronique_.plateforme-agreee'
+import { Route as EuropeVidaRouteImport } from './routes/europe.vida'
+import { Route as EuropeEInvoicingMandatesRouteImport } from './routes/europe.e-invoicing-mandates'
+import { Route as ERechnungXrechnungRouteImport } from './routes/e-rechnung_.xrechnung'
+import { Route as EInvoicingPeppolRouteImport } from './routes/e-invoicing.peppol'
+import { Route as EInvoicingEn16931RouteImport } from './routes/e-invoicing.en-16931'
 
 const KsefRoute = KsefRouteImport.update({
   id: '/ksef',
@@ -82,6 +88,38 @@ const WaitlistDeRoute = WaitlistDeRouteImport.update({
   path: '/waitlist/de',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacturationElectroniquePlateformeAgreeeRoute =
+  FacturationElectroniquePlateformeAgreeeRouteImport.update({
+    id: '/facturation-electronique_/plateforme-agreee',
+    path: '/facturation-electronique/plateforme-agreee',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EuropeVidaRoute = EuropeVidaRouteImport.update({
+  id: '/europe/vida',
+  path: '/europe/vida',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EuropeEInvoicingMandatesRoute =
+  EuropeEInvoicingMandatesRouteImport.update({
+    id: '/europe/e-invoicing-mandates',
+    path: '/europe/e-invoicing-mandates',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ERechnungXrechnungRoute = ERechnungXrechnungRouteImport.update({
+  id: '/e-rechnung_/xrechnung',
+  path: '/e-rechnung/xrechnung',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EInvoicingPeppolRoute = EInvoicingPeppolRouteImport.update({
+  id: '/e-invoicing/peppol',
+  path: '/e-invoicing/peppol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EInvoicingEn16931Route = EInvoicingEn16931RouteImport.update({
+  id: '/e-invoicing/en-16931',
+  path: '/e-invoicing/en-16931',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -90,6 +128,12 @@ export interface FileRoutesByFullPath {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
+  '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
+  '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
+  '/europe/e-invoicing-mandates': typeof EuropeEInvoicingMandatesRoute
+  '/europe/vida': typeof EuropeVidaRoute
+  '/facturation-electronique/plateforme-agreee': typeof FacturationElectroniquePlateformeAgreeeRoute
   '/waitlist/de': typeof WaitlistDeRoute
   '/waitlist/fr': typeof WaitlistFrRoute
   '/waitlist/it': typeof WaitlistItRoute
@@ -104,6 +148,12 @@ export interface FileRoutesByTo {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
+  '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
+  '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
+  '/europe/e-invoicing-mandates': typeof EuropeEInvoicingMandatesRoute
+  '/europe/vida': typeof EuropeVidaRoute
+  '/facturation-electronique/plateforme-agreee': typeof FacturationElectroniquePlateformeAgreeeRoute
   '/waitlist/de': typeof WaitlistDeRoute
   '/waitlist/fr': typeof WaitlistFrRoute
   '/waitlist/it': typeof WaitlistItRoute
@@ -119,6 +169,12 @@ export interface FileRoutesById {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
+  '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
+  '/e-rechnung_/xrechnung': typeof ERechnungXrechnungRoute
+  '/europe/e-invoicing-mandates': typeof EuropeEInvoicingMandatesRoute
+  '/europe/vida': typeof EuropeVidaRoute
+  '/facturation-electronique_/plateforme-agreee': typeof FacturationElectroniquePlateformeAgreeeRoute
   '/waitlist/de': typeof WaitlistDeRoute
   '/waitlist/fr': typeof WaitlistFrRoute
   '/waitlist/it': typeof WaitlistItRoute
@@ -135,6 +191,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/e-invoicing/en-16931'
+    | '/e-invoicing/peppol'
+    | '/e-rechnung/xrechnung'
+    | '/europe/e-invoicing-mandates'
+    | '/europe/vida'
+    | '/facturation-electronique/plateforme-agreee'
     | '/waitlist/de'
     | '/waitlist/fr'
     | '/waitlist/it'
@@ -149,6 +211,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/e-invoicing/en-16931'
+    | '/e-invoicing/peppol'
+    | '/e-rechnung/xrechnung'
+    | '/europe/e-invoicing-mandates'
+    | '/europe/vida'
+    | '/facturation-electronique/plateforme-agreee'
     | '/waitlist/de'
     | '/waitlist/fr'
     | '/waitlist/it'
@@ -163,6 +231,12 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/e-invoicing/en-16931'
+    | '/e-invoicing/peppol'
+    | '/e-rechnung_/xrechnung'
+    | '/europe/e-invoicing-mandates'
+    | '/europe/vida'
+    | '/facturation-electronique_/plateforme-agreee'
     | '/waitlist/de'
     | '/waitlist/fr'
     | '/waitlist/it'
@@ -178,6 +252,12 @@ export interface RootRouteChildren {
   FatturazioneElettronicaRoute: typeof FatturazioneElettronicaRoute
   FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
   KsefRoute: typeof KsefRoute
+  EInvoicingEn16931Route: typeof EInvoicingEn16931Route
+  EInvoicingPeppolRoute: typeof EInvoicingPeppolRoute
+  ERechnungXrechnungRoute: typeof ERechnungXrechnungRoute
+  EuropeEInvoicingMandatesRoute: typeof EuropeEInvoicingMandatesRoute
+  EuropeVidaRoute: typeof EuropeVidaRoute
+  FacturationElectroniquePlateformeAgreeeRoute: typeof FacturationElectroniquePlateformeAgreeeRoute
   WaitlistDeRoute: typeof WaitlistDeRoute
   WaitlistFrRoute: typeof WaitlistFrRoute
   WaitlistItRoute: typeof WaitlistItRoute
@@ -272,6 +352,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WaitlistDeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/facturation-electronique_/plateforme-agreee': {
+      id: '/facturation-electronique_/plateforme-agreee'
+      path: '/facturation-electronique/plateforme-agreee'
+      fullPath: '/facturation-electronique/plateforme-agreee'
+      preLoaderRoute: typeof FacturationElectroniquePlateformeAgreeeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/europe/vida': {
+      id: '/europe/vida'
+      path: '/europe/vida'
+      fullPath: '/europe/vida'
+      preLoaderRoute: typeof EuropeVidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/europe/e-invoicing-mandates': {
+      id: '/europe/e-invoicing-mandates'
+      path: '/europe/e-invoicing-mandates'
+      fullPath: '/europe/e-invoicing-mandates'
+      preLoaderRoute: typeof EuropeEInvoicingMandatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/e-rechnung_/xrechnung': {
+      id: '/e-rechnung_/xrechnung'
+      path: '/e-rechnung/xrechnung'
+      fullPath: '/e-rechnung/xrechnung'
+      preLoaderRoute: typeof ERechnungXrechnungRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/e-invoicing/peppol': {
+      id: '/e-invoicing/peppol'
+      path: '/e-invoicing/peppol'
+      fullPath: '/e-invoicing/peppol'
+      preLoaderRoute: typeof EInvoicingPeppolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/e-invoicing/en-16931': {
+      id: '/e-invoicing/en-16931'
+      path: '/e-invoicing/en-16931'
+      fullPath: '/e-invoicing/en-16931'
+      preLoaderRoute: typeof EInvoicingEn16931RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -282,6 +404,13 @@ const rootRouteChildren: RootRouteChildren = {
   FatturazioneElettronicaRoute: FatturazioneElettronicaRoute,
   FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
   KsefRoute: KsefRoute,
+  EInvoicingEn16931Route: EInvoicingEn16931Route,
+  EInvoicingPeppolRoute: EInvoicingPeppolRoute,
+  ERechnungXrechnungRoute: ERechnungXrechnungRoute,
+  EuropeEInvoicingMandatesRoute: EuropeEInvoicingMandatesRoute,
+  EuropeVidaRoute: EuropeVidaRoute,
+  FacturationElectroniquePlateformeAgreeeRoute:
+    FacturationElectroniquePlateformeAgreeeRoute,
   WaitlistDeRoute: WaitlistDeRoute,
   WaitlistFrRoute: WaitlistFrRoute,
   WaitlistItRoute: WaitlistItRoute,

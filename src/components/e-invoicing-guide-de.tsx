@@ -212,7 +212,14 @@ export function EInvoicingGuideDe() {
                         2014/55/EU): XRechnung ist ein reines XML-Format, ZUGFeRD (ab Version 2.x) ein für
                         Menschen lesbares PDF mit eingebetteter, maschinenlesbarer XML-Datei, nach derselben
                         Logik wie das französische Factur-X, mit dem es technisch verwandt ist. Die Wahl des
-                        Formats übernimmt in der Regel die Rechnungssoftware.
+                        Formats übernimmt in der Regel die Rechnungssoftware. Welches der beiden an welchen
+                        Empfänger geht, und über welchen Weg:{' '}
+                        <a
+                            href="/e-rechnung/xrechnung/"
+                            className="underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-primary"
+                        >
+                            XRechnung oder ZUGFeRD?
+                        </a>
                     </p>
 
                     <h3 className="mt-8 text-lg font-semibold tracking-tight">

@@ -3,6 +3,7 @@ import { MotionConfig } from 'motion/react'
 
 import { EInvoicingGuideIt } from '@/components/e-invoicing-guide-it'
 import Footer from '@/components/footer'
+import { GuideLinks } from '@/components/guide-links'
 import Header from '@/components/header'
 
 export const Route = createFileRoute('/fatturazione-elettronica')({
@@ -15,6 +16,7 @@ function FatturazioneElettronicaRoute() {
             <Header />
             <main lang="it">
                 <EInvoicingGuideIt />
+                <GuideLinks current="/fatturazione-elettronica" />
             </main>
             <Footer />
         </MotionConfig>

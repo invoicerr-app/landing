@@ -218,6 +218,17 @@ export function EInvoicingGuideFr() {
                             vocation à servir de solution d'émission universelle et gratuite : chaque entreprise
                             doit passer par une plateforme accréditée, la sienne ou celle de son prestataire.
                         </p>
+                        <p>
+                            Comment vérifier qu'une plateforme est bien immatriculée, et ce qu'implique de s'y
+                            raccorder :{' '}
+                            <a
+                                href="/facturation-electronique/plateforme-agreee/"
+                                className="underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-primary"
+                            >
+                                choisir sa plateforme agréée
+                            </a>
+                            .
+                        </p>
                     </div>
 
                     <h3 className="mt-8 text-lg font-semibold tracking-tight">Pourquoi ce n'est pas une simple formalité</h3>
@@ -239,8 +250,15 @@ export function EInvoicingGuideFr() {
 
                     <h3 className="mt-8 text-lg font-semibold tracking-tight">Les formats acceptés</h3>
                     <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                        Trois formats sont admis, tous construits sur le socle sémantique européen EN 16931
-                        (directive 2014/55/UE) : Factur-X (un PDF lisible par un humain, avec un fichier XML
+                        Trois formats sont admis, tous construits sur le socle sémantique européen{' '}
+                        <a
+                            href="/e-invoicing/en-16931/"
+                            hrefLang="en"
+                            className="underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-primary"
+                        >
+                            EN 16931
+                        </a>{' '}
+                        (directive 2014/55/UE, page en anglais) : Factur-X (un PDF lisible par un humain, avec un fichier XML
                         intégré, lisible par une machine), UBL et CII (deux formats XML purs, sans PDF). Le choix
                         du format est presque toujours pris en charge par l'outil de facturation ou par la
                         plateforme elle-même ; ce n'est pas quelque chose à saisir à la main.

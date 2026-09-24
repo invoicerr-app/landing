@@ -1,8 +1,13 @@
+import { CONTENT_PAGES } from '@/content/pages'
 import { hostedLoginOpen, links } from '@/lib/links'
 
 import { BrandMark } from './brand-mark'
 
-const columns = [
+// The hub and the five country guides, each under its own name and in its own language: the footer is
+// the one place every page on the site, the home page included, links to all of them.
+const guides = CONTENT_PAGES.filter((page) => page.group === 'country' || page.path === '/europe/e-invoicing-mandates')
+
+const columns: { title: string; items: { label: string; href: string; lang?: string }[] }[] = [
     {
         title: 'Product',
         items: [
@@ -12,6 +17,10 @@ const columns = [
             { label: 'Countries', href: '#countries' },
             { label: 'Changelog', href: links.changelog },
         ],
+    },
+    {
+        title: 'E-invoicing guides',
+        items: guides.map((page) => ({ label: page.label, href: `${page.path}/`, lang: page.lang === 'en' ? undefined : page.lang })),
     },
     {
         title: 'Self-hosting',
@@ -45,7 +54,7 @@ const columns = [
 export default function Footer() {
     return (
         <footer className="border-t border-border">
-            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr]">
                 <div>
                     <a href="/" className="flex w-fit items-center gap-2.5" aria-label="Invoicerr home">
                         <BrandMark className="h-6" />
@@ -61,7 +70,7 @@ export default function Footer() {
                         <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
                             {column.items.map((item) => (
                                 <li key={item.label}>
-                                    <a href={item.href} className="transition-colors hover:text-foreground">
+                                    <a href={item.href} lang={item.lang} hrefLang={item.lang} className="transition-colors hover:text-foreground">
                                         {item.label}
                                     </a>
                                 </li>
