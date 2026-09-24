@@ -20,4 +20,14 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    // The Cloudflare Worker (my.invoicerr.app) is not a React file and not a browser file: the two
+    // React rules above have nothing to say about it, and its globals are the Workers runtime's,
+    // which is close enough to the browser's for everything it uses.
+    files: ['worker/**/*.ts'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+      'react-hooks/rules-of-hooks': 'off',
+    },
+  },
 ])

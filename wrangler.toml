@@ -1,0 +1,69 @@
+# my.invoicerr.app: the waiting list page and the endpoint its form posts to.
+#
+# The page itself is built by `npm run build` in this same repository. `assets.directory` points at
+# that build output, so the Worker serves the very markup GitHub Pages serves, out of one build,
+# with the hashed JS and CSS it hydrates with. Deploy order therefore matters: build, then deploy.
+
+name = "invoicerr-waitlist"
+main = "worker/index.ts"
+compatibility_date = "2025-09-23"
+
+# Left on so the first deploy is reachable and checkable at
+# invoicerr-waitlist.<account>.workers.dev before my.invoicerr.app is pointed at it. The Worker only
+# answers the waiting list page, its assets and /api/waitlist; every other path redirects to
+# invoicerr.app, so nothing else of the site is mirrored there.
+workers_dev = true
+
+# Pointing my.invoicerr.app at this Worker is a separate, deliberate step: it replaces the redirect
+# that hostname serves today. Uncomment once the deploy has been checked on the workers.dev URL.
+# [[routes]]
+# pattern = "my.invoicerr.app"
+# custom_domain = true
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+# The Worker has to see every request, including "/", because which prerendered page "/" resolves to
+# depends on the Referer and Accept-Language of that request. Left to itself the asset server would
+# answer "/" with dist/index.html, which is the landing home page and not this.
+run_worker_first = true
+
+# Created with `npx wrangler kv namespace create WAITLIST` and filled in below. A namespace id is an
+# identifier, not a credential: it names the namespace and grants nothing, which is why it lives in
+# this committed file while the API token that can reach it does not.
+#
+# It holds two kinds of key, and only two. `entry:<lowercased e-mail>` is one person's four fields
+# and expires a year after the write that put it there. `rate:<window start>:<client ip>` is a
+# counter and expires with its window, a little over an hour.
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "a4257894291d03096269864feca8de9c"
+
+[vars]
+# Eleven POSTs per IP address per hour.
+#
+# Not a round number, and every unit of it is accounted for. One submission is what a visitor
+# normally sends. A second is what they send after spotting a typo in their own address, since the
+# success panel replaces the form and correcting means loading the page again. The case that sets
+# the ceiling is not one person but one office: several colleagues signing up the same afternoon
+# share a single public address, and the form's own modal bracket is "2 to 5 people". So five
+# people, each allowed one correction, is ten, plus one for the visitor who retries after a network
+# error they did not understand. Eleven.
+#
+# A team of more than five behind one address can still reach it. That is why the page says, in all
+# six languages, to wait an hour or to write to contact@invoicerr.app.
+WAITLIST_RATE_LIMIT = 11
+WAITLIST_RATE_WINDOW_SECONDS = 3600
+
+WAITLIST_MAIL_TO = "contact@invoicerr.app"
+# Must be a sender on a domain verified in Resend, or every send is refused.
+WAITLIST_MAIL_FROM = "Invoicerr waiting list <noreply@invoicerr.app>"
+# Overridable so a local run can point the mail at a stub and nothing leaves the machine.
+WAITLIST_MAIL_ENDPOINT = "https://api.resend.com/emails"
+
+# RESEND_API_KEY is a secret, never a var and never in this file:
+#   echo -n "<key>" | npx wrangler secret put RESEND_API_KEY
+# The deploy workflow does the same from the repository secret of the same name.
+
+[observability]
+enabled = true

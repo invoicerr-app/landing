@@ -45,7 +45,10 @@ function escapeHtml(value) {
 // `lang` is optional and only needed for a page written in a language other than the shell's own
 // English (today, only /facturation-electronique): it swaps the <html lang> attribute and og:locale,
 // both of which a plain regex replace on title/description would otherwise leave stuck on English.
-function injectHead(shell, { title, description, canonical, jsonLd, lang }) {
+// `alternates` is optional too, and only the waiting list uses it: the same page written six times
+// over needs every version to name the other five, plus an x-default. `referrerPolicy` is optional
+// as well and only the five guides set it; the comment where they do says why.
+function injectHead(shell, { title, description, canonical, jsonLd, lang, alternates, referrerPolicy }) {
     const escapedTitle = escapeHtml(title)
     const escapedDescription = escapeHtml(description)
     let out = shell
@@ -61,6 +64,13 @@ function injectHead(shell, { title, description, canonical, jsonLd, lang }) {
     if (lang) {
         out = out.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`).replace(/<meta property="og:locale" content="[^"]*" \/>/, `<meta property="og:locale" content="${lang}_${lang.toUpperCase()}" />`)
     }
+    if (alternates?.length) {
+        const tags = alternates.map(({ hreflang, href }) => `    <link rel="alternate" hreflang="${hreflang}" href="${href}" />\n`).join('')
+        out = out.replace('</head>', `${tags}  </head>`)
+    }
+    if (referrerPolicy) {
+        out = out.replace('</head>', `    <meta name="referrer" content="${referrerPolicy}" />\n  </head>`)
+    }
     return out
 }
 
@@ -68,6 +78,64 @@ const vite = await createServer({ root, server: { middlewareMode: true }, appTyp
 
 try {
     const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
+
+    // The waiting list's six pages describe themselves: their titles and descriptions are the ones
+    // the copy already carries, in the language they are written in, rather than a second set kept
+    // in step by hand down here.
+    const { WAITLIST_COPY } = await vite.ssrLoadModule('/src/waitlist/copy.ts')
+    const { LANGUAGES, DEFAULT_LANGUAGE, pagePath, pageUrl } = await vite.ssrLoadModule('/src/waitlist/languages.ts')
+
+    const waitlistAlternates = [
+        ...LANGUAGES.map((language) => ({ hreflang: language, href: pageUrl(language) })),
+        { hreflang: 'x-default', href: pageUrl(DEFAULT_LANGUAGE) },
+    ]
+
+    const waitlistPages = LANGUAGES.map((language) => {
+        const copy = WAITLIST_COPY[language]
+        const url = pagePath(language).replace(/\/$/, '')
+        const canonical = pageUrl(language)
+        return {
+            url,
+            outDir: path.join(root, 'dist', ...pagePath(language).split('/').filter(Boolean)),
+            // One entry in llms-full.txt rather than six near-identical ones. The English version
+            // carries the four warnings an answer engine would quote; the other five say the same.
+            llms: language === DEFAULT_LANGUAGE,
+            head: {
+                title: copy.meta.title,
+                description: copy.meta.description,
+                canonical,
+                // English is the shell's own language, and passing it would turn og:locale into the
+                // nonexistent "en_EN".
+                lang: language === DEFAULT_LANGUAGE ? undefined : language,
+                alternates: waitlistAlternates,
+                jsonLd: {
+                    '@context': 'https://schema.org',
+                    '@graph': [
+                        organization,
+                        website,
+                        {
+                            '@type': 'WebPage',
+                            '@id': `${canonical}#webpage`,
+                            url: canonical,
+                            name: copy.heading,
+                            description: copy.meta.description,
+                            inLanguage: language,
+                            isPartOf: { '@id': `${SITE}/#website` },
+                            breadcrumb: { '@id': `${canonical}#breadcrumb` },
+                        },
+                        {
+                            '@type': 'BreadcrumbList',
+                            '@id': `${canonical}#breadcrumb`,
+                            itemListElement: [
+                                { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                                { '@type': 'ListItem', position: 2, name: copy.eyebrow, item: canonical },
+                            ],
+                        },
+                    ],
+                },
+            },
+        }
+    })
 
     const shell = await readFile(shellPath, 'utf8')
     if (!shell.includes('<div id="root"></div>')) {
@@ -263,7 +331,23 @@ try {
                 },
             },
         },
+        ...waitlistPages,
     ]
+
+    // Measured in a browser on 2026-09-23, not assumed: with the modern default referrer policy
+    // (strict-origin-when-cross-origin) a click from invoicerr.app to my.invoicerr.app arrives with
+    // `Referer: https://invoicerr.app/` and no path at all, because the two are different origins.
+    // The Worker's first rule reads that path to tell which guide sent the reader, so without this
+    // the rule can never fire and every reader falls through to Accept-Language.
+    //
+    // The policy below is the pre-2020 default: the full URL travels to any https destination, and
+    // nothing at all travels to an http one. It is set on the five guides alone, which are the only
+    // pages whose own URL the Worker needs to read; the rest of the site keeps the browser default.
+    // Take it away and the language falls back to Accept-Language, silently.
+    const GUIDE_PATHS = new Set(['/facturation-electronique', '/e-rechnung', '/fatturazione-elettronica', '/ksef', '/faturacao-eletronica'])
+    for (const page of pages) {
+        if (GUIDE_PATHS.has(page.url)) page.head.referrerPolicy = 'no-referrer-when-downgrade'
+    }
 
     const turndown = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' })
     turndown.remove(['svg', 'picture', 'script', 'style'])
@@ -296,6 +380,9 @@ try {
         await mkdir(page.outDir, { recursive: true })
         await writeFile(path.join(page.outDir, 'index.html'), filled)
         totalBytes += body.length
+
+        // `llms` defaults to true: every page written before the waiting list belongs in there.
+        if (page.llms === false) continue
 
         const canonical = page.head ? page.head.canonical : `${SITE}/`
         const title = page.head ? page.head.title : 'Invoicerr'
