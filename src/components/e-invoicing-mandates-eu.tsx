@@ -249,9 +249,15 @@ export function EInvoicingMandatesEu() {
                 intro="Every national fact on this page is the one its country guide quotes, and links to the same text. Checked at these addresses on 24 September 2026, except where the note on a line says otherwise."
                 sources={[
                     {
-                        claim: 'France: approved platform, dates of the obligation',
+                        claim: 'France: approved platform',
                         reference:
-                            'Code général des impôts, art. 289 bis, I; DGFiP, practical guide to e-invoicing at 1 September 2026 (PDF).',
+                            'Code général des impôts, art. 289 bis, I, version in force since 21 February 2026. Légifrance refuses automated reads; the text was read in DILA’s official LEGI open data.',
+                        href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053546660',
+                    },
+                    {
+                        claim: 'France: dates of the obligation',
+                        reference:
+                            'DGFiP, practical guide to e-invoicing at 1 September 2026 (PDF).',
                         href: 'https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/guide_pratique_facturation_electronique.pdf',
                     },
                     {
