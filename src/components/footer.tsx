@@ -28,6 +28,7 @@ const columns: { title: string; items: { label: string; href: string; lang?: str
             { label: 'Docker install', href: links.selfHost },
             { label: 'Kubernetes', href: links.kubernetes },
             { label: 'Source code', href: links.github },
+            { label: 'LinkedIn', href: links.linkedin },
             { label: 'License', href: links.license },
         ],
     },
