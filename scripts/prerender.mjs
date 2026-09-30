@@ -23,7 +23,7 @@ const organization = {
     url: `${SITE}/`,
     logo: `${SITE}/apple-touch-icon.png`,
     description: 'Invoicerr is an open-source invoicing application, released under AGPL-3.0, that can be self-hosted or used as a hosted service.',
-    sameAs: ['https://github.com/invoicerr-app/invoicerr'],
+    sameAs: ['https://github.com/invoicerr-app/invoicerr', 'https://www.linkedin.com/company/invoicerr-app'],
 }
 const website = {
     '@type': 'WebSite',

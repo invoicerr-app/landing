@@ -64,6 +64,11 @@ export default function Header() {
                             <Icons.gitHub />
                         </a>
                     </Button>
+                    <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+                        <a href={links.linkedin} aria-label="Invoicerr on LinkedIn">
+                            <Icons.linkedIn />
+                        </a>
+                    </Button>
                     <ThemeToggle />
                     {hostedLoginOpen && (
                         <Button variant="ghost" asChild className="hidden sm:inline-flex">
@@ -96,7 +101,12 @@ export default function Header() {
                     transition={{ duration: 0.2 }}
                     className="flex flex-col gap-1 border-t border-border px-5 py-4 md:hidden"
                 >
-                    {[...sections, { label: 'Docs', href: links.docs }, { label: 'GitHub', href: links.github }].map((item) => (
+                    {[
+                        ...sections,
+                        { label: 'Docs', href: links.docs },
+                        { label: 'GitHub', href: links.github },
+                        { label: 'LinkedIn', href: links.linkedin },
+                    ].map((item) => (
                         <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-md px-2 py-2.5 text-base">
                             {item.label}
                         </a>
