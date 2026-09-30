@@ -2,6 +2,7 @@ export const links = {
     // my.invoicerr.app does not serve an application yet: it redirects to the six-language waiting
     // list page, so every button pointing here has to name the waiting list and nothing else.
     app: 'https://my.invoicerr.app',
+    demo: 'https://demo.invoicerr.app',
     docs: 'https://docs.invoicerr.app',
     selfHost: 'https://docs.invoicerr.app/docs/user-guide/docker-installation',
     kubernetes: 'https://docs.invoicerr.app/docs/user-guide/kubernetes',

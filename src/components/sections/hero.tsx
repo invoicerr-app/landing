@@ -61,6 +61,9 @@ export function Hero() {
                         <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href="#hosting">Self-host it</a>
                         </Button>
+                        <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
+                            <a href={links.demo}>Try the live demo</a>
+                        </Button>
                     </div>
                 </div>
 
