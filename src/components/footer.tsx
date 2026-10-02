@@ -29,6 +29,7 @@ const columns: { title: string; items: { label: string; href: string; lang?: str
             { label: 'Kubernetes', href: links.kubernetes },
             { label: 'Source code', href: links.github },
             { label: 'LinkedIn', href: links.linkedin },
+            { label: 'Sponsor', href: links.sponsor },
             { label: 'License', href: links.license },
         ],
     },
