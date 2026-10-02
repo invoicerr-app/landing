@@ -8,7 +8,7 @@ This site's full text, home page and every page below, is in [llms-full.txt](htt
 
 - [Product](https://invoicerr.app/#product): from quote to invoice, payment matching and legal archive
 - [Countries](https://invoicerr.app/#countries): what the app asks and sends for each supported country
-- [Self-hosting](https://invoicerr.app/#hosting): Docker image for amd64, arm64 and arm/v7, and a Helm chart
+- [Self-hosting](https://invoicerr.app/#hosting): Docker image for amd64 and arm64, and a Helm chart
 - [Pricing](https://invoicerr.app/#pricing): per-company cloud pricing, self-hosting free
 
 ## Guides

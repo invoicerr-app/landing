@@ -8,7 +8,7 @@ import { links } from '@/lib/links'
 const IMAGE = 'ghcr.io/invoicerr-app/invoicerr:latest'
 
 const facts = [
-    { title: 'One image, three architectures', body: 'Built for amd64, arm64 and arm/v7. It runs on a VPS, a NAS or a Raspberry Pi.' },
+    { title: 'One image, two architectures', body: 'Built for amd64 and arm64. It runs on a VPS, a NAS or a 64-bit Raspberry Pi (3 and newer).' },
     { title: 'A Helm chart when one host is not enough', body: 'Separate API and worker roles, your own PostgreSQL and Redis, your own ingress.' },
     { title: 'Every feature, no seat count', body: 'The self-hosted app is the whole app. Billing code stays switched off.' },
 ]
