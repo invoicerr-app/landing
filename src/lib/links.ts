@@ -9,6 +9,7 @@ export const links = {
     countries: 'https://docs.invoicerr.app/docs/developer-guide/country-support',
     api: 'https://docs.invoicerr.app/docs/developer-guide/api-reference',
     changelog: 'https://docs.invoicerr.app/changelog',
+    discord: 'https://discord.gg/6sDwqXFqnK',
     github: 'https://github.com/invoicerr-app/invoicerr',
     license: 'https://github.com/invoicerr-app/invoicerr/blob/dev/LICENSE',
     linkedin: 'https://www.linkedin.com/company/invoicerr-app',
