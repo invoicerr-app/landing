@@ -69,6 +69,11 @@ export default function Header() {
                             <Icons.linkedIn />
                         </a>
                     </Button>
+                    <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+                        <a href={links.discord} aria-label="Invoicerr on Discord">
+                            <Icons.discord />
+                        </a>
+                    </Button>
                     <ThemeToggle />
                     {hostedLoginOpen && (
                         <Button variant="ghost" asChild className="hidden sm:inline-flex">
@@ -106,6 +111,7 @@ export default function Header() {
                         { label: 'Docs', href: links.docs },
                         { label: 'GitHub', href: links.github },
                         { label: 'LinkedIn', href: links.linkedin },
+                        { label: 'Discord', href: links.discord },
                     ].map((item) => (
                         <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-md px-2 py-2.5 text-base">
                             {item.label}
