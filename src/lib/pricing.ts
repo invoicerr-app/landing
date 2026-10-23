@@ -1,4 +1,4 @@
-// Cloud pricing, per company and per month, in USD. Yearly billing charges ten months for twelve.
+// Cloud pricing, per company and per month, in euros excluding VAT. Yearly billing charges ten months for twelve.
 export const FIRST_SEAT = 15
 export const NEXT_THREE_SEATS = 4
 export const FURTHER_SEATS = 3
