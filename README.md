@@ -18,8 +18,12 @@ npm run dev
 - `src/index.css` carries the "Lagune" tokens and fonts, copied from `frontend/src/index.css` in the
   [app repository](https://github.com/invoicerr-app/invoicerr). The app stays the source of truth.
 - `public/screens/` holds screenshots taken from `documentation/static/img/readme/` in the same repository.
-- `src/data/countries.ts` is read from the app's country catalogues, and `src/lib/pricing.ts` holds the
-  cloud prices. Update both when the app changes.
+- `src/data/countries.ts` is read from the app's country catalogues, and `src/data/platforms.ts` from its
+  transports and operator catalogue (`backend/src/modules/documents/transports/` and
+  `backend/src/modules/documents/operators/data/`): list a platform only once the app can send through it.
+  Update both when the app changes.
+- `src/lib/pricing.ts` holds the cloud prices, in euros excluding VAT. The pricing section, the FAQ and the
+  `offers` and `FAQPage` structured data in `index.html` all state them; change them together.
 
 ## Deployment
 

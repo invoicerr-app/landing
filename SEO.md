@@ -236,6 +236,12 @@ In descending order of expected return:
   languages" matches the eighteen locale directories in the application, and the eighteen names
   listed on the page are the right eighteen. The star count is read live from the GitHub API and
   falls back to "700+", which is correct at 722.
+- **Connected platforms.** The "Platforms" section, the channel chips and the guides name SUPER PDP,
+  Iopole, Billit, Invopop, Chorus Pro, KSeF, the SdI over PEC and e-mail: each one is a transport in
+  the application and an entry of its operator catalogue. A-Cube is not named, although the app has a
+  transport for it: the app refuses it for Italian companies, so it is not a way to reach the SdI. The
+  page never calls Invoicerr an approved platform; it is software connected to them.
+- **Prices** are in euros excluding VAT, and `offers` says so with `valueAddedTaxIncluded: false`.
 - **Claims on the page that were not checked**, because nothing reachable from here proves them:
   "18 webhook events", the three architectures the Docker image is built for, and the read-only
   period and export described in the FAQ. They are plausible and internally consistent; verify them

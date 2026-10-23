@@ -74,10 +74,10 @@ export function Pricing() {
 
                     <p className="mt-8 flex items-baseline gap-2">
                         <span className="font-mono text-5xl font-bold tracking-tight">
-                            $<Price value={price} />
+                            €<Price value={price} />
                         </span>
                         <span className="text-muted-foreground">
-                            per {yearly ? 'year' : 'month'}, for {seats} {seats === 1 ? 'seat' : 'seats'}
+                            excl. VAT per {yearly ? 'year' : 'month'}, for {seats} {seats === 1 ? 'seat' : 'seats'}
                         </span>
                     </p>
 
@@ -94,7 +94,8 @@ export function Pricing() {
                         className="mt-4 w-full accent-primary"
                     />
                     <p className="mt-3 text-sm text-muted-foreground">
-                        First seat ${FIRST_SEAT}, seats 2 to 4 ${NEXT_THREE_SEATS} each, every seat after that ${FURTHER_SEATS}. Per month, in USD.
+                        First seat €{FIRST_SEAT}, seats 2 to 4 €{NEXT_THREE_SEATS} each, every seat after that €{FURTHER_SEATS}. Per month, in
+                        euros, excluding VAT.
                     </p>
 
                     <div className="mt-8 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-end sm:justify-between">
@@ -115,7 +116,7 @@ export function Pricing() {
                 <div className="flex flex-col rounded-2xl border border-border bg-card p-6 sm:p-8">
                     <h3 className="text-xl font-semibold tracking-tight">Self-hosted</h3>
                     <p className="mt-8 flex items-baseline gap-2">
-                        <span className="font-mono text-5xl font-bold tracking-tight">$0</span>
+                        <span className="font-mono text-5xl font-bold tracking-tight">€0</span>
                         <span className="text-muted-foreground">forever</span>
                     </p>
                     <ul className="mt-8 space-y-2.5 text-sm">

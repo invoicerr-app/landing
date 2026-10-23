@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
+import { allChannels } from '@/data/platforms'
 import { cn } from '@/lib/utils'
 
 const stages = [
@@ -42,7 +43,7 @@ export function ClearanceStatus() {
                 </AnimatePresence>
             </div>
             <div className="mt-4 flex flex-wrap gap-1.5">
-                {['PDP', 'Chorus Pro', 'KSeF', 'SdI', 'SdI over PEC', 'E-mail'].map((channel) => (
+                {allChannels.map((channel) => (
                     <span
                         key={channel}
                         className={cn(

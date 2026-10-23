@@ -330,9 +330,11 @@ export function EInvoicingGuideFr() {
                         </h2>
                         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
                             Invoicerr est l'une des façons de répondre à ces obligations : un logiciel de
-                            facturation open source qui génère la facture au format Factur-X, se connecte à la
-                            plateforme accréditée de votre choix, et applique la bascule vers le canal
-                            électronique à la date que porte votre facture. Ce n'est pas la seule façon de faire,
+                            facturation open source qui génère la facture au format Factur-X, la transmet par l'une
+                            des plateformes agréées auxquelles il est déjà raccordé (SUPER PDP, Iopole, Billit ou
+                            Invopop, et Chorus Pro pour le secteur public), et applique la bascule vers le canal
+                            électronique à la date que porte votre facture. Invoicerr n'est pas lui-même une
+                            plateforme agréée : c'est un logiciel raccordé à ces plateformes. Ce n'est pas la seule façon de faire,
                             et ce paragraphe ne cherche pas à vous convaincre du contraire : les questions
                             ci-dessus valent pour n'importe quel outil, y compris celui-ci. La version hébergée ouvre en
                             novembre 2026 : d'ici là, il n'y a qu'une liste d'attente à rejoindre.

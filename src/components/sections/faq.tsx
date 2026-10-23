@@ -18,7 +18,7 @@ const questions = [
     },
     {
         question: 'How does seat pricing work?',
-        answer: 'You pay per company. The first seat is $15 a month, seats 2 to 4 are $4 each, and every seat after that is $3. Paying yearly costs ten months instead of twelve.',
+        answer: 'You pay per company, in euros excluding VAT. The first seat is €15 a month, seats 2 to 4 are €4 each, and every seat after that is €3. Paying yearly costs ten months instead of twelve.',
     },
     {
         question: 'What happens to my data if I stop paying?',

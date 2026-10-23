@@ -93,7 +93,7 @@
               "A client portal with documents, balance, PDFs and online payment",
               "Self-hosted OCR that reads received supplier invoices",
               "E-invoice formats: Factur-X, XRechnung, FatturaPA and FA(3)",
-              "Transmission to national platforms: PDP, Chorus Pro, KSeF and SdI",
+              "Connected to the French approved platforms SUPER PDP, Iopole, Billit and Invopop, to Chorus Pro, to KSeF and to the SdI over certified e-mail (PEC)",
               "A hashed legal archive kept for the retention period of the seller's country",
               "Time tracking that turns unbilled hours into invoice lines",
               "A REST API, an MCP server and 18 webhook events, scoped by API key",
@@ -104,7 +104,7 @@
                 "@type": "Offer",
                 "name": "Self-hosted",
                 "price": "0",
-                "priceCurrency": "USD",
+                "priceCurrency": "EUR",
                 "url": "https://invoicerr.app/#pricing",
                 "description": "Run it on your own server under AGPL-3.0. Every feature, unlimited seats and companies."
               },
@@ -112,9 +112,16 @@
                 "@type": "Offer",
                 "name": "Cloud",
                 "price": "15",
-                "priceCurrency": "USD",
+                "priceCurrency": "EUR",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "15",
+                  "priceCurrency": "EUR",
+                  "valueAddedTaxIncluded": false,
+                  "unitText": "first seat, per month"
+                },
                 "url": "https://invoicerr.app/#pricing",
-                "description": "Per company, per month, in USD. The first seat is $15, seats 2 to 4 are $4 each and every seat after that is $3. Paying yearly costs ten months instead of twelve. The cloud opens in November 2026, and a 14-day trial opens with it."
+                "description": "Per company, per month, in euros excluding VAT. The first seat is €15, seats 2 to 4 are €4 each and every seat after that is €3. Paying yearly costs ten months instead of twelve. The cloud opens in November 2026, and a 14-day trial opens with it."
               }
             ]
           },
@@ -145,7 +152,7 @@
                 "name": "How does seat pricing work?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "You pay per company. The first seat is $15 a month, seats 2 to 4 are $4 each, and every seat after that is $3. Paying yearly costs ten months instead of twelve."
+                  "text": "You pay per company, in euros excluding VAT. The first seat is €15 a month, seats 2 to 4 are €4 each, and every seat after that is €3. Paying yearly costs ten months instead of twelve."
                 }
               },
               {

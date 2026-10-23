@@ -20,7 +20,7 @@ export const countries: CountryFacts[] = [
         ],
         vatRates: [20, 10, 5.5, 2.1, 0],
         format: 'Factur-X',
-        channel: { name: 'PDP', detail: 'Accredited platform, mandatory since September 2026. Chorus Pro for public buyers.' },
+        channel: { name: 'PDP', detail: 'Approved platform, mandatory since September 2026: SUPER PDP, Iopole, Billit or Invopop. Chorus Pro for public buyers.' },
         retention: { years: 10, source: 'C. com. art. L123-22' },
     },
     {
@@ -38,7 +38,7 @@ export const countries: CountryFacts[] = [
         identifiers: [{ label: 'Partita IVA' }, { label: 'Codice Fiscale' }, { label: 'Codice Destinatario (SdI)' }],
         vatRates: [22, 10, 5, 4, 0],
         format: 'FatturaPA',
-        channel: { name: 'SdI', detail: 'National clearance, by web service or certified e-mail (PEC).' },
+        channel: { name: 'SdI', detail: 'National clearance, reached by certified e-mail (PEC).' },
     },
     {
         code: 'PL',

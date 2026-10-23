@@ -15,6 +15,7 @@ const columns: { title: string; items: { label: string; href: string; lang?: str
             ...(hostedLoginOpen ? [{ label: 'Log in', href: links.app }] : []),
             { label: 'Pricing', href: '#pricing' },
             { label: 'Countries', href: '#countries' },
+            { label: 'Platforms', href: '#platforms' },
             { label: 'Changelog', href: links.changelog },
         ],
     },
