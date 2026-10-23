@@ -319,8 +319,10 @@ export function PlateformeAgreeeGuideFr() {
                 selfHost="ou l'héberger vous-même, gratuitement"
             >
                 Invoicerr est l'une des façons de s'y préparer : un logiciel de facturation open source,
-                qui construit la facture au format Factur-X et la transmet par la plateforme agréée de
-                votre choix. Ce n'est pas la seule façon de faire, et ce paragraphe ne cherche pas à vous
+                qui construit la facture au format Factur-X et la transmet par l'une des plateformes
+                agréées auxquelles il est déjà raccordé : SUPER PDP, Iopole, Billit ou Invopop, et Chorus
+                Pro pour le secteur public. Invoicerr n'est pas lui-même une plateforme agréée : c'est une
+                solution compatible au sens de la DGFiP. Ce n'est pas la seule façon de faire, et ce paragraphe ne cherche pas à vous
                 convaincre du contraire : les questions ci-dessus valent pour n'importe quel outil, y
                 compris celui-ci.
             </Closing>

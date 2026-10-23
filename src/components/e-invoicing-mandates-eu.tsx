@@ -239,7 +239,8 @@ export function EInvoicingMandatesEu() {
             >
                 Invoicerr is one way to meet these five sets of rules: open-source invoicing software that
                 builds Factur-X, XRechnung, ZUGFeRD, FatturaPA, FA(3), UBL and CII invoices, and sends them
-                through a French approved platform, Chorus Pro, the SdI, KSeF or Peppol. It is not the
+                through a French approved platform (SUPER PDP, Iopole, Billit or Invopop), Chorus Pro, the
+                SdI over certified e-mail, KSeF or Peppol. It is not the
                 only way, and this paragraph does not try to convince you otherwise: the questions each
                 country guide asks apply to any tool, this one included.
             </Closing>

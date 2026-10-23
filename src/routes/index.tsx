@@ -10,6 +10,7 @@ import { FinalCta } from '@/components/sections/final-cta'
 import { Flow } from '@/components/sections/flow'
 import { Hero } from '@/components/sections/hero'
 import { Hosting } from '@/components/sections/hosting'
+import { Platforms } from '@/components/sections/platforms'
 import { Pricing } from '@/components/sections/pricing'
 import { Proof } from '@/components/sections/proof'
 
@@ -25,6 +26,7 @@ function Index() {
         <Hero />
         <Proof />
         <Countries />
+        <Platforms />
         <Flow />
         <Bento />
         <Hosting />

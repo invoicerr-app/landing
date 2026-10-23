@@ -260,7 +260,7 @@ export function EInvoicingGuideIt() {
                         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
                             Invoicerr è uno dei modi per rispondere a questi obblighi: un software di
                             fatturazione open source che genera la fattura nel formato FatturaPA e la
-                            instrada verso il Sistema di Interscambio tramite il canale accreditato SDICoop.
+                            trasmette al Sistema di Interscambio tramite posta elettronica certificata (PEC).
                             Non è l'unico modo di procedere, e questo paragrafo non cerca di convincervi del
                             contrario: le domande qui sopra valgono per qualsiasi strumento, compreso questo. La versione
                             ospitata apre a novembre 2026: fino ad allora c'è solo la lista d'attesa.
