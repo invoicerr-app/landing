@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { WindowFrame } from '@/components/window-frame'
 import { cn } from '@/lib/utils'
 
@@ -38,13 +37,13 @@ export function Flow() {
     return (
         <section id="product" className="border-y border-border bg-muted/30">
             <div className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-                <Reveal className="max-w-2xl">
+                <div className="max-w-2xl">
                     <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">From first quote to money in the bank.</h2>
                     <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                         One document engine runs quotes, invoices, credit notes, purchase orders and expenses. Nothing gets retyped
                         between them.
                     </p>
-                </Reveal>
+                </div>
 
                 <div className="mt-12 grid gap-10 lg:mt-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
                     <ol>

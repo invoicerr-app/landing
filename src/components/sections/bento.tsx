@@ -1,14 +1,10 @@
-import { ClearanceStatus } from '@/components/demos/clearance-status'
-import { HoursToInvoice } from '@/components/demos/hours-to-invoice'
-import { Reveal } from '@/components/reveal'
-import { SpotlightCard } from '@/components/spotlight-card'
 import { cn } from '@/lib/utils'
 
 const languages = ['English', 'Français', 'Deutsch', 'Italiano', 'Polski', 'Português', 'Español', 'Nederlands', 'Svenska', 'Dansk', 'Čeština', 'Українська', 'Русский', '日本語', '한국어', '简体中文', 'العربية', 'עברית']
 
 function Cell({ className, title, body, children }: { className?: string; title: string; body: string; children?: React.ReactNode }) {
     return (
-        <SpotlightCard className={className}>
+        <div className={cn('overflow-hidden rounded-lg border border-border bg-card', className)}>
             <div className="flex h-full flex-col gap-6 p-6 sm:p-7">
                 <div>
                     <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
@@ -16,13 +12,13 @@ function Cell({ className, title, body, children }: { className?: string; title:
                 </div>
                 {children && <div className="mt-auto">{children}</div>}
             </div>
-        </SpotlightCard>
+        </div>
     )
 }
 
 function Shot({ src, alt, height, className }: { src: string; alt: string; height: number; className?: string }) {
     return (
-        <div className={cn('-mb-7 -mr-7 overflow-hidden rounded-tl-xl border-l border-t border-border', className)}>
+        <div className={cn('-mb-7 -mr-7 overflow-hidden rounded-tl-lg border-l border-t border-border', className)}>
             <img src={src} alt={alt} width={1440} height={height} loading="lazy" className="block w-[135%] max-w-none dark:brightness-90" />
         </div>
     )
@@ -31,17 +27,17 @@ function Shot({ src, alt, height, className }: { src: string; alt: string; heigh
 export function Bento() {
     return (
         <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <Reveal className="max-w-2xl">
+            <div className="max-w-2xl">
                 <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">The work around the invoice, handled too.</h2>
-            </Reveal>
+            </div>
 
-            <Reveal delay={0.1} className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6">
+            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6">
                 <Cell
                     className="md:col-span-4"
                     title="Hours turn into invoice lines"
                     body="Track time per project, billable or not. When the month ends, the unbilled hours become an invoice in one step. Try it."
                 >
-                    <HoursToInvoice />
+                    <Shot src="/screens/time-tracking.webp" height={900} alt="The time tracking screen: hours logged per project, with the unbilled hours shown as billable." />
                 </Cell>
 
                 <Cell
@@ -49,7 +45,7 @@ export function Bento() {
                     title="It clears the tax office"
                     body="Where a country runs a national platform, Invoicerr sends the invoice through it and tracks the answer."
                 >
-                    <ClearanceStatus />
+                    <Shot src="/screens/e-invoicing-channels.webp" height={900} alt="The e-invoicing channels screen: one row per country, with the format and the channel it sends through." />
                 </Cell>
 
                 <Cell
@@ -71,15 +67,8 @@ export function Bento() {
                 <Cell
                     className="md:col-span-2"
                     title="Ask your AI assistant"
-                    body="A built-in MCP server, a REST API and 18 webhook events, all scoped by API key."
-                >
-                    <div className="space-y-2 rounded-xl border border-border bg-background p-4 text-sm">
-                        <p className="ml-auto w-fit max-w-[90%] rounded-lg rounded-br-sm bg-accent px-3 py-2 text-accent-foreground">
-                            Turn quote Q-2026-0042 into an invoice.
-                        </p>
-                        <p className="w-fit rounded-lg rounded-bl-sm bg-muted px-3 py-2 font-mono text-xs text-muted-foreground">create_invoice_from_quote</p>
-                    </div>
-                </Cell>
+                    body="A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key."
+                />
 
                 <Cell
                     className="md:col-span-4"
@@ -94,7 +83,7 @@ export function Bento() {
                         ))}
                     </div>
                 </Cell>
-            </Reveal>
+            </div>
         </section>
     )
 }

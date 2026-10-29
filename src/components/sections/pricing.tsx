@@ -1,8 +1,5 @@
-import { Check } from 'lucide-react'
-import { animate, motion, useMotionValue, useTransform } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 import { FIRST_SEAT, FURTHER_SEATS, NEXT_THREE_SEATS, TRIAL_DAYS, monthlyPrice, yearlyPrice } from '@/lib/pricing'
@@ -21,18 +18,6 @@ const cloud = [
 ]
 const selfHosted = ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support']
 
-function Price({ value }: { value: number }) {
-    const count = useMotionValue(value)
-    const text = useTransform(count, (latest) => Math.round(latest).toLocaleString('en-US'))
-
-    useEffect(() => {
-        const controls = animate(count, value, { duration: 0.35, ease: 'easeOut' })
-        return () => controls.stop()
-    }, [count, value])
-
-    return <motion.span>{text}</motion.span>
-}
-
 export function Pricing() {
     const [seats, setSeats] = useState(3)
     const [yearly, setYearly] = useState(false)
@@ -40,14 +25,14 @@ export function Pricing() {
 
     return (
         <section id="pricing" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <Reveal className="max-w-2xl">
+            <div className="max-w-2xl">
                 <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Pay for the cloud. Or pay nothing.</h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                     Cloud pricing is per company and gets cheaper with every seat. Self-hosting is free, with nothing held back.
                 </p>
-            </Reveal>
+            </div>
 
-            <Reveal delay={0.1} className="mt-12 grid gap-4 lg:grid-cols-[3fr_2fr]">
+            <div className="mt-12 grid gap-4 lg:grid-cols-[3fr_2fr]">
                 <div className="rounded-2xl border border-primary/40 bg-card p-6 sm:p-8">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                         <h3 className="text-xl font-semibold tracking-tight">Cloud</h3>
@@ -74,7 +59,7 @@ export function Pricing() {
 
                     <p className="mt-8 flex items-baseline gap-2">
                         <span className="font-mono text-5xl font-bold tracking-tight">
-                            €<Price value={price} />
+                            €{price.toLocaleString('en-US')}
                         </span>
                         <span className="text-muted-foreground">
                             excl. VAT per {yearly ? 'year' : 'month'}, for {seats} {seats === 1 ? 'seat' : 'seats'}
@@ -133,7 +118,7 @@ export function Pricing() {
                         </Button>
                     </div>
                 </div>
-            </Reveal>
+            </div>
         </section>
     )
 }

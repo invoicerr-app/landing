@@ -2,7 +2,6 @@ import { Plus } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
@@ -48,10 +47,10 @@ export function Faq() {
 
     return (
         <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-24 sm:pb-32 lg:grid-cols-[1fr_2fr] lg:gap-16">
-            <Reveal>
+            <div>
                 <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions, answered.</h2>
-            </Reveal>
-            <Reveal delay={0.1} className="divide-y divide-border border-y border-border">
+            </div>
+            <div className="divide-y divide-border border-y border-border">
                 {questions.map((item, index) => {
                     const expanded = open === index
                     return (
@@ -88,7 +87,7 @@ export function Faq() {
                         </div>
                     )
                 })}
-            </Reveal>
+            </div>
         </section>
     )
 }

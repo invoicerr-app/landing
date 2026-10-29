@@ -1,6 +1,5 @@
 import { BadgeCheck } from 'lucide-react'
 
-import { Reveal } from '@/components/reveal'
 import { platformGroups } from '@/data/platforms'
 
 export function Platforms() {
@@ -8,16 +7,16 @@ export function Platforms() {
 
     return (
         <section id="platforms" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <Reveal className="max-w-2xl">
+            <div className="max-w-2xl">
                 <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Already connected to France's approved platforms.</h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                     In France, invoices between businesses go through a platform approved by the tax administration. Invoicerr is
                     connected to four of them, to Chorus Pro for the public sector, and to the national systems of Italy and Poland.
                     You choose the channel in your company settings.
                 </p>
-            </Reveal>
+            </div>
 
-            <Reveal delay={0.1} className="mt-12 space-y-4">
+            <div className="mt-12 space-y-4">
                 <div className="rounded-2xl border border-primary/40 bg-card p-6 sm:p-8">
                     <h3 className="flex items-center gap-2.5 text-xl font-semibold tracking-tight">
                         <BadgeCheck className="size-5 shrink-0 text-primary" aria-hidden="true" />
@@ -42,7 +41,7 @@ export function Platforms() {
                         </div>
                     ))}
                 </div>
-            </Reveal>
+            </div>
 
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
                 Invoicerr is invoicing software, not an approved platform itself. The French tax administration calls such software a

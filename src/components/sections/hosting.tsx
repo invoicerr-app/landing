@@ -1,7 +1,6 @@
 import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 
@@ -29,7 +28,7 @@ export function Hosting() {
     return (
         <section id="hosting" className="border-y border-border bg-muted/30">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 py-24 sm:py-32 lg:grid-cols-2 lg:gap-16">
-                <Reveal className="min-w-0">
+                <div className="min-w-0">
                     <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Your server or ours. It is the same app.</h2>
                     <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
                         Invoicerr started as a self-hosted project and still is one. Run it with Docker on your own machine, free,
@@ -43,10 +42,10 @@ export function Hosting() {
                             <a href={links.github}>View the source</a>
                         </Button>
                     </div>
-                </Reveal>
+                </div>
 
-                <Reveal delay={0.1} className="min-w-0">
-                    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+                <div className="min-w-0">
+                    <div className="overflow-hidden rounded-lg border border-border bg-card">
                         <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-3">
                             <code className="truncate font-mono text-sm">{IMAGE}</code>
                             <Button variant="ghost" size="sm" onClick={copy} aria-label="Copy the image name">
@@ -54,14 +53,10 @@ export function Hosting() {
                                 {copied ? 'Copied' : 'Copy'}
                             </Button>
                         </div>
-                        <pre className="overflow-x-auto px-5 py-5 font-mono text-sm leading-7">
-                            <code>
-                                <span className="text-muted-foreground"># docker-compose.yml with invoicerr and postgres</span>
-                                {'\n'}
-                                <span className="text-primary">$</span> docker compose up -d{'\n'}
-                                <span className="text-primary">$</span> open http://localhost
-                            </code>
-                        </pre>
+                        <p className="px-5 py-5 text-sm leading-relaxed text-muted-foreground">
+                            The install guide has the compose file that runs it with PostgreSQL. It needs Redis too:
+                            add a Redis service, point REDIS_URL at it, then <code className="font-mono not-italic">docker compose up -d</code>.
+                        </p>
                     </div>
                     <dl className="mt-8 space-y-5">
                         {facts.map((fact) => (
@@ -74,7 +69,7 @@ export function Hosting() {
                             </div>
                         ))}
                     </dl>
-                </Reveal>
+                </div>
             </div>
         </section>
     )
