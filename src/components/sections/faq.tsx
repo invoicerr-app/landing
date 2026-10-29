@@ -38,7 +38,7 @@ const questions = [
     },
     {
         question: 'What do I need to self-host it?',
-        answer: "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide starts Postgres alongside it; add a Redis service and point REDIS_URL at it. For larger setups there is a Helm chart.",
+        answer: "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide runs all three now: an app, a PostgreSQL 15 and a Redis service, and it asks for POSTGRES_PASSWORD and BETTER_AUTH_SECRET in a .env file next to it. For larger setups there is a Helm chart.",
     },
 ]
 

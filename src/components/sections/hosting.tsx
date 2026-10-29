@@ -2,6 +2,7 @@ import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { WindowFrame } from '@/components/window-frame'
 import { links } from '@/lib/links'
 
 const IMAGE = 'ghcr.io/invoicerr-app/invoicerr:latest'
@@ -53,11 +54,33 @@ export function Hosting() {
                                 {copied ? 'Copied' : 'Copy'}
                             </Button>
                         </div>
-                        <p className="px-5 py-5 text-sm leading-relaxed text-muted-foreground">
-                            The install guide has the compose file that runs it with PostgreSQL. It needs Redis too:
-                            add a Redis service, point REDIS_URL at it, then <code className="font-mono not-italic">docker compose up -d</code>.
-                        </p>
                     </div>
+
+                    {/* Windowed terminal with the real commands: both lines are what the install guide
+                        itself runs, and the compose file it ships includes PostgreSQL and Redis. No
+                        address pill. */}
+                    <WindowFrame title="terminal" className="mt-4">
+                        <div className="space-y-2 p-4 text-sm sm:p-5">
+                            <p className="break-all font-mono">
+                                <span className="text-muted-foreground">$</span> docker pull {IMAGE}
+                            </p>
+                            <p className="font-mono">
+                                <span className="text-muted-foreground">$</span> docker compose up -d
+                            </p>
+                        </div>
+                    </WindowFrame>
+
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        The compose file in the{' '}
+                        <a href={links.selfHost} className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary">
+                            install guide
+                        </a>{' '}
+                        runs all three services: the app, PostgreSQL 15 and Redis. It asks for{' '}
+                        <code className="font-mono not-italic">POSTGRES_PASSWORD</code> and{' '}
+                        <code className="font-mono not-italic">BETTER_AUTH_SECRET</code> in a <code className="font-mono not-italic">.env</code> file
+                        next to it.
+                    </p>
+
                     <dl className="mt-8 space-y-5">
                         {facts.map((fact) => (
                             <div key={fact.title}>
