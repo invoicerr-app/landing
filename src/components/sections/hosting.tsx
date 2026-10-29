@@ -29,7 +29,7 @@ export function Hosting() {
         <section id="hosting" className="border-y border-border bg-muted/30">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 py-24 sm:py-32 lg:grid-cols-2 lg:gap-16">
                 <div className="min-w-0">
-                    <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Your server or ours. It is the same app.</h2>
+                    <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Self-host it today, free under AGPL-3.0.</h2>
                     <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
                         Invoicerr started as a self-hosted project and still is one. Run it with Docker on your own machine, free,
                         forever. Or let us run it for you and skip the upkeep.
@@ -60,12 +60,9 @@ export function Hosting() {
                     </div>
                     <dl className="mt-8 space-y-5">
                         {facts.map((fact) => (
-                            <div key={fact.title} className="flex gap-3">
-                                <Check className="mt-1 size-4 shrink-0 text-primary" />
-                                <div>
-                                    <dt className="font-medium">{fact.title}</dt>
-                                    <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.body}</dd>
-                                </div>
+                            <div key={fact.title}>
+                                <dt className="font-medium">{fact.title}</dt>
+                                <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.body}</dd>
                             </div>
                         ))}
                     </dl>

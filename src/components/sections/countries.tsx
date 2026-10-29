@@ -7,10 +7,9 @@ import { cn } from '@/lib/utils'
 
 function factsFor(country: CountryFacts) {
     return [
-        country.format && { icon: FileCode2, label: 'E-invoice format', value: country.format, detail: 'Generated next to the PDF, validated before it leaves.' },
-        { icon: Send, label: 'Sent through', value: country.channel.name, detail: country.channel.detail },
+        country.format && { label: 'E-invoice format', value: country.format, detail: 'Generated next to the PDF, validated before it leaves.' },
+        { label: 'Sent through', value: country.channel.name, detail: country.channel.detail },
         country.retention && {
-            icon: Archive,
             label: 'Legal archive',
             value: `${country.retention.years} years`,
             detail: `Kept and hashed for as long as ${country.retention.source} asks.`,
@@ -24,7 +23,9 @@ export function Countries() {
     return (
         <section id="countries" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
             <div className="max-w-2xl">
-                <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Most tools hardcode one country. Invoicerr reads the rules from data.</h2>
+                <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+                    Five countries' invoicing rules built in: identifiers, VAT rates, format, channel, archive.
+                </h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                     Pick where your company bills from. The identifiers, the VAT rates, the e-invoice format and the way it reaches the
                     tax office all follow, each one tied to the legal text it comes from.
@@ -50,7 +51,6 @@ export function Countries() {
                                 )}
                             >
                                 {active && <motion.span layoutId="country-pill" className="absolute inset-0 rounded-lg bg-accent" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
-                                <span className="relative font-mono text-xs opacity-70">{entry.code}</span>
                                 <span className="relative">{entry.name}</span>
                             </button>
                         )
@@ -74,7 +74,7 @@ export function Countries() {
                             aria-labelledby={`country-tab-${country.code}`}
                             hidden={country.code !== code}
                         >
-                            <div className="panel-swap grid min-w-0 gap-4 rounded-2xl border border-border bg-card p-5 sm:p-8 md:grid-cols-2">
+                            <div className="panel-swap grid min-w-0 gap-4 rounded-lg border border-border bg-card p-5 sm:p-8 md:grid-cols-2">
                                 <div>
                                     <p className="text-sm font-medium">Company settings</p>
                                     <p className="mt-1 text-sm text-muted-foreground">What the app asks a company in {country.name}.</p>
@@ -94,7 +94,7 @@ export function Countries() {
                                             <p className="mb-1.5 text-sm font-medium">VAT rates on a new line</p>
                                             <div className="flex flex-wrap gap-1.5">
                                                 {country.vatRates.map((rate) => (
-                                                    <span key={rate} className="rounded-md bg-secondary px-2 py-1 font-mono text-xs text-secondary-foreground">
+                                                    <span key={rate} className="rounded-md bg-secondary px-2 py-0.5 text-xs text-secondary-foreground">
                                                         {rate}%
                                                     </span>
                                                 ))}
@@ -105,13 +105,10 @@ export function Countries() {
 
                                 <dl className="space-y-3 md:border-l md:border-border md:pl-8">
                                     {factsFor(country).map((fact) => (
-                                        <div key={fact.label} className="flex gap-4 rounded-xl bg-muted/50 p-4">
-                                            <fact.icon className="mt-0.5 size-5 shrink-0 text-primary" />
-                                            <div>
-                                                <dt className="text-sm text-muted-foreground">{fact.label}</dt>
-                                                <dd className="mt-0.5 font-heading text-xl font-semibold tracking-tight">{fact.value}</dd>
-                                                <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.detail}</dd>
-                                            </div>
+                                        <div key={fact.label} className="rounded-md bg-muted/50 p-4">
+                                            <dt className="text-sm text-muted-foreground">{fact.label}</dt>
+                                            <dd className="mt-0.5 font-heading text-xl font-semibold tracking-tight">{fact.value}</dd>
+                                            <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.detail}</dd>
                                         </div>
                                     ))}
                                 </dl>
@@ -122,7 +119,8 @@ export function Countries() {
             </div>
 
             <p className="mt-6 text-sm text-muted-foreground">
-                Five countries ship today. A new one is a set of data files, not a fork.{' '}
+                Five countries ship today. A new one adds its data files in the same shape, and the app reads
+                them.{' '}
                 <a href={links.countries} className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary">
                     See the country support matrix
                 </a>
