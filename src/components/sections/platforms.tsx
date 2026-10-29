@@ -1,10 +1,11 @@
-import { BadgeCheck } from 'lucide-react'
-
 import { platformGroups } from '@/data/platforms'
 
-export function Platforms() {
-    const [approved, ...others] = platformGroups
+const [approved, ...others] = platformGroups
 
+// One row per channel, in the shape the audit asked for: country, channel, how it is reached,
+// what it returns. The France cells repeat on purpose: the four approved platforms are four
+// interchangeable alternatives, picked once in the company settings.
+export function Platforms() {
     return (
         <section id="platforms" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
             <div className="max-w-2xl">
@@ -16,31 +17,35 @@ export function Platforms() {
                 </p>
             </div>
 
-            <div className="mt-12 space-y-4">
-                <div className="rounded-2xl border border-primary/40 bg-card p-6 sm:p-8">
-                    <h3 className="flex items-center gap-2.5 text-xl font-semibold tracking-tight">
-                        <BadgeCheck className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                        {approved.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{approved.detail}</p>
-                    <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-12 overflow-x-auto rounded-lg border border-border bg-card">
+                <table className="w-full min-w-[48rem] text-left text-sm">
+                    <thead>
+                        <tr className="border-b border-border">
+                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">Country</th>
+                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">Channel</th>
+                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">How it is reached</th>
+                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">What it returns</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
                         {approved.names.map((name) => (
-                            <li key={name} className="rounded-xl border border-border bg-background px-4 py-4 text-center font-heading text-lg font-semibold tracking-tight">
-                                {name}
-                            </li>
+                            <tr key={name}>
+                                <td className="px-4 py-3 align-top sm:px-6">France, between businesses</td>
+                                <td className="px-4 py-3 align-top font-medium sm:px-6">{name}</td>
+                                <td className="px-4 py-3 align-top text-muted-foreground sm:px-6">The platform's API, with the credentials from your account on it</td>
+                                <td className="px-4 py-3 align-top text-muted-foreground sm:px-6">A transmission status for each invoice</td>
+                            </tr>
                         ))}
-                    </ul>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    {others.map((group) => (
-                        <div key={group.id} className="rounded-2xl border border-border bg-card p-5">
-                            <p className="text-sm text-muted-foreground">{group.title}</p>
-                            <p className="mt-1 font-heading text-xl font-semibold tracking-tight">{group.names.join(', ')}</p>
-                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{group.detail}</p>
-                        </div>
-                    ))}
-                </div>
+                        {others.map((group) => (
+                            <tr key={group.id}>
+                                <td className="px-4 py-3 align-top sm:px-6">{countryLabel(group.id)}</td>
+                                <td className="px-4 py-3 align-top font-medium sm:px-6">{group.names.join(', ')}</td>
+                                <td className="px-4 py-3 align-top text-muted-foreground sm:px-6">{reached(group.id)}</td>
+                                <td className="px-4 py-3 align-top text-muted-foreground sm:px-6">{returns(group.id)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
@@ -58,4 +63,43 @@ export function Platforms() {
             </p>
         </section>
     )
+}
+
+function countryLabel(id: string): string {
+    switch (id) {
+        case 'fr-public':
+            return 'France, public bodies'
+        case 'it':
+            return 'Italy'
+        case 'pl':
+            return 'Poland'
+        default:
+            return 'Everywhere'
+    }
+}
+
+function reached(id: string): string {
+    switch (id) {
+        case 'fr-public':
+            return "The portal's own API, with your Chorus Pro credentials"
+        case 'it':
+            return 'The invoice file in a certified e-mail (PEC) message; no accreditation needed'
+        case 'pl':
+            return "The national system's API, with a token from the e-Tax portal"
+        default:
+            return 'The mail server you configure in the app'
+    }
+}
+
+function returns(id: string): string {
+    switch (id) {
+        case 'fr-public':
+            return 'The statuses the portal publishes for each invoice'
+        case 'it':
+            return 'The receipts of the Sistema di Interscambio for each invoice'
+        case 'pl':
+            return 'The number it assigns to each invoice, and its status'
+        default:
+            return 'A delivery status from the mail server itself'
+    }
 }
