@@ -1,38 +1,29 @@
-import { FIRST_SEAT, FURTHER_SEATS, NEXT_THREE_SEATS, TRIAL_DAYS, YEARLY_MONTHS_CHARGED, monthlyPrice, yearlyPrice } from '@/lib/pricing'
+import { useState } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
+import { FIRST_SEAT, FURTHER_SEATS, NEXT_THREE_SEATS, TRIAL_DAYS, YEARLY_MONTHS_CHARGED, monthlyPrice, yearlyPrice } from '@/lib/pricing'
+import { cn } from '@/lib/utils'
 
-const SEAT_TABLE_ROWS = [1, 2, 3, 4, 5]
+const MAX_SEATS = 25
 
-const differences: Array<{ label: string; cloud: string; selfHosted: string }> = [
-    {
-        label: 'Runs on',
-        cloud: 'Our infrastructure, hosted and updated by us',
-        selfHosted: 'Your server, with the Docker image or the Helm chart',
-    },
-    {
-        label: 'Price',
-        cloud: `Per company: first seat €${FIRST_SEAT} a month, seats 2 to 4 €${NEXT_THREE_SEATS} each, every seat after that €${FURTHER_SEATS}; yearly billing charges ${YEARLY_MONTHS_CHARGED} months for twelve`,
-        selfHosted: '€0, for any number of seats and companies',
-    },
-    {
-        label: 'Trial',
-        cloud: `A ${TRIAL_DAYS}-day trial when it opens, no limit except sending`,
-        selfHosted: 'Not a trial: the whole app is free under AGPL-3.0',
-    },
-    {
-        label: 'Leaving',
-        cloud: 'Your data exported if you leave',
-        selfHosted: 'Your database, your backups',
-    },
-    {
-        label: 'When',
-        cloud: 'On the waiting list now, opening in November 2026',
-        selfHosted: 'Available now',
-    },
+// Roméo's revision: the two-card presentation, the Cloud card with the seat slider and the
+// monthly/yearly switch; the seat maths stays in lib/pricing.ts (also quoted by the FAQ and the
+// offers block in index.html). No count-up, no featured border, no seat-price table.
+const cloud = [
+    'Opens in November 2026',
+    'Hosted and updated by us',
+    'Every feature of the app',
+    `${TRIAL_DAYS}-day trial when it opens, no limit except sending`,
+    'Your data exported if you leave',
 ]
+const selfHosted = ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support']
 
 export function Pricing() {
+    const [seats, setSeats] = useState(3)
+    const [yearly, setYearly] = useState(false)
+    const price = yearly ? yearlyPrice(seats) : monthlyPrice(seats)
+
     return (
         <section id="pricing" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
             <div className="max-w-2xl">
@@ -42,72 +33,92 @@ export function Pricing() {
                 </p>
             </div>
 
-            <div className="mt-12 overflow-x-auto rounded-lg border border-border bg-card">
-                <table className="w-full min-w-[46rem] text-left text-sm">
-                    <thead>
-                        <tr className="border-b border-border">
-                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6"><span className="sr-only">Difference</span></th>
-                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">Cloud</th>
-                            <th scope="col" className="px-4 py-3 align-bottom font-medium sm:px-6">Self-hosted</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                        {differences.map((row) => (
-                            <tr key={row.label}>
-                                <th scope="row" className="px-4 py-3 align-top font-medium sm:px-6">{row.label}</th>
-                                <td className="px-4 py-3 align-top sm:px-6">{row.cloud}</td>
-                                <td className="px-4 py-3 align-top sm:px-6">{row.selfHosted}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <div className="mt-12 grid gap-4 lg:grid-cols-[3fr_2fr]">
+                <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                        <h3 className="text-xl font-semibold tracking-tight">Cloud</h3>
+                        <div role="group" aria-label="Billing period" className="flex rounded-md bg-muted p-1 text-sm">
+                            {[
+                                { label: 'Monthly', value: false },
+                                { label: 'Yearly', value: true },
+                            ].map((option) => (
+                                <button
+                                    key={option.label}
+                                    type="button"
+                                    aria-pressed={yearly === option.value}
+                                    onClick={() => setYearly(option.value)}
+                                    className={cn(
+                                        'rounded-sm px-3 py-1.5 font-medium transition-colors',
+                                        yearly === option.value ? 'bg-background text-foreground' : 'text-muted-foreground hover:text-foreground',
+                                    )}
+                                >
+                                    {option.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-            {/* The static seat-to-price note the audit asked for, computed from lib/pricing.ts so it
-                cannot drift from the FAQ and the offers block in index.html. */}
-            <div className="mt-6 grid gap-6 lg:grid-cols-2">
-                <div>
-                    <h3 className="text-base font-medium">How the seat price scales</h3>
-                    <div className="mt-3 inline-block min-w-[18rem] rounded-lg border border-border bg-card text-sm">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="border-b border-border">
-                                    <th scope="col" className="px-4 py-2 font-medium">Seats</th>
-                                    <th scope="col" className="px-4 py-2 font-medium">Per month</th>
-                                    <th scope="col" className="px-4 py-2 font-medium">Per year ({YEARLY_MONTHS_CHARGED} of 12 months)</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-border">
-                                {SEAT_TABLE_ROWS.map((seats) => (
-                                    <tr key={seats}>
-                                        <td className="px-4 py-2">{seats}</td>
-                                        <td className="px-4 py-2">€{monthlyPrice(seats).toLocaleString('en-US')}</td>
-                                        <td className="px-4 py-2">€{yearlyPrice(seats).toLocaleString('en-US')}</td>
-                                    </tr>
-                                ))}
-                                <tr>
-                                    <td className="px-4 py-2">Every seat after 5</td>
-                                    <td className="px-4 py-2">+€{FURTHER_SEATS}</td>
-                                    <td className="px-4 py-2">+€{FURTHER_SEATS * YEARLY_MONTHS_CHARGED}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <p className="mt-8 flex items-baseline gap-2">
+                        <span className="font-heading text-5xl font-semibold tracking-tight">
+                            €{price.toLocaleString('en-US')}
+                        </span>
+                        <span className="text-muted-foreground">
+                            excl. VAT per {yearly ? 'year' : 'month'}, for {seats} {seats === 1 ? 'seat' : 'seats'}
+                        </span>
+                    </p>
+
+                    <label htmlFor="seats" className="mt-8 block text-sm font-medium">
+                        How many people work in your company's account?
+                    </label>
+                    <input
+                        id="seats"
+                        type="range"
+                        min={1}
+                        max={MAX_SEATS}
+                        value={seats}
+                        onChange={(event) => setSeats(Number(event.target.value))}
+                        className="mt-4 w-full accent-primary"
+                    />
+                    <p className="mt-3 text-sm text-muted-foreground">
+                        First seat €{FIRST_SEAT}, seats 2 to 4 €{NEXT_THREE_SEATS} each, every seat after that €{FURTHER_SEATS}. Per month,
+                        in euros, excluding VAT{yearly ? `; the year is charged as ${YEARLY_MONTHS_CHARGED} months` : ''}.
+                    </p>
+
+                    <div className="mt-8 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-end sm:justify-between">
+                        <ul className="space-y-2.5 text-sm">
+                            {cloud.map((item) => (
+                                <li key={item}>{item}</li>
+                            ))}
+                        </ul>
+                        <Button size="lg" asChild className="h-11 shrink-0 px-6 text-base active:scale-[0.98]">
+                            <a href={links.app}>Join the waiting list</a>
+                        </Button>
                     </div>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                    Prices in euros excluding VAT. What happens when a paid company stops paying is described in the FAQ below:
-                    read-only first, then a full export before anything is deleted.
-                </p>
+
+                <div className="flex flex-col rounded-lg border border-border bg-card p-6 sm:p-8">
+                    <h3 className="text-xl font-semibold tracking-tight">Self-hosted</h3>
+                    <p className="mt-8 flex items-baseline gap-2">
+                        <span className="font-heading text-5xl font-semibold tracking-tight">€0</span>
+                        <span className="text-muted-foreground">forever</span>
+                    </p>
+                    <ul className="mt-8 space-y-2.5 text-sm">
+                        {selfHosted.map((item) => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </ul>
+                    <div className="mt-auto pt-8">
+                        <Button size="lg" variant="outline" asChild className="h-11 w-full px-6 text-base active:scale-[0.98]">
+                            <a href={links.selfHost}>Read the install guide</a>
+                        </Button>
+                    </div>
+                </div>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-                <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
-                    <a href={links.app}>Join the waiting list</a>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
-                    <a href={links.selfHost}>Read the install guide</a>
-                </Button>
-            </div>
+            <p className="mt-6 max-w-3xl text-sm text-muted-foreground">
+                Prices in euros excluding VAT. Yearly billing charges {YEARLY_MONTHS_CHARGED} months for twelve. Past the prices, the
+                real difference is who runs it: the cloud runs on our infrastructure, self-hosting runs on yours.
+            </p>
         </section>
     )
 }
