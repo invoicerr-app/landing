@@ -141,28 +141,6 @@
     }
   }
 
-  .enter-stage {
-    animation: enter-stage 0.9s cubic-bezier(0.21, 0.47, 0.32, 0.98) 0.35s both;
-  }
-
-  @keyframes enter-stage {
-    from {
-      opacity: 0;
-      transform: translateY(48px);
-    }
-  }
-
-  .enter-pop {
-    animation: enter-pop 0.5s cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
-  }
-
-  @keyframes enter-pop {
-    from {
-      opacity: 0;
-      scale: 0.9;
-    }
-  }
-
   /*
     Plays when the element scrolls into view: src/components/reveal.tsx adds `reveal-in`.
     Hidden only under `html.js`, the class the inline script in index.html sets before first paint,
@@ -195,8 +173,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     .enter,
-    .enter-stage,
-    .enter-pop,
     .panel-swap {
       animation: none;
     }

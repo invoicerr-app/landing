@@ -3,24 +3,24 @@ import { cn } from '@/lib/utils'
 interface WindowFrameProps {
     children: React.ReactNode
     className?: string
-    /** Shown in the address pill. Omit for a bare frame. */
-    address?: string
+    /** Renders the windowed terminal chrome: three dots and a plain title label. Used only where
+        the content is a real command the reader can run (the hosting panel); the screenshot frames
+        stay unadorned, and no address pill ever comes back here. */
+    title?: string
 }
 
-// Holds a real screenshot of the app. The chrome is the only drawn part.
-export function WindowFrame({ children, className, address }: WindowFrameProps) {
+// Holds a real screenshot of the app, or a real terminal block: hairline frame, no fake address.
+export function WindowFrame({ children, className, title }: WindowFrameProps) {
     return (
-        <div className={cn('overflow-hidden rounded-xl border border-border bg-card shadow-2xl shadow-foreground/10 dark:shadow-black/40', className)}>
-            <div className="flex h-9 items-center gap-1.5 border-b border-border bg-muted/60 px-3.5">
-                <span className="size-2.5 rounded-full bg-border" />
-                <span className="size-2.5 rounded-full bg-border" />
-                <span className="size-2.5 rounded-full bg-border" />
-                {address && (
-                    <span className="mx-auto -translate-x-5 rounded-md bg-background/70 px-3 py-0.5 font-mono text-[11px] text-muted-foreground">
-                        {address}
-                    </span>
-                )}
-            </div>
+        <div className={cn('overflow-hidden rounded-lg border border-border bg-card', className)}>
+            {title && (
+                <div aria-hidden="true" className="flex items-center gap-2 border-b border-border px-4 py-2.5">
+                    <span className="size-2.5 rounded-full bg-[#f87171]/70" />
+                    <span className="size-2.5 rounded-full bg-[#fbbf24]/70" />
+                    <span className="size-2.5 rounded-full bg-[#34d399]/70" />
+                    <span className="ml-2 text-xs text-muted-foreground">{title}</span>
+                </div>
+            )}
             {children}
         </div>
     )

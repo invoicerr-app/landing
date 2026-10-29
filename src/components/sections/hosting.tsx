@@ -1,8 +1,8 @@
 import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { Button } from '@/components/ui/button'
+import { WindowFrame } from '@/components/window-frame'
 import { links } from '@/lib/links'
 
 const IMAGE = 'ghcr.io/invoicerr-app/invoicerr:latest'
@@ -29,8 +29,8 @@ export function Hosting() {
     return (
         <section id="hosting" className="border-y border-border bg-muted/30">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 py-24 sm:py-32 lg:grid-cols-2 lg:gap-16">
-                <Reveal className="min-w-0">
-                    <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Your server or ours. It is the same app.</h2>
+                <div className="min-w-0">
+                    <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">Self-host it today, free under AGPL-3.0.</h2>
                     <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
                         Invoicerr started as a self-hosted project and still is one. Run it with Docker on your own machine, free,
                         forever. Or let us run it for you and skip the upkeep.
@@ -43,10 +43,10 @@ export function Hosting() {
                             <a href={links.github}>View the source</a>
                         </Button>
                     </div>
-                </Reveal>
+                </div>
 
-                <Reveal delay={0.1} className="min-w-0">
-                    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+                <div className="min-w-0">
+                    <div className="overflow-hidden rounded-lg border border-border bg-card">
                         <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-3">
                             <code className="truncate font-mono text-sm">{IMAGE}</code>
                             <Button variant="ghost" size="sm" onClick={copy} aria-label="Copy the image name">
@@ -54,27 +54,42 @@ export function Hosting() {
                                 {copied ? 'Copied' : 'Copy'}
                             </Button>
                         </div>
-                        <pre className="overflow-x-auto px-5 py-5 font-mono text-sm leading-7">
-                            <code>
-                                <span className="text-muted-foreground"># docker-compose.yml with invoicerr and postgres</span>
-                                {'\n'}
-                                <span className="text-primary">$</span> docker compose up -d{'\n'}
-                                <span className="text-primary">$</span> open http://localhost
-                            </code>
-                        </pre>
                     </div>
+
+                    {/* Windowed terminal with the real commands: both lines are what the install guide
+                        itself runs, and the compose file it ships includes PostgreSQL and Redis. No
+                        address pill. */}
+                    <WindowFrame title="terminal" className="mt-4">
+                        <div className="space-y-2 p-4 text-sm sm:p-5">
+                            <p className="break-all font-mono">
+                                <span className="text-muted-foreground">$</span> docker pull {IMAGE}
+                            </p>
+                            <p className="font-mono">
+                                <span className="text-muted-foreground">$</span> docker compose up -d
+                            </p>
+                        </div>
+                    </WindowFrame>
+
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        The compose file in the{' '}
+                        <a href={links.selfHost} className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary">
+                            install guide
+                        </a>{' '}
+                        runs all three services: the app, PostgreSQL 15 and Redis. It asks for{' '}
+                        <code className="font-mono not-italic">POSTGRES_PASSWORD</code> and{' '}
+                        <code className="font-mono not-italic">BETTER_AUTH_SECRET</code> in a <code className="font-mono not-italic">.env</code> file
+                        next to it.
+                    </p>
+
                     <dl className="mt-8 space-y-5">
                         {facts.map((fact) => (
-                            <div key={fact.title} className="flex gap-3">
-                                <Check className="mt-1 size-4 shrink-0 text-primary" />
-                                <div>
-                                    <dt className="font-medium">{fact.title}</dt>
-                                    <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.body}</dd>
-                                </div>
+                            <div key={fact.title}>
+                                <dt className="font-medium">{fact.title}</dt>
+                                <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.body}</dd>
                             </div>
                         ))}
                     </dl>
-                </Reveal>
+                </div>
             </div>
         </section>
     )

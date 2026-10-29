@@ -23,6 +23,9 @@ into yet, and one line brings all three back when there is.
 
 Re-check this section when the hosted version opens.
 
+One line was missed when the body copy was corrected in September: the meta description still said
+"or start a 14-day cloud trial". It now says "or join the cloud waiting list" (changed 2026-10-29).
+
 ---
 
 ## 1. The GitHub repository is the strongest asset the project has, and it points at the wrong site
@@ -217,7 +220,7 @@ In descending order of expected return:
    "X alternative" is the highest-intent query in this category. It only works if it is fair: say
    where the others are better.
 3. **A self-hosting page** — the compose file, the Redis and PostgreSQL requirement, the Helm chart,
-   the three architectures. Half of it is already in the docs; a page aimed at someone deciding
+   the two image architectures (amd64 and arm64; arm/v7 was dropped from the Docker workflow). Half of it is already in the docs; a page aimed at someone deciding
    rather than installing is a different page.
 4. **A changelog or blog on the marketing domain**. Right now the only thing that ever changes on
    `invoicerr.app` is nothing, and a domain that never changes gets crawled accordingly.
@@ -232,10 +235,13 @@ In descending order of expected return:
   page word for word. Expect no accordion in Google results: since 2023 Google shows FAQ rich
   results almost exclusively for government and health sites. The markup still earns its place —
   Bing uses it, and the answer engines read it.
-- **Claims on the page that were checked.** "22 contributors" matches the repository. "18 interface
-  languages" matches the eighteen locale directories in the application, and the eighteen names
-  listed on the page are the right eighteen. The star count is read live from the GitHub API and
-  falls back to "700+", which is correct at 722.
+- **Claims on the page that were checked.** "20 contributors" matches the contributors API
+  (recounted 2026-10-29: 25 named accounts, 4 of them bots, and the `claude` account excluded).
+  "19 language catalogs" matches the nineteen locale directories under `frontend/src/locales` on
+  `dev`, including Kabyle. Note what comes with that count: da, he, ja, ko, pt-BR, ru, sv, uk and
+  zh-Hans are ~50-key bootstrap stubs (the app's own `i18n.ts` comment), ar and cs are partial, and
+  the app's language picker currently exposes 9 of the 19. The star count is read live from the
+  GitHub API and falls back to "700+", which is correct at 722.
 - **Connected platforms.** The "Platforms" section, the channel chips and the guides name SUPER PDP,
   Iopole, Billit, Invopop, Chorus Pro, KSeF, the SdI over PEC and e-mail: each one is a transport in
   the application and an entry of its operator catalogue. A-Cube is not named, although the app has a

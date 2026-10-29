@@ -2,7 +2,6 @@ import { Plus } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
-import { Reveal } from '@/components/reveal'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
@@ -10,7 +9,7 @@ const questions = [
     {
         question: 'Is the self-hosted version really free?',
         answer:
-            'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license — which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
+            'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license, which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
     },
     {
         question: 'What will I be able to do during the cloud trial?',
@@ -39,7 +38,7 @@ const questions = [
     },
     {
         question: 'What do I need to self-host it?',
-        answer: "Docker, PostgreSQL and Redis — the app won't boot without all three. The compose file in the install guide starts Postgres alongside it; add a Redis service and point REDIS_URL at it. For larger setups there is a Helm chart.",
+        answer: "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide runs all three now: an app, a PostgreSQL 15 and a Redis service, and it asks for POSTGRES_PASSWORD and BETTER_AUTH_SECRET in a .env file next to it. For larger setups there is a Helm chart.",
     },
 ]
 
@@ -48,10 +47,10 @@ export function Faq() {
 
     return (
         <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-24 sm:pb-32 lg:grid-cols-[1fr_2fr] lg:gap-16">
-            <Reveal>
+            <div>
                 <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions, answered.</h2>
-            </Reveal>
-            <Reveal delay={0.1} className="divide-y divide-border border-y border-border">
+            </div>
+            <div className="divide-y divide-border border-y border-border">
                 {questions.map((item, index) => {
                     const expanded = open === index
                     return (
@@ -88,7 +87,7 @@ export function Faq() {
                         </div>
                     )
                 })}
-            </Reveal>
+            </div>
         </section>
     )
 }
