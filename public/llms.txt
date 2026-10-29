@@ -10,7 +10,7 @@ This site's full text, home page and every page below, is in [llms-full.txt](htt
 - [Countries](https://invoicerr.app/#countries): what the app asks and sends for each supported country
 - [Platforms](https://invoicerr.app/#platforms): the channels the app sends through: the French approved platforms SUPER PDP, Iopole, Billit and Invopop, Chorus Pro, KSeF, the SdI over certified e-mail (PEC), and e-mail. Invoicerr is software connected to approved platforms, not an approved platform itself
 - [Self-hosting](https://invoicerr.app/#hosting): Docker image for amd64 and arm64, and a Helm chart
-- [Pricing](https://invoicerr.app/#pricing): per-company cloud pricing in euros excluding VAT (first seat €15 a month, seats 2 to 4 €4 each, then €3 each, yearly billing charges ten months), 14-day trial, self-hosting free
+- [Pricing](https://invoicerr.app/#pricing): per-company cloud pricing in euros excluding VAT (first seat €15 a month, seats 2 to 4 €4 each, then €3 each, yearly billing charges ten months), self-hosting free; the cloud opens in November 2026 and a trial opens with it
 
 ## Guides
 

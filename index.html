@@ -12,10 +12,10 @@
     <!-- Same values as --background in src/index.css (identity "Lagune"), light then dark. -->
     <meta name="theme-color" content="#f3f7f9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a1215" media="(prefers-color-scheme: dark)" />
-    <title>Invoicerr — Open-source invoicing software, self-hosted or cloud</title>
+    <title>Invoicerr: Open-source invoicing software, self-hosted or cloud</title>
     <meta
       name="description"
-      content="Quotes, invoices, payments and e-invoicing to the tax office in one open-source app. Self-host it free with Docker, or start a 14-day cloud trial."
+      content="Quotes, invoices, payments and e-invoicing to the tax office in one open-source app. Self-host it free with Docker, or join the cloud waiting list."
     />
     <link rel="canonical" href="https://invoicerr.app/" />
     <!-- max-image-preview:large is what lets a screenshot run full width in a search result. -->
@@ -97,7 +97,7 @@
               "A hashed legal archive kept for the retention period of the seller's country",
               "Time tracking that turns unbilled hours into invoice lines",
               "A REST API, an MCP server and 18 webhook events, scoped by API key",
-              "18 interface languages, a document language per recipient, multi-currency"
+              "19 language catalogs, a document language per recipient, multi-currency"
             ],
             "offers": [
               {
@@ -136,7 +136,7 @@
                 "name": "Is the self-hosted version really free?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license — which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source."
+                  "text": "Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license, which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source."
                 }
               },
               {
@@ -176,7 +176,7 @@
                 "name": "What do I need to self-host it?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Docker, PostgreSQL and Redis — the app won't boot without all three. The compose file in the install guide starts Postgres alongside it; add a Redis service and point REDIS_URL at it. For larger setups there is a Helm chart."
+                  "text": "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide starts Postgres alongside it; add a Redis service and point REDIS_URL at it. For larger setups there is a Helm chart."
                 }
               }
             ]

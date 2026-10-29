@@ -19,10 +19,13 @@ export function Proof() {
         return () => controller.abort()
     }, [])
 
+    // Recounted 2026-10-29: the contributors API lists 25 accounts; 4 are bots and the `claude`
+    // account is excluded, which leaves 20. The locale directories on the app's `dev` are 19, one
+    // of them Kabyle; several catalogs are still partial, so the label is kept literal.
     const facts = [
         { value: stars, label: 'stars on GitHub', href: links.github },
-        { value: '22', label: 'contributors, plus translators' },
-        { value: '18', label: 'interface languages' },
+        { value: '20', label: 'contributors, plus translators' },
+        { value: '19', label: 'language catalogs' },
         { value: 'AGPL-3.0', label: 'open-source license', href: links.license },
     ]
 

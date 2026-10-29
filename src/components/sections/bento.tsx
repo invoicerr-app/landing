@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
 
-const languages = ['English', 'Français', 'Deutsch', 'Italiano', 'Polski', 'Português', 'Español', 'Nederlands', 'Svenska', 'Dansk', 'Čeština', 'Українська', 'Русский', '日本語', '한국어', '简体中文', 'العربية', 'עברית']
+// The 19 locale directories under frontend/src/locales/ on the app's `dev`, in their own names.
+// Several catalogs are still partial; see the app's i18n module for the list of stubs.
+const languages = ['English', 'Français', 'Deutsch', 'Italiano', 'Polski', 'Español', 'Nederlands', 'Português (BR)', 'Čeština', 'Svenska', 'Dansk', 'Українська', 'Русский', '日本語', '한국어', '简体中文', 'العربية', 'עברית', 'Kabyle']
 
 function Cell({ className, title, body, children }: { className?: string; title: string; body: string; children?: React.ReactNode }) {
     return (
@@ -73,7 +75,7 @@ export function Bento() {
                 <Cell
                     className="md:col-span-4"
                     title="Speaks your language, and your client's"
-                    body="18 interface languages, a document language per recipient, and multi-currency with rate history."
+                    body="19 language catalogs, a document language per recipient, and multi-currency with rate history."
                 >
                     <div className="flex flex-wrap gap-1.5">
                         {languages.map((language) => (
