@@ -13,24 +13,24 @@ export function Hero() {
                     <h1 className="enter text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.05]">
                         The invoicing app that keeps up with you.
                     </h1>
-                    <p className="enter mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground [animation-delay:90ms]">
+                    <p className="enter mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
                         Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it
                         yourself today, or join the waiting list for our cloud, which opens in November 2026.
                     </p>
-                    <div className="enter mt-9 flex flex-wrap items-center gap-3 [animation-delay:180ms]">
+                    <div className="enter mt-9 flex flex-wrap items-center gap-3">
                         <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">
-                            <a href={links.app}>Join the waiting list</a>
+                            <a href={links.demo}>Try the live demo</a>
                         </Button>
                         <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
                             <a href="#hosting">Self-host it</a>
                         </Button>
                         <Button size="lg" variant="outline" asChild className="h-11 px-6 text-base active:scale-[0.98]">
-                            <a href={links.demo}>Try the live demo</a>
+                            <a href={links.app}>Join the waiting list</a>
                         </Button>
                     </div>
                 </div>
 
-                <div className="enter mt-16 pb-24 [animation-delay:270ms] sm:mt-20">
+                <div className="enter mt-16 pb-24 sm:mt-20">
                     <WindowFrame>
                         <img
                             src="/screens/dashboard.webp"

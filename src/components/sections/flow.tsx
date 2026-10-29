@@ -54,9 +54,11 @@ export function Flow() {
                                 viewport={{ margin: '-45% 0px -45% 0px' }}
                                 className="flex flex-col justify-center py-6 lg:min-h-[62vh] lg:py-0"
                             >
-                                <div className={cn('transition-opacity duration-300', active === index ? 'lg:opacity-100' : 'lg:opacity-35')}>
-                                    <p className="font-mono text-sm text-primary">{index + 1} / {steps.length}</p>
-                                    <h3 className="mt-3 text-2xl font-semibold tracking-tight">{step.title}</h3>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">{index + 1} / {steps.length}</p>
+                                    <h3 className={cn('mt-3 text-2xl font-semibold tracking-tight', active !== index && 'text-muted-foreground')}>
+                                        {step.title}
+                                    </h3>
                                     <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">{step.body}</p>
                                 </div>
                                 <WindowFrame className="mt-6 lg:hidden">
