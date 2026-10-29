@@ -22,6 +22,11 @@ function Item({ title, body, media }: { title: string; body: string; media?: Rea
     )
 }
 
+// The app ships no screenshot of its MCP server, so this item hangs on the app's own developer
+// documentation instead: these two lines are resolved verbatim from
+// documentation/docs/developer-guide/mcp-server.md on the app's dev branch.
+const MCP_REFERENCE = 'https://docs.invoicerr.app/docs/developer-guide/mcp-server/'
+
 export function Bento() {
     return (
         <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
@@ -63,6 +68,25 @@ export function Bento() {
                 <Item
                     title="An MCP server and an API, scoped by key"
                     body="A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key."
+                    media={
+                        <div className="max-w-xl rounded-lg border border-border bg-card">
+                            <div className="space-y-1 p-4 text-sm sm:p-5">
+                                <p className="font-mono">POST /api/mcp</p>
+                                <p className="font-mono">
+                                    <span className="text-muted-foreground">Authorization:</span> Bearer &lt;api-key&gt;
+                                </p>
+                            </div>
+                            <p className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted-foreground sm:px-5">
+                                From the app's MCP server guide, the endpoint and its authentication.{' '}
+                                <a
+                                    href={MCP_REFERENCE}
+                                    className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary"
+                                >
+                                    Read the guide
+                                </a>
+                            </p>
+                        </div>
+                    }
                 />
                 <li className="border-t border-border py-8">
                     <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
