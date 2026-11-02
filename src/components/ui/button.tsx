@@ -19,6 +19,13 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        // For the home page's desk, which stays dark in both themes: the dark theme's primary,
+        // a translucent light button, and the brand ink on paper.
+        desk:
+          "bg-[oklch(0.76_0.136_230)] text-[oklch(0.16_0.024_230)] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_8px_20px_rgb(0_30_50/0.35)] hover:bg-[oklch(0.8_0.12_230)]",
+        glass:
+          "bg-white/10 text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.22)] hover:bg-white/20 hover:text-white",
+        ink: "bg-ink text-white hover:bg-[#1d3442]",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

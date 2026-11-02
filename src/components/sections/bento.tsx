@@ -1,110 +1,84 @@
-// The 19 locale directories under frontend/src/locales/ on the app's `dev`, in their own names.
-// Several catalogs are still partial; see the app's i18n module for the list of stubs.
-const languages = ['English', 'Français', 'Deutsch', 'Italiano', 'Polski', 'Español', 'Nederlands', 'Português (BR)', 'Čeština', 'Svenska', 'Dansk', 'Українська', 'Русский', '日本語', '한국어', '简体中文', 'العربية', 'עברית', 'Kabyle']
+import { CircleUserRound, Clock, Code, Globe, ScanText, Send } from 'lucide-react'
 
-function Shot({ src, alt, height }: { src: string; alt: string; height: number }) {
-    return (
-        <img src={src} alt={alt} width={1440} height={height} loading="lazy" className="block w-full rounded-lg border border-border bg-card" />
-    )
-}
+import { Eyebrow } from '@/components/desk/tear'
+import { Button } from '@/components/ui/button'
+import { links } from '@/lib/links'
 
-function Item({ title, body, media }: { title: string; body: string; media?: React.ReactNode }) {
-    return (
-        <li className="border-t border-border py-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
-                <div className="min-w-0 shrink-0 md:w-56 lg:w-64">
-                    <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-                </div>
-                {media && <div className="w-full min-w-0 md:flex-1">{media}</div>}
-            </div>
-        </li>
-    )
-}
-
-// The app ships no screenshot of its MCP server, so this item hangs on the app's own developer
-// documentation instead: these two lines are resolved verbatim from
+// The app ships no screenshot of its MCP server, so its card hangs on the app's own developer
+// documentation: the endpoint below is resolved verbatim from
 // documentation/docs/developer-guide/mcp-server.md on the app's dev branch.
 const MCP_REFERENCE = 'https://docs.invoicerr.app/docs/developer-guide/mcp-server/'
 
+const features = [
+    {
+        icon: Send,
+        title: 'It clears the tax office',
+        body: 'Where a country runs a national platform, Invoicerr sends the invoice through it and tracks the answer. The channel per country is picked once, in the company settings.',
+    },
+    {
+        icon: Clock,
+        title: 'Hours turn into invoice lines',
+        body: 'Track time per project, billable or not. When the month ends, the unbilled hours become an invoice in one step.',
+    },
+    {
+        icon: CircleUserRound,
+        title: 'Clients get their own portal',
+        body: 'Their documents, their balance, PDFs, online payment and quote decisions. No more statement requests by e-mail.',
+    },
+    {
+        icon: ScanText,
+        title: 'Supplier invoices, read for you',
+        body: 'Drop a received invoice. Self-hosted OCR reads it into an editable proposal that you approve or reject.',
+    },
+    {
+        icon: Code,
+        title: 'An MCP server and an API, scoped by key',
+        body: 'A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key.',
+        code: 'POST /api/mcp',
+    },
+    {
+        icon: Globe,
+        title: "Speaks your language, and your client's",
+        body: '19 language catalogs, a document language per recipient, and multi-currency with rate history.',
+    },
+]
+
 export function Bento() {
     return (
-        <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <div className="max-w-2xl">
-                <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">The work around the invoice, handled too.</h2>
+        <section className="mx-auto max-w-6xl px-5 py-24">
+            <div className="flex flex-wrap items-end justify-between gap-7">
+                <div className="max-w-2xl">
+                    <Eyebrow number="03">Around the invoice</Eyebrow>
+                    <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">The work around the invoice, handled too.</h2>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                    <Button asChild className="h-11 rounded-[10px] px-5">
+                        <a href={links.demo}>Try the live demo</a>
+                    </Button>
+                    <Button variant="secondary" asChild className="h-11 rounded-[10px] px-5">
+                        <a href={links.docs}>Read the docs</a>
+                    </Button>
+                </div>
             </div>
 
-            {/* One lead feature, then the rest as a plain list: the importance order the audit asked
-                for, with the app's own screenshots as the only evidence. */}
-            <article className="mt-12 grid gap-8 md:grid-cols-2 md:items-start">
-                <div className="min-w-0">
-                    <h3 className="text-lg font-semibold tracking-tight">It clears the tax office</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                        Where a country runs a national platform, Invoicerr sends the invoice through it and tracks the answer. The
-                        channel per country is picked once, in the company settings.
-                    </p>
-                </div>
-                <div className="min-w-0">
-                    <Shot src="/screens/e-invoicing-channels.webp" height={900} alt="The e-invoicing channels screen: one row per country, with the format and the channel it sends through." />
-                </div>
-            </article>
-
-            <ul className="mt-10">
-                <Item
-                    title="Hours turn into invoice lines"
-                    body="Track time per project, billable or not. When the month ends, the unbilled hours become an invoice in one step."
-                    media={<Shot src="/screens/time-tracking.webp" height={900} alt="The time tracking screen: hours logged per project, with the unbilled hours shown as billable." />}
-                />
-                <Item
-                    title="Clients get their own portal"
-                    body="Their documents, their balance, PDFs, online payment and quote decisions. No more statement requests by e-mail."
-                    media={<Shot src="/screens/client-portal.webp" height={600} alt="The client portal: a client's own documents and outstanding balance." />}
-                />
-                <Item
-                    title="Supplier invoices, read for you"
-                    body="Drop a received invoice. Self-hosted OCR reads it into an editable proposal that you approve or reject."
-                    media={<Shot src="/screens/received-invoices.webp" height={900} alt="Received invoices waiting for review, with OCR-read amounts." />}
-                />
-                <Item
-                    title="An MCP server and an API, scoped by key"
-                    body="A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key."
-                    media={
-                        <div className="max-w-xl rounded-lg border border-border bg-card">
-                            <div className="space-y-1 p-4 text-sm sm:p-5">
-                                <p className="font-mono">POST /api/mcp</p>
-                                <p className="font-mono">
-                                    <span className="text-muted-foreground">Authorization:</span> Bearer &lt;api-key&gt;
-                                </p>
-                            </div>
-                            <p className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted-foreground sm:px-5">
-                                From the app's MCP server guide, the endpoint and its authentication.{' '}
-                                <a
-                                    href={MCP_REFERENCE}
-                                    className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary"
-                                >
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {features.map((feature) => (
+                    <li key={feature.title} className="flex flex-col gap-3 rounded-[14px] bg-card p-7 shadow-[0_0_0_1px_var(--border),0_6px_16px_rgb(10_40_60/0.05)]">
+                        <span aria-hidden="true" className="flex size-11 items-center justify-center rounded-[10px] bg-accent text-[oklch(0.45_0.11_230)] dark:text-primary">
+                            <feature.icon className="size-[22px]" strokeWidth={1.8} />
+                        </span>
+                        <h3 className="mt-1.5 text-[19px] font-semibold leading-snug">{feature.title}</h3>
+                        <p className="text-[15px] leading-relaxed text-muted-foreground">{feature.body}</p>
+                        {feature.code && (
+                            <p className="mt-1 flex flex-wrap items-center gap-3">
+                                <code className="rounded-md bg-ink px-2.5 py-1.5 font-mono text-[13px] text-azure-pale">{feature.code}</code>
+                                <a href={MCP_REFERENCE} className="text-sm font-medium underline decoration-border underline-offset-4 hover:decoration-primary">
                                     Read the guide
                                 </a>
                             </p>
-                        </div>
-                    }
-                />
-                <li className="border-t border-border py-8">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
-                        <div className="min-w-0 shrink-0 md:w-56 lg:w-64">
-                            <h3 className="text-lg font-semibold tracking-tight">Speaks your language, and your client's</h3>
-                            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">19 language catalogs, a document language per recipient, and multi-currency with rate history.</p>
-                        </div>
-                        <div className="w-full min-w-0 md:flex-1">
-                            <div className="flex flex-wrap gap-1.5">
-                                {languages.map((language) => (
-                                    <span key={language} className="rounded-md bg-secondary px-2.5 py-1 text-xs text-secondary-foreground">
-                                        {language}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                        )}
+                    </li>
+                ))}
             </ul>
         </section>
     )

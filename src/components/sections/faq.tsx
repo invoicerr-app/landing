@@ -2,6 +2,7 @@ import { Plus } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 
+import { Eyebrow } from '@/components/desk/tear'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
@@ -46,15 +47,14 @@ export function Faq() {
     const [open, setOpen] = useState<number | null>(0)
 
     return (
-        <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-24 sm:pb-32 lg:grid-cols-[1fr_2fr] lg:gap-16">
-            <div>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions, answered.</h2>
-            </div>
-            <div className="divide-y divide-border border-y border-border">
+        <section className="mx-auto max-w-6xl px-5 pb-28 pt-24">
+            <Eyebrow number="05">FAQ</Eyebrow>
+            <h2 className="mb-10 mt-4 text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">Questions, answered.</h2>
+            <div className="grid items-start gap-x-6 gap-y-3.5 md:grid-cols-2">
                 {questions.map((item, index) => {
                     const expanded = open === index
                     return (
-                        <div key={item.question}>
+                        <div key={item.question} className="rounded-xl bg-card px-5 shadow-[0_0_0_1px_var(--border)]">
                             <h3>
                                 <button
                                     type="button"
@@ -62,10 +62,12 @@ export function Faq() {
                                     aria-expanded={expanded}
                                     aria-controls={`faq-${index}`}
                                     onClick={() => setOpen(expanded ? null : index)}
-                                    className="flex w-full items-center justify-between gap-6 py-5 text-left font-sans text-base font-medium"
+                                    className="flex min-h-16 w-full items-center justify-between gap-4 py-4 text-left font-heading text-[17px] font-medium"
                                 >
                                     {item.question}
-                                    <Plus className={cn('size-4 shrink-0 text-muted-foreground transition-transform duration-300', expanded && 'rotate-45')} />
+                                    <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+                                        <Plus className={cn('size-4 transition-transform duration-300', expanded && 'rotate-45')} />
+                                    </span>
                                 </button>
                             </h3>
                             {/*
@@ -82,7 +84,7 @@ export function Faq() {
                                 transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
                                 className="overflow-hidden"
                             >
-                                <p className="max-w-2xl pb-6 leading-relaxed text-muted-foreground">{item.answer}</p>
+                                <p className="pb-5 text-[15px] leading-relaxed text-muted-foreground">{item.answer}</p>
                             </motion.div>
                         </div>
                     )
