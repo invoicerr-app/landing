@@ -34,7 +34,7 @@ export default function Header({ overDesk = false }: HeaderProps) {
     const [scrolled, setScrolled] = useState(false)
     const [open, setOpen] = useState(false)
     const onDesk = overDesk && !scrolled && !open
-    const quiet = onDesk ? 'text-white/85 hover:bg-white/10 hover:text-white' : 'text-muted-foreground hover:text-foreground'
+    const quiet = onDesk ? 'text-white hover:bg-white/10' : 'text-muted-foreground hover:text-foreground'
 
     useMotionValueEvent(scrollY, 'change', (latest) => {
         const next = latest > 16
@@ -56,13 +56,13 @@ export default function Header({ overDesk = false }: HeaderProps) {
             className={cn(
                 'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
                 scrolled || open ? 'border-border bg-background/80 backdrop-blur-xl' : 'border-transparent',
-                onDesk && 'text-white',
+                onDesk && 'on-desk text-white',
             )}
         >
             {/* First stop of every page: straight to the content, past the header's links (RGAA 12.7). */}
             <a
                 href="#main"
-                className="sr-only rounded-md bg-background px-4 py-2 text-sm font-medium text-foreground shadow-md focus:not-sr-only focus:absolute focus:start-4 focus:top-3 focus:z-[60]"
+                className="sr-only rounded-md bg-background px-4 py-2 text-sm font-medium text-foreground shadow-md focus:not-sr-only focus:absolute focus:px-4 focus:py-2 focus:start-4 focus:top-3 focus:z-[60]"
             >
                 {t.skipToContent}
             </a>

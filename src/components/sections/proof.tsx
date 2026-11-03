@@ -51,7 +51,7 @@ export function Proof() {
                                 <dt dir="auto" className="text-sm leading-snug text-muted-foreground">{fact.label}</dt>
                                 <dd className="whitespace-nowrap font-mono text-2xl leading-none tabular-nums lg:text-[26px]">
                                     {fact.href ? (
-                                        <a href={fact.href} className="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-primary">
+                                        <a href={fact.href} className="underline decoration-muted-foreground underline-offset-4 transition-colors hover:decoration-primary">
                                             {fact.value}
                                         </a>
                                     ) : (

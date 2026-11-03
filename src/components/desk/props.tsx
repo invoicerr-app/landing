@@ -19,6 +19,8 @@ export function StickyNote({ children, className }: { children: React.ReactNode;
             <div
                 className="relative size-full whitespace-pre-line px-4 pb-3 pt-7 font-hand text-2xl leading-[1.05] font-semibold text-[#14303f] [clip-path:polygon(0_0,100%_0,100%_100%,8%_100%,0_96%)]"
                 style={{
+                    // The paper's colour under the gradients, so the ink stays legible without them (RGAA 10.5).
+                    backgroundColor: '#bfe6f9',
                     backgroundImage: [
                         // the curl of the free bottom edge
                         'linear-gradient(to top, rgb(255 255 255 / 0.35), rgb(255 255 255 / 0) 9%)',

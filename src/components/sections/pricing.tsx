@@ -64,7 +64,7 @@ export function Pricing() {
                                     onClick={() => setYearly(value)}
                                     className={cn(
                                         'flex h-10 items-center gap-2 rounded-[7px] px-4 text-sm font-medium transition-colors',
-                                        yearly === value ? 'bg-card text-foreground shadow-[0_1px_3px_rgb(10_40_60/0.18)]' : 'text-muted-foreground hover:text-foreground',
+                                        yearly === value ? 'bg-ink text-white dark:bg-primary dark:text-primary-foreground' : 'text-muted-foreground hover:text-foreground',
                                     )}
                                 >
                                     {value ? t.yearly : t.monthly}
@@ -87,7 +87,7 @@ export function Pricing() {
                             <span className="font-heading text-6xl font-medium leading-none tracking-[-0.03em] tabular-nums">{local ? formatLocal(lead, local, localeFor()) : eur(lead)}</span>
                             <span className="text-lg text-muted-foreground">{t.perMonth}</span>
                             {yearly && (
-                                <s className="font-heading text-2xl text-muted-foreground tabular-nums decoration-[1.5px]">{local ? formatLocal(month, local, localeFor()) : eur(month)}</s>
+                                <del className="font-heading text-2xl text-muted-foreground tabular-nums decoration-[1.5px]">{local ? formatLocal(month, local, localeFor()) : eur(month)}</del>
                             )}
                         </p>
                         {local && <p className="mt-3 text-[15px] text-muted-foreground">{fmt(t.local, { source: t.sources[local.source] })}</p>}

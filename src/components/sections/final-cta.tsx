@@ -12,7 +12,7 @@ export function FinalCta() {
     const now = useNow()
     return (
         <section className="relative mx-auto max-w-[980px] px-5 pt-24">
-            <div className="relative -rotate-[0.8deg] overflow-hidden rounded-lg bg-[oklch(0.985_0.004_230)] px-6 pb-12 pt-14 text-ink shadow-desk sm:px-16 sm:pt-16">
+            <div className="on-paper relative -rotate-[0.8deg] overflow-hidden rounded-lg bg-[oklch(0.985_0.004_230)] px-6 pb-12 pt-14 text-ink shadow-desk sm:px-16 sm:pt-16">
                 <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 size-full">
                     <path d="M0 0 L50 46 L100 0" fill="none" stroke="rgb(15 31 42 / 0.08)" strokeWidth="0.25" vectorEffect="non-scaling-stroke" />
                     <path d="M0 100 L40 52 M100 100 L60 52" fill="none" stroke="rgb(15 31 42 / 0.05)" strokeWidth="0.25" vectorEffect="non-scaling-stroke" />

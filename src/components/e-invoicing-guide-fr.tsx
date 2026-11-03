@@ -114,7 +114,7 @@ export function EInvoicingGuideFr() {
                                     <th scope="col" className="px-4 py-3 font-medium sm:px-6">
                                         Seuils (dernier exercice clos)
                                     </th>
-                                    <th scope="col" className="px-4 py-3 font-medium text-primary sm:px-6">
+                                    <th scope="col" className="px-4 py-3 font-medium text-[oklch(0.45_0.11_230)] sm:px-6 dark:text-primary">
                                         Émission obligatoire
                                     </th>
                                 </tr>

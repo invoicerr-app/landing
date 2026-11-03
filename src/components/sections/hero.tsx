@@ -104,7 +104,7 @@ export function Hero() {
     const t = copy.hero
     return (
         <section className="desk relative overflow-hidden pb-40 pt-32 text-white sm:pt-40">
-            <div aria-hidden="true" className="pointer-events-none absolute -top-32 left-[52%] h-[360px] w-[520px] rounded-full bg-[rgb(151_216_248/0.22)] blur-[60px]" />
+            <div aria-hidden="true" className="pointer-events-none absolute -top-32 left-[52%] h-[360px] w-[520px] rounded-full bg-[rgb(151_216_248/0.08)] blur-[60px]" />
 
             {/* The desk's objects, wide screens only: on a narrow one they would sit on the text. */}
             <div aria-hidden="true" className="hidden xl:block">
@@ -126,7 +126,7 @@ export function Hero() {
                 <h1 lang={lang === 'en' ? undefined : 'en'} dir="ltr" className="enter mx-auto mt-7 max-w-4xl text-balance text-4xl font-semibold tracking-[-0.035em] [text-shadow:0_2px_24px_rgb(3_20_30/0.3)] sm:text-6xl lg:text-[80px] lg:leading-[1.02]">
                     {en.hero.title}
                 </h1>
-                <p className="enter mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[rgb(235_239_242/0.84)] sm:text-xl">
+                <p className="enter mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#ebeff2] sm:text-xl">
                     {t.lead}
                 </p>
                 <div className="enter mt-9 flex flex-wrap justify-center gap-3">
@@ -137,7 +137,7 @@ export function Hero() {
                         <a href={links.demo}>{t.tryDemo}</a>
                     </Button>
                 </div>
-                <p className="enter mt-4 text-[15px] text-[rgb(235_239_242/0.78)]">
+                <p className="enter mt-4 text-[15px] text-[#ebeff2]">
                     {rich(t.selfHostLine, {
                         link: (text) => (
                             <a href="#hosting" className="text-white underline underline-offset-4">

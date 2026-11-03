@@ -81,7 +81,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
         <footer lang={LANGUAGE_INFO[lang].tag} dir={LANGUAGE_INFO[lang].dir} className={cn('relative', desk ? 'desk -mt-[18px] overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
             {desk && (
                 <>
-                    <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.18)] blur-[60px]" />
+                    <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.08)] blur-[60px]" />
                     <DeskObject name="pen-footer" className="absolute -right-16 top-20 hidden xl:block" />
                 </>
             )}
@@ -92,16 +92,16 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                         <BrandMark className={cn('h-6', desk && '[&_path.fill-primary]:fill-azure-light')} />
                         <span className="font-heading text-lg font-semibold tracking-tight">Invoicerr</span>
                     </a>
-                    <p className={cn('mt-4 max-w-xs text-sm leading-relaxed', desk ? 'text-white/80' : 'text-muted-foreground')}>
+                    <p className={cn('mt-4 max-w-xs text-sm leading-relaxed', desk ? 'text-white/90' : 'text-muted-foreground')}>
                         {t.tagline}
                     </p>
                 </div>
                 {columns.map((column, index) => (
                     <nav key={column.title} aria-labelledby={`footer-column-${index}`}>
-                        <h2 id={`footer-column-${index}`} className={cn('font-sans text-sm font-medium', desk && 'text-azure-pale')}>
+                        <h2 id={`footer-column-${index}`} className={cn('font-sans text-sm font-medium', desk && 'text-[#c4e9fb]')}>
                             {column.title}
                         </h2>
-                        <ul className={cn('mt-4 space-y-2.5 text-sm', desk ? 'text-white/80' : 'text-muted-foreground')}>
+                        <ul className={cn('mt-4 space-y-2.5 text-sm', desk ? 'text-white/90' : 'text-muted-foreground')}>
                             {column.items.map((item) => (
                                 <li key={item.label}>
                                     <a
@@ -119,7 +119,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                     </nav>
                 ))}
             </div>
-            <div className={cn('relative mx-auto flex max-w-6xl flex-wrap items-start justify-between gap-x-10 gap-y-6 px-5 pb-10 text-sm', desk ? 'text-white/70' : 'text-muted-foreground')}>
+            <div className={cn('relative mx-auto flex max-w-6xl flex-wrap items-start justify-between gap-x-10 gap-y-6 px-5 pb-10 text-sm', desk ? 'text-white/90' : 'text-muted-foreground')}>
                 <p>{fmt(t.copyright, { year: new Date().getFullYear() })}</p>
                 {/* Every language of the home page, under its own name, linked: the visible half of
                     the hreflang set the prerender writes into each page's head. */}

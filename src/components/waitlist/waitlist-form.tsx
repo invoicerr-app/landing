@@ -16,7 +16,7 @@ type Status = 'idle' | 'sending' | 'sent'
 type FieldError = 'email' | 'country' | 'companySize' | null
 
 const selectClass =
-    'h-11 w-full rounded-md border border-input bg-background px-3 text-base text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40'
+    'h-11 w-full rounded-md border border-[oklch(0.6_0.02_230)] bg-background px-3 text-base text-foreground transition-colors dark:border-white/40 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40'
 
 // No `language` prop any more: the form used to send the page's language along with the answers and
 // it is not collected. Which language the page is in still decides the copy, and `copy` carries that.
@@ -165,7 +165,7 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                         aria-invalid={fieldError === 'email' || undefined}
                         aria-describedby={describedBy('email')}
                         className={cn(
-                            'mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
+                            'mt-2 h-11 w-full rounded-md border border-[oklch(0.6_0.02_230)] bg-background px-3 text-base text-foreground transition-colors placeholder:text-muted-foreground dark:border-white/40',
                             fieldError === 'email' && 'border-destructive ring-destructive/20 dark:ring-destructive/40',
                         )}
                     />
