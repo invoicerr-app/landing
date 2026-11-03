@@ -1,71 +1,114 @@
-import { motion } from 'motion/react'
 import { useState } from 'react'
 
+import { ClipboardClip } from '@/components/desk/props'
+import { Eyebrow } from '@/components/desk/tear'
+import { Button } from '@/components/ui/button'
 import { type CountryFacts, countries } from '@/data/countries'
+import { platformGroups } from '@/data/platforms'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
-function factsFor(country: CountryFacts) {
+// The fields of the settings sheet, read from data/countries.ts. A field is only shown when the
+// catalogue holds it, so Italy has no archive line and Portugal no format: the uneven shape is the
+// point, and no placeholder stands in for a value the app does not have.
+function fieldsFor(country: CountryFacts) {
     return [
-        country.format && { label: 'E-invoice format', value: country.format, detail: 'Generated next to the PDF, validated before it leaves.' },
-        { label: 'Sent through', value: country.channel.name, detail: country.channel.detail },
-        country.retention && {
-            label: 'Legal archive',
-            value: `${country.retention.years} years`,
-            detail: `Kept and hashed for as long as ${country.retention.source} asks.`,
-        },
-    ].filter((fact) => !!fact)
+        ...country.identifiers.map((identifier) => ({
+            label: identifier.required ? 'Identifier, required' : 'Identifier',
+            value: identifier.label,
+            detail: identifier.hint,
+            key: identifier.label,
+        })),
+        country.format && { label: 'E-invoice format', value: country.format, detail: 'Generated next to the PDF, validated before it leaves.', key: 'format' },
+        { label: 'Sent through', value: country.channel.name, detail: country.channel.detail, key: 'channel' },
+    ].filter((field) => !!field)
 }
+
+// Every approved platform the app sends through, with the "everywhere else" e-mail left out: the
+// box is about the platforms, and e-mail is said once, in the countries that use it.
+const platformNames = platformGroups.filter((group) => group.id !== 'email').flatMap((group) => group.names)
+
+const label = 'font-mono text-xs uppercase tracking-[0.06em] text-[oklch(0.47_0.02_230)]'
 
 export function Countries() {
     const [code, setCode] = useState(countries[0].code)
 
     return (
-        <section id="countries" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <div className="max-w-2xl">
-                <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                    Five countries' invoicing rules built in: identifiers, VAT rates, format, channel, archive.
-                </h2>
-                <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                    Pick where your company bills from. The identifiers, the VAT rates, the e-invoice format and the way it reaches the
-                    tax office all follow, each one tied to the legal text it comes from.
-                </p>
+        <section id="countries" className="mx-auto max-w-6xl px-5 pb-24 pt-6">
+            <div className="flex flex-wrap items-end justify-between gap-7">
+                <div className="max-w-3xl">
+                    <Eyebrow number="01">Countries</Eyebrow>
+                    <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">Five countries' invoicing rules, built in.</h2>
+                    <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                        Pick where your company bills from. The identifiers, the VAT rates, the e-invoice format and the way it reaches the
+                        tax office all follow, each one tied to the legal text it comes from.
+                    </p>
+                </div>
+                <Button variant="secondary" asChild className="h-11 rounded-[10px] px-5">
+                    <a href={links.countries}>Country support matrix</a>
+                </Button>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[14rem_minmax(0,1fr)]">
-                <div role="tablist" aria-label="Country" className="flex min-w-0 gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
-                    {countries.map((entry) => {
-                        const active = entry.code === code
-                        return (
-                            <button
-                                key={entry.code}
-                                id={`country-tab-${entry.code}`}
-                                role="tab"
-                                type="button"
-                                aria-selected={active}
-                                aria-controls={`country-panel-${entry.code}`}
-                                onClick={() => setCode(entry.code)}
-                                className={cn(
-                                    'relative flex shrink-0 items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors',
-                                    active ? 'text-accent-foreground' : 'text-muted-foreground hover:text-foreground',
-                                )}
+            <div className="mt-12 grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+                <div className="flex flex-col gap-6">
+                    <div role="tablist" aria-label="Country" className="flex flex-wrap gap-2">
+                        {countries.map((entry) => {
+                            const active = entry.code === code
+                            return (
+                                <button
+                                    key={entry.code}
+                                    id={`country-tab-${entry.code}`}
+                                    role="tab"
+                                    type="button"
+                                    aria-selected={active}
+                                    aria-controls={`country-panel-${entry.code}`}
+                                    onClick={() => setCode(entry.code)}
+                                    className={cn(
+                                        'h-11 rounded-lg border px-4 text-[15px] font-medium transition-colors',
+                                        active ? 'border-ink bg-ink text-white dark:border-primary dark:bg-primary dark:text-primary-foreground' : 'border-border bg-card text-secondary-foreground hover:bg-accent',
+                                    )}
+                                >
+                                    {entry.name}
+                                </button>
+                            )
+                        })}
+                    </div>
+                    <p className="leading-relaxed text-muted-foreground">
+                        Five countries ship today. A new one adds its data files in the same shape, and the app reads them.
+                    </p>
+
+                    <div id="platforms" className="scroll-mt-24 rounded-[14px] bg-secondary p-6 shadow-[inset_0_0_0_1px_var(--border)]">
+                        <h3 className="text-[17px] font-semibold">Already connected to France's approved platforms.</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            Four approved platforms and Chorus Pro in France, the SdI in Italy and KSeF in Poland. You choose the channel in
+                            your company settings.
+                        </p>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                            {platformNames.map((name) => (
+                                <li key={name} className="rounded-md bg-card px-2.5 py-2 font-mono text-[13px] leading-none shadow-[0_0_0_1px_var(--border)]">
+                                    {name}
+                                </li>
+                            ))}
+                        </ul>
+                        <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground">
+                            Invoicerr is invoicing software, not an approved platform itself: it builds the invoice, the platform delivers it.{' '}
+                            <a
+                                href="/facturation-electronique/plateforme-agreee/"
+                                lang="fr"
+                                hrefLang="fr"
+                                className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary"
                             >
-                                {active && <motion.span layoutId="country-pill" className="absolute inset-0 rounded-lg bg-accent" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
-                                <span className="relative">{entry.name}</span>
-                            </button>
-                        )
-                    })}
+                                Choisir sa plateforme agréée
+                            </a>
+                        </p>
+                    </div>
                 </div>
 
-                {/*
-                    All five panels stay in the markup, the inactive ones collapsed by `hidden`. Only the
-                    selected country used to be rendered, which left four fifths of this section — the
-                    formats, the channels, the retention citations — out of the HTML a reader or a crawler
-                    receives. It also gives the tablist above the tabpanels it was already claiming to
-                    control. The swap animation moved to `.panel-swap` in src/index.css, which restarts on
-                    its own each time `hidden` flips.
-                */}
-                <div className="min-w-0">
+                {/* A clipboard: the settings sheet held under a steel clip. All five sheets stay in
+                    the markup, the inactive ones collapsed by `hidden`, so a crawler reads every
+                    country's formats, channels and retention citations. */}
+                <div className="relative rotate-[0.6deg] rounded-[20px] bg-gradient-to-br from-[rgb(57_192_246/0.55)] to-[rgb(0_153_203/0.75)] px-4 pb-4 pt-12 shadow-[inset_0_1px_0_rgb(255_255_255/0.5),inset_0_0_0_1px_rgb(255_255_255/0.2),0_24px_40px_rgb(0_80_120/0.22)]">
+                    <ClipboardClip className="absolute -top-5 left-1/2 z-[2] -translate-x-1/2" />
                     {countries.map((country) => (
                         <div
                             key={country.code}
@@ -74,57 +117,46 @@ export function Countries() {
                             aria-labelledby={`country-tab-${country.code}`}
                             hidden={country.code !== code}
                         >
-                            <div className="panel-swap grid min-w-0 gap-4 rounded-lg border border-border bg-card p-5 sm:p-8 md:grid-cols-2">
-                                <div>
-                                    <p className="text-sm font-medium">Company settings</p>
-                                    <p className="mt-1 text-sm text-muted-foreground">What the app asks a company in {country.name}.</p>
-                                    <div className="mt-6 space-y-4">
-                                        {country.identifiers.map((identifier) => (
-                                            <div key={identifier.label}>
-                                                <p className="mb-1.5 text-sm font-medium">
-                                                    {identifier.label}
-                                                    {identifier.required && <span className="ml-1 text-destructive">*</span>}
-                                                </p>
-                                                <div className="flex h-9 items-center rounded-md border border-input bg-background px-3 text-sm text-muted-foreground/70">
-                                                    {identifier.hint}
-                                                </div>
-                                            </div>
-                                        ))}
-                                        <div>
-                                            <p className="mb-1.5 text-sm font-medium">VAT rates on a new line</p>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {country.vatRates.map((rate) => (
-                                                    <span key={rate} className="rounded-md bg-secondary px-2 py-0.5 text-xs text-secondary-foreground">
-                                                        {rate}%
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div className="panel-swap rounded bg-paper px-6 pb-6 pt-7 text-ink shadow-[0_2px_4px_rgb(3_30_45/0.2)] sm:px-7">
+                                <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[oklch(0.89_0.01_230)] pb-4">
+                                    <p className="font-heading text-[19px] font-semibold">Company settings</p>
+                                    <p className="text-sm text-[oklch(0.47_0.02_230)]">What the app asks a company in {country.name}.</p>
                                 </div>
-
-                                <dl className="space-y-3 md:border-l md:border-border md:pl-8">
-                                    {factsFor(country).map((fact) => (
-                                        <div key={fact.label} className="rounded-md bg-muted/50 p-4">
-                                            <dt className="text-sm text-muted-foreground">{fact.label}</dt>
-                                            <dd className="mt-0.5 font-heading text-xl font-semibold tracking-tight">{fact.value}</dd>
-                                            <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{fact.detail}</dd>
+                                <dl className="grid sm:grid-cols-2">
+                                    {fieldsFor(country).map((field) => (
+                                        <div key={field.key} className="border-b border-dashed border-[oklch(0.89_0.01_230)] py-4 sm:odd:pr-4 sm:even:pl-4">
+                                            <dt className={label}>{field.label}</dt>
+                                            <dd className="mt-2 font-semibold">{field.value}</dd>
+                                            {field.detail && <dd className="mt-1 text-[13px] leading-snug text-[oklch(0.47_0.02_230)]">{field.detail}</dd>}
                                         </div>
                                     ))}
+                                    <div className="border-b border-dashed border-[oklch(0.89_0.01_230)] py-4 sm:odd:pr-4 sm:even:pl-4">
+                                        <dt className={label}>VAT rates on a new line</dt>
+                                        <dd className="mt-2.5 flex flex-wrap gap-1.5">
+                                            {country.vatRates.map((rate) => (
+                                                <span key={rate} className="rounded-md bg-[oklch(0.91_0.03_230)] px-2 py-1.5 font-mono text-[13px] font-bold leading-none text-[oklch(0.28_0.05_230)]">
+                                                    {rate}%
+                                                </span>
+                                            ))}
+                                        </dd>
+                                    </div>
                                 </dl>
+                                {country.retention && (
+                                    <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
+                                        <div>
+                                            <p className={label}>Legal archive</p>
+                                            <p className="mt-2 font-semibold">{country.retention.years} years</p>
+                                        </div>
+                                        <p className="rounded-lg bg-[oklch(0.94_0.008_230)] px-2.5 py-2 text-[13px] text-[oklch(0.28_0.03_230)]">
+                                            Kept and hashed for as long as {country.retention.source} asks.
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-
-            <p className="mt-6 text-sm text-muted-foreground">
-                Five countries ship today. A new one adds its data files in the same shape, and the app reads
-                them.{' '}
-                <a href={links.countries} className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary">
-                    See the country support matrix
-                </a>
-            </p>
         </section>
     )
 }

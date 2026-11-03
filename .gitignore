@@ -27,3 +27,6 @@ dist-ssr
 # local secrets a `wrangler dev` run reads. Neither belongs in the repository.
 .wrangler
 .dev.vars
+
+# Blender environment of scripts/desk-renders
+scripts/desk-renders/.venv

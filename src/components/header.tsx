@@ -17,10 +17,18 @@ const sections = [
     { label: 'Pricing', href: '#pricing' },
 ]
 
-export default function Header() {
+interface HeaderProps {
+    /** The home page opens on its dark desk: until the page scrolls, the bar is transparent over it and
+        its text is light, whatever the theme. */
+    overDesk?: boolean
+}
+
+export default function Header({ overDesk = false }: HeaderProps) {
     const { scrollY } = useScroll()
     const [scrolled, setScrolled] = useState(false)
     const [open, setOpen] = useState(false)
+    const onDesk = overDesk && !scrolled && !open
+    const quiet = onDesk ? 'text-white/85 hover:bg-white/10 hover:text-white' : 'text-muted-foreground hover:text-foreground'
 
     useMotionValueEvent(scrollY, 'change', (latest) => {
         const next = latest > 16
@@ -32,11 +40,12 @@ export default function Header() {
             className={cn(
                 'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
                 scrolled || open ? 'border-border bg-background/80 backdrop-blur-xl' : 'border-transparent',
+                onDesk && 'text-white',
             )}
         >
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5">
                 <a href="/" className="flex items-center gap-2.5 rounded-md" aria-label="Invoicerr home">
-                    <BrandMark className="h-6" />
+                    <BrandMark className={cn('h-6', onDesk && '[&_path.fill-primary]:fill-azure-light')} />
                     <span className="font-heading text-lg font-semibold tracking-tight">Invoicerr</span>
                 </a>
 
@@ -45,48 +54,48 @@ export default function Header() {
                         <a
                             key={section.href}
                             href={section.href}
-                            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            className={cn('rounded-md px-3 py-2 text-sm transition-colors', quiet)}
                         >
                             {section.label}
                         </a>
                     ))}
                     <a
                         href={links.docs}
-                        className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className={cn('rounded-md px-3 py-2 text-sm transition-colors', quiet)}
                     >
                         Docs
                     </a>
                 </nav>
 
                 <div className="flex items-center gap-1.5">
-                    <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+                    <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
                         <a href={links.github} aria-label="Invoicerr on GitHub">
                             <Icons.gitHub />
                         </a>
                     </Button>
-                    <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+                    <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
                         <a href={links.linkedin} aria-label="Invoicerr on LinkedIn">
                             <Icons.linkedIn />
                         </a>
                     </Button>
-                    <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+                    <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
                         <a href={links.discord} aria-label="Invoicerr on Discord">
                             <Icons.discord />
                         </a>
                     </Button>
-                    <ThemeToggle />
+                    <ThemeToggle className={onDesk ? quiet : undefined} />
                     {hostedLoginOpen && (
-                        <Button variant="ghost" asChild className="hidden sm:inline-flex">
+                        <Button variant="ghost" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
                             <a href={links.app}>Log in</a>
                         </Button>
                     )}
-                    <Button asChild className="hidden sm:inline-flex">
+                    <Button variant={onDesk ? 'desk' : 'default'} asChild className="hidden sm:inline-flex">
                         <a href={links.app}>Join the waiting list</a>
                     </Button>
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="md:hidden"
+                        className={cn('md:hidden', onDesk && quiet)}
                         onClick={() => setOpen((current) => !current)}
                         aria-expanded={open}
                         aria-controls="mobile-nav"

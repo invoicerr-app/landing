@@ -1,5 +1,7 @@
 import { CONTENT_PAGES } from '@/content/pages'
+import { DeskObject } from '@/components/desk/objects'
 import { hostedLoginOpen, links } from '@/lib/links'
+import { cn } from '@/lib/utils'
 
 import { BrandMark } from './brand-mark'
 
@@ -55,26 +57,48 @@ const columns: { title: string; items: { label: string; href: string; lang?: str
     },
 ]
 
-export default function Footer() {
+interface FooterProps {
+    /** `desk` lays the footer on the home page's desk: light text on the dark surface. */
+    variant?: 'default' | 'desk'
+    /** Rendered above the link columns: the home page puts its last call to action there. */
+    children?: React.ReactNode
+}
+
+export default function Footer({ variant = 'default', children }: FooterProps) {
+    const desk = variant === 'desk'
     return (
-        <footer className="border-t border-border">
-            <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr]">
+        <footer className={cn('relative', desk ? 'desk overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
+            {desk && (
+                <>
+                    {/* The page's last sheet ends on a row of punched holes, through which the desk shows. */}
+                    <div aria-hidden="true" className="perforation-page absolute inset-x-0 -top-[9px] h-[18px]" />
+                    <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.18)] blur-[60px]" />
+                    <DeskObject name="pen-footer" className="absolute -right-16 top-20 hidden xl:block" />
+                </>
+            )}
+            {children}
+            <div className={cn('relative mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr]', desk ? 'mt-24 border-t border-white/15 py-14' : 'py-14')}>
                 <div>
                     <a href="/" className="flex w-fit items-center gap-2.5" aria-label="Invoicerr home">
-                        <BrandMark className="h-6" />
+                        <BrandMark className={cn('h-6', desk && '[&_path.fill-primary]:fill-azure-light')} />
                         <span className="font-heading text-lg font-semibold tracking-tight">Invoicerr</span>
                     </a>
-                    <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                    <p className={cn('mt-4 max-w-xs text-sm leading-relaxed', desk ? 'text-white/80' : 'text-muted-foreground')}>
                         Open-source invoicing, in the cloud or on your own server.
                     </p>
                 </div>
                 {columns.map((column) => (
                     <nav key={column.title} aria-label={column.title}>
-                        <p className="text-sm font-medium">{column.title}</p>
-                        <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+                        <p className={cn('text-sm font-medium', desk && 'font-mono text-xs uppercase tracking-[0.08em] text-azure-pale')}>{column.title}</p>
+                        <ul className={cn('mt-4 space-y-2.5 text-sm', desk ? 'text-white/80' : 'text-muted-foreground')}>
                             {column.items.map((item) => (
                                 <li key={item.label}>
-                                    <a href={item.href} lang={item.lang} hrefLang={item.lang} className="transition-colors hover:text-foreground">
+                                    <a
+                                        href={item.href}
+                                        lang={item.lang}
+                                        hrefLang={item.lang}
+                                        className={cn('transition-colors', desk ? 'hover:text-white' : 'hover:text-foreground')}
+                                    >
                                         {item.label}
                                     </a>
                                 </li>
@@ -83,7 +107,7 @@ export default function Footer() {
                     </nav>
                 ))}
             </div>
-            <div className="mx-auto max-w-6xl px-5 pb-10 text-sm text-muted-foreground">
+            <div className={cn('relative mx-auto max-w-6xl px-5 pb-10 text-sm', desk ? 'text-white/70' : 'text-muted-foreground')}>
                 © {new Date().getFullYear()} Invoicerr. Released under AGPL-3.0.
             </div>
         </footer>

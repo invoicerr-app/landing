@@ -1,15 +1,16 @@
+import { Check, Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 
+import { Eyebrow } from '@/components/desk/tear'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 import { FIRST_SEAT, FURTHER_SEATS, NEXT_THREE_SEATS, TRIAL_DAYS, YEARLY_MONTHS_CHARGED, monthlyPrice, yearlyPrice } from '@/lib/pricing'
 import { cn } from '@/lib/utils'
 
-const MAX_SEATS = 25
+const MAX_SEATS = 99
 
-// Roméo's revision: the two-card presentation, the Cloud card with the seat slider and the
-// monthly/yearly switch; the seat maths stays in lib/pricing.ts (also quoted by the FAQ and the
-// offers block in index.html). No count-up, no featured border, no seat-price table.
+// The two-card presentation, the Cloud card with a seat counter and the monthly/yearly switch; the
+// seat maths stays in lib/pricing.ts (also quoted by the FAQ and the offers block in index.html).
 const cloud = [
     'Opens in November 2026',
     'Hosted and updated by us',
@@ -19,28 +20,33 @@ const cloud = [
 ]
 const selfHosted = ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support']
 
+const euros = (value: number) => `€${Number.isInteger(value) ? value.toLocaleString('en-US') : value.toFixed(2)}`
+
 export function Pricing() {
     const [seats, setSeats] = useState(3)
     const [yearly, setYearly] = useState(false)
     const price = yearly ? yearlyPrice(seats) : monthlyPrice(seats)
+    const seatWord = seats === 1 ? 'seat' : 'seats'
+    const monthsOff = 12 - YEARLY_MONTHS_CHARGED
 
     return (
-        <section id="pricing" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
-            <div className="max-w-2xl">
-                <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">The cloud prices per seat. Self-hosting is free.</h2>
+        <section id="pricing" className="mx-auto max-w-6xl px-5 py-24">
+            <div className="max-w-3xl">
+                <Eyebrow number="04">Pricing</Eyebrow>
+                <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">The cloud prices per seat. Self-hosting is free.</h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
                     Cloud pricing is per company and gets cheaper with every seat. Self-hosting costs nothing and holds nothing back.
                 </p>
             </div>
 
-            <div className="mt-12 grid gap-4 lg:grid-cols-[3fr_2fr]">
-                <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
+            <div className="mt-12 grid gap-6 lg:grid-cols-[7fr_5fr]">
+                <div className="flex flex-col gap-6 rounded-2xl bg-card p-6 shadow-[0_0_0_1px_var(--border),0_18px_36px_rgb(10_40_60/0.08)] sm:p-8">
                     <div className="flex flex-wrap items-center justify-between gap-4">
-                        <h3 className="text-xl font-semibold tracking-tight">Cloud</h3>
-                        <div role="group" aria-label="Billing period" className="flex rounded-md bg-muted p-1 text-sm">
+                        <h3 className="text-2xl font-semibold">Cloud</h3>
+                        <div role="group" aria-label="Billing period" className="flex gap-1 rounded-[10px] bg-secondary p-1">
                             {[
                                 { label: 'Monthly', value: false },
-                                { label: 'Yearly', value: true },
+                                { label: `Yearly, ${monthsOff} months off`, value: true },
                             ].map((option) => (
                                 <button
                                     key={option.label}
@@ -48,8 +54,8 @@ export function Pricing() {
                                     aria-pressed={yearly === option.value}
                                     onClick={() => setYearly(option.value)}
                                     className={cn(
-                                        'rounded-sm px-3 py-1.5 font-medium transition-colors',
-                                        yearly === option.value ? 'bg-background text-foreground' : 'text-muted-foreground hover:text-foreground',
+                                        'h-[38px] rounded-[7px] px-3.5 text-sm font-medium transition-colors',
+                                        yearly === option.value ? 'bg-card text-foreground shadow-[0_1px_3px_rgb(10_40_60/0.18)]' : 'text-muted-foreground hover:text-foreground',
                                     )}
                                 >
                                     {option.label}
@@ -58,60 +64,71 @@ export function Pricing() {
                         </div>
                     </div>
 
-                    <p className="mt-8 flex items-baseline gap-2">
-                        <span className="font-heading text-5xl font-semibold tracking-tight">
-                            €{price.toLocaleString('en-US')}
-                        </span>
-                        <span className="text-muted-foreground">
-                            excl. VAT per {yearly ? 'year' : 'month'}, for {seats} {seats === 1 ? 'seat' : 'seats'}
-                        </span>
-                    </p>
-
-                    <label htmlFor="seats" className="mt-8 block text-sm font-medium">
-                        How many people work in your company's account?
-                    </label>
-                    <input
-                        id="seats"
-                        type="range"
-                        min={1}
-                        max={MAX_SEATS}
-                        value={seats}
-                        onChange={(event) => setSeats(Number(event.target.value))}
-                        className="mt-4 w-full accent-primary"
-                    />
-                    <p className="mt-3 text-sm text-muted-foreground">
-                        First seat €{FIRST_SEAT}, seats 2 to 4 €{NEXT_THREE_SEATS} each, every seat after that €{FURTHER_SEATS}. Per month,
-                        in euros, excluding VAT{yearly ? `; the year is charged as ${YEARLY_MONTHS_CHARGED} months` : ''}.
-                    </p>
-
-                    <div className="mt-8 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-end sm:justify-between">
-                        <ul className="space-y-2.5 text-sm">
-                            {cloud.map((item) => (
-                                <li key={item}>{item}</li>
-                            ))}
-                        </ul>
-                        <Button size="lg" asChild className="h-11 shrink-0 px-6 text-base active:scale-[0.98]">
-                            <a href={links.app}>Join the waiting list</a>
-                        </Button>
+                    <div>
+                        <p className="flex flex-wrap items-baseline gap-3">
+                            <span className="font-mono text-6xl font-bold leading-none tracking-[-0.03em]">{euros(price)}</span>
+                            <span className="text-muted-foreground">
+                                excl. VAT per {yearly ? 'year' : 'month'}, for {seats} {seatWord}
+                            </span>
+                        </p>
+                        <p className="mt-2.5 text-sm text-muted-foreground">
+                            {yearly
+                                ? `That is ${euros(yearlyPrice(seats) / 12)} a month: ${YEARLY_MONTHS_CHARGED} months charged for twelve.`
+                                : `Switch to yearly and pay ${euros(yearlyPrice(seats))} for twelve months.`}
+                        </p>
                     </div>
-                </div>
 
-                <div className="flex flex-col rounded-lg border border-border bg-card p-6 sm:p-8">
-                    <h3 className="text-xl font-semibold tracking-tight">Self-hosted</h3>
-                    <p className="mt-8 flex items-baseline gap-2">
-                        <span className="font-heading text-5xl font-semibold tracking-tight">€0</span>
-                        <span className="text-muted-foreground">forever</span>
+                    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl bg-secondary px-4 py-3.5">
+                        <span id="seat-label" className="text-[15px] font-medium">
+                            How many people work in your company's account?
+                        </span>
+                        <div role="group" aria-labelledby="seat-label" className="flex items-center gap-1.5">
+                            <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.max(1, current - 1))} disabled={seats <= 1} aria-label="Remove a seat" className="size-11 rounded-lg">
+                                <Minus />
+                            </Button>
+                            <output aria-live="polite" className="min-w-11 text-center font-mono text-xl font-bold">
+                                {seats}
+                            </output>
+                            <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.min(MAX_SEATS, current + 1))} disabled={seats >= MAX_SEATS} aria-label="Add a seat" className="size-11 rounded-lg">
+                                <Plus />
+                            </Button>
+                        </div>
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        First seat €{FIRST_SEAT}, seats 2 to 4 €{NEXT_THREE_SEATS} each, every seat after that €{FURTHER_SEATS}. Per month, in
+                        euros, excluding VAT.
                     </p>
-                    <ul className="mt-8 space-y-2.5 text-sm">
-                        {selfHosted.map((item) => (
-                            <li key={item}>{item}</li>
+
+                    <ul className="grid gap-x-5 gap-y-2.5 text-[15px] sm:grid-cols-2">
+                        {cloud.map((item) => (
+                            <li key={item} className="flex items-center gap-2.5">
+                                <Check aria-hidden="true" className="size-4 shrink-0 text-[oklch(0.55_0.12_230)] dark:text-primary" strokeWidth={3} />
+                                {item}
+                            </li>
                         ))}
                     </ul>
-                    <div className="mt-auto pt-8">
-                        <Button size="lg" variant="outline" asChild className="h-11 w-full px-6 text-base active:scale-[0.98]">
-                            <a href={links.selfHost}>Read the install guide</a>
-                        </Button>
-                    </div>
+                    <Button asChild className="mt-auto h-12 self-start rounded-[10px] px-6 text-base active:scale-[0.98]">
+                        <a href={links.app}>Join the waiting list</a>
+                    </Button>
+                </div>
+
+                <div className="flex flex-col gap-6 rounded-2xl bg-ink p-6 text-[oklch(0.95_0.006_230)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06),0_18px_36px_rgb(10_40_60/0.16)] sm:p-8">
+                    <h3 className="text-2xl font-semibold">Self-hosted</h3>
+                    <p className="flex items-baseline gap-3">
+                        <span className="font-mono text-6xl font-bold leading-none tracking-[-0.03em]">€0</span>
+                        <span className="text-[oklch(0.68_0.02_230)]">forever</span>
+                    </p>
+                    <ul className="space-y-3 text-[15px]">
+                        {selfHosted.map((item) => (
+                            <li key={item} className="flex items-center gap-2.5">
+                                <Check aria-hidden="true" className="size-4 shrink-0 text-azure-light" strokeWidth={3} />
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                    <Button variant="desk" asChild className="mt-auto h-12 self-start rounded-[10px] px-6 text-base active:scale-[0.98]">
+                        <a href={links.selfHost}>Read the install guide</a>
+                    </Button>
                 </div>
             </div>
 
