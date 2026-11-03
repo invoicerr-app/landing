@@ -72,12 +72,12 @@ const copy: HomeCopy = {
     countries: {
         eyebrow: 'Países',
         title: 'Las normas de facturación de cinco países, integradas',
-        lead: 'Elige desde dónde factura tu empresa. Los identificadores, los tipos de IVA, el formato de factura electrónica y la forma de hacerla llegar a la administración tributaria se ajustan en consecuencia, cada uno vinculado al texto legal del que procede.',
+        lead: 'Elige desde dónde factura tu empresa. Los identificadores, los tipos de IVA, el formato de factura electrónica y la forma de hacerla llegar a la administración tributaria se ajustan solos, cada uno vinculado al texto legal del que procede.',
         matrix: 'Matriz de compatibilidad por país',
         tablist: 'País',
         shipping: 'Hoy se incluyen cinco países. Uno nuevo añade sus archivos de datos con la misma estructura y la app los lee.',
         platformsTitle: 'Ya conectado a las plataformas autorizadas de Francia',
-        platformsBody: 'Cuatro plataformas autorizadas y Chorus Pro en Francia, el SdI en Italia y KSeF en Polonia. El canal se elige en la configuración de tu empresa.',
+        platformsBody: 'Cuatro plataformas autorizadas y Chorus Pro en Francia, el SdI en Italia y KSeF en Polonia. Eliges el canal en la configuración de tu empresa.',
         platformsNote: 'Invoicerr es un software de facturación, no una plataforma autorizada: genera la factura y la plataforma la entrega.',
         sheetTitle: 'Configuración de la empresa',
         sheetAsks: 'Lo que la app pide a una empresa en {country}',
@@ -125,25 +125,25 @@ const copy: HomeCopy = {
     },
     bento: {
         eyebrow: 'Alrededor de la factura',
-        title: 'También el trabajo alrededor de la factura',
+        title: 'Y todo lo que rodea a la factura',
         tryDemo: 'Prueba la demo en vivo',
         readDocs: 'Lee la documentación',
         readGuide: 'Lee la guía',
         features: {
             clearance: {
                 title: 'Pasa el control de la administración tributaria',
-                body: 'Donde un país tiene una plataforma nacional, Invoicerr envía la factura a través de ella y sigue la respuesta. El canal de cada país se elige una sola vez, en la configuración de la empresa.',
+                body: 'Donde un país tiene una plataforma nacional, Invoicerr envía la factura a través de ella y recoge la respuesta. Eliges el canal de cada país una sola vez, en la configuración de la empresa.',
             },
             time: {
                 title: 'Las horas se convierten en líneas de factura',
-                body: 'Registra el tiempo por proyecto, facturable o no. A final de mes, las horas pendientes de facturar se convierten en una factura en un solo paso.',
+                body: 'Registra el tiempo por proyecto, facturable o no. A final de mes, conviertes las horas sin facturar en una factura en un solo paso.',
             },
             portal: {
                 title: 'Tus clientes tienen su propio portal',
-                body: 'Sus documentos, su saldo, los PDF, el pago en línea y la aceptación de presupuestos. Se acabaron las peticiones de extractos por correo.',
+                body: 'Sus documentos, su saldo, los PDF, el pago en línea y la aceptación de presupuestos. Tus clientes dejan de pedirte extractos por correo.',
             },
             ocr: {
-                title: 'Facturas de proveedor, leídas automáticamente',
+                title: 'Facturas de proveedor que se leen solas',
                 body: 'Suelta una factura recibida. El OCR autoalojado la convierte en una propuesta editable que apruebas o rechazas.',
             },
             api: {
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: 'Precios',
         title: 'La nube se paga por usuario; autoalojarlo es gratis',
-        lead: 'El precio de la nube es por empresa y baja con cada usuario. Autoalojarlo no cuesta nada y no tiene ninguna limitación.',
+        lead: 'El precio de la nube es por empresa y baja con cada usuario. Autoalojarlo es gratis y tiene todas las funciones.',
         cloud: 'Nube',
         period: 'Periodo de facturación',
         monthly: 'Mensual',
@@ -191,19 +191,19 @@ const copy: HomeCopy = {
         bands: { first: 'Primer usuario', next: 'Usuarios 2 a 4', further: 'Desde el usuario 5' },
         totalMonth: 'Al mes, sin IVA',
         totalYear: '× {charged} meses, {free} gratis',
-        cloudItems: ['Abre en noviembre de 2026', 'Alojado y actualizado por nosotros', 'Todas las funciones de la app', 'Prueba de {days} días al abrir, sin límites salvo el envío', 'Exportación de tus datos si te vas'],
+        cloudItems: ['Abre en noviembre de 2026', 'Alojado y actualizado por nosotros', 'Todas las funciones de la app', 'Prueba de {days} días al abrir, todo salvo el envío', 'Exportación de tus datos si te vas'],
         selfHosted: 'Autoalojado',
         forever: 'para siempre',
         selfItems: ['Todas las funciones de la app', 'Usuarios y empresas ilimitados', 'Imagen Docker y chart de Helm', 'AGPL-3.0, soporte de la comunidad'],
-        footnote: 'Precios en euros sin IVA. La facturación anual cobra {charged} meses por doce. Más allá del precio, la diferencia real es quién lo gestiona: la nube funciona en nuestra infraestructura; la versión autoalojada, en la tuya.',
+        footnote: 'Precios en euros sin IVA. Con el plan anual pagas {charged} meses de doce. Aparte del precio, lo que cambia es quién lo gestiona: la nube funciona en nuestra infraestructura; la versión autoalojada, en la tuya.',
     },
     faq: {
         eyebrow: 'Preguntas frecuentes',
         title: 'Respuestas a tus preguntas',
         items: [
             {
-                question: '¿La versión autoalojada es realmente gratis?',
-                answer: 'Sí. Es la misma app, con todas las funciones y sin límite de usuarios, publicada bajo la licencia AGPL-3.0, que también permite ofrecerla como servicio de pago a terceros, siempre que pongas a disposición de tus propios usuarios el código fuente correspondiente.',
+                question: '¿De verdad es gratis la versión autoalojada?',
+                answer: 'Sí. Es la misma app, con todas las funciones y sin límite de usuarios, bajo licencia AGPL-3.0. La licencia también te permite ofrecerla como servicio de pago a terceros, siempre que pongas a disposición de tus usuarios el código fuente correspondiente.',
             },
             {
                 question: '¿Qué podré hacer durante la prueba de la nube?',
@@ -211,7 +211,7 @@ const copy: HomeCopy = {
             },
             {
                 question: '¿Cómo funciona el precio por usuario?',
-                answer: 'Pagas por empresa, en euros y sin IVA. El primer usuario cuesta 15 € al mes, los usuarios 2 a 4 cuestan 4 € cada uno y cada usuario a partir de ahí, 3 €. Pagar por año cuesta diez meses en lugar de doce.',
+                answer: 'Pagas por empresa, en euros y sin IVA. El primer usuario cuesta 15 € al mes, los usuarios 2 a 4 cuestan 4 € cada uno y cada usuario a partir de ahí, 3 €. Si pagas por año, son diez meses en vez de doce.',
             },
             {
                 question: '¿Qué pasa con mis datos si dejo de pagar?',

@@ -71,7 +71,7 @@ const copy: HomeCopy = {
     },
     countries: {
         eyebrow: 'Länder',
-        title: 'Die Rechnungsregeln von fünf Ländern, schon eingebaut',
+        title: 'Die Rechnungsregeln von fünf Ländern sind eingebaut',
         lead: 'Wählen Sie, von wo aus Ihr Unternehmen abrechnet. Kennungen, Steuersätze, E-Rechnungsformat und der Weg zur Steuerbehörde ergeben sich daraus, jeweils verknüpft mit dem Gesetzestext, aus dem sie stammen.',
         matrix: 'Länderübersicht',
         tablist: 'Land',
@@ -89,13 +89,13 @@ const copy: HomeCopy = {
         vatRates: 'USt.-Sätze für eine neue Position',
         archive: 'Gesetzliche Aufbewahrung',
         years: { one: '{n} Jahr', other: '{n} Jahre' },
-        keptFor: 'Aufbewahrt und gehasht, so lange {source} es verlangt.',
+        keptFor: 'Aufbewahrt und gehasht, solange {source} es verlangt.',
         email: 'E-Mail',
         hints: { siren: '9 oder 14 Ziffern', ustid: 'DE + 9 Ziffern' },
         channels: {
             FR: 'Zugelassene Plattform, seit September 2026 Pflicht: SUPER PDP, Iopole, Billit oder Invopop. Chorus Pro für öffentliche Auftraggeber.',
             DE: 'PDF mit eingebettetem E-Rechnungs-XML.',
-            IT: 'Nationale Freigabe (Clearance), erreicht per zertifizierter E-Mail (PEC).',
+            IT: 'Nationale Freigabe (Clearance) über zertifizierte E-Mail (PEC).',
             PL: 'Nationale Freigabe: Die Steuerbehörde vergibt die Rechnungsnummer.',
             PT: 'PDF mit eingebettetem E-Rechnungs-XML.',
         },
@@ -103,7 +103,7 @@ const copy: HomeCopy = {
     flow: {
         eyebrow: 'Der Ablauf',
         title: 'Vom ersten Angebot bis zum Geld auf dem Konto',
-        lead: 'Eine Dokument-Engine für Angebote, Rechnungen, Gutschriften, Bestellungen und Ausgaben. Nichts wird zwischen ihnen neu abgetippt.',
+        lead: 'Eine Dokument-Engine für Angebote, Rechnungen, Gutschriften, Bestellungen und Ausgaben. Nichts muss doppelt abgetippt werden.',
         steps: {
             quote: { tab: 'Angebot', title: 'Anbieten', body: 'Senden Sie ein Angebot, das Ihr Kunde online mit einem Einmalcode unterschreibt. Fordern Sie eine Anzahlung an oder teilen Sie den Betrag in Raten auf.' },
             invoice: { tab: 'Rechnung', title: 'Abrechnen', body: 'Machen Sie aus dem unterschriebenen Angebot mit einem Klick eine Rechnung. Die Positionen kommen aus Ihrem Katalog, die Steuersätze aus Ihrem Land.' },
@@ -140,15 +140,15 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: 'Ein eigenes Portal für Ihre Kunden',
-                body: 'Ihre Dokumente, ihr Saldo, PDFs, Online-Zahlung und Entscheidungen über Angebote. Keine Anfragen nach dem Kontostand per E-Mail mehr.',
+                body: 'Ihre Dokumente, ihr Saldo, PDFs, Online-Zahlung und Entscheidungen über Angebote. Ihre Kunden fragen nicht mehr per E-Mail nach ihrem Kontostand.',
             },
             ocr: {
-                title: 'Eingangsrechnungen, für Sie gelesen',
+                title: 'Eingangsrechnungen per OCR erfasst',
                 body: 'Legen Sie eine erhaltene Rechnung ab. Selbst gehostetes OCR macht daraus einen bearbeitbaren Vorschlag, den Sie freigeben oder ablehnen.',
             },
             api: {
-                title: 'Ein MCP-Server und eine API, pro Schlüssel berechtigt',
-                body: 'Ein integrierter MCP-Server, eine REST-API und 18 Webhook-Ereignisse, alle über API-Schlüssel berechtigt: Der Assistent ruft dieselben Werkzeuge auf wie ein Benutzer, über einen einzigen Schlüssel.',
+                title: 'MCP-Server und API mit Rechten pro Schlüssel',
+                body: 'Ein integrierter MCP-Server, eine REST-API und 18 Webhook-Ereignisse, alle mit Rechten pro API-Schlüssel: Der Assistent ruft mit einem einzigen Schlüssel dieselben Werkzeuge auf wie ein Benutzer.',
             },
             languages: {
                 title: 'Spricht Ihre Sprache und die Ihrer Kunden',
@@ -164,7 +164,7 @@ const copy: HomeCopy = {
         facts: [
             { title: 'Ein Image, zwei Architekturen.', body: 'Gebaut für amd64 und arm64. Läuft auf einem VPS, einem NAS oder einem 64-Bit-Raspberry Pi (ab Modell 3).' },
             { title: 'Ein Helm-Chart, wenn ein Host nicht reicht.', body: 'Getrennte API- und Worker-Rollen, Ihr eigenes PostgreSQL und Redis, Ihr eigener Ingress.' },
-            { title: 'Alle Funktionen, keine Nutzerbegrenzung.', body: 'Die selbst gehostete App ist die vollständige App. Die Abo-Abrechnung bleibt abgeschaltet.' },
+            { title: 'Alle Funktionen, beliebig viele Nutzer.', body: 'Die selbst gehostete App ist die vollständige App. Die Abo-Abrechnung bleibt abgeschaltet.' },
         ],
         installGuide: 'Zur Installationsanleitung',
         source: 'Quellcode ansehen',
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: 'Preise',
         title: 'Die Cloud kostet pro Nutzer, Selbsthosten ist kostenlos',
-        lead: 'Die Cloud wird pro Unternehmen berechnet und wird mit jedem weiteren Nutzer günstiger. Selbsthosten kostet nichts und lässt nichts weg.',
+        lead: 'Die Cloud wird pro Unternehmen abgerechnet und mit jedem weiteren Nutzer günstiger. Selbsthosten kostet nichts und hat alle Funktionen.',
         cloud: 'Cloud',
         period: 'Abrechnungszeitraum',
         monthly: 'Monatlich',
@@ -191,7 +191,7 @@ const copy: HomeCopy = {
         bands: { first: 'Erster Nutzer', next: 'Nutzer 2 bis 4', further: 'Ab Nutzer 5' },
         totalMonth: 'Pro Monat, zzgl. USt.',
         totalYear: '× {charged} Monate, {free} gratis',
-        cloudItems: ['Start im November 2026', 'Von uns gehostet und aktualisiert', 'Alle Funktionen der App', '{days} Tage Testphase ab dem Start, ohne Einschränkung außer beim Versand', 'Export Ihrer Daten, wenn Sie gehen'],
+        cloudItems: ['Start im November 2026', 'Von uns gehostet und aktualisiert', 'Alle Funktionen der App', '{days} Tage Testphase ab dem Start, alles außer dem Versand', 'Export Ihrer Daten, wenn Sie gehen'],
         selfHosted: 'Selbst gehostet',
         forever: 'für immer',
         selfItems: ['Alle Funktionen der App', 'Unbegrenzt viele Nutzer und Unternehmen', 'Docker-Image und Helm-Chart', 'AGPL-3.0, Community-Support'],
@@ -230,7 +230,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: 'An: Ihren nächsten Kunden',
         title: 'Senden Sie Ihre nächste Rechnung mit Invoicerr',
-        lead: 'Unsere Cloud startet im November 2026, die Warteliste ist schon offen. Oder ziehen Sie das Image und lassen Sie Invoicerr noch heute Abend auf Ihrem eigenen Server laufen.',
+        lead: 'Unsere Cloud startet im November 2026, die Warteliste ist schon offen. Oder laden Sie das Image und lassen Sie Invoicerr noch heute Abend auf Ihrem eigenen Server laufen.',
         installGuide: 'Zur Installationsanleitung',
     },
     footer: {
