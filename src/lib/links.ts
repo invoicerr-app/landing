@@ -33,3 +33,14 @@ export const links = {
  * come back exactly where they were. Nothing else gates them.
  */
 export const hostedLoginOpen = false
+
+/**
+ * Where "Join the waiting list" goes from a page in `lang`. The waiting list is written in six
+ * languages (src/waitlist/languages.ts): a reader of one of them goes straight to their version, the
+ * others to my.invoicerr.app, which picks one from Accept-Language.
+ */
+const WAITLIST_LANGUAGES = new Set(['fr', 'de', 'it', 'pl', 'pt'])
+
+export function waitlistHref(lang: string): string {
+    return WAITLIST_LANGUAGES.has(lang) ? `${links.app}/waitlist/${lang}/` : links.app
+}

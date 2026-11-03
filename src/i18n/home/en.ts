@@ -1,0 +1,280 @@
+// The home page's copy in English, the source every other language is translated from. The shape
+// of this object is the contract: every language file in this folder has exactly these keys.
+//
+// Conventions, for whoever translates it:
+//   - `{name}` is a value the page fills in (a number, a price, a date). Keep it, move it freely.
+//   - `{link}…{/link}` wraps the words that become a link, `{strong}…{/strong}` the words set in
+//     bold. Keep the markers around the right words.
+//   - A plural is an object keyed by the CLDR plural categories of the language (`one`, `few`,
+//     `many`, `other`…), with `{n}` for the number. `other` is always required.
+//   - `\n` in a sticky note is a line break in the handwriting.
+//   - Names stay as they are: Invoicerr, Factur-X, PDP, SdI, KSeF, Docker, AGPL-3.0, the legal
+//     references (C. com. art. L123-22) and the local identifiers (SIREN, USt-IdNr.).
+import type { Plural } from './format'
+
+export const en = {
+    meta: {
+        title: 'Invoicerr: Open-source invoicing software, self-hosted or cloud',
+        description:
+            'Quotes, invoices, payments and e-invoicing to the tax office in one open-source app. Self-host it free with Docker, or join the cloud waiting list.',
+    },
+    language: {
+        label: 'Language',
+        /** Shown to a reader whose browser prefers this language, on a page in another one. */
+        suggestion: 'This page is also in English',
+        switchTo: 'Read in English',
+        dismiss: 'Dismiss',
+    },
+    header: {
+        home: 'Invoicerr home',
+        nav: { product: 'Product', countries: 'Countries', hosting: 'Self-hosting', pricing: 'Pricing', docs: 'Docs' },
+        main: 'Main',
+        mobile: 'Mobile',
+        onGitHub: 'Invoicerr on GitHub',
+        onLinkedIn: 'Invoicerr on LinkedIn',
+        onDiscord: 'Invoicerr on Discord',
+        logIn: 'Log in',
+        joinWaitlist: 'Join the waiting list',
+        openMenu: 'Open menu',
+        closeMenu: 'Close menu',
+        skipToContent: 'Skip to content',
+        theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
+    },
+    hero: {
+        badge: 'Cloud opens November 2026',
+        badgeStatus: 'Waiting list open',
+        /** Shown in English on every page (the product's line, like its name); the translations are kept in case that changes. */
+        title: 'The invoicing app that keeps up with you',
+        lead: 'Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it yourself today, or join the waiting list for our cloud, which opens in November 2026.',
+        tryDemo: 'Try the live demo',
+        selfHostLine: 'Or {link}self-host it free{/link} with Docker',
+        stickyNote: 'Factur-X ok!\nsend via PDP\nbefore Friday',
+    },
+    invoice: {
+        label: 'A sample invoice, paid: three lines, {total} including VAT, validated as Factur-X, sent through an approved platform and archived for ten years.',
+        kind: 'Invoice',
+        issued: 'Issued {issued}, due {due}',
+        description: 'Description',
+        quantity: 'Qty',
+        amount: 'Amount',
+        lines: { identity: 'Brand identity, phase 2', review: 'Website copy review', hosting: 'Hosting, {month}' },
+        hours: '{n} h',
+        subtotal: 'Total excl. VAT',
+        vat: 'VAT {rate}',
+        total: 'Total',
+        validated: 'Factur-X validated',
+        sent: 'Sent through PDP',
+        archived: 'Archived 10 years, C. com. art. L123-22',
+        paid: 'Paid',
+    },
+    phone: {
+        now: 'now',
+        minutesAgo: '{n} min',
+        paidTitle: '{invoice} paid',
+        paidBody: '{amount} matched to the bank statement',
+        signedTitle: 'Quote {quote} signed',
+        signedBody: 'Deposit of 30% requested',
+    },
+    proof: {
+        label: 'Project facts',
+        stub: 'Open source',
+        stubText: 'Built in the open, with its community',
+        stars: 'stars on GitHub',
+        contributors: 'contributors, plus translators',
+        catalogs: 'language catalogs',
+        license: 'open-source license',
+    },
+    countries: {
+        eyebrow: 'Countries',
+        title: "Five countries' invoicing rules, built in",
+        lead: 'Pick where your company bills from. The identifiers, the VAT rates, the e-invoice format and the way it reaches the tax office all follow, each one tied to the legal text it comes from.',
+        matrix: 'Country support matrix',
+        tablist: 'Country',
+        shipping: 'Five countries ship today. A new one adds its data files in the same shape, and the app reads them.',
+        platformsTitle: "Already connected to France's approved platforms",
+        platformsBody: 'Four approved platforms and Chorus Pro in France, the SdI in Italy and KSeF in Poland. You choose the channel in your company settings.',
+        platformsNote: 'Invoicerr is invoicing software, not an approved platform itself: it builds the invoice, the platform delivers it.',
+        sheetTitle: 'Company settings',
+        sheetAsks: 'What the app asks a company in {country}',
+        identifierRequired: 'Identifier, required',
+        identifier: 'Identifier',
+        format: 'E-invoice format',
+        formatDetail: 'Generated next to the PDF, validated before it leaves.',
+        sentThrough: 'Sent through',
+        vatRates: 'VAT rates on a new line',
+        archive: 'Legal archive',
+        years: { one: '{n} year', other: '{n} years' } as Plural,
+        keptFor: 'Kept and hashed for as long as {source} asks.',
+        email: 'E-mail',
+        // Per country, the lines that are not names or legal references.
+        hints: { siren: '9 or 14 digits', ustid: 'DE + 9 digits' },
+        channels: {
+            FR: 'Approved platform, mandatory since September 2026: SUPER PDP, Iopole, Billit or Invopop. Chorus Pro for public buyers.',
+            DE: 'PDF with the e-invoice XML attached.',
+            IT: 'National clearance, reached by certified e-mail (PEC).',
+            PL: 'National clearance: the tax office returns the invoice number.',
+            PT: 'PDF with the e-invoice XML attached.',
+        },
+    },
+    flow: {
+        eyebrow: 'The flow',
+        title: 'From first quote to money in the bank',
+        lead: 'One document engine runs quotes, invoices, credit notes, purchase orders and expenses. Nothing gets retyped between them.',
+        steps: {
+            quote: { tab: 'Quote', title: 'Quote it', body: 'Send a quote your client signs online with a one-time code. Ask for a deposit or split it into instalments.' },
+            invoice: { tab: 'Invoice', title: 'Invoice it', body: 'Turn the signed quote into an invoice in one click. Lines come from your catalogue, VAT rates from your country.' },
+            paid: { tab: 'Paid', title: 'Get paid', body: 'Import a bank statement. Invoicerr matches each line by reference and amount, then records the payment for you.' },
+            archived: { tab: 'Archived', title: 'Keep the record', body: 'Every sent invoice lands in a hashed legal archive, kept for exactly as long as your country asks.' },
+        },
+        sheets: {
+            quote: 'Quote',
+            invoice: 'Invoice',
+            identity: 'Identity',
+            review: 'Review',
+            hosting: 'Hosting',
+            statement: 'Bank statement',
+            matched: 'Matched by reference and amount',
+            archive: 'Legal archive',
+            keptUntil: 'kept until {date}',
+            sealed: 'sealed',
+        },
+    },
+    bento: {
+        eyebrow: 'Around the invoice',
+        title: 'The work around the invoice, handled too',
+        tryDemo: 'Try the live demo',
+        readDocs: 'Read the docs',
+        readGuide: 'Read the guide',
+        features: {
+            clearance: {
+                title: 'It clears the tax office',
+                body: 'Where a country runs a national platform, Invoicerr sends the invoice through it and tracks the answer. The channel per country is picked once, in the company settings.',
+            },
+            time: {
+                title: 'Hours turn into invoice lines',
+                body: 'Track time per project, billable or not. When the month ends, the unbilled hours become an invoice in one step.',
+            },
+            portal: {
+                title: 'Clients get their own portal',
+                body: 'Their documents, their balance, PDFs, online payment and quote decisions. Clients stop asking for statements by e-mail.',
+            },
+            ocr: {
+                title: 'Supplier invoices, read for you',
+                body: 'Drop a received invoice. Self-hosted OCR reads it into an editable proposal that you approve or reject.',
+            },
+            api: {
+                title: 'An MCP server and an API, scoped by key',
+                body: 'A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key.',
+            },
+            languages: {
+                title: "Speaks your language, and your client's",
+                body: '19 language catalogs, a document language per recipient, and multi-currency with rate history.',
+            },
+        },
+    },
+    hosting: {
+        badge: 'Self-hosted',
+        badgeStatus: 'Free',
+        title: 'Self-host it today, free under AGPL-3.0',
+        lead: 'Invoicerr started as a self-hosted project and still is one. Run it with Docker on your own machine, free, forever. Or let us run it for you and skip the upkeep.',
+        facts: [
+            { title: 'One image, two architectures.', body: 'Built for amd64 and arm64. It runs on a VPS, a NAS or a 64-bit Raspberry Pi (3 and newer).' },
+            { title: 'A Helm chart when one host is not enough.', body: 'Separate API and worker roles, your own PostgreSQL and Redis, your own ingress.' },
+            { title: 'Every feature, any number of seats.', body: 'The self-hosted app is the whole app. Billing code stays switched off.' },
+        ],
+        installGuide: 'Read the install guide',
+        source: 'View the source',
+        terminal: 'terminal',
+        copyLabel: 'Copy the image name',
+        copy: 'Copy image',
+        copied: 'Copied',
+        stickyNote: 'runs on my\nRaspberry Pi :)',
+    },
+    pricing: {
+        eyebrow: 'Pricing',
+        title: 'The cloud prices per seat, self-hosting is free',
+        lead: 'Cloud pricing is per company and gets cheaper with every seat. Self-hosting is free and has every feature.',
+        cloud: 'Cloud',
+        period: 'Billing period',
+        monthly: 'Monthly',
+        yearly: 'Yearly',
+        perMonth: 'per month',
+        local: 'Approximate price, converted from euros at today\'s {source} rate',
+        sources: { stripe: 'Stripe', ecb: 'European Central Bank' },
+        seatQuestion: "How many people work in your company's account?",
+        removeSeat: 'Remove a seat',
+        addSeat: 'Add a seat',
+        bands: { first: 'First seat', next: 'Seats 2 to 4', further: 'From seat 5' },
+        totalMonth: 'Per month, excl. VAT',
+        totalYear: '× {charged} months, {free} free',
+        cloudItems: ['Opens in November 2026', 'Hosted and updated by us', 'Every feature of the app', '{days}-day trial when it opens, everything but sending', 'Your data exported if you leave'],
+        selfHosted: 'Self-hosted',
+        forever: 'forever',
+        selfItems: ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support'],
+        footnote: 'Prices in euros excluding VAT. Yearly billing charges {charged} months for twelve. Past the prices, the difference is who runs it: the cloud runs on our infrastructure, self-hosting runs on yours.',
+    },
+    faq: {
+        eyebrow: 'FAQ',
+        title: 'Questions, answered',
+        items: [
+            {
+                question: 'Is the self-hosted version really free?',
+                answer: 'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license, which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
+            },
+            {
+                question: 'What will I be able to do during the cloud trial?',
+                answer: 'The cloud opens in November 2026, and the trial opens with it. Everything except sending documents: for 14 days you will be able to set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
+            },
+            {
+                question: 'How does seat pricing work?',
+                answer: 'You pay per company, in euros excluding VAT. The first seat is €15 a month, seats 2 to 4 are €4 each, and every seat after that is €3. Paying yearly costs ten months instead of twelve.',
+            },
+            {
+                question: 'What happens to my data if I stop paying?',
+                answer: 'The company becomes read-only for 14 days. After that, the owner receives a zip with a PDF and a JSON export of every document before anything is deleted.',
+            },
+            {
+                question: 'Which countries are supported?',
+                answer: 'Germany, France, Italy, Poland and Portugal ship with their rules filled in: identifiers, VAT rates, e-invoice formats, transmission channels and archive retention. The {link}country support matrix{/link} shows exactly what each one covers.',
+            },
+            {
+                question: 'What do I need to self-host it?',
+                answer: "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide runs all three now: an app, a PostgreSQL 15 and a Redis service, and it asks for POSTGRES_PASSWORD and BETTER_AUTH_SECRET in a .env file next to it. For larger setups there is a Helm chart.",
+            },
+        ],
+    },
+    finalCta: {
+        to: 'To: your next client',
+        title: 'Send your next invoice from Invoicerr',
+        lead: 'Our cloud opens in November 2026 and the waiting list is open now. Or pull the image and have Invoicerr running on your own server tonight.',
+        installGuide: 'Read the install guide',
+    },
+    footer: {
+        tagline: 'Open-source invoicing, in the cloud or on your own server.',
+        columns: { product: 'Product', guides: 'E-invoicing guides', selfHosting: 'Self-hosting', developers: 'Developers', legal: 'Legal' },
+        items: {
+            logIn: 'Log in',
+            pricing: 'Pricing',
+            countries: 'Countries',
+            platforms: 'Platforms',
+            changelog: 'Changelog',
+            docker: 'Docker install',
+            kubernetes: 'Kubernetes',
+            source: 'Source code',
+            sponsor: 'Sponsor',
+            license: 'License',
+            docs: 'Documentation',
+            api: 'API reference',
+            weblate: 'Translate on Weblate',
+            terms: 'Terms of Service',
+            privacy: 'Privacy Policy',
+            dpa: 'Data Processing Agreement',
+            notice: 'Legal Notice',
+            cookies: 'Cookies & Acceptable Use',
+            sitemap: 'Sitemap',
+        },
+        copyright: '© {year} Invoicerr. Released under AGPL-3.0.',
+    },
+}
+
+export type HomeCopy = typeof en

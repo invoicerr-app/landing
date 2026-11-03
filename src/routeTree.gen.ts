@@ -9,11 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as KsefRouteImport } from './routes/ksef'
 import { Route as FaturacaoEletronicaRouteImport } from './routes/faturacao-eletronica'
 import { Route as FatturazioneElettronicaRouteImport } from './routes/fatturazione-elettronica'
 import { Route as FacturationElectroniqueRouteImport } from './routes/facturation-electronique'
 import { Route as ERechnungRouteImport } from './routes/e-rechnung'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WaitlistIndexRouteImport } from './routes/waitlist.index'
 import { Route as WaitlistPtRouteImport } from './routes/waitlist.pt'
@@ -28,6 +30,11 @@ import { Route as ERechnungXrechnungRouteImport } from './routes/e-rechnung_.xre
 import { Route as EInvoicingPeppolRouteImport } from './routes/e-invoicing.peppol'
 import { Route as EInvoicingEn16931RouteImport } from './routes/e-invoicing.en-16931'
 
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KsefRoute = KsefRouteImport.update({
   id: '/ksef',
   path: '/ksef',
@@ -51,6 +58,11 @@ const FacturationElectroniqueRoute = FacturationElectroniqueRouteImport.update({
 const ERechnungRoute = ERechnungRouteImport.update({
   id: '/e-rechnung',
   path: '/e-rechnung',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -123,11 +135,13 @@ const EInvoicingEn16931Route = EInvoicingEn16931RouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
@@ -143,11 +157,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
@@ -164,11 +180,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/e-rechnung': typeof ERechnungRoute
   '/facturation-electronique': typeof FacturationElectroniqueRoute
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung_/xrechnung': typeof ERechnungXrechnungRoute
@@ -186,11 +204,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$lang'
     | '/e-rechnung'
     | '/facturation-electronique'
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung/xrechnung'
@@ -206,11 +226,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$lang'
     | '/e-rechnung'
     | '/facturation-electronique'
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung/xrechnung'
@@ -226,11 +248,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$lang'
     | '/e-rechnung'
     | '/facturation-electronique'
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung_/xrechnung'
@@ -247,11 +271,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRoute
   ERechnungRoute: typeof ERechnungRoute
   FacturationElectroniqueRoute: typeof FacturationElectroniqueRoute
   FatturazioneElettronicaRoute: typeof FatturazioneElettronicaRoute
   FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
   KsefRoute: typeof KsefRoute
+  SitemapRoute: typeof SitemapRoute
   EInvoicingEn16931Route: typeof EInvoicingEn16931Route
   EInvoicingPeppolRoute: typeof EInvoicingPeppolRoute
   ERechnungXrechnungRoute: typeof ERechnungXrechnungRoute
@@ -268,6 +294,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ksef': {
       id: '/ksef'
       path: '/ksef'
@@ -301,6 +334,13 @@ declare module '@tanstack/react-router' {
       path: '/e-rechnung'
       fullPath: '/e-rechnung'
       preLoaderRoute: typeof ERechnungRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -399,11 +439,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRoute,
   ERechnungRoute: ERechnungRoute,
   FacturationElectroniqueRoute: FacturationElectroniqueRoute,
   FatturazioneElettronicaRoute: FatturazioneElettronicaRoute,
   FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
   KsefRoute: KsefRoute,
+  SitemapRoute: SitemapRoute,
   EInvoicingEn16931Route: EInvoicingEn16931Route,
   EInvoicingPeppolRoute: EInvoicingPeppolRoute,
   ERechnungXrechnungRoute: ERechnungXrechnungRoute,

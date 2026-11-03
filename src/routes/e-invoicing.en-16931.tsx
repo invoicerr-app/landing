@@ -14,7 +14,7 @@ function En16931Route() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
-            <main>
+            <main id="main" tabIndex={-1}>
                 <En16931Guide />
                 <GuideLinks current="/e-invoicing/en-16931" />
             </main>

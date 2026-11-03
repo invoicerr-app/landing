@@ -14,7 +14,7 @@ function EInvoicingMandatesEuRoute() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
-            <main>
+            <main id="main" tabIndex={-1}>
                 <EInvoicingMandatesEu />
                 <GuideLinks current="/europe/e-invoicing-mandates" />
             </main>

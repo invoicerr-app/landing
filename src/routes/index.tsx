@@ -1,59 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { MotionConfig } from 'motion/react'
 
-import { Tear } from '@/components/desk/tear'
-import Footer from '@/components/footer'
-import Header from '@/components/header'
-import { Bento } from '@/components/sections/bento'
-import { Countries } from '@/components/sections/countries'
-import { Faq } from '@/components/sections/faq'
-import { FinalCta } from '@/components/sections/final-cta'
-import { Flow } from '@/components/sections/flow'
-import { Hero } from '@/components/sections/hero'
-import { Hosting } from '@/components/sections/hosting'
-import { Pricing } from '@/components/sections/pricing'
-import { Proof } from '@/components/sections/proof'
+import { HomePage } from '@/components/home/home-page'
+import { ENGLISH } from '@/i18n/home/context'
 
+// English, the home page's own language and its x-default. The other fourteen are /$lang.
 export const Route = createFileRoute('/')({
-  component: Index,
+    component: () => <HomePage locale={ENGLISH} />,
 })
-
-// The home page is a desk seen from above: the hero is laid on it, the sections below are one long
-// sheet of paper on top of it (punched along its top edge), and the footer is the desk again. The
-// approved platforms, which had a section of their own, now sit in the countries section, under the
-// same #platforms anchor.
-function Index() {
-  return (
-    <MotionConfig reducedMotion="user">
-      <Header overDesk />
-      <main>
-        <Hero />
-        {/* The sheet: perforated along its top edge, where it lies on the hero's desk, and along its
-            bottom edge, where the footer's desk runs under it. */}
-        <div className="relative z-[7] -mt-16">
-          <div aria-hidden="true" className="sheet-edge-shadow">
-            <div className="sheet-edge-top" />
-          </div>
-          <div className="bg-background">
-          <Proof />
-          <Countries />
-          <Tear />
-          <Flow />
-          <Tear />
-          <Bento />
-          <Hosting />
-          <Pricing />
-          <Tear />
-          <Faq />
-          </div>
-          <div aria-hidden="true" className="sheet-edge-shadow-bottom">
-            <div className="sheet-edge-bottom" />
-          </div>
-        </div>
-      </main>
-      <Footer variant="desk">
-        <FinalCta />
-      </Footer>
-    </MotionConfig>
-  )
-}

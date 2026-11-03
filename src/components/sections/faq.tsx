@@ -3,54 +3,31 @@ import { motion } from 'motion/react'
 import { useState } from 'react'
 
 import { Eyebrow } from '@/components/desk/tear'
+import { useHome } from '@/i18n/home/context'
+import { rich } from '@/i18n/home/format'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
-const questions = [
-    {
-        question: 'Is the self-hosted version really free?',
-        answer:
-            'Yes. It is the same app with every feature and no seat limit, released under the AGPL-3.0 license, which also covers running it as a paid service for other people, as long as you offer your own users the corresponding source.',
-    },
-    {
-        question: 'What will I be able to do during the cloud trial?',
-        answer: 'The cloud opens in November 2026, and the trial opens with it. Everything except sending documents: for 14 days you will be able to set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
-    },
-    {
-        question: 'How does seat pricing work?',
-        answer: 'You pay per company, in euros excluding VAT. The first seat is €15 a month, seats 2 to 4 are €4 each, and every seat after that is €3. Paying yearly costs ten months instead of twelve.',
-    },
-    {
-        question: 'What happens to my data if I stop paying?',
-        answer: 'The company becomes read-only for 14 days. After that, the owner receives a zip with a PDF and a JSON export of every document before anything is deleted.',
-    },
-    {
-        question: 'Which countries are supported?',
-        answer: (
-            <>
-                Germany, France, Italy, Poland and Portugal ship with their rules filled in: identifiers, VAT rates, e-invoice formats,
-                transmission channels and archive retention. The{' '}
-                <a href={links.countries} className="underline underline-offset-4">
-                    country support matrix
-                </a>{' '}
-                shows exactly what each one covers.
-            </>
-        ),
-    },
-    {
-        question: 'What do I need to self-host it?',
-        answer: "Docker, PostgreSQL and Redis. The app won't boot without all three. The compose file in the install guide runs all three now: an app, a PostgreSQL 15 and a Redis service, and it asks for POSTGRES_PASSWORD and BETTER_AUTH_SECRET in a .env file next to it. For larger setups there is a Helm chart.",
-    },
-]
-
 export function Faq() {
+    const { copy } = useHome()
+    const t = copy.faq
     const [open, setOpen] = useState<number | null>(0)
+    const questions = t.items.map((item) => ({
+        question: item.question,
+        answer: rich(item.answer, {
+            link: (text) => (
+                <a href={links.countries} className="underline underline-offset-4">
+                    {text}
+                </a>
+            ),
+        }),
+    }))
 
     return (
         <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-28 pt-24 lg:grid-cols-[1fr_2fr] lg:gap-16">
             <div>
-                <Eyebrow number="05">FAQ</Eyebrow>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Questions, answered.</h2>
+                <Eyebrow number="05">{t.eyebrow}</Eyebrow>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{t.title}</h2>
             </div>
             <div className="divide-y divide-border border-y border-border">
                 {questions.map((item, index) => {
@@ -64,7 +41,7 @@ export function Faq() {
                                     aria-expanded={expanded}
                                     aria-controls={`faq-${index}`}
                                     onClick={() => setOpen(expanded ? null : index)}
-                                    className="flex w-full items-center justify-between gap-6 py-5 text-left font-sans text-base font-medium"
+                                    className="flex w-full items-center justify-between gap-6 py-5 text-start font-sans text-base font-medium"
                                 >
                                     {item.question}
                                     <Plus className={cn('size-4 shrink-0 text-muted-foreground transition-transform duration-300', expanded && 'rotate-45')} />
@@ -79,6 +56,8 @@ export function Faq() {
                                 id={`faq-${index}`}
                                 role="region"
                                 aria-labelledby={`faq-question-${index}`}
+                                // Collapsed answers stay in the markup for crawlers, out of the tab order.
+                                inert={!expanded}
                                 initial={false}
                                 animate={{ height: expanded ? 'auto' : 0 }}
                                 transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}

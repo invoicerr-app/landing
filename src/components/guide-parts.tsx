@@ -61,17 +61,27 @@ export function A({ href, children, lang }: { href: string; children: React.Reac
     )
 }
 
-export function Table({ head, rows, minWidth = 560 }: { head: React.ReactNode[]; rows: React.ReactNode[][]; minWidth?: number }) {
+/**
+ * A data table: the first row is the column headers, the first cell of each row its row header.
+ * `caption` names the table for screen readers (RGAA 5.4); it is visually hidden, since the heading
+ * just above already says it on screen. An empty corner cell stays a plain cell, not an empty header.
+ */
+export function Table({ head, rows, minWidth = 560, caption }: { head: React.ReactNode[]; rows: React.ReactNode[][]; minWidth?: number; caption?: string }) {
     return (
         <div className="overflow-x-auto rounded-2xl border border-border">
-            <table className="w-full border-collapse text-left text-sm" style={{ minWidth }}>
+            <table className="w-full border-collapse text-start text-sm" style={{ minWidth }}>
+                {caption && <caption className="sr-only">{caption}</caption>}
                 <thead>
                     <tr className="border-b border-border bg-muted/50">
-                        {head.map((cell, index) => (
-                            <th key={index} scope="col" className="px-4 py-3 font-medium text-foreground sm:px-6">
-                                {cell}
-                            </th>
-                        ))}
+                        {head.map((cell, index) =>
+                            cell === '' || cell === null || cell === undefined ? (
+                                <td key={index} className="px-4 py-3 sm:px-6" />
+                            ) : (
+                                <th key={index} scope="col" className="px-4 py-3 text-start font-medium text-foreground sm:px-6">
+                                    {cell}
+                                </th>
+                            ),
+                        )}
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
@@ -79,7 +89,7 @@ export function Table({ head, rows, minWidth = 560 }: { head: React.ReactNode[];
                         <tr key={rowIndex}>
                             {row.map((cell, cellIndex) =>
                                 cellIndex === 0 ? (
-                                    <th key={cellIndex} scope="row" className="px-4 py-4 align-top font-medium text-foreground sm:px-6">
+                                    <th key={cellIndex} scope="row" className="px-4 py-4 text-start align-top font-medium text-foreground sm:px-6">
                                         {cell}
                                     </th>
                                 ) : (

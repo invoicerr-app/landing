@@ -27,7 +27,9 @@ import {
     type Language,
 } from '../src/waitlist/languages'
 
-export interface Env {
+import { priceContext, type PriceEnv } from './price'
+
+export interface Env extends PriceEnv {
     /** The landing's own dist/, uploaded alongside this Worker. */
     ASSETS: Fetcher
     /** One key per address: `entry:<lowercased e-mail>`, plus the rate counters: `rate:<window>:<ip>`. */
@@ -111,8 +113,21 @@ interface Entry {
 }
 
 export default {
-    async fetch(request: Request, env: Env): Promise<Response> {
+    async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
         const url = new URL(request.url)
+
+        // The pricing section's indicative conversion, read by the landing on invoicerr.app. A GET
+        // with no custom header is a simple request, so it needs no preflight.
+        if (url.pathname === '/api/price') {
+            if (request.method !== 'GET') return json({ ok: false, error: 'method_not_allowed' }, 405, corsHeaders(request))
+            const cors = corsHeaders(request)
+            const payload = await priceContext(request, env, ctx)
+            // Per visitor (it depends on their country), so private; an hour is short next to the
+            // six hours the rate itself is cached for.
+            return new Response(JSON.stringify(payload), {
+                headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'private, max-age=3600', ...cors },
+            })
+        }
 
         if (url.pathname === '/api/waitlist') {
             if (request.method === 'OPTIONS') return preflight(request)

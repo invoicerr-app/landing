@@ -260,6 +260,14 @@ In descending order of expected return:
   their own scripts, which makes the browser fetch the Cyrillic, Greek and extended-Latin subsets of
   Inter — about 130 kB of fonts that a purely Latin page would never request. It is a real cost for
   a real piece of content; noted, not a recommendation to remove it.
+- **Home page languages.** The home page exists in fifteen languages: `/` in English and `/<code>/`
+  for fr, de, es, it, pt (Portugal), nl, pl, ru, tr, ar (right to left), hi, zh (Simplified), ja
+  and ko. The copy lives in `src/i18n/home/<code>.ts`, one file per language with the shape of
+  `en.ts`; each page is prerendered with its own title, description, `<html lang>` and the full
+  hreflang set (x-default is `/`), and listed in `public/sitemap.xml`. Nobody is redirected: a
+  reader whose browser prefers another of the fifteen sees a dismissible note offering it. Chinese,
+  Japanese, Korean, Arabic and Hindi are set in the reader's system fonts, since the brand faces
+  have no glyphs for those scripts.
 
 ---
 

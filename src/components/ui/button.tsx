@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -24,7 +24,7 @@ const buttonVariants = cva(
         desk:
           "bg-[oklch(0.76_0.136_230)] text-[oklch(0.16_0.024_230)] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_8px_20px_rgb(0_30_50/0.35)] hover:bg-[oklch(0.8_0.12_230)]",
         glass:
-          "bg-white/10 text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.22)] hover:bg-white/20 hover:text-white",
+          "bg-white/10 text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.22)] hover:bg-[rgb(10_30_42/0.35)] hover:text-white",
         ink: "bg-ink text-white hover:bg-[#1d3442]",
       },
       size: {

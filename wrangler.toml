@@ -73,6 +73,11 @@ WAITLIST_MAIL_ENDPOINT = "https://api.resend.com/emails"
 # RESEND_API_KEY is a secret, never a var and never in this file:
 #   echo -n "<key>" | npx wrangler secret put RESEND_API_KEY
 # The deploy workflow does the same from the repository secret of the same name.
+#
+# STRIPE_SECRET_KEY is optional, and a secret too. Without it, /api/price converts the cloud's euro
+# prices at the European Central Bank's daily reference rate. With it, at Stripe's own rate (FX
+# Quotes API, worker/price.ts). A restricted key that can only create FX quotes is enough:
+#   echo -n "<rk_live_...>" | npx wrangler secret put STRIPE_SECRET_KEY
 
 [observability]
 enabled = true
