@@ -210,7 +210,7 @@ export const en = {
         selfHosted: 'Self-hosted',
         forever: 'forever',
         selfItems: ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support'],
-        footnote: 'Prices in euros excluding VAT. Yearly billing charges {charged} months for twelve. Past the prices, the real difference is who runs it: the cloud runs on our infrastructure, self-hosting runs on yours.',
+        footnote: 'Prices in euros excluding VAT. Yearly billing charges {charged} months for twelve. Past the prices, the difference is who runs it: the cloud runs on our infrastructure, self-hosting runs on yours.',
     },
     faq: {
         eyebrow: 'FAQ',
