@@ -23,7 +23,7 @@ export function WaitlistPage({ language }: { language: Language }) {
     return (
         <>
             <Header />
-            <main lang={language}>
+            <main id="main" tabIndex={-1} lang={language}>
                 <section className="mx-auto max-w-3xl px-5 pb-4 pt-28 sm:pt-36">
                     <p className="enter font-mono text-xs uppercase tracking-[0.2em] text-[oklch(0.45_0.11_230)] dark:text-primary">{copy.eyebrow}</p>
                     <h1 className="enter mt-4 text-balance text-4xl font-semibold tracking-tight [animation-delay:90ms] sm:text-5xl">
@@ -47,6 +47,7 @@ export function WaitlistPage({ language }: { language: Language }) {
                                 <a
                                     href={pageUrl(code)}
                                     hrefLang={code}
+                                    lang={code}
                                     className="underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-primary"
                                 >
                                     {WAITLIST_COPY[code].nativeName}

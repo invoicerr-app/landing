@@ -18,7 +18,7 @@ function KsefRoute() {
         <HomeLocaleProvider value={Route.useLoaderData()}>
             <MotionConfig reducedMotion="user">
                 <Header />
-                <main lang="pl">
+                <main id="main" tabIndex={-1} lang="pl">
                     <KsefGuidePl />
                     <GuideLinks current="/ksef" />
                 </main>

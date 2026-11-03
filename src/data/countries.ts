@@ -4,6 +4,8 @@
 export interface CountryFacts {
     code: 'FR' | 'DE' | 'IT' | 'PL' | 'PT'
     name: string
+    /** The language of the identifiers' names (N° TVA intracommunautaire, USt-IdNr.), for lang="". */
+    lang: 'fr' | 'de' | 'it' | 'pl' | 'pt'
     identifiers: { label: string; required?: boolean; hint?: 'siren' | 'ustid' }[]
     vatRates: number[]
     format?: string
@@ -14,6 +16,7 @@ export interface CountryFacts {
 export const countries: CountryFacts[] = [
     {
         code: 'FR',
+        lang: 'fr',
         name: 'France',
         identifiers: [
             { label: 'SIREN / SIRET', required: true, hint: 'siren' },
@@ -26,6 +29,7 @@ export const countries: CountryFacts[] = [
     },
     {
         code: 'DE',
+        lang: 'de',
         name: 'Germany',
         identifiers: [{ label: 'USt-IdNr.', hint: 'ustid' }, { label: 'Handelsregisternummer' }],
         vatRates: [19, 7, 0],
@@ -35,6 +39,7 @@ export const countries: CountryFacts[] = [
     },
     {
         code: 'IT',
+        lang: 'it',
         name: 'Italy',
         identifiers: [{ label: 'Partita IVA' }, { label: 'Codice Fiscale' }, { label: 'Codice Destinatario (SdI)' }],
         vatRates: [22, 10, 5, 4, 0],
@@ -43,6 +48,7 @@ export const countries: CountryFacts[] = [
     },
     {
         code: 'PL',
+        lang: 'pl',
         name: 'Poland',
         identifiers: [{ label: 'NIP' }],
         vatRates: [23, 8, 5, 0],
@@ -52,6 +58,7 @@ export const countries: CountryFacts[] = [
     },
     {
         code: 'PT',
+        lang: 'pt',
         name: 'Portugal',
         identifiers: [{ label: 'NIF / NIPC', required: true }, { label: 'NIF para efeitos de IVA' }],
         vatRates: [23, 13, 6, 0],

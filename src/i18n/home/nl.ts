@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: "Aanmelden voor de wachtlijst",
         openMenu: "Menu openen",
         closeMenu: "Menu sluiten",
+        skipToContent: 'Naar de inhoud',
         theme: { light: "Overschakelen naar licht thema", dark: "Overschakelen naar donker thema" },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: "Verwerkersovereenkomst",
             notice: "Juridische informatie",
             cookies: "Cookies en aanvaardbaar gebruik",
+            sitemap: 'Sitemap',
         },
         copyright: "© {year} Invoicerr. Uitgebracht onder AGPL-3.0.",
     },

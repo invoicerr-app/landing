@@ -18,7 +18,7 @@ function PlateformeAgreeeRoute() {
         <HomeLocaleProvider value={Route.useLoaderData()}>
             <MotionConfig reducedMotion="user">
                 <Header />
-                <main lang="fr">
+                <main id="main" tabIndex={-1} lang="fr">
                     <PlateformeAgreeeGuideFr />
                     <GuideLinks current="/facturation-electronique/plateforme-agreee" />
                 </main>

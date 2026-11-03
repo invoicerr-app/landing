@@ -14,7 +14,7 @@ function VidaRoute() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
-            <main>
+            <main id="main" tabIndex={-1}>
                 <VidaGuide />
                 <GuideLinks current="/europe/vida" />
             </main>

@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: 'Zapisz się na listę oczekujących',
         openMenu: 'Otwórz menu',
         closeMenu: 'Zamknij menu',
+        skipToContent: 'Przejdź do treści',
         theme: { light: 'Przełącz na jasny motyw', dark: 'Przełącz na ciemny motyw' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: 'Umowa powierzenia przetwarzania danych',
             notice: 'Nota prawna',
             cookies: 'Cookies i zasady korzystania',
+            sitemap: 'Mapa strony',
         },
         copyright: '© {year} Invoicerr. Udostępniany na licencji AGPL-3.0.',
     },

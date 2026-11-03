@@ -19,11 +19,12 @@ function fieldsFor(country: CountryFacts, t: HomeCopy['countries']) {
         ...country.identifiers.map((identifier) => ({
             label: identifier.required ? t.identifierRequired : t.identifier,
             value: identifier.label,
+            lang: country.lang,
             detail: identifier.hint && t.hints[identifier.hint],
             key: identifier.label,
         })),
-        country.format && { label: t.format, value: country.format, detail: t.formatDetail, key: 'format' },
-        { label: t.sentThrough, value: country.channel.name === 'E-mail' ? t.email : country.channel.name, detail: t.channels[country.code], key: 'channel' },
+        country.format && { label: t.format, value: country.format, lang: undefined, detail: t.formatDetail, key: 'format' },
+        { label: t.sentThrough, value: country.channel.name === 'E-mail' ? t.email : country.channel.name, lang: undefined, detail: t.channels[country.code], key: 'channel' },
     ].filter((field) => !!field)
 }
 
@@ -43,10 +44,22 @@ const platformNames = platformGroups.filter((group) => group.id !== 'email').fla
 const label = 'font-mono text-xs text-[oklch(0.47_0.02_230)]'
 
 export function Countries() {
-    const { copy, locale } = useHome()
+    const { copy, locale, dir } = useHome()
     const t = copy.countries
     const [code, setCode] = useState(countries[0].code)
     const percent = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 })
+    // The ARIA tabs pattern: one tab in the Tab order, the arrows move between them (mirrored in a
+    // right-to-left page), Home and End go to the ends; moving selects.
+    const tabKeys = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+        const last = countries.length - 1
+        const forward = dir === 'rtl' ? 'ArrowLeft' : 'ArrowRight'
+        const back = dir === 'rtl' ? 'ArrowRight' : 'ArrowLeft'
+        const next = event.key === forward ? (index + 1) % countries.length : event.key === back ? (index + last) % countries.length : event.key === 'Home' ? 0 : event.key === 'End' ? last : null
+        if (next === null) return
+        event.preventDefault()
+        setCode(countries[next].code)
+        document.getElementById(`country-tab-${countries[next].code}`)?.focus()
+    }
 
     return (
         <section id="countries" className="mx-auto max-w-6xl px-5 pb-24 pt-6">
@@ -66,7 +79,7 @@ export function Countries() {
             <div className="mt-12 grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
                 <div className="flex flex-col gap-6">
                     <div role="tablist" aria-label={t.tablist} className="flex flex-wrap gap-2">
-                        {countries.map((entry) => {
+                        {countries.map((entry, index) => {
                             const active = entry.code === code
                             return (
                                 <button
@@ -76,6 +89,8 @@ export function Countries() {
                                     type="button"
                                     aria-selected={active}
                                     aria-controls={`country-panel-${entry.code}`}
+                                    tabIndex={active ? 0 : -1}
+                                    onKeyDown={(event) => tabKeys(event, index)}
                                     onClick={() => setCode(entry.code)}
                                     className={cn(
                                         'h-11 rounded-lg border px-4 text-[15px] font-medium transition-colors',
@@ -109,6 +124,7 @@ export function Countries() {
                                 href="/facturation-electronique/plateforme-agreee/"
                                 lang="fr"
                                 hrefLang="fr"
+                                dir="ltr"
                                 className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary"
                             >
                                 Choisir sa plateforme agréée
@@ -127,30 +143,35 @@ export function Countries() {
                             key={country.code}
                             id={`country-panel-${country.code}`}
                             role="tabpanel"
+                            tabIndex={0}
                             aria-labelledby={`country-tab-${country.code}`}
                             hidden={country.code !== code}
                         >
                             <div className="panel-swap rounded bg-paper px-6 pb-6 pt-7 text-ink shadow-[0_2px_4px_rgb(3_30_45/0.2)] sm:px-7">
                                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[oklch(0.89_0.01_230)] pb-4">
-                                    <p className="font-heading text-[19px] font-semibold">{t.sheetTitle}</p>
+                                    <h3 className="font-heading text-[19px] font-semibold">{t.sheetTitle}</h3>
                                     <p className="text-sm text-[oklch(0.47_0.02_230)]">{fmt(t.sheetAsks, { country: countryName(country.code, locale) })}</p>
                                 </div>
                                 <dl className="grid sm:grid-cols-2">
                                     {fieldsFor(country, t).map((field) => (
                                         <div key={field.key} className="border-b border-dashed border-[oklch(0.89_0.01_230)] py-4 sm:odd:pe-4 sm:even:ps-4">
                                             <dt className={label}>{field.label}</dt>
-                                            <dd className="mt-2 font-semibold">{field.value}</dd>
+                                            <dd lang={field.lang} dir="ltr" className="mt-2 font-semibold">
+                                                {field.value}
+                                            </dd>
                                             {field.detail && <dd className="mt-1 text-[13px] leading-snug text-[oklch(0.47_0.02_230)]">{field.detail}</dd>}
                                         </div>
                                     ))}
                                     <div className="border-b border-dashed border-[oklch(0.89_0.01_230)] py-4 sm:odd:pe-4 sm:even:ps-4">
                                         <dt className={label}>{t.vatRates}</dt>
-                                        <dd className="mt-2.5 flex flex-wrap gap-1.5">
+                                        <dd className="mt-2.5">
+                                            <ul className="flex flex-wrap gap-1.5">
                                             {country.vatRates.map((rate) => (
-                                                <span key={rate} className="rounded-md bg-[oklch(0.91_0.03_230)] px-2 py-1.5 font-mono text-[13px] leading-none text-[oklch(0.28_0.05_230)]">
+                                                <li key={rate} className="rounded-md bg-[oklch(0.91_0.03_230)] px-2 py-1.5 font-mono text-[13px] leading-none text-[oklch(0.28_0.05_230)]">
                                                     {percent.format(rate / 100)}
-                                                </span>
+                                                </li>
                                             ))}
+                                            </ul>
                                         </dd>
                                     </div>
                                 </dl>

@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: 'ウェイティングリストに登録',
         openMenu: 'メニューを開く',
         closeMenu: 'メニューを閉じる',
+        skipToContent: '本文へ移動',
         theme: { light: 'ライトテーマに切り替え', dark: 'ダークテーマに切り替え' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: 'データ処理契約',
             notice: '法的表示',
             cookies: 'Cookieと利用規定',
+            sitemap: 'サイトマップ',
         },
         copyright: '© {year} Invoicerr. AGPL-3.0で公開。',
     },

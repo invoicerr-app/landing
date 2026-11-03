@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: 'Auf die Warteliste',
         openMenu: 'Menü öffnen',
         closeMenu: 'Menü schließen',
+        skipToContent: 'Zum Inhalt springen',
         theme: { light: 'Zum hellen Design wechseln', dark: 'Zum dunklen Design wechseln' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: 'Auftragsverarbeitungsvertrag',
             notice: 'Impressum',
             cookies: 'Cookies und zulässige Nutzung',
+            sitemap: 'Sitemap',
         },
         copyright: '© {year} Invoicerr. Veröffentlicht unter AGPL-3.0.',
     },

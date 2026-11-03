@@ -110,7 +110,7 @@ const en: WaitlistCopy = {
         submitting: 'Sending',
     },
     errors: {
-        email: 'Enter a valid e-mail address.',
+        email: 'Enter a full e-mail address, such as name@company.com.',
         country: 'Choose a country.',
         companySize: 'Choose a company size.',
         network: 'The list could not be reached. Try again in a moment.',
@@ -190,7 +190,7 @@ const fr: WaitlistCopy = {
         submitting: 'Envoi',
     },
     errors: {
-        email: 'Saisissez une adresse e-mail valide.',
+        email: 'Saisissez une adresse e-mail complète, par exemple nom@entreprise.fr.',
         country: 'Choisissez un pays.',
         companySize: "Choisissez une taille d'entreprise.",
         network: "La liste n'a pas pu être jointe. Réessayez dans un instant.",
@@ -270,7 +270,7 @@ const de: WaitlistCopy = {
         submitting: 'Wird gesendet',
     },
     errors: {
-        email: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+        email: 'Geben Sie eine vollständige E-Mail-Adresse ein, zum Beispiel name@firma.de.',
         country: 'Wählen Sie ein Land aus.',
         companySize: 'Wählen Sie eine Unternehmensgröße aus.',
         network: 'Die Liste war nicht erreichbar. Versuchen Sie es gleich noch einmal.',
@@ -350,7 +350,7 @@ const it: WaitlistCopy = {
         submitting: 'Invio in corso',
     },
     errors: {
-        email: 'Inserisci un indirizzo e-mail valido.',
+        email: 'Inserisci un indirizzo e-mail completo, ad esempio nome@azienda.it.',
         country: 'Scegli un paese.',
         companySize: "Scegli una dimensione dell'azienda.",
         network: 'Non è stato possibile raggiungere la lista. Riprova tra un istante.',
@@ -430,7 +430,7 @@ const pl: WaitlistCopy = {
         submitting: 'Wysyłanie',
     },
     errors: {
-        email: 'Podaj poprawny adres e-mail.',
+        email: 'Podaj pełny adres e-mail, na przykład imie@firma.pl.',
         country: 'Wybierz kraj.',
         companySize: 'Wybierz wielkość firmy.',
         network: 'Nie udało się połączyć z listą. Spróbuj ponownie za chwilę.',
@@ -510,7 +510,7 @@ const pt: WaitlistCopy = {
         submitting: 'A enviar',
     },
     errors: {
-        email: 'Introduza um endereço de e-mail válido.',
+        email: 'Introduza um endereço de e-mail completo, por exemplo nome@empresa.pt.',
         country: 'Escolha um país.',
         companySize: 'Escolha uma dimensão de empresa.',
         network: 'Não foi possível contactar a lista. Tente novamente daqui a pouco.',

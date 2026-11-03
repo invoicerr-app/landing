@@ -24,11 +24,12 @@ function footerColumns(t: HomeCopy['footer'], home: string): { title: string; it
                 { label: t.items.countries, href: `${home}#countries` },
                 { label: t.items.platforms, href: `${home}#platforms` },
                 { label: t.items.changelog, href: links.changelog },
+                { label: t.items.sitemap, href: '/sitemap/' },
             ],
         },
         {
             title: t.columns.guides,
-            items: guides.map((page) => ({ label: page.label, href: `${page.path}/`, lang: page.lang === 'en' ? undefined : page.lang })),
+            items: guides.map((page) => ({ label: page.label, href: `${page.path}/`, lang: page.lang })),
         },
         {
             title: t.columns.selfHosting,
@@ -77,7 +78,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
     // The home page's footer (the desk variant) links to its own sections; elsewhere, to the home page's.
     const columns = footerColumns(t, desk ? '' : homePath(lang))
     return (
-        <footer className={cn('relative', desk ? 'desk -mt-[18px] overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
+        <footer lang={LANGUAGE_INFO[lang].tag} dir={LANGUAGE_INFO[lang].dir} className={cn('relative', desk ? 'desk -mt-[18px] overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
             {desk && (
                 <>
                     <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.18)] blur-[60px]" />
@@ -95,9 +96,11 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                         {t.tagline}
                     </p>
                 </div>
-                {columns.map((column) => (
-                    <nav key={column.title} aria-label={column.title}>
-                        <p className={cn('text-sm font-medium', desk && 'text-azure-pale')}>{column.title}</p>
+                {columns.map((column, index) => (
+                    <nav key={column.title} aria-labelledby={`footer-column-${index}`}>
+                        <h2 id={`footer-column-${index}`} className={cn('font-sans text-sm font-medium', desk && 'text-azure-pale')}>
+                            {column.title}
+                        </h2>
                         <ul className={cn('mt-4 space-y-2.5 text-sm', desk ? 'text-white/80' : 'text-muted-foreground')}>
                             {column.items.map((item) => (
                                 <li key={item.label}>
@@ -105,6 +108,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                                         href={item.href}
                                         lang={item.lang}
                                         hrefLang={item.lang}
+                                        dir={item.lang ? 'ltr' : undefined}
                                         className={cn('transition-colors', desk ? 'hover:text-white' : 'hover:text-foreground')}
                                     >
                                         {item.label}
@@ -127,6 +131,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                                     href={homePath(code)}
                                     lang={LANGUAGE_INFO[code].tag}
                                     hrefLang={LANGUAGE_INFO[code].tag}
+                                    dir={LANGUAGE_INFO[code].dir}
                                     aria-current={code === lang ? 'page' : undefined}
                                     className={cn(
                                         'transition-colors',

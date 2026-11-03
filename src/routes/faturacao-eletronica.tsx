@@ -18,7 +18,7 @@ function FaturacaoEletronicaRoute() {
         <HomeLocaleProvider value={Route.useLoaderData()}>
             <MotionConfig reducedMotion="user">
                 <Header />
-                <main lang="pt">
+                <main id="main" tabIndex={-1} lang="pt">
                     <EInvoicingGuidePt />
                     <GuideLinks current="/faturacao-eletronica" />
                 </main>

@@ -273,15 +273,15 @@ export function EInvoicingGuideFr() {
                         <ul className="ml-1 list-disc space-y-2 pl-5 marker:text-muted-foreground/50">
                             <li>
                                 Six ans à compter de la date de la facture, pour les besoins du contrôle fiscal
-                                (Livre des procédures fiscales, art. L102 B) : les documents « doivent être
+                                (Livre des procédures fiscales, art. L102 B) : les documents <q>doivent être
                                 conservés pendant un délai de six ans à compter de la date de la dernière
                                 opération mentionnée sur les livres ou registres ou de la date à laquelle les
-                                documents ou pièces ont été établis. »
+                                documents ou pièces ont été établis.</q>
                             </li>
                             <li>
-                                Dix ans pour les documents comptables (Code de commerce, art. L123-22) : « Les
+                                Dix ans pour les documents comptables (Code de commerce, art. L123-22) : <q>Les
                                 documents comptables et les pièces justificatives sont conservés pendant dix
-                                ans. »
+                                ans.</q>
                             </li>
                         </ul>
                         <p>

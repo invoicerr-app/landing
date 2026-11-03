@@ -69,10 +69,13 @@ export function Hosting() {
                                 <span aria-hidden="true" className="size-3 rounded-full bg-[oklch(0.32_0.045_230)]" />
                                 <span aria-hidden="true" className="size-3 rounded-full bg-[oklch(0.32_0.045_230)]" />
                                 <span className="ms-2.5 font-mono text-[13px] text-[oklch(0.68_0.02_230)]">{t.terminal}</span>
-                                <Button variant="glass" size="sm" onClick={copy} aria-label={t.copyLabel} className="ms-auto h-8 rounded-md px-2.5 text-xs">
+                                <Button variant="glass" size="sm" onClick={copy} className="ms-auto h-8 rounded-md px-2.5 text-xs">
                                     {copied ? <Check /> : <Copy />}
                                     {copied ? t.copied : t.copy}
                                 </Button>
+                                <span role="status" className="sr-only">
+                                    {copied ? t.copied : ''}
+                                </span>
                             </div>
                             <div dir="ltr" className="space-y-1 px-6 py-6 font-mono text-sm leading-[1.9] text-[oklch(0.95_0.006_230)]">
                                 {/* One line wherever it fits; on a phone it breaks after a slash, never inside a word. */}

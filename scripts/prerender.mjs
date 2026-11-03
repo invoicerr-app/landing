@@ -264,6 +264,17 @@ try {
         ...homePages,
         ...contentPages,
         ...waitlistPages,
+        {
+            url: '/sitemap',
+            outDir: path.join(root, 'dist', 'sitemap'),
+            llms: false,
+            head: {
+                title: 'Sitemap: every page of invoicerr.app',
+                description: 'Every page of invoicerr.app: the home page in fifteen languages, the e-invoicing guides and the waiting list.',
+                canonical: `${SITE}/sitemap/`,
+                jsonLd: { '@context': 'https://schema.org', '@graph': [organization, website, { '@type': 'WebPage', '@id': `${SITE}/sitemap/#webpage`, url: `${SITE}/sitemap/`, name: 'Sitemap', inLanguage: 'en', isPartOf: { '@id': `${SITE}/#website` } }] },
+            },
+        },
     ]
 
     // Measured in a browser on 2026-09-23, not assumed: with the modern default referrer policy

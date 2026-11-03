@@ -3,6 +3,7 @@ import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useState } from 'react'
 
 import { useHome } from '@/i18n/home/context'
+import { LANGUAGE_INFO } from '@/i18n/home/languages'
 import { hostedLoginOpen, links, waitlistHref } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
@@ -42,34 +43,45 @@ export default function Header({ overDesk = false }: HeaderProps) {
 
     return (
         <header
+            lang={LANGUAGE_INFO[lang].tag}
+            dir={LANGUAGE_INFO[lang].dir}
+            // The mobile menu closes on Escape and when focus leaves the header, so it never covers
+            // the element the keyboard moves to.
+            onKeyDown={(event) => {
+                if (event.key === 'Escape') setOpen(false)
+            }}
+            onBlur={(event) => {
+                if (open && !event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false)
+            }}
             className={cn(
                 'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
                 scrolled || open ? 'border-border bg-background/80 backdrop-blur-xl' : 'border-transparent',
                 onDesk && 'text-white',
             )}
         >
+            {/* First stop of every page: straight to the content, past the header's links (RGAA 12.7). */}
+            <a
+                href="#main"
+                className="sr-only rounded-md bg-background px-4 py-2 text-sm font-medium text-foreground shadow-md focus:not-sr-only focus:absolute focus:start-4 focus:top-3 focus:z-[60]"
+            >
+                {t.skipToContent}
+            </a>
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5">
                 <a href={home} className="flex items-center gap-2.5 rounded-md" aria-label={t.home}>
                     <BrandMark className={cn('h-6', onDesk && '[&_path.fill-primary]:fill-azure-light')} />
                     <span className="font-heading text-lg font-semibold tracking-tight">Invoicerr</span>
                 </a>
 
-                <nav className="hidden items-center gap-1 md:flex" aria-label={t.main}>
-                    {sections.map((section) => (
-                        <a
-                            key={section.href}
-                            href={section.href}
-                            className={cn('rounded-md px-3 py-2 text-sm transition-colors', quiet)}
-                        >
-                            {section.label}
-                        </a>
-                    ))}
-                    <a
-                        href={links.docs}
-                        className={cn('rounded-md px-3 py-2 text-sm transition-colors', quiet)}
-                    >
-                        {t.nav.docs}
-                    </a>
+                <nav className="hidden lg:block" aria-label={t.main}>
+                    <ul className="flex items-center gap-1">
+                        {[...sections, { label: t.nav.docs, href: links.docs }].map((section) => (
+                            <li key={section.href}>
+                                <a href={section.href} className={cn('block rounded-md px-3 py-2 text-sm transition-colors', quiet)}>
+                                    {section.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </nav>
 
                 <div className="flex items-center gap-1.5">
@@ -100,7 +112,7 @@ export default function Header({ overDesk = false }: HeaderProps) {
                     <Button
                         variant="ghost"
                         size="icon"
-                        className={cn('md:hidden', onDesk && quiet)}
+                        className={cn('lg:hidden', onDesk && quiet)}
                         onClick={() => setOpen((current) => !current)}
                         aria-expanded={open}
                         aria-controls="mobile-nav"
@@ -118,8 +130,9 @@ export default function Header({ overDesk = false }: HeaderProps) {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="flex flex-col gap-1 border-t border-border px-5 py-4 md:hidden"
+                    className="flex flex-col gap-1 border-t border-border px-5 py-4 lg:hidden"
                 >
+                    <ul className="flex flex-col gap-1">
                     {[
                         ...sections,
                         { label: t.nav.docs, href: links.docs },
@@ -127,10 +140,13 @@ export default function Header({ overDesk = false }: HeaderProps) {
                         { label: 'LinkedIn', href: links.linkedin },
                         { label: 'Discord', href: links.discord },
                     ].map((item) => (
-                        <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-md px-2 py-2.5 text-base">
-                            {item.label}
-                        </a>
+                        <li key={item.href}>
+                            <a href={item.href} onClick={() => setOpen(false)} className="block rounded-md px-2 py-2.5 text-base">
+                                {item.label}
+                            </a>
+                        </li>
                     ))}
+                    </ul>
                     <div className={cn('mt-3 grid gap-2', hostedLoginOpen && 'grid-cols-2')}>
                         {hostedLoginOpen && (
                             <Button variant="outline" asChild>

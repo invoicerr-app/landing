@@ -56,6 +56,8 @@ export function Faq() {
                                 id={`faq-${index}`}
                                 role="region"
                                 aria-labelledby={`faq-question-${index}`}
+                                // Collapsed answers stay in the markup for crawlers, out of the tab order.
+                                inert={!expanded}
                                 initial={false}
                                 animate={{ height: expanded ? 'auto' : 0 }}
                                 transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}

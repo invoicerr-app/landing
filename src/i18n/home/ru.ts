@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: 'Записаться в лист ожидания',
         openMenu: 'Открыть меню',
         closeMenu: 'Закрыть меню',
+        skipToContent: 'Перейти к содержимому',
         theme: { light: 'Включить светлую тему', dark: 'Включить тёмную тему' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: 'Соглашение об обработке данных',
             notice: 'Юридическое уведомление',
             cookies: 'Cookies и правила использования',
+            sitemap: 'Карта сайта',
         },
         copyright: '© {year} Invoicerr. Распространяется под лицензией AGPL-3.0.',
     },

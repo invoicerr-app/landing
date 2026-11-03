@@ -1,5 +1,5 @@
 import { ArrowRight, CircleCheck, Loader2 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -32,16 +32,26 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
     // The Worker's 429. Kept apart from `failed` because it is not a fault the visitor can fix by
     // trying again straight away, and the message it shows says so.
     const [rateLimited, setRateLimited] = useState(false)
+    // Where focus goes once the form is answered: the field to fix, or the confirmation, so a
+    // keyboard or screen reader user is never left on a button that disappeared or went inert.
+    const emailField = useRef<HTMLInputElement>(null)
+    const countryField = useRef<HTMLSelectElement>(null)
+    const sizeField = useRef<HTMLSelectElement>(null)
+    const success = useRef<HTMLHeadingElement>(null)
+    const focusField = (field: Exclude<FieldError, null>) => ({ email: emailField, country: countryField, companySize: sizeField })[field].current?.focus()
 
     async function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setFailed(false)
         setRateLimited(false)
 
-        if (!EMAIL.test(email.trim())) return setFieldError('email')
-        if (!country) return setFieldError('country')
-        if (!companySize) return setFieldError('companySize')
-        setFieldError(null)
+        if (status === 'sending') return
+        const invalid: FieldError = !EMAIL.test(email.trim()) ? 'email' : !country ? 'country' : !companySize ? 'companySize' : null
+        setFieldError(invalid)
+        if (invalid) {
+            focusField(invalid)
+            return
+        }
 
         setStatus('sending')
         try {
@@ -67,6 +77,7 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                 const body = (await response.json().catch(() => null)) as { field?: string } | null
                 if (body?.field === 'email' || body?.field === 'country' || body?.field === 'companySize') {
                     setFieldError(body.field)
+                    focusField(body.field)
                 } else {
                     setFailed(true)
                 }
@@ -80,17 +91,33 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
         }
     }
 
+    useEffect(() => {
+        if (status === 'sent') success.current?.focus()
+    }, [status])
+
+    // One live region, mounted from the start, says what the form is doing: "Sending…", then the
+    // confirmation. A region that appears with its text already in it is not reliably announced.
+    const live = (
+        <p role="status" className="sr-only">
+            {status === 'sending' ? copy.form.submitting : status === 'sent' ? copy.success.title : ''}
+        </p>
+    )
+
     if (status === 'sent') {
         return (
+            <>
+            {live}
             <div
-                role="status"
                 className="rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8"
                 data-testid="waitlist-success"
             >
                 <CircleCheck className="size-8 text-primary" aria-hidden="true" />
-                <h2 className="mt-4 text-xl font-semibold tracking-tight">{copy.success.title}</h2>
+                <h2 ref={success} tabIndex={-1} className="mt-4 text-xl font-semibold tracking-tight outline-none">
+                    {copy.success.title}
+                </h2>
                 <p className="mt-2 text-base leading-relaxed text-muted-foreground">{copy.success.body}</p>
             </div>
+            </>
         )
     }
 
@@ -101,8 +128,12 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
           : fieldError
             ? copy.errors[fieldError]
             : null
+    // Each field is described by the required note, and by the error only when the error is its own.
+    const describedBy = (field: Exclude<FieldError, null>) => (fieldError === field ? 'waitlist-required waitlist-error' : 'waitlist-required')
 
     return (
+        <>
+        {live}
         <form
             onSubmit={submit}
             noValidate
@@ -110,6 +141,10 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
             data-testid="waitlist-form"
         >
             <h2 className="text-xl font-semibold tracking-tight">{copy.form.heading}</h2>
+            {/* Before the fields, and referenced by each of them: the fields are required, and why. */}
+            <p id="waitlist-required" className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {copy.form.whyRequired}
+            </p>
 
             <div className="mt-6 space-y-5">
                 <div>
@@ -126,8 +161,9 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                         placeholder={copy.form.emailPlaceholder}
+                        ref={emailField}
                         aria-invalid={fieldError === 'email' || undefined}
-                        aria-describedby={message ? 'waitlist-error' : undefined}
+                        aria-describedby={describedBy('email')}
                         className={cn(
                             'mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
                             fieldError === 'email' && 'border-destructive ring-destructive/20 dark:ring-destructive/40',
@@ -146,8 +182,9 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                             required
                             value={country}
                             onChange={(event) => setCountry(event.target.value)}
+                            ref={countryField}
                             aria-invalid={fieldError === 'country' || undefined}
-                            aria-describedby={message ? 'waitlist-error' : undefined}
+                            aria-describedby={describedBy('country')}
                             className={cn('mt-2', selectClass, fieldError === 'country' && 'border-destructive')}
                         >
                             <option value="">{copy.form.countryPlaceholder}</option>
@@ -169,8 +206,9 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                             required
                             value={companySize}
                             onChange={(event) => setCompanySize(event.target.value)}
+                            ref={sizeField}
                             aria-invalid={fieldError === 'companySize' || undefined}
-                            aria-describedby={message ? 'waitlist-error' : undefined}
+                            aria-describedby={describedBy('companySize')}
                             className={cn('mt-2', selectClass, fieldError === 'companySize' && 'border-destructive')}
                         >
                             <option value="">{copy.form.sizePlaceholder}</option>
@@ -204,12 +242,12 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                 </p>
             )}
 
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{copy.form.whyRequired}</p>
 
             <Button
                 type="submit"
                 size="lg"
-                disabled={status === 'sending'}
+                // aria-disabled rather than disabled: a disabled button drops the keyboard focus.
+                aria-disabled={status === 'sending' || undefined}
                 className="mt-6 h-11 w-full px-6 text-base active:scale-[0.99] sm:w-auto"
             >
                 {status === 'sending' ? (
@@ -225,5 +263,6 @@ export function WaitlistForm({ copy }: { copy: WaitlistCopy }) {
                 )}
             </Button>
         </form>
+        </>
     )
 }

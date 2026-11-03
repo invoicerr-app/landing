@@ -99,13 +99,13 @@ export function Pricing() {
                                 {t.seatQuestion}
                             </span>
                             <div role="group" aria-labelledby="seat-label" className="flex items-center gap-1.5">
-                                <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.max(1, current - 1))} disabled={seats <= 1} aria-label={t.removeSeat} className="size-11 rounded-lg">
+                                <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.max(1, current - 1))} aria-disabled={seats <= 1} aria-label={t.removeSeat} className="size-11 rounded-lg aria-disabled:cursor-not-allowed aria-disabled:opacity-50">
                                     <Minus />
                                 </Button>
                                 <output aria-live="polite" className="min-w-11 text-center font-mono text-xl tabular-nums">
                                     {seats}
                                 </output>
-                                <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.min(MAX_SEATS, current + 1))} disabled={seats >= MAX_SEATS} aria-label={t.addSeat} className="size-11 rounded-lg">
+                                <Button variant="outline" size="icon" onClick={() => setSeats((current) => Math.min(MAX_SEATS, current + 1))} aria-disabled={seats >= MAX_SEATS} aria-label={t.addSeat} className="size-11 rounded-lg aria-disabled:cursor-not-allowed aria-disabled:opacity-50">
                                     <Plus />
                                 </Button>
                             </div>
@@ -115,8 +115,10 @@ export function Pricing() {
                         <dl className="mt-4 border-t border-dashed border-border pt-3 font-mono text-sm tabular-nums">
                             {seatBands(seats).map((band) => (
                                 <div key={band.band} className={cn('flex items-baseline gap-2 py-1', band.count === 0 && 'text-muted-foreground')}>
-                                    <dt className="shrink-0 font-sans">{t.bands[band.band]}</dt>
-                                    <span aria-hidden="true" className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-border" />
+                                    {/* The dotted leader is the term's own ::after: nothing but dt and dd may sit in a dl's group. */}
+                                    <dt className="flex flex-1 items-baseline font-sans after:ms-2 after:min-w-4 after:flex-1 after:translate-y-[-3px] after:border-b after:border-dotted after:border-border after:content-['']">
+                                        {t.bands[band.band]}
+                                    </dt>
                                     <dd className="shrink-0 text-muted-foreground">
                                         {band.count} × {eur(band.unit)}
                                     </dd>
@@ -124,14 +126,12 @@ export function Pricing() {
                                 </div>
                             ))}
                             <div className="mt-2 flex items-baseline gap-2 border-t border-border pt-2 font-medium">
-                                <dt className="font-sans">{t.totalMonth}</dt>
-                                <span aria-hidden="true" className="flex-1" />
+                                <dt className="flex-1 font-sans">{t.totalMonth}</dt>
                                 <dd className="w-20 shrink-0 text-end">{eur(month)}</dd>
                             </div>
                             {yearly && (
                                 <div className="flex items-baseline gap-2 py-1 font-medium">
-                                    <dt className="font-sans">{fmt(t.totalYear, { charged: YEARLY_MONTHS_CHARGED, free: 12 - YEARLY_MONTHS_CHARGED })}</dt>
-                                    <span aria-hidden="true" className="flex-1" />
+                                    <dt className="flex-1 font-sans">{fmt(t.totalYear, { charged: YEARLY_MONTHS_CHARGED, free: 12 - YEARLY_MONTHS_CHARGED })}</dt>
                                     <dd className="w-20 shrink-0 text-end">{eur(year)}</dd>
                                 </div>
                             )}

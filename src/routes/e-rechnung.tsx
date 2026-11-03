@@ -18,7 +18,7 @@ function ERechnungRoute() {
         <HomeLocaleProvider value={Route.useLoaderData()}>
             <MotionConfig reducedMotion="user">
                 <Header />
-                <main lang="de">
+                <main id="main" tabIndex={-1} lang="de">
                     <EInvoicingGuideDe />
                     <GuideLinks current="/e-rechnung" />
                 </main>

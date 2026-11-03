@@ -14,7 +14,7 @@ function PeppolRoute() {
     return (
         <MotionConfig reducedMotion="user">
             <Header />
-            <main>
+            <main id="main" tabIndex={-1}>
                 <PeppolGuide />
                 <GuideLinks current="/e-invoicing/peppol" />
             </main>

@@ -166,6 +166,17 @@
   :is(html:lang(ar), html:lang(hi)) .font-mono {
     font-family: 'Space Mono', var(--script-faces), sans-serif !important;
   }
+  /* Inline quotations (<q>) in each language's own marks: « » with spaces in French. */
+  :lang(fr) q {
+    quotes: '«\00a0' '\00a0»' '“' '”';
+  }
+  :lang(de) q {
+    quotes: '„' '“' '‚' '‘';
+  }
+  /* The skip link's target takes focus without a ring around the whole page. */
+  main:focus {
+    outline: none;
+  }
   :lang(ar) * {
     letter-spacing: 0 !important;
   }

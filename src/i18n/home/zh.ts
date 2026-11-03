@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: '加入候补名单',
         openMenu: '打开菜单',
         closeMenu: '关闭菜单',
+        skipToContent: '跳到主要内容',
         theme: { light: '切换到浅色主题', dark: '切换到深色主题' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: '数据处理协议',
             notice: '法律声明',
             cookies: 'Cookie 与可接受使用政策',
+            sitemap: '网站地图',
         },
         copyright: '© {year} Invoicerr。基于 AGPL-3.0 发布。',
     },

@@ -37,6 +37,7 @@ export const en = {
         joinWaitlist: 'Join the waiting list',
         openMenu: 'Open menu',
         closeMenu: 'Close menu',
+        skipToContent: 'Skip to content',
         theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     },
     hero: {
@@ -270,6 +271,7 @@ export const en = {
             dpa: 'Data Processing Agreement',
             notice: 'Legal Notice',
             cookies: 'Cookies & Acceptable Use',
+            sitemap: 'Sitemap',
         },
         copyright: '© {year} Invoicerr. Released under AGPL-3.0.',
     },

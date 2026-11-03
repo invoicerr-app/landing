@@ -26,7 +26,7 @@ export function HomePage({ locale }: { locale: HomeLocale }) {
                 <div dir={locale.dir}>
                     <Header overDesk />
                     <LanguageSuggestion />
-                    <main>
+                    <main id="main" tabIndex={-1}>
                         <Hero />
                         {/* The sheet: perforated along its top edge, where it lies on the hero's desk, and along its
                             bottom edge, where the footer's desk runs under it. */}

@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: "Bekleme listesine katıl",
         openMenu: "Menüyü aç",
         closeMenu: "Menüyü kapat",
+        skipToContent: 'İçeriğe geç',
         theme: { light: "Açık temaya geç", dark: "Koyu temaya geç" },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: "Veri İşleme Sözleşmesi",
             notice: "Yasal Bildirim",
             cookies: "Çerezler ve Kabul Edilebilir Kullanım",
+            sitemap: 'Site haritası',
         },
         copyright: "© {year} Invoicerr. AGPL-3.0 lisansıyla yayımlanmıştır.",
     },

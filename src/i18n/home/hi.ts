@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: 'प्रतीक्षा सूची में शामिल हों',
         openMenu: 'मेनू खोलें',
         closeMenu: 'मेनू बंद करें',
+        skipToContent: 'सामग्री पर जाएँ',
         theme: { light: 'लाइट थीम पर जाएँ', dark: 'डार्क थीम पर जाएँ' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: 'डेटा प्रोसेसिंग अनुबंध',
             notice: 'क़ानूनी सूचना',
             cookies: 'कुकीज़ और स्वीकार्य उपयोग',
+            sitemap: 'साइटमैप',
         },
         copyright: '© {year} Invoicerr। AGPL-3.0 के तहत जारी।',
     },

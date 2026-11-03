@@ -18,7 +18,7 @@ function XRechnungRoute() {
         <HomeLocaleProvider value={Route.useLoaderData()}>
             <MotionConfig reducedMotion="user">
                 <Header />
-                <main lang="de">
+                <main id="main" tabIndex={-1} lang="de">
                     <XRechnungGuideDe />
                     <GuideLinks current="/e-rechnung/xrechnung" />
                 </main>

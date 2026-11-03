@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: "انضم إلى قائمة الانتظار",
         openMenu: "فتح القائمة",
         closeMenu: "إغلاق القائمة",
+        skipToContent: 'انتقل إلى المحتوى',
         theme: { light: "التبديل إلى المظهر الفاتح", dark: "التبديل إلى المظهر الداكن" },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: "اتفاقية معالجة البيانات",
             notice: "الإشعار القانوني",
             cookies: "ملفات تعريف الارتباط والاستخدام المقبول",
+            sitemap: 'خريطة الموقع',
         },
         copyright: "© {year} Invoicerr. صادر بموجب رخصة AGPL-3.0.",
     },

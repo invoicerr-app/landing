@@ -42,7 +42,7 @@ export function Proof() {
             <div className="ticket-shadow mx-auto max-w-5xl">
                 <div dir="ltr" className="ticket grid grid-cols-2 rounded-[14px] bg-card md:grid-cols-[208px_repeat(3,minmax(0,1fr))_minmax(0,1.3fr)]">
                     <div className="col-span-2 flex flex-col justify-center gap-1.5 border-b-2 border-dashed border-border px-6 py-5 md:col-span-1 md:border-b-0 md:border-e-2">
-                        <span className="font-mono text-[13px] text-[oklch(0.45_0.11_230)] dark:text-primary">{t.stub}</span>
+                        <span className="font-mono text-[13px] text-[oklch(0.45_0.11_230)] dark:text-primary" dir="auto">{t.stub}</span>
                         <span dir="auto" className="font-heading text-[15px] font-medium leading-snug">{t.stubText}</span>
                     </div>
                     <dl className="contents">

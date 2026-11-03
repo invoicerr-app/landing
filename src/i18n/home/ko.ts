@@ -24,6 +24,7 @@ const copy: HomeCopy = {
         joinWaitlist: '대기자 명단 등록',
         openMenu: '메뉴 열기',
         closeMenu: '메뉴 닫기',
+        skipToContent: '본문으로 건너뛰기',
         theme: { light: '밝은 테마로 전환', dark: '어두운 테마로 전환' },
     },
     hero: {
@@ -255,6 +256,7 @@ const copy: HomeCopy = {
             dpa: '데이터 처리 계약',
             notice: '법적 고지',
             cookies: '쿠키 및 이용 정책',
+            sitemap: '사이트맵',
         },
         copyright: '© {year} Invoicerr. AGPL-3.0으로 배포됩니다.',
     },
