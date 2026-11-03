@@ -23,10 +23,11 @@ export default function Header({ overDesk = false }: HeaderProps) {
     const t = copy.header
     const home = lang === 'en' ? '/' : `/${lang}/`
     const sections = [
-        { label: t.nav.product, href: '#product' },
-        { label: t.nav.countries, href: '#countries' },
-        { label: t.nav.hosting, href: '#hosting' },
-        { label: t.nav.pricing, href: '#pricing' },
+        // In-page anchors on the home page; from any other page they lead to the home page's section.
+        { label: t.nav.product, href: `${overDesk ? '' : home}#product` },
+        { label: t.nav.countries, href: `${overDesk ? '' : home}#countries` },
+        { label: t.nav.hosting, href: `${overDesk ? '' : home}#hosting` },
+        { label: t.nav.pricing, href: `${overDesk ? '' : home}#pricing` },
     ]
     const { scrollY } = useScroll()
     const [scrolled, setScrolled] = useState(false)

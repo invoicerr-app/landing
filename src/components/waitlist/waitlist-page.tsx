@@ -25,7 +25,7 @@ export function WaitlistPage({ language }: { language: Language }) {
             <Header />
             <main lang={language}>
                 <section className="mx-auto max-w-3xl px-5 pb-4 pt-28 sm:pt-36">
-                    <p className="enter font-mono text-xs uppercase tracking-[0.2em] text-primary">{copy.eyebrow}</p>
+                    <p className="enter font-mono text-xs uppercase tracking-[0.2em] text-[oklch(0.45_0.11_230)] dark:text-primary">{copy.eyebrow}</p>
                     <h1 className="enter mt-4 text-balance text-4xl font-semibold tracking-tight [animation-delay:90ms] sm:text-5xl">
                         {copy.heading}
                     </h1>

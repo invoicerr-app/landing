@@ -85,7 +85,7 @@ function SampleInvoice() {
                     </span>
                 </div>
 
-                <div className="absolute bottom-24 start-[30%] -rotate-[13deg] rounded-[10px] border-4 border-[#0a7fae] px-4 pb-1.5 pt-2 text-center text-[#0a7fae] opacity-80 mix-blend-multiply max-sm:hidden">
+                <div className="absolute bottom-24 start-[30%] -rotate-[13deg] rounded-[10px] border-4 border-[#06668c] px-4 pb-1.5 pt-2 text-center text-[#06668c] opacity-90 mix-blend-multiply max-sm:hidden">
                     <div className="font-mono text-3xl font-bold uppercase leading-none tracking-[0.2em]">{t.paid}</div>
                     <div className="font-mono text-[11px] font-bold tracking-[0.14em]">{stampDate(story.paid)}</div>
                 </div>

@@ -114,7 +114,7 @@ export function Pricing() {
                         {/* The bill, line by line: which band each seat falls in and what it adds. */}
                         <dl className="mt-4 border-t border-dashed border-border pt-3 font-mono text-sm tabular-nums">
                             {seatBands(seats).map((band) => (
-                                <div key={band.band} className={cn('flex items-baseline gap-2 py-1', band.count === 0 && 'text-muted-foreground/70')}>
+                                <div key={band.band} className={cn('flex items-baseline gap-2 py-1', band.count === 0 && 'text-muted-foreground')}>
                                     <dt className="shrink-0 font-sans">{t.bands[band.band]}</dt>
                                     <span aria-hidden="true" className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-border" />
                                     <dd className="shrink-0 text-muted-foreground">

@@ -13,16 +13,16 @@ import { BrandMark } from './brand-mark'
 // the one place every page on the site, the home page included, links to all of them.
 const guides = CONTENT_PAGES.filter((page) => page.group === 'country' || page.path === '/europe/e-invoicing-mandates')
 
-function footerColumns(t: HomeCopy['footer']): { title: string; items: { label: string; href: string; lang?: string }[] }[] {
+function footerColumns(t: HomeCopy['footer'], home: string): { title: string; items: { label: string; href: string; lang?: string }[] }[] {
     return [
         {
             title: t.columns.product,
             items: [
                 // Restored by `hostedLoginOpen` in src/lib/links.ts on the day the hosted version opens.
                 ...(hostedLoginOpen ? [{ label: t.items.logIn, href: links.app }] : []),
-                { label: t.items.pricing, href: '#pricing' },
-                { label: t.items.countries, href: '#countries' },
-                { label: t.items.platforms, href: '#platforms' },
+                { label: t.items.pricing, href: `${home}#pricing` },
+                { label: t.items.countries, href: `${home}#countries` },
+                { label: t.items.platforms, href: `${home}#platforms` },
                 { label: t.items.changelog, href: links.changelog },
             ],
         },
@@ -73,8 +73,9 @@ interface FooterProps {
 export default function Footer({ variant = 'default', children }: FooterProps) {
     const { lang, copy } = useHome()
     const t = copy.footer
-    const columns = footerColumns(t)
     const desk = variant === 'desk'
+    // The home page's footer (the desk variant) links to its own sections; elsewhere, to the home page's.
+    const columns = footerColumns(t, desk ? '' : homePath(lang))
     return (
         <footer className={cn('relative', desk ? 'desk -mt-[18px] overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
             {desk && (
