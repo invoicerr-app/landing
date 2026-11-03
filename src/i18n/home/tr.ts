@@ -4,7 +4,7 @@ const copy: HomeCopy = {
     meta: {
         title: "Invoicerr: Açık kaynaklı fatura yazılımı, bulutta veya sunucunuzda",
         description:
-            "Teklif, fatura, tahsilat ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada. Docker ile ücretsiz kurun veya bulut bekleme listesine katılın.",
+            "Teklif, fatura, tahsilat ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Docker ile ücretsiz kurun veya bulut bekleme listesine katılın.",
     },
     language: {
         label: "Dil",
@@ -30,7 +30,7 @@ const copy: HomeCopy = {
         badge: "Bulut Kasım 2026'da açılıyor",
         badgeStatus: "Bekleme listesi açık",
         title: "Sizinle aynı hızda çalışan fatura uygulaması",
-        lead: "Teklifler, faturalar, tahsilatlar ve vergi dairesine e-fatura, tek bir açık kaynaklı uygulamada. Bugün kendi sunucunuzda çalıştırın ya da Kasım 2026'da açılacak bulutumuz için bekleme listesine katılın.",
+        lead: "Teklifler, faturalar, tahsilatlar ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Bugün kendi sunucunuzda çalıştırın ya da Kasım 2026'da açılacak bulutumuz için bekleme listesine katılın.",
         tryDemo: "Canlı demoyu dene",
         selfHostLine: "Ya da Docker ile {link}kendi sunucunuzda ücretsiz çalıştırın{/link}",
         stickyNote: "Factur-X tamam!\nPDP'den gönder\nCumaya kadar",
@@ -72,13 +72,13 @@ const copy: HomeCopy = {
     countries: {
         eyebrow: "Ülkeler",
         title: "Beş ülkenin fatura kuralları hazır gelir",
-        lead: "Şirketinizin hangi ülkeden fatura kestiğini seçin. Kimlik numaraları, KDV oranları, e-fatura formatı ve faturanın vergi dairesine ulaşma yolu buna göre ayarlanır; her biri dayandığı yasal metne bağlıdır.",
+        lead: "Şirketinizin hangi ülkeden fatura kestiğini seçin. Kimlik numaraları, KDV oranları, e-fatura formatı ve faturanın vergi dairesine ulaşma yolu buna göre ayarlanır. Her biri dayandığı yasal metne bağlıdır.",
         matrix: "Ülke destek tablosu",
         tablist: "Ülke",
         shipping: "Bugün beş ülke hazır. Yeni bir ülke, veri dosyalarını aynı yapıda ekler ve uygulama bunları okur.",
         platformsTitle: "Fransa'nın onaylı platformlarına zaten bağlı",
-        platformsBody: "Fransa'da dört onaylı platform ve Chorus Pro, İtalya'da SdI, Polonya'da KSeF. Kanalı şirket ayarlarınızdan seçersiniz.",
-        platformsNote: "Invoicerr bir fatura yazılımıdır, onaylı bir platform değildir: faturayı Invoicerr oluşturur, platform iletir.",
+        platformsBody: "Fransa'da dört onaylı platform ve Chorus Pro, İtalya'da SdI, Polonya'da KSeF desteklenir. Kanalı şirket ayarlarınızdan seçersiniz.",
+        platformsNote: "Invoicerr bir fatura yazılımıdır ve onaylı platform değildir. Faturayı Invoicerr oluşturur, platform iletir.",
         sheetTitle: "Şirket ayarları",
         sheetAsks: "{country} için uygulamanın bir şirketten istedikleri",
         identifierRequired: "Kimlik numarası, zorunlu",
@@ -95,8 +95,8 @@ const copy: HomeCopy = {
         channels: {
             FR: "Eylül 2026'dan beri zorunlu onaylı platform: SUPER PDP, Iopole, Billit veya Invopop. Kamu alıcıları için Chorus Pro.",
             DE: "E-fatura XML'i eklenmiş PDF.",
-            IT: "Ulusal merkezi onay sistemi, kayıtlı elektronik posta (PEC) ile ulaşılır.",
-            PL: "Ulusal merkezi onay sistemi: vergi dairesi fatura numarasını geri gönderir.",
+            IT: "Ulusal merkezi onay sistemine kayıtlı elektronik posta (PEC) ile ulaşılır.",
+            PL: "Ulusal merkezi onay sisteminde vergi dairesi fatura numarasını geri gönderir.",
             PT: "E-fatura XML'i eklenmiş PDF.",
         },
     },
@@ -140,19 +140,19 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: "Müşterilerinizin kendi portalı olur",
-                body: "Belgeleri, bakiyeleri, PDF'ler, çevrimiçi ödeme ve teklif kararları. E-postayla hesap ekstresi istemeye son.",
+                body: "Belgelerini, bakiyelerini ve PDF'lerini görür, çevrimiçi öder, teklifleri yanıtlarlar. Hesap ekstresini artık e-postayla istemezler.",
             },
             ocr: {
                 title: "Tedarikçi faturaları sizin yerinize okunur",
                 body: "Gelen bir faturayı sürükleyip bırakın. Kendi sunucunuzda çalışan OCR onu okuyup onaylayacağınız veya reddedeceğiniz, düzenlenebilir bir öneriye dönüştürür.",
             },
             api: {
-                title: "Anahtara göre yetkilendirilen bir MCP sunucusu ve API",
-                body: "Yerleşik bir MCP sunucusu, bir REST API ve 18 webhook olayı; hepsi API anahtarına göre yetkilendirilir: asistan, bir kullanıcının kullanabildiği araçların aynısını tek bir anahtarla çağırır.",
+                title: "Anahtarla yetkilendirilen bir MCP sunucusu ve API",
+                body: "Yerleşik MCP sunucusu, REST API ve 18 webhook olayının hepsi API anahtarıyla yetkilendirilir. Asistan, bir kullanıcının kullanabildiği araçların aynısını tek bir anahtarla çağırır.",
             },
             languages: {
                 title: "Sizin dilinizi de, müşterinizinkini de konuşur",
-                body: "19 dil kataloğu, alıcı başına belge dili ve kur geçmişiyle çoklu para birimi.",
+                body: "19 dil kataloğu, alıcı başına belge dili ve kur geçmişli çoklu para birimi sunar.",
             },
         },
     },
@@ -160,11 +160,11 @@ const copy: HomeCopy = {
         badge: "Kendi sunucunuzda",
         badgeStatus: "Ücretsiz",
         title: "Bugün kendi sunucunuzda çalıştırın, AGPL-3.0 ile ücretsiz",
-        lead: "Invoicerr kendi sunucunuzda barındırılan bir proje olarak başladı ve hâlâ öyle. Docker ile kendi makinenizde ücretsiz ve süresiz çalıştırın. Ya da bakımıyla uğraşmayın, sizin için biz çalıştıralım.",
+        lead: "Invoicerr kendi sunucunuzda barındırılan bir proje olarak başladı ve hâlâ öyle. Docker ile kendi makinenizde ücretsiz ve süresiz çalıştırın ya da bakımıyla uğraşmayın, sizin için biz çalıştıralım.",
         facts: [
             { title: "Tek imaj, iki mimari.", body: "amd64 ve arm64 için derlenir. Bir VPS, bir NAS veya 64 bit bir Raspberry Pi (3 ve üzeri) üzerinde çalışır." },
             { title: "Tek sunucu yetmediğinde bir Helm chart.", body: "Ayrı API ve worker rolleri, kendi PostgreSQL ve Redis'iniz, kendi ingress'iniz." },
-            { title: "Tüm özellikler, kullanıcı sınırı yok.", body: "Kendi sunucunuzdaki uygulama, uygulamanın tamamıdır. Abonelik faturalandırma kodu kapalı kalır." },
+            { title: "Tüm özellikler, istediğiniz kadar kullanıcı.", body: "Kendi sunucunuzdaki uygulama, uygulamanın tamamıdır. Abonelik faturalandırma kodu kapalı kalır." },
         ],
         installGuide: "Kurulum kılavuzunu oku",
         source: "Kaynak kodu görüntüle",
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: "Fiyatlandırma",
         title: "Bulut kullanıcı başına ücretlendirilir, kendi sunucunuzda ücretsizdir",
-        lead: "Bulut fiyatı şirket başınadır ve her yeni kullanıcıyla ucuzlar. Kendi sunucunuzda barındırmak hiçbir ücrete tabi değildir ve hiçbir özelliği kısıtlamaz.",
+        lead: "Bulut fiyatı şirket başınadır ve her yeni kullanıcıyla ucuzlar. Kendi sunucunuzda barındırmak ücretsizdir ve tüm özellikleri içerir.",
         cloud: "Bulut",
         period: "Faturalandırma dönemi",
         monthly: "Aylık",
@@ -191,11 +191,11 @@ const copy: HomeCopy = {
         bands: { first: "İlk kullanıcı", next: "2 ila 4. kullanıcılar", further: "5. kullanıcıdan itibaren" },
         totalMonth: "Aylık, KDV hariç",
         totalYear: "× {charged} ay, {free} ay ücretsiz",
-        cloudItems: ["Kasım 2026'da açılıyor", "Barındırma ve güncellemeler bizden", "Uygulamanın tüm özellikleri", "Açılışta {days} günlük deneme, gönderim dışında sınır yok", "Ayrılırsanız verileriniz dışa aktarılır"],
+        cloudItems: ["Kasım 2026'da açılıyor", "Barındırma ve güncellemeler bizden", "Uygulamanın tüm özellikleri", "Açılışta {days} günlük deneme, gönderim dışında her şey açık", "Ayrılırsanız verileriniz dışa aktarılır"],
         selfHosted: "Kendi sunucunuzda",
         forever: "süresiz",
         selfItems: ["Uygulamanın tüm özellikleri", "Sınırsız kullanıcı ve şirket", "Docker imajı ve Helm chart", "AGPL-3.0, topluluk desteği"],
-        footnote: "Fiyatlar euro cinsinden ve KDV hariçtir. Yıllık faturalandırmada on iki ay için {charged} aylık ücret alınır. Fiyatların ötesinde asıl fark, uygulamayı kimin çalıştırdığıdır: bulut bizim altyapımızda, kendi sunucunuzdaki kurulum sizinkinde çalışır.",
+        footnote: "Fiyatlar euro cinsinden ve KDV hariçtir. Yıllık faturalandırmada on iki ay için {charged} aylık ücret alınır. Fiyat dışındaki asıl fark, uygulamayı kimin çalıştırdığıdır. Bulut bizim altyapımızda çalışır, kendi sunucunuzdaki kurulum sizinkinde.",
     },
     faq: {
         eyebrow: "SSS",
@@ -203,7 +203,7 @@ const copy: HomeCopy = {
         items: [
             {
                 question: "Kendi sunucunuzda barındırılan sürüm gerçekten ücretsiz mi?",
-                answer: "Evet. Tüm özellikleri olan ve kullanıcı sınırı bulunmayan aynı uygulamadır; AGPL-3.0 lisansıyla yayımlanır. Bu lisans, kendi kullanıcılarınıza ilgili kaynak kodunu sunduğunuz sürece uygulamayı başkalarına ücretli bir hizmet olarak çalıştırmayı da kapsar.",
+                answer: "Evet. Tüm özellikleri olan, kullanıcı sınırı bulunmayan aynı uygulamadır ve AGPL-3.0 lisansıyla yayımlanır. Bu lisans, kendi kullanıcılarınıza ilgili kaynak kodunu sunduğunuz sürece uygulamayı başkalarına ücretli bir hizmet olarak çalıştırmayı da kapsar.",
             },
             {
                 question: "Bulut denemesi sırasında neler yapabileceğim?",
@@ -219,18 +219,18 @@ const copy: HomeCopy = {
             },
             {
                 question: "Hangi ülkeler destekleniyor?",
-                answer: "Almanya, Fransa, İtalya, Polonya ve Portekiz kuralları hazır olarak gelir: kimlik numaraları, KDV oranları, e-fatura formatları, iletim kanalları ve arşiv saklama süreleri. {link}Ülke destek tablosu{/link} her birinin tam olarak neyi kapsadığını gösterir.",
+                answer: "Almanya, Fransa, İtalya, Polonya ve Portekiz kuralları hazır olarak gelir: kimlik numaraları, KDV oranları, e-fatura formatları, iletim kanalları ve arşiv saklama süreleri. {link}Ülke destek tablosu{/link} her birinin neyi kapsadığını gösterir.",
             },
             {
                 question: "Kendi sunucumda barındırmak için neye ihtiyacım var?",
-                answer: "Docker, PostgreSQL ve Redis. Uygulama bu üçü olmadan başlamaz. Kurulum kılavuzundaki compose dosyası artık üçünü birden çalıştırır: bir uygulama, bir PostgreSQL 15 ve bir Redis servisi; ayrıca yanındaki bir .env dosyasında POSTGRES_PASSWORD ve BETTER_AUTH_SECRET değerlerini ister. Daha büyük kurulumlar için bir Helm chart vardır.",
+                answer: "Docker, PostgreSQL ve Redis gerekir, uygulama bu üçü olmadan başlamaz. Kurulum kılavuzundaki compose dosyası artık üçünü birden çalıştırır: bir uygulama, bir PostgreSQL 15 ve bir Redis servisi. Yanındaki bir .env dosyasında da POSTGRES_PASSWORD ve BETTER_AUTH_SECRET değerlerini ister. Daha büyük kurulumlar için bir Helm chart vardır.",
             },
         ],
     },
     finalCta: {
         to: "Kime: bir sonraki müşteriniz",
         title: "Bir sonraki faturanızı Invoicerr'den gönderin",
-        lead: "Bulutumuz Kasım 2026'da açılıyor ve bekleme listesi şimdiden açık. Ya da imajı çekin, Invoicerr bu akşam kendi sunucunuzda çalışsın.",
+        lead: "Bulutumuz Kasım 2026'da açılıyor ve bekleme listesi şimdiden açık. İsterseniz imajı çekin, Invoicerr bu akşam kendi sunucunuzda çalışsın.",
         installGuide: "Kurulum kılavuzunu oku",
     },
     footer: {

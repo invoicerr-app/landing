@@ -4,7 +4,7 @@ const copy: HomeCopy = {
     meta: {
         title: 'Invoicerr: program do faktur open source, w chmurze lub u siebie',
         description:
-            'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Za darmo na własnym serwerze w Dockerze lub w chmurze.',
+            'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Uruchom ją za darmo w Dockerze albo zapisz się na listę oczekujących do chmury.',
     },
     language: {
         label: 'Język',
@@ -63,19 +63,19 @@ const copy: HomeCopy = {
     proof: {
         label: 'Fakty o projekcie',
         stub: 'Open source',
-        stubText: 'Tworzony otwarcie, razem ze społecznością',
+        stubText: 'Rozwijany publicznie, razem ze społecznością',
         stars: 'gwiazdek na GitHubie',
-        contributors: 'współtwórców, a do tego tłumacze',
+        contributors: 'współtwórców, nie licząc tłumaczy',
         catalogs: 'katalogów językowych',
         license: 'licencja open source',
     },
     countries: {
         eyebrow: 'Kraje',
         title: 'Wbudowane zasady fakturowania pięciu krajów',
-        lead: 'Wybierz kraj, z którego Twoja firma wystawia faktury. Identyfikatory, stawki VAT, format e-faktury i sposób przekazania jej do urzędu skarbowego dopasują się same, a każdy z tych elementów jest powiązany z przepisem, z którego wynika.',
+        lead: 'Wybierz kraj, z którego Twoja firma wystawia faktury. Identyfikatory, stawki VAT, format e-faktury i sposób przekazania jej do urzędu skarbowego dopasują się same, a każdy z nich odsyła do przepisu, z którego wynika.',
         matrix: 'Tabela obsługiwanych krajów',
         tablist: 'Kraj',
-        shipping: 'Pięć krajów jest dostępnych już dziś. Nowy kraj dodaje swoje pliki danych w tym samym formacie, a aplikacja je odczytuje.',
+        shipping: 'Pięć krajów działa już dziś. Nowy kraj to pliki danych w tym samym formacie, które aplikacja wczytuje.',
         platformsTitle: 'Już połączony z akredytowanymi platformami we Francji',
         platformsBody: 'Cztery akredytowane platformy i Chorus Pro we Francji, SdI we Włoszech i KSeF w Polsce. Kanał wybierasz w ustawieniach firmy.',
         platformsNote: 'Invoicerr to program do fakturowania, a nie akredytowana platforma: tworzy fakturę, a platforma ją doręcza.',
@@ -103,7 +103,7 @@ const copy: HomeCopy = {
     flow: {
         eyebrow: 'Przebieg',
         title: 'Od pierwszej oferty do pieniędzy na koncie',
-        lead: 'Jeden silnik dokumentów obsługuje oferty, faktury, faktury korygujące, zamówienia i wydatki. Niczego nie trzeba przepisywać z jednego dokumentu do drugiego.',
+        lead: 'Jeden silnik dokumentów obsługuje oferty, faktury, faktury korygujące, zamówienia i wydatki. Niczego nie przepisujesz z dokumentu do dokumentu.',
         steps: {
             quote: { tab: 'Oferta', title: 'Przygotuj ofertę', body: 'Wyślij ofertę, którą klient podpisze online jednorazowym kodem. Poproś o zaliczkę albo rozłóż płatność na raty.' },
             invoice: { tab: 'Faktura', title: 'Wystaw fakturę', body: 'Zamień podpisaną ofertę w fakturę jednym kliknięciem. Pozycje pochodzą z Twojego katalogu, stawki VAT z Twojego kraju.' },
@@ -125,14 +125,14 @@ const copy: HomeCopy = {
     },
     bento: {
         eyebrow: 'Wokół faktury',
-        title: 'Również to, co dzieje się wokół faktury',
+        title: 'Zajmuje się też tym, co wokół faktury',
         tryDemo: 'Wypróbuj demo na żywo',
         readDocs: 'Przeczytaj dokumentację',
         readGuide: 'Przeczytaj przewodnik',
         features: {
             clearance: {
                 title: 'Przechodzi przez system skarbowy',
-                body: 'Tam, gdzie kraj prowadzi krajową platformę, Invoicerr wysyła przez nią fakturę i śledzi odpowiedź. Kanał dla każdego kraju wybierasz raz, w ustawieniach firmy.',
+                body: 'Tam, gdzie działa krajowa platforma, Invoicerr wysyła przez nią fakturę i śledzi odpowiedź. Kanał dla każdego kraju wybierasz raz, w ustawieniach firmy.',
             },
             time: {
                 title: 'Godziny zamieniają się w pozycje faktury',
@@ -140,15 +140,15 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: 'Klienci mają własny portal',
-                body: 'Ich dokumenty, saldo, pliki PDF, płatność online i decyzje w sprawie ofert. Koniec z prośbami o zestawienie wysyłanymi e-mailem.',
+                body: 'Widzą tam dokumenty, saldo i pliki PDF, płacą online i decydują o ofertach. Przestają prosić o zestawienia e-mailem.',
             },
             ocr: {
-                title: 'Faktury od dostawców odczytywane za Ciebie',
-                body: 'Wrzuć otrzymaną fakturę. OCR działający na Twoim serwerze zamienia ją w edytowalną propozycję, którą zatwierdzasz lub odrzucasz.',
+                title: 'Sam odczytuje faktury od dostawców',
+                body: 'Wrzuć otrzymaną fakturę. OCR na Twoim serwerze zamienia ją w edytowalną propozycję, którą zatwierdzasz lub odrzucasz.',
             },
             api: {
                 title: 'Serwer MCP i API z uprawnieniami według klucza',
-                body: 'Wbudowany serwer MCP, REST API i 18 zdarzeń webhook, wszystko z zakresem uprawnień określonym przez klucz API: asystent wywołuje te same narzędzia co użytkownik, przez jeden klucz.',
+                body: 'Wbudowany serwer MCP, REST API i 18 zdarzeń webhook, wszystko w zakresie nadanym kluczowi API: asystent wywołuje przez jeden klucz te same narzędzia co użytkownik.',
             },
             languages: {
                 title: 'Mówi Twoim językiem i językiem Twojego klienta',
@@ -160,7 +160,7 @@ const copy: HomeCopy = {
         badge: 'Własny serwer',
         badgeStatus: 'Za darmo',
         title: 'Uruchom go u siebie już dziś, za darmo na licencji AGPL-3.0',
-        lead: 'Invoicerr powstał jako projekt do uruchamiania na własnym serwerze i nadal nim jest. Uruchom go w Dockerze na własnym sprzęcie, za darmo i bez limitu czasu. Albo powierz go nam i zapomnij o utrzymaniu.',
+        lead: 'Invoicerr powstał z myślą o własnym serwerze i tak zostało. Uruchom go w Dockerze na swoim sprzęcie, za darmo i bez limitu czasu. Albo powierz go nam i miej utrzymanie z głowy.',
         facts: [
             { title: 'Jeden obraz, dwie architektury.', body: 'Zbudowany dla amd64 i arm64. Działa na VPS, serwerze NAS lub 64-bitowym Raspberry Pi (od wersji 3).' },
             { title: 'Chart Helm, gdy jeden serwer nie wystarcza.', body: 'Osobne role API i workera, własny PostgreSQL i Redis, własny ingress.' },
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: 'Cennik',
         title: 'Chmura płatna za użytkownika, własny serwer za darmo',
-        lead: 'Cena chmury liczona jest za firmę i spada z każdym kolejnym użytkownikiem. Własny serwer nic nie kosztuje i niczego nie ogranicza.',
+        lead: 'Cena chmury liczona jest za firmę i spada z każdym kolejnym użytkownikiem. Wersja na własny serwer jest darmowa i ma wszystkie funkcje.',
         cloud: 'Chmura',
         period: 'Okres rozliczeniowy',
         monthly: 'Miesięcznie',
@@ -191,11 +191,11 @@ const copy: HomeCopy = {
         bands: { first: 'Pierwszy użytkownik', next: 'Od 2. do 4. użytkownika', further: 'Od 5. użytkownika' },
         totalMonth: 'Miesięcznie, bez VAT',
         totalYear: '× {charged} mies., {free} gratis',
-        cloudItems: ['Start w listopadzie 2026', 'Hosting i aktualizacje po naszej stronie', 'Wszystkie funkcje aplikacji', '{days}-dniowy okres próbny po starcie, bez ograniczeń poza wysyłką', 'Eksport Twoich danych, jeśli zrezygnujesz'],
+        cloudItems: ['Start w listopadzie 2026', 'Hosting i aktualizacje po naszej stronie', 'Wszystkie funkcje aplikacji', '{days}-dniowy okres próbny od startu, wszystko oprócz wysyłki', 'Eksport Twoich danych, jeśli zrezygnujesz'],
         selfHosted: 'Własny serwer',
         forever: 'na zawsze',
         selfItems: ['Wszystkie funkcje aplikacji', 'Bez limitu użytkowników i firm', 'Obraz Docker i chart Helm', 'AGPL-3.0, wsparcie społeczności'],
-        footnote: 'Ceny w euro, bez VAT. Przy rozliczeniu rocznym płacisz za {charged} miesięcy z dwunastu. Poza ceną prawdziwa różnica polega na tym, kto utrzymuje aplikację: chmura działa na naszej infrastrukturze, własny serwer na Twojej.',
+        footnote: 'Ceny w euro, bez VAT. Przy rozliczeniu rocznym płacisz za {charged} miesięcy z dwunastu. Poza ceną różni je to, kto utrzymuje aplikację: chmura działa na naszej infrastrukturze, własny serwer na Twojej.',
     },
     faq: {
         eyebrow: 'FAQ',
@@ -206,8 +206,8 @@ const copy: HomeCopy = {
                 answer: 'Tak. To ta sama aplikacja, ze wszystkimi funkcjami i bez limitu użytkowników, udostępniona na licencji AGPL-3.0. Licencja pozwala też oferować ją innym jako płatną usługę, pod warunkiem że udostępnisz swoim użytkownikom odpowiadający jej kod źródłowy.',
             },
             {
-                question: 'Co można będzie robić w okresie próbnym w chmurze?',
-                answer: 'Chmura startuje w listopadzie 2026, a razem z nią okres próbny. Dostępne będzie wszystko oprócz wysyłania dokumentów: przez 14 dni można będzie skonfigurować firmę, zaimportować klientów, przygotować oferty i faktury oraz zaprosić zespół. Wysyłka odblokowuje się po wykupieniu subskrypcji.',
+                question: 'Co będzie można robić w okresie próbnym w chmurze?',
+                answer: 'Chmura startuje w listopadzie 2026, a razem z nią okres próbny. Dostępne będzie wszystko oprócz wysyłania dokumentów: przez 14 dni będzie można skonfigurować firmę, zaimportować klientów, przygotować oferty i faktury oraz zaprosić zespół. Wysyłka odblokowuje się po wykupieniu subskrypcji.',
             },
             {
                 question: 'Jak działa cennik za użytkownika?',
