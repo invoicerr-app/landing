@@ -33,13 +33,13 @@ export function Hosting() {
         <section id="hosting" className="scroll-mt-20 px-5 py-24">
             <div className="desk relative mx-auto max-w-6xl overflow-hidden rounded-3xl text-white shadow-[0_24px_50px_rgb(10_40_60/0.22)]">
                 <DeskObject name="paperclip-host" className="absolute right-8 top-5 hidden xl:block" />
-                <div className="relative grid gap-14 px-6 py-16 sm:px-12 lg:grid-cols-2 lg:items-center lg:px-16 lg:py-[72px]">
+                <div className="relative grid gap-12 px-6 py-16 sm:px-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:px-16 lg:py-[72px]">
                     <div>
                         <p className="inline-flex items-center gap-2.5 rounded-[10px] bg-[rgb(10_30_42/0.35)] py-1.5 pl-3 pr-1.5 text-sm shadow-[inset_0_0_0_1px_rgb(151_216_248/0.3)]">
                             Self-hosted
                             <span className="rounded-md bg-[oklch(0.76_0.136_230)] px-2 py-1.5 font-mono text-xs font-bold leading-none text-[oklch(0.16_0.024_230)]">FREE</span>
                         </p>
-                        <h2 className="mt-5 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">Self-host it today, free under AGPL-3.0.</h2>
+                        <h2 className="mt-5 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl lg:text-[42px]">Self-host it today, free under AGPL-3.0.</h2>
                         <p className="mt-5 text-lg leading-relaxed text-[rgb(235_239_242/0.84)]">
                             Invoicerr started as a self-hosted project and still is one. Run it with Docker on your own machine, free,
                             forever. Or let us run it for you and skip the upkeep.
@@ -66,7 +66,7 @@ export function Hosting() {
                         </div>
                     </div>
 
-                    <div className="relative md:pb-24">
+                    <div className="relative md:pb-44">
                         <div className="rotate-[1.5deg] overflow-hidden rounded-[14px] bg-[oklch(0.175_0.014_230)] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.1),0_30px_50px_rgb(3_12_18/0.45)]">
                             <div className="flex items-center gap-2 border-b border-white/10 bg-[oklch(0.225_0.016_230)] py-2.5 pl-4 pr-2">
                                 <span aria-hidden="true" className="size-3 rounded-full bg-[oklch(0.32_0.045_230)]" />
@@ -79,8 +79,8 @@ export function Hosting() {
                                 </Button>
                             </div>
                             <div className="space-y-1 px-6 py-6 font-mono text-sm leading-[1.9] text-[oklch(0.95_0.006_230)]">
-                                {/* Breaks after a slash when the line is too long, never inside a word. */}
-                                <p className="break-words">
+                                {/* One line wherever it fits; on a phone it breaks after a slash, never inside a word. */}
+                                <p className="break-words lg:whitespace-nowrap">
                                     <span className="text-azure-light">$</span> docker pull ghcr.io/
                                     <wbr />
                                     invoicerr-app/
@@ -92,7 +92,7 @@ export function Hosting() {
                                 </p>
                             </div>
                         </div>
-                        <StickyNote className="absolute bottom-0 right-8 hidden h-[150px] w-[168px] -rotate-[8deg] text-2xl md:block">{'runs on my\nRaspberry Pi :)'}</StickyNote>
+                        <StickyNote className="absolute bottom-0 right-12 hidden h-[150px] w-[168px] -rotate-[6deg] text-2xl md:block">{'runs on my\nRaspberry Pi :)'}</StickyNote>
                     </div>
                 </div>
             </div>

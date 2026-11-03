@@ -67,11 +67,9 @@ interface FooterProps {
 export default function Footer({ variant = 'default', children }: FooterProps) {
     const desk = variant === 'desk'
     return (
-        <footer className={cn('relative', desk ? 'desk overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
+        <footer className={cn('relative', desk ? 'desk -mt-[18px] overflow-hidden text-[#ebeff2]' : 'border-t border-border')}>
             {desk && (
                 <>
-                    {/* The page's last sheet ends on a row of punched holes, through which the desk shows. */}
-                    <div aria-hidden="true" className="perforation-page absolute inset-x-0 -top-[9px] h-[18px]" />
                     <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.18)] blur-[60px]" />
                     <DeskObject name="pen-footer" className="absolute -right-16 top-20 hidden xl:block" />
                 </>

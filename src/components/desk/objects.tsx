@@ -6,14 +6,14 @@ import { cn } from '@/lib/utils'
 // the image in CSS would turn its shadow with it. Sizes are the CSS size, the files are 2x.
 //
 // All of them are decoration: empty alt, hidden from assistive technology, no text a reader would
-// miss. The phone's notifications and the envelope's address follow the sample invoice in the hero,
-// which is not a customer's.
+// miss. The envelope's address follows the sample invoice in the hero, which is not a customer's.
 const objects = {
     cup: { src: '/desk/cup.webp', width: 280, height: 260 },
     envelope: { src: '/desk/envelope.webp', width: 359, height: 280 },
     pen: { src: '/desk/pen.webp', width: 379, height: 239 },
     'pen-footer': { src: '/desk/pen-footer.webp', width: 378, height: 239 },
-    phone: { src: '/desk/phone.webp', width: 359, height: 520 },
+    // Screen off: components/desk/phone.tsx lays the lock screen over it.
+    phone: { src: '/desk/phone.webp', width: 360, height: 520 },
     coins: { src: '/desk/coins.webp', width: 169, height: 130 },
     // The clip on the hero's invoice, in two halves: the back goes under the sheet, the front over it.
     'paperclip-back': { src: '/desk/paperclip-back.webp', width: 90, height: 150 },

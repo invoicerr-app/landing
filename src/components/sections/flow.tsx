@@ -1,6 +1,8 @@
 import { Lock } from 'lucide-react'
 
+import { sampleStory } from '@/components/desk/sample'
 import { Eyebrow } from '@/components/desk/tear'
+import { isoDate, useNow } from '@/lib/today'
 
 // The four steps as four folders, from the lightest to the brand ink, each holding the sheet that
 // step produces. The sheets are drawn, not screenshots, and hidden from assistive technology: the
@@ -11,9 +13,10 @@ const paper = 'flex min-h-[150px] flex-col gap-2.5 rounded bg-paper p-4 text-ink
 const muted = 'text-[oklch(0.47_0.02_230)]'
 
 function QuoteSheet() {
+    const story = sampleStory(useNow())
     return (
         <div aria-hidden="true" className={`${paper} -rotate-[1.2deg]`}>
-            <span className="font-mono text-[11px] font-bold text-[oklch(0.45_0.11_230)]">QUOTE D-2026-031</span>
+            <span className="font-mono text-[11px] font-bold text-[oklch(0.45_0.11_230)]">QUOTE {story.quote}</span>
             <span className="h-1.5 w-4/5 rounded-sm bg-[oklch(0.92_0.008_230)]" />
             <span className="h-1.5 w-3/5 rounded-sm bg-[oklch(0.92_0.008_230)]" />
             <div className="mt-auto flex items-end justify-between border-t border-[oklch(0.85_0.01_230)] pt-1.5">
@@ -25,9 +28,10 @@ function QuoteSheet() {
 }
 
 function InvoiceSheet() {
+    const story = sampleStory(useNow())
     return (
         <div aria-hidden="true" className={`${paper} rotate-[0.8deg] gap-2 font-mono text-[11px] leading-tight`}>
-            <span className="font-bold text-[oklch(0.45_0.11_230)]">INVOICE F-2026-0142</span>
+            <span className="font-bold text-[oklch(0.45_0.11_230)]">INVOICE {story.invoice}</span>
             <div className="flex justify-between"><span>Identity</span><span>1,800.00</span></div>
             <div className="flex justify-between"><span>Review</span><span>360.00</span></div>
             <div className="flex justify-between"><span>Hosting</span><span>300.00</span></div>
@@ -40,11 +44,12 @@ function InvoiceSheet() {
 }
 
 function StatementSheet() {
+    const story = sampleStory(useNow())
     return (
         <div aria-hidden="true" className={`${paper} -rotate-[0.6deg] font-mono text-[11px] leading-snug`}>
             <span className="font-bold text-[oklch(0.45_0.11_230)]">BANK STATEMENT</span>
             <div className="flex justify-between gap-2 rounded-md bg-[oklch(0.94_0.008_230)] p-2">
-                <span>VIR ATELIER RIVIERE F-2026-0142</span>
+                <span>VIR ATELIER RIVIERE {story.invoice}</span>
                 <span className="whitespace-nowrap font-bold">+2,952</span>
             </div>
             <span className="text-[oklch(0.3_0.11_145)]">✓ Matched by reference and amount</span>
@@ -54,11 +59,12 @@ function StatementSheet() {
 }
 
 function ArchiveSheet() {
+    const story = sampleStory(useNow())
     return (
         <div aria-hidden="true" className="flex min-h-[150px] rotate-1 flex-col gap-2.5 rounded bg-[oklch(0.225_0.016_230)] p-4 font-mono text-[11px] leading-snug text-[#c6d3d9] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)]">
             <span className="font-bold text-azure-pale">LEGAL ARCHIVE</span>
             <span>sha256 9f2c 81d0 ... e41a</span>
-            <span>kept until 2036-11-02</span>
+            <span>kept until {isoDate(story.archivedUntil)}</span>
             <span className="mt-auto flex items-center gap-2">
                 <Lock className="size-4 text-azure-light" />
                 sealed

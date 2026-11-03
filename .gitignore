@@ -30,3 +30,4 @@ dist-ssr
 
 # Blender environment of scripts/desk-renders
 scripts/desk-renders/.venv
+scripts/desk-renders/textures/*.png

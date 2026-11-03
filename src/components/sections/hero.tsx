@@ -1,17 +1,21 @@
 import { DeskObject } from '@/components/desk/objects'
+import { Phone } from '@/components/desk/phone'
 import { StickyNote } from '@/components/desk/props'
 import { Button } from '@/components/ui/button'
+import { sampleStory } from '@/components/desk/sample'
 import { links } from '@/lib/links'
+import { monthName, shortDate, stampDate, useNow } from '@/lib/today'
 
 // The sample invoice lying on the desk. Illustrative, not a customer's: the totals add up (20 % VAT on
-// €2,460.00) and the archive line quotes the same French article the countries section cites.
-const lines = [
-    { label: 'Brand identity, phase 2', quantity: '1', amount: '€1,800.00' },
-    { label: 'Website copy review', quantity: '6 h', amount: '€360.00' },
-    { label: 'Hosting, November', quantity: '1', amount: '€300.00' },
-]
-
+// €2,460.00), the archive line quotes the same French article the countries section cites, and the
+// dates follow today (components/desk/sample.ts).
 function SampleInvoice() {
+    const story = sampleStory(useNow())
+    const lines = [
+        { label: 'Brand identity, phase 2', quantity: '1', amount: '€1,800.00' },
+        { label: 'Website copy review', quantity: '6 h', amount: '€360.00' },
+        { label: `Hosting, ${monthName(story.issued)}`, quantity: '1', amount: '€300.00' },
+    ]
     return (
         <div
             role="img"
@@ -26,8 +30,10 @@ function SampleInvoice() {
                     </div>
                     <div className="flex flex-col gap-1 sm:text-right">
                         <span className="font-mono text-xs font-bold tracking-[0.14em] text-[oklch(0.45_0.11_230)]">INVOICE</span>
-                        <span className="font-mono text-xl">F-2026-0142</span>
-                        <span className="text-[13px] text-[oklch(0.47_0.02_230)]">Issued 2 Nov 2026, due 2 Dec 2026</span>
+                        <span className="font-mono text-xl">{story.invoice}</span>
+                        <span className="text-[13px] text-[oklch(0.47_0.02_230)]">
+                            Issued {shortDate(story.issued)}, due {shortDate(story.due)}
+                        </span>
                     </div>
                 </div>
 
@@ -76,7 +82,7 @@ function SampleInvoice() {
 
                 <div className="absolute bottom-24 left-[30%] -rotate-[13deg] rounded-[10px] border-4 border-[#0a7fae] px-4 pb-1.5 pt-2 text-center text-[#0a7fae] opacity-80 mix-blend-multiply max-sm:hidden">
                     <div className="font-mono text-3xl font-bold leading-none tracking-[0.2em]">PAID</div>
-                    <div className="font-mono text-[11px] font-bold tracking-[0.14em]">02 NOV 2026</div>
+                    <div className="font-mono text-[11px] font-bold tracking-[0.14em]">{stampDate(story.paid)}</div>
                 </div>
             </div>
         </div>
@@ -97,7 +103,7 @@ export function Hero() {
                 <DeskObject name="pen" eager className="absolute -left-16 top-[520px] z-[3]" />
                 <DeskObject name="cup" eager className="absolute -right-12 top-24 z-[3]" />
                 <StickyNote className="absolute right-[7%] top-[380px] z-[3] h-[166px] rotate-[5deg]">{'Factur-X ok!\nsend via PDP\nbefore Friday'}</StickyNote>
-                <DeskObject name="phone" eager className="absolute -bottom-28 -right-10 z-[6]" />
+                <Phone className="absolute -bottom-28 -right-10 z-[6]" />
                 <DeskObject name="coins" eager className="absolute bottom-12 left-[18%] z-[5]" />
             </div>
 
