@@ -1,9 +1,10 @@
-// Read from the app's own country catalogues (backend/src/modules/documents/*/data/<country>.json) on
+// The words of each line (hints, channel details) are in the home page's copy, src/i18n/home/,
+// keyed by these codes. Read from the app's own country catalogues (backend/src/modules/documents/*/data/<country>.json) on
 // 2026-09-17. A row is only listed when the catalogue holds it: the uneven shape is the point.
 export interface CountryFacts {
-    code: string
+    code: 'FR' | 'DE' | 'IT' | 'PL' | 'PT'
     name: string
-    identifiers: { label: string; required?: boolean; hint?: string }[]
+    identifiers: { label: string; required?: boolean; hint?: 'siren' | 'ustid' }[]
     vatRates: number[]
     format?: string
     channel: { name: string; detail: string }
@@ -15,7 +16,7 @@ export const countries: CountryFacts[] = [
         code: 'FR',
         name: 'France',
         identifiers: [
-            { label: 'SIREN / SIRET', required: true, hint: '9 or 14 digits' },
+            { label: 'SIREN / SIRET', required: true, hint: 'siren' },
             { label: 'N° TVA intracommunautaire' },
         ],
         vatRates: [20, 10, 5.5, 2.1, 0],
@@ -26,7 +27,7 @@ export const countries: CountryFacts[] = [
     {
         code: 'DE',
         name: 'Germany',
-        identifiers: [{ label: 'USt-IdNr.', hint: 'DE + 9 digits' }, { label: 'Handelsregisternummer' }],
+        identifiers: [{ label: 'USt-IdNr.', hint: 'ustid' }, { label: 'Handelsregisternummer' }],
         vatRates: [19, 7, 0],
         format: 'XRechnung',
         channel: { name: 'E-mail', detail: 'PDF with the e-invoice XML attached.' },

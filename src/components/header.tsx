@@ -2,7 +2,8 @@ import { Menu, X } from 'lucide-react'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useState } from 'react'
 
-import { hostedLoginOpen, links } from '@/lib/links'
+import { useHome } from '@/i18n/home/context'
+import { hostedLoginOpen, links, waitlistHref } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
 import { BrandMark } from './brand-mark'
@@ -10,12 +11,6 @@ import { Icons } from './icons'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 
-const sections = [
-    { label: 'Product', href: '#product' },
-    { label: 'Countries', href: '#countries' },
-    { label: 'Self-hosting', href: '#hosting' },
-    { label: 'Pricing', href: '#pricing' },
-]
 
 interface HeaderProps {
     /** The home page opens on its dark desk: until the page scrolls, the bar is transparent over it and
@@ -24,6 +19,15 @@ interface HeaderProps {
 }
 
 export default function Header({ overDesk = false }: HeaderProps) {
+    const { lang, copy } = useHome()
+    const t = copy.header
+    const home = lang === 'en' ? '/' : `/${lang}/`
+    const sections = [
+        { label: t.nav.product, href: '#product' },
+        { label: t.nav.countries, href: '#countries' },
+        { label: t.nav.hosting, href: '#hosting' },
+        { label: t.nav.pricing, href: '#pricing' },
+    ]
     const { scrollY } = useScroll()
     const [scrolled, setScrolled] = useState(false)
     const [open, setOpen] = useState(false)
@@ -44,12 +48,12 @@ export default function Header({ overDesk = false }: HeaderProps) {
             )}
         >
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5">
-                <a href="/" className="flex items-center gap-2.5 rounded-md" aria-label="Invoicerr home">
+                <a href={home} className="flex items-center gap-2.5 rounded-md" aria-label={t.home}>
                     <BrandMark className={cn('h-6', onDesk && '[&_path.fill-primary]:fill-azure-light')} />
                     <span className="font-heading text-lg font-semibold tracking-tight">Invoicerr</span>
                 </a>
 
-                <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+                <nav className="hidden items-center gap-1 md:flex" aria-label={t.main}>
                     {sections.map((section) => (
                         <a
                             key={section.href}
@@ -63,34 +67,34 @@ export default function Header({ overDesk = false }: HeaderProps) {
                         href={links.docs}
                         className={cn('rounded-md px-3 py-2 text-sm transition-colors', quiet)}
                     >
-                        Docs
+                        {t.nav.docs}
                     </a>
                 </nav>
 
                 <div className="flex items-center gap-1.5">
                     <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
-                        <a href={links.github} aria-label="Invoicerr on GitHub">
+                        <a href={links.github} aria-label={t.onGitHub}>
                             <Icons.gitHub />
                         </a>
                     </Button>
                     <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
-                        <a href={links.linkedin} aria-label="Invoicerr on LinkedIn">
+                        <a href={links.linkedin} aria-label={t.onLinkedIn}>
                             <Icons.linkedIn />
                         </a>
                     </Button>
                     <Button variant="ghost" size="icon" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
-                        <a href={links.discord} aria-label="Invoicerr on Discord">
+                        <a href={links.discord} aria-label={t.onDiscord}>
                             <Icons.discord />
                         </a>
                     </Button>
-                    <ThemeToggle className={onDesk ? quiet : undefined} />
+                    <ThemeToggle className={onDesk ? quiet : undefined} labels={t.theme} />
                     {hostedLoginOpen && (
                         <Button variant="ghost" asChild className={cn('hidden sm:inline-flex', onDesk && quiet)}>
-                            <a href={links.app}>Log in</a>
+                            <a href={links.app}>{t.logIn}</a>
                         </Button>
                     )}
                     <Button variant={onDesk ? 'desk' : 'default'} asChild className="hidden sm:inline-flex">
-                        <a href={links.app}>Join the waiting list</a>
+                        <a href={waitlistHref(lang)}>{t.joinWaitlist}</a>
                     </Button>
                     <Button
                         variant="ghost"
@@ -99,7 +103,7 @@ export default function Header({ overDesk = false }: HeaderProps) {
                         onClick={() => setOpen((current) => !current)}
                         aria-expanded={open}
                         aria-controls="mobile-nav"
-                        aria-label={open ? 'Close menu' : 'Open menu'}
+                        aria-label={open ? t.closeMenu : t.openMenu}
                     >
                         {open ? <X /> : <Menu />}
                     </Button>
@@ -109,7 +113,7 @@ export default function Header({ overDesk = false }: HeaderProps) {
             {open && (
                 <motion.nav
                     id="mobile-nav"
-                    aria-label="Mobile"
+                    aria-label={t.mobile}
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2 }}
@@ -117,7 +121,7 @@ export default function Header({ overDesk = false }: HeaderProps) {
                 >
                     {[
                         ...sections,
-                        { label: 'Docs', href: links.docs },
+                        { label: t.nav.docs, href: links.docs },
                         { label: 'GitHub', href: links.github },
                         { label: 'LinkedIn', href: links.linkedin },
                         { label: 'Discord', href: links.discord },
@@ -129,11 +133,11 @@ export default function Header({ overDesk = false }: HeaderProps) {
                     <div className={cn('mt-3 grid gap-2', hostedLoginOpen && 'grid-cols-2')}>
                         {hostedLoginOpen && (
                             <Button variant="outline" asChild>
-                                <a href={links.app}>Log in</a>
+                                <a href={links.app}>{t.logIn}</a>
                             </Button>
                         )}
                         <Button asChild>
-                            <a href={links.app}>Join the waiting list</a>
+                            <a href={waitlistHref(lang)}>{t.joinWaitlist}</a>
                         </Button>
                     </div>
                 </motion.nav>

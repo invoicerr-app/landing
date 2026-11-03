@@ -4,11 +4,16 @@ import { useTheme } from '@/lib/theme'
 
 import { Button } from './ui/button'
 
-export function ThemeToggle({ className }: { className?: string }) {
+interface ThemeToggleProps {
+    className?: string
+    /** What the button says it does, in the page's language. */
+    labels?: { light: string; dark: string }
+}
+
+export function ThemeToggle({ className, labels = { light: 'Switch to light theme', dark: 'Switch to dark theme' } }: ThemeToggleProps) {
     const { theme, toggle } = useTheme()
-    const next = theme === 'dark' ? 'light' : 'dark'
     return (
-        <Button variant="ghost" size="icon" onClick={toggle} className={className} aria-label={`Switch to ${next} theme`}>
+        <Button variant="ghost" size="icon" onClick={toggle} className={className} aria-label={theme === 'dark' ? labels.light : labels.dark}>
             {theme === 'dark' ? <Sun /> : <Moon />}
         </Button>
     )

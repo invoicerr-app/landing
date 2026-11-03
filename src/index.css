@@ -129,6 +129,46 @@
   h4 {
     @apply font-heading;
   }
+  /* The home page's non-Latin languages. The brand faces have no glyphs for these scripts, so the
+     browser falls back per character: these lists pick a face drawn for the script (Japanese kana
+     and kanji from a Japanese face, not a Chinese one), and the tracking the Latin headings use is
+     dropped, since it spaces CJK too wide and breaks the joins of Arabic letters. */
+  html:lang(zh) {
+    --script-faces: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC';
+  }
+  html:lang(ja) {
+    --script-faces: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Noto Sans CJK JP', 'Noto Sans JP';
+  }
+  html:lang(ko) {
+    --script-faces: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR', 'Noto Sans KR';
+  }
+  html:lang(ar) {
+    --script-faces: 'Geeza Pro', 'Segoe UI', Tahoma, 'Noto Sans Arabic';
+  }
+  html:lang(hi) {
+    --script-faces: 'Kohinoor Devanagari', 'Nirmala UI', Mangal, 'Noto Sans Devanagari';
+  }
+  /* On body only: set on every element, it would undo the monospaced font a block inherits. */
+  :is(html:lang(zh), html:lang(ja), html:lang(ko), html:lang(ar), html:lang(hi)) body {
+    font-family: 'Inter Variable', var(--script-faces), sans-serif;
+  }
+  /* Japanese has no spaces to break at: break between phrases rather than inside a word. */
+  html:lang(ja) {
+    word-break: auto-phrase;
+  }
+  :is(html:lang(zh), html:lang(ja), html:lang(ko), html:lang(ar), html:lang(hi)) :is(h1, h2, h3, h4) {
+    font-family: 'Space Grotesk Variable', var(--script-faces), sans-serif;
+    /* !important: the tracking utilities sit in a later layer. */
+    letter-spacing: 0 !important;
+  }
+  /* Space Mono has no Arabic or Devanagari, and the monospaced fallbacks that do draw those scripts
+     cell by cell, unjoined: figures stay in Space Mono, the words go to a proportional face. */
+  :is(html:lang(ar), html:lang(hi)) .font-mono {
+    font-family: 'Space Mono', var(--script-faces), sans-serif !important;
+  }
+  :lang(ar) * {
+    letter-spacing: 0 !important;
+  }
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

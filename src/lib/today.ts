@@ -47,20 +47,28 @@ export function addYears(date: Date, years: number) {
 
 const pad = (value: number) => String(value).padStart(2, '0')
 
-/** 2 Nov 2026 */
-export const shortDate = (date: Date) => date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+/** 2 Nov 2026, in the page's locale. */
+export const shortDate = (date: Date, locale = 'en-GB') => date.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' })
 
-/** 02 NOV 2026, as a date stamp prints it. */
+/** 02 NOV 2026, as a date stamp prints it: always this shape, it is ink on paper, not text. */
 export const stampDate = (date: Date) => `${pad(date.getDate())} ${date.toLocaleDateString('en-GB', { month: 'short' }).toUpperCase().slice(0, 3)} ${date.getFullYear()}`
 
-/** NOV 2026 */
+/** NOV 2026, the postmark's date: a stamp too. */
 export const monthYear = (date: Date) => `${date.toLocaleDateString('en-GB', { month: 'short' }).toUpperCase().slice(0, 3)} ${date.getFullYear()}`
 
-/** November */
-export const monthName = (date: Date) => date.toLocaleDateString('en-GB', { month: 'long' })
+/** November, in the page's locale. */
+export const monthName = (date: Date, locale = 'en-GB') => date.toLocaleDateString(locale, { month: 'long' })
 
-/** Monday 2 November */
-export const lockScreenDate = (date: Date) => date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }).replace(',', '')
+/** Monday 2 November, in the page's locale. */
+export const lockScreenDate = (date: Date, locale = 'en-GB') => date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' }).replace(',', '')
+
+/** €2,952.00 in English, 2 952,00 € in French: an amount on the sample documents. */
+export const euro = (amount: number, locale = 'en-GB', decimals = 2) =>
+    new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR', minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(amount)
+
+/** 2,952.00 without the currency, for the flow's sheets. */
+export const amount = (value: number, locale = 'en-GB', decimals = 2) =>
+    new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value)
 
 const noop = () => () => {}
 

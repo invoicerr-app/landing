@@ -19,6 +19,13 @@ const objects = {
     'paperclip-back': { src: '/desk/paperclip-back.webp', width: 90, height: 150 },
     'paperclip-front': { src: '/desk/paperclip-front.webp', width: 90, height: 150 },
     'paperclip-host': { src: '/desk/paperclip-host.webp', width: 89, height: 149 },
+    // The bento's six, one per card, trimmed by scripts/desk-renders/trim.py.
+    stamp: { src: '/desk/stamp.webp', width: 238, height: 210 },
+    stopwatch: { src: '/desk/stopwatch.webp', width: 204, height: 239 },
+    keys: { src: '/desk/keys.webp', width: 238, height: 200 },
+    magnifier: { src: '/desk/magnifier.webp', width: 254, height: 277 },
+    cable: { src: '/desk/cable.webp', width: 276, height: 138 },
+    notes: { src: '/desk/notes.webp', width: 211, height: 164 },
 } as const
 
 export type DeskObjectName = keyof typeof objects

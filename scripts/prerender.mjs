@@ -48,7 +48,7 @@ function escapeHtml(value) {
 // `alternates` is optional too, and only the waiting list uses it: the same page written six times
 // over needs every version to name the other five, plus an x-default. `referrerPolicy` is optional
 // as well and only the guides the Worker reads set it; the comment where they do says why.
-function injectHead(shell, { title, description, canonical, jsonLd, lang, alternates, referrerPolicy }) {
+function injectHead(shell, { title, description, canonical, jsonLd, lang, ogLocale, dir, alternates, referrerPolicy }) {
     const escapedTitle = escapeHtml(title)
     const escapedDescription = escapeHtml(description)
     let out = shell
@@ -62,7 +62,11 @@ function injectHead(shell, { title, description, canonical, jsonLd, lang, altern
         .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escapedDescription}" />`)
         .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n    </script>`)
     if (lang) {
-        out = out.replace(/<html lang="[^"]*">/, `<html lang="${lang}">`).replace(/<meta property="og:locale" content="[^"]*" \/>/, `<meta property="og:locale" content="${lang}_${lang.toUpperCase()}" />`)
+        // `ogLocale` when the language's own territory is not its code in capitals (ja_JP, not ja_JA).
+        const locale = ogLocale ?? `${lang}_${lang.toUpperCase()}`
+        out = out
+            .replace(/<html lang="[^"]*">/, `<html lang="${lang}"${dir === 'rtl' ? ' dir="rtl"' : ''}>`)
+            .replace(/<meta property="og:locale" content="[^"]*" \/>/, `<meta property="og:locale" content="${locale}" />`)
     }
     if (alternates?.length) {
         const tags = alternates.map(({ hreflang, href }) => `    <link rel="alternate" hreflang="${hreflang}" href="${href}" />\n`).join('')
@@ -194,10 +198,70 @@ try {
         throw new Error('dist/index.html no longer holds an empty <div id="root"></div> to fill.')
     }
 
+    // The home page in its other fourteen languages, /fr/ to /ko/. Each names all fifteen as
+    // alternates, "/" included, and "/" names them back: hreflang only counts when it goes both
+    // ways. Their structured data is the home page's own (index.html), with the FAQ in the page's
+    // language and a WebPage node saying which language that is.
+    const { HOME_LANGUAGES, DEFAULT_HOME_LANGUAGE, LANGUAGE_INFO, homePath, homeUrl } = await vite.ssrLoadModule('/src/i18n/home/languages.ts')
+    const { loadHomeLocale } = await vite.ssrLoadModule('/src/i18n/home/context.ts')
+    const { plain } = await vite.ssrLoadModule('/src/i18n/home/format.tsx')
+    const homeAlternates = [
+        ...HOME_LANGUAGES.map((language) => ({ hreflang: LANGUAGE_INFO[language].tag, href: homeUrl(language) })),
+        { hreflang: 'x-default', href: homeUrl(DEFAULT_HOME_LANGUAGE) },
+    ]
+    const homeJsonLd = JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(shell)[1])
+    const homePages = []
+    for (const language of HOME_LANGUAGES) {
+        if (language === DEFAULT_HOME_LANGUAGE) continue
+        const { copy } = await loadHomeLocale(language)
+        const info = LANGUAGE_INFO[language]
+        const canonical = homeUrl(language)
+        const graph = homeJsonLd['@graph'].map((node) =>
+            node['@type'] === 'FAQPage'
+                ? {
+                      ...node,
+                      '@id': `${canonical}#faq`,
+                      inLanguage: info.tag,
+                      mainEntity: copy.faq.items.map((item) => ({
+                          '@type': 'Question',
+                          name: item.question,
+                          acceptedAnswer: { '@type': 'Answer', text: plain(item.answer) },
+                      })),
+                  }
+                : node,
+        )
+        graph.push({
+            '@type': 'WebPage',
+            '@id': `${canonical}#webpage`,
+            url: canonical,
+            name: copy.meta.title,
+            description: copy.meta.description,
+            inLanguage: info.tag,
+            isPartOf: { '@id': `${SITE}/#website` },
+        })
+        homePages.push({
+            url: homePath(language).replace(/\/$/, ''),
+            outDir: path.join(root, 'dist', language),
+            // llms-full.txt carries the English home page; the other fourteen say the same.
+            llms: false,
+            head: {
+                title: copy.meta.title,
+                description: copy.meta.description,
+                canonical,
+                lang: info.tag,
+                ogLocale: info.ogLocale,
+                dir: info.dir,
+                alternates: homeAlternates,
+                jsonLd: { ...homeJsonLd, '@graph': graph },
+            },
+        })
+    }
+
     // The home page keeps its hand-written head as-is (no injectHead call): index.html already
     // carries the right <title>, description, canonical and JSON-LD for "/".
     const pages = [
-        { url: '/', outDir: path.join(root, 'dist'), head: null },
+        { url: '/', outDir: path.join(root, 'dist'), head: null, alternates: homeAlternates },
+        ...homePages,
         ...contentPages,
         ...waitlistPages,
     ]
@@ -255,7 +319,11 @@ try {
             .filter((tag) => tag.includes('fetchPriority="high"'))
             .map((tag) => tag.replace(' fetchPriority="high"', ' fetchpriority="high"'))
 
-        const pageShell = page.head ? injectHead(shell, page.head) : shell
+        let pageShell = page.head ? injectHead(shell, page.head) : shell
+        // "/" keeps its hand-written head and only gains the hreflang set of its translations.
+        if (!page.head && page.alternates) {
+            pageShell = pageShell.replace('</head>', `${page.alternates.map(({ hreflang, href }) => `    <link rel="alternate" hreflang="${hreflang}" href="${href}" />\n`).join('')}  </head>`)
+        }
         const filled = pageShell
             .replace('</head>', `${hero.map((tag) => `  ${tag}\n`).join('')}</head>`)
             .replace('<div id="root"></div>', `<div id="root">${body}</div>`)

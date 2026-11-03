@@ -1,84 +1,81 @@
-import { CircleUserRound, Clock, Code, Globe, ScanText, Send } from 'lucide-react'
-
+import { type DeskObjectName, DeskObject } from '@/components/desk/objects'
 import { Eyebrow } from '@/components/desk/tear'
 import { Button } from '@/components/ui/button'
+import { useHome } from '@/i18n/home/context'
 import { links } from '@/lib/links'
+import { cn } from '@/lib/utils'
 
 // The app ships no screenshot of its MCP server, so its card hangs on the app's own developer
 // documentation: the endpoint below is resolved verbatim from
 // documentation/docs/developer-guide/mcp-server.md on the app's dev branch.
 const MCP_REFERENCE = 'https://docs.invoicerr.app/docs/developer-guide/mcp-server/'
 
-const features = [
-    {
-        icon: Send,
-        title: 'It clears the tax office',
-        body: 'Where a country runs a national platform, Invoicerr sends the invoice through it and tracks the answer. The channel per country is picked once, in the company settings.',
-    },
-    {
-        icon: Clock,
-        title: 'Hours turn into invoice lines',
-        body: 'Track time per project, billable or not. When the month ends, the unbilled hours become an invoice in one step.',
-    },
-    {
-        icon: CircleUserRound,
-        title: 'Clients get their own portal',
-        body: 'Their documents, their balance, PDFs, online payment and quote decisions. No more statement requests by e-mail.',
-    },
-    {
-        icon: ScanText,
-        title: 'Supplier invoices, read for you',
-        body: 'Drop a received invoice. Self-hosted OCR reads it into an editable proposal that you approve or reject.',
-    },
-    {
-        icon: Code,
-        title: 'An MCP server and an API, scoped by key',
-        body: 'A built-in MCP server, a REST API and 18 webhook events, all scoped by API key: the assistant calls the same tools a user can, through one key.',
-        code: 'POST /api/mcp',
-    },
-    {
-        icon: Globe,
-        title: "Speaks your language, and your client's",
-        body: '19 language catalogs, a document language per recipient, and multi-currency with rate history.',
-    },
+// Each card holds an object from the desk that is the thing it talks about: the tax office's
+// stamp, a stopwatch for the hours, the client's keys, a magnifier on a supplier's receipt, the
+// cable the API plugs in with, banknotes in three currencies. Renders from
+// scripts/desk-renders/desk.py, like the hero's objects. The grid runs on six columns, two wide
+// cards and two narrow ones, then two halves, so the six never read as one repeated tile.
+const features: { key: keyof ReturnType<typeof useHome>['copy']['bento']['features']; object: DeskObjectName; span: string; wide: boolean }[] = [
+    { key: 'clearance', object: 'stamp', span: 'lg:col-span-4', wide: true },
+    { key: 'time', object: 'stopwatch', span: 'lg:col-span-2', wide: false },
+    { key: 'portal', object: 'keys', span: 'lg:col-span-2', wide: false },
+    { key: 'ocr', object: 'magnifier', span: 'lg:col-span-4', wide: true },
+    { key: 'api', object: 'cable', span: 'lg:col-span-3', wide: true },
+    { key: 'languages', object: 'notes', span: 'lg:col-span-3', wide: true },
 ]
 
 export function Bento() {
+    const { copy } = useHome()
+    const t = copy.bento
     return (
-        <section className="mx-auto max-w-6xl px-5 py-24">
+        <section className="mx-auto max-w-6xl px-5 pb-12 pt-24">
             <div className="flex flex-wrap items-end justify-between gap-7">
                 <div className="max-w-2xl">
-                    <Eyebrow number="03">Around the invoice</Eyebrow>
-                    <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">The work around the invoice, handled too.</h2>
+                    <Eyebrow number="03">{t.eyebrow}</Eyebrow>
+                    <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">{t.title}</h2>
                 </div>
                 <div className="flex flex-wrap gap-2.5">
                     <Button asChild className="h-11 rounded-[10px] px-5">
-                        <a href={links.demo}>Try the live demo</a>
+                        <a href={links.demo}>{t.tryDemo}</a>
                     </Button>
                     <Button variant="secondary" asChild className="h-11 rounded-[10px] px-5">
-                        <a href={links.docs}>Read the docs</a>
+                        <a href={links.docs}>{t.readDocs}</a>
                     </Button>
                 </div>
             </div>
 
-            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => (
-                    <li key={feature.title} className="flex flex-col gap-3 rounded-[14px] bg-card p-7 shadow-[0_0_0_1px_var(--border),0_6px_16px_rgb(10_40_60/0.05)]">
-                        <span aria-hidden="true" className="flex size-11 items-center justify-center rounded-[10px] bg-accent text-[oklch(0.45_0.11_230)] dark:text-primary">
-                            <feature.icon className="size-[22px]" strokeWidth={1.8} />
-                        </span>
-                        <h3 className="mt-1.5 text-[19px] font-semibold leading-snug">{feature.title}</h3>
-                        <p className="text-[15px] leading-relaxed text-muted-foreground">{feature.body}</p>
-                        {feature.code && (
-                            <p className="mt-1 flex flex-wrap items-center gap-3">
-                                <code className="rounded-md bg-ink px-2.5 py-1.5 font-mono text-[13px] text-azure-pale">{feature.code}</code>
-                                <a href={MCP_REFERENCE} className="text-sm font-medium underline decoration-border underline-offset-4 hover:decoration-primary">
-                                    Read the guide
-                                </a>
-                            </p>
-                        )}
-                    </li>
-                ))}
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+                {features.map((feature) => {
+                    const text = t.features[feature.key]
+                    return (
+                        <li
+                            key={feature.key}
+                            className={cn(
+                                'flex flex-col gap-6 overflow-hidden rounded-2xl bg-card p-7 shadow-[0_0_0_1px_var(--border),0_6px_16px_rgb(10_40_60/0.05)]',
+                                feature.span,
+                                feature.wide && 'sm:col-span-2 lg:flex-row lg:items-center',
+                            )}
+                        >
+                            <div className={cn('flex shrink-0 items-center justify-center', feature.wide ? 'h-44 lg:order-2 lg:h-48 lg:w-[44%]' : 'h-44')}>
+                                <DeskObject name={feature.object} className="h-full w-auto max-w-full object-contain" />
+                            </div>
+                            <div className="flex flex-1 flex-col gap-3">
+                                <h3 className="text-xl font-semibold leading-snug">{text.title}</h3>
+                                <p className="text-[15px] leading-relaxed text-muted-foreground">{text.body}</p>
+                                {feature.key === 'api' && (
+                                    <p className="mt-1 flex flex-wrap items-center gap-3">
+                                        <code dir="ltr" className="rounded-md bg-ink px-2.5 py-1.5 font-mono text-[13px] text-azure-pale">
+                                            POST /api/mcp
+                                        </code>
+                                        <a href={MCP_REFERENCE} className="text-sm font-medium underline decoration-border underline-offset-4 hover:decoration-primary">
+                                            {t.readGuide}
+                                        </a>
+                                    </p>
+                                )}
+                            </div>
+                        </li>
+                    )
+                })}
             </ul>
         </section>
     )
