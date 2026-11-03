@@ -1,5 +1,5 @@
 import { CONTENT_PAGES } from '@/content/pages'
-import { FountainPen } from '@/components/desk/props'
+import { DeskObject } from '@/components/desk/objects'
 import { hostedLoginOpen, links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
@@ -73,7 +73,7 @@ export default function Footer({ variant = 'default', children }: FooterProps) {
                     {/* The page's last sheet ends on a row of punched holes, through which the desk shows. */}
                     <div aria-hidden="true" className="perforation-page absolute inset-x-0 -top-[9px] h-[18px]" />
                     <div aria-hidden="true" className="pointer-events-none absolute -top-20 left-[10%] h-[300px] w-[520px] rounded-full bg-[rgb(151_216_248/0.18)] blur-[60px]" />
-                    <FountainPen className="absolute -right-12 top-28 hidden -rotate-[32deg] xl:block" />
+                    <DeskObject name="pen-footer" className="absolute -right-16 top-20 hidden xl:block" />
                 </>
             )}
             {children}

@@ -1,4 +1,4 @@
-import { BrandMark } from '@/components/brand-mark'
+import { Stamp } from '@/components/desk/props'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 
@@ -30,11 +30,7 @@ export function FinalCta() {
                             strokeWidth="1.6"
                         />
                     </svg>
-                    <div className="-ml-4 h-[92px] w-[78px] rotate-[4deg] bg-white p-1.5 shadow-[0_0_0_1px_var(--border),0_4px_8px_rgb(3_12_18/0.15)]">
-                        <div className="flex size-full items-center justify-center bg-azure text-ink">
-                            <BrandMark variant="mono" className="h-9 text-ink" />
-                        </div>
-                    </div>
+                    <Stamp className="-ml-4 rotate-[4deg]" />
                 </div>
 
                 <div className="relative max-w-[620px]">

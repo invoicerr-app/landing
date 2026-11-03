@@ -1,7 +1,8 @@
 import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 
-import { Paperclip, StickyNote } from '@/components/desk/props'
+import { DeskObject } from '@/components/desk/objects'
+import { StickyNote } from '@/components/desk/props'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 
@@ -31,7 +32,7 @@ export function Hosting() {
     return (
         <section id="hosting" className="scroll-mt-20 px-5 py-24">
             <div className="desk relative mx-auto max-w-6xl overflow-hidden rounded-3xl text-white shadow-[0_24px_50px_rgb(10_40_60/0.22)]">
-                <Paperclip className="absolute -top-3 right-9 hidden rotate-[18deg] xl:block" />
+                <DeskObject name="paperclip-host" className="absolute -top-5 right-7 hidden xl:block" />
                 <div className="relative grid gap-14 px-6 py-16 sm:px-12 lg:grid-cols-2 lg:items-center lg:px-16 lg:py-[72px]">
                     <div>
                         <p className="inline-flex items-center gap-2.5 rounded-[10px] bg-[rgb(10_30_42/0.35)] py-1.5 pl-3 pr-1.5 text-sm shadow-[inset_0_0_0_1px_rgb(151_216_248/0.3)]">

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { ClipboardClip } from '@/components/desk/props'
 import { Eyebrow } from '@/components/desk/tear'
 import { Button } from '@/components/ui/button'
 import { type CountryFacts, countries } from '@/data/countries'
@@ -107,9 +108,7 @@ export function Countries() {
                     the markup, the inactive ones collapsed by `hidden`, so a crawler reads every
                     country's formats, channels and retention citations. */}
                 <div className="relative rotate-[0.6deg] rounded-[20px] bg-gradient-to-br from-[rgb(57_192_246/0.55)] to-[rgb(0_153_203/0.75)] px-4 pb-4 pt-12 shadow-[inset_0_1px_0_rgb(255_255_255/0.5),inset_0_0_0_1px_rgb(255_255_255/0.2),0_24px_40px_rgb(0_80_120/0.22)]">
-                    <div aria-hidden="true" className="absolute -top-3.5 left-1/2 h-[54px] w-40 -translate-x-1/2 rounded-xl bg-gradient-to-b from-[#f2f4f4] via-[#a9afb2] to-[#d7dbdc] shadow-[inset_0_1px_0_#fff,0_6px_10px_rgb(3_12_18/0.3)]">
-                        <div className="absolute left-1/2 top-3 h-3 w-11 -translate-x-1/2 rounded-md bg-[#6d7376] shadow-[inset_0_2px_3px_rgb(0_0_0/0.5)]" />
-                    </div>
+                    <ClipboardClip className="absolute -top-5 left-1/2 z-[2] -translate-x-1/2" />
                     {countries.map((country) => (
                         <div
                             key={country.code}

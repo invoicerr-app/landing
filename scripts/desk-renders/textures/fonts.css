@@ -1,0 +1,6 @@
+@font-face{font-family:In;src:url("../../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2");font-weight:100 900}
+@font-face{font-family:SG;src:url("../../../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2");font-weight:300 700}
+@font-face{font-family:SM;src:url("../../../node_modules/@fontsource/space-mono/files/space-mono-latin-400-normal.woff2");font-weight:400}
+@font-face{font-family:SM;src:url("../../../node_modules/@fontsource/space-mono/files/space-mono-latin-700-normal.woff2");font-weight:700}
+@font-face{font-family:CV;src:url("../../../node_modules/@fontsource/caveat/files/caveat-latin-600-normal.woff2");font-weight:600}
+*{box-sizing:border-box;margin:0;padding:0}

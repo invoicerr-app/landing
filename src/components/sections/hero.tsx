@@ -1,4 +1,5 @@
-import { Coins, CoffeeCup, Envelope, FountainPen, Paperclip, Phone, StickyNote } from '@/components/desk/props'
+import { DeskObject } from '@/components/desk/objects'
+import { StickyNote } from '@/components/desk/props'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
 
@@ -92,12 +93,12 @@ export function Hero() {
 
             {/* The desk's objects, wide screens only: on a narrow one they would sit on the text. */}
             <div aria-hidden="true" className="hidden xl:block">
-                <Envelope className="absolute -left-14 top-36 z-[3] -rotate-[9deg]" />
-                <FountainPen className="absolute -left-10 top-[590px] z-[3] rotate-[24deg]" />
-                <CoffeeCup className="absolute -right-8 top-28 z-[3]" />
-                <StickyNote className="absolute right-[7%] top-[360px] z-[3] h-[166px] rotate-[5deg]">{'Factur-X ok!\nsend via PDP\nbefore Friday'}</StickyNote>
-                <Phone className="absolute -bottom-24 right-[3%] z-[6] -rotate-[14deg]" />
-                <Coins className="absolute bottom-10 left-[21%] z-[5]" />
+                <DeskObject name="envelope" eager className="absolute -left-16 top-28 z-[3]" />
+                <DeskObject name="pen" eager className="absolute -left-16 top-[520px] z-[3]" />
+                <DeskObject name="cup" eager className="absolute -right-12 top-24 z-[3]" />
+                <StickyNote className="absolute right-[7%] top-[380px] z-[3] h-[166px] rotate-[5deg]">{'Factur-X ok!\nsend via PDP\nbefore Friday'}</StickyNote>
+                <DeskObject name="phone" eager className="absolute -bottom-28 -right-10 z-[6]" />
+                <DeskObject name="coins" eager className="absolute bottom-12 left-[18%] z-[5]" />
             </div>
 
             <div className="relative z-[4] mx-auto max-w-6xl px-5 text-center">
@@ -131,7 +132,7 @@ export function Hero() {
                 </p>
 
                 <div className="enter relative mx-auto mt-16 max-w-3xl">
-                    <Paperclip className="absolute -top-12 left-1/2 z-[6] hidden -rotate-[4deg] sm:block" />
+                    <DeskObject name="paperclip" eager className="absolute -top-14 left-1/2 z-[6] hidden sm:block" />
                     <SampleInvoice />
                 </div>
             </div>
