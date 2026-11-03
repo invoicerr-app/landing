@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { other: '{n}ユーザー' },
         billedMonthly: '{seats}分を月払いで請求します（税抜）。年払いなら月あたり{yearly}です。',
         billedYearly: '{seats}分を{strong}年1回{amount}で請求{/strong}（通常{full}）。{saved}お得です。',
-        local: '本日の{source}レートで{strong}月あたり約{amount}{/strong}。請求はユーロ建てです。',
+        local: '{strong}請求額は月{amount}（ユーロ建て）{/strong}。上の金額は本日の{source}レートで換算しています。',
         sources: { stripe: 'Stripe', ecb: '欧州中央銀行' },
         seatQuestion: '会社のアカウントを何人で使いますか？',
         removeSeat: 'ユーザーを1人減らす',

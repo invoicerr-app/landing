@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: '{n} Nutzer', other: '{n} Nutzer' },
         billedMonthly: 'Monatlich abgerechnet für {seats}, zzgl. USt. Bei jährlicher Zahlung sind es {yearly} im Monat.',
         billedYearly: '{strong}{amount} einmal jährlich abgerechnet{/strong} für {seats}, statt {full}. Sie sparen {saved}.',
-        local: '{strong}≈ {amount} pro Monat{/strong} zum heutigen Kurs ({source}). Abgerechnet wird in Euro.',
+        local: '{strong}Abgerechnet werden {amount} pro Monat, in Euro{/strong}. Der Betrag oben ist zum heutigen Kurs umgerechnet ({source}).',
         sources: { stripe: 'Stripe', ecb: 'Europäische Zentralbank' },
         seatQuestion: 'Wie viele Personen arbeiten im Konto Ihres Unternehmens?',
         removeSeat: 'Nutzer entfernen',

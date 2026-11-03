@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: '{n} सीट', other: '{n} सीटें' },
         billedMonthly: '{seats} के लिए हर महीने बिल, VAT के बिना। वार्षिक में यह {yearly} प्रति माह पड़ता है।',
         billedYearly: '{seats} के लिए {strong}साल में एक बार {amount} का बिल{/strong}, {full} के बजाय। आपकी बचत {saved}।',
-        local: 'आज की {source} दर पर {strong}≈ {amount} प्रति माह{/strong}। बिल यूरो में बनता है।',
+        local: '{strong}बिल {amount} प्रति माह, यूरो में{/strong}। ऊपर की राशि आज की {source} दर पर बदली गई है।',
         sources: { stripe: 'Stripe', ecb: 'यूरोपीय सेंट्रल बैंक' },
         seatQuestion: 'आपकी कंपनी के अकाउंट में कितने लोग काम करते हैं?',
         removeSeat: 'एक सीट हटाएँ',

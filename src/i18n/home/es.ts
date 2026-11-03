@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: '{n} usuario', many: '{n} de usuarios', other: '{n} usuarios' },
         billedMonthly: 'Facturado mensualmente por {seats}, IVA no incluido. En anual sale a {yearly} al mes.',
         billedYearly: '{strong}{amount} facturados una vez al año{/strong} por {seats}, en lugar de {full}. Ahorras {saved}.',
-        local: '{strong}≈ {amount} al mes{/strong} al tipo de cambio actual ({source}). Se te factura en euros.',
+        local: '{strong}Se facturan {amount} al mes, en euros{/strong}. El importe de arriba está convertido al tipo de cambio actual ({source}).',
         sources: { stripe: 'Stripe', ecb: 'Banco Central Europeo' },
         seatQuestion: '¿Cuántas personas trabajan en la cuenta de tu empresa?',
         removeSeat: 'Quitar un usuario',

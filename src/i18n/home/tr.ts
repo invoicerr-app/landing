@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: "{n} kullanıcı", other: "{n} kullanıcı" },
         billedMonthly: "{seats} için aylık faturalandırılır, KDV hariç. Yıllık ödemede aylık {yearly} tutar.",
         billedYearly: "{seats} için {full} yerine {strong}yılda bir kez {amount} faturalandırılır{/strong}. {saved} tasarruf edersiniz.",
-        local: "Bugünkü {source} kuruyla {strong}aylık ≈ {amount}{/strong}. Faturanız euro cinsinden kesilir.",
+        local: "{strong}Aylık {amount}, euro cinsinden faturalandırılır{/strong}. Yukarıdaki tutar bugünkü {source} kuruyla çevrilmiştir.",
         sources: { stripe: "Stripe", ecb: "Avrupa Merkez Bankası" },
         seatQuestion: "Şirketinizin hesabında kaç kişi çalışıyor?",
         removeSeat: "Kullanıcı çıkar",

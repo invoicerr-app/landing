@@ -81,21 +81,28 @@ export function Pricing() {
                     </div>
 
                     <div>
+                        {/* In the visitor's currency when there is one to convert to: the figure they
+                            read first is in money they think in, and the euro amount actually billed
+                            follows right under it. Euros alone for the euro area, and before the rate
+                            arrives (the prerendered page). */}
                         <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                            <span className="font-heading text-6xl font-medium leading-none tracking-[-0.03em] tabular-nums">{eur(lead)}</span>
+                            {local && <span className="font-heading text-4xl font-medium leading-none text-muted-foreground">≈</span>}
+                            <span className="font-heading text-6xl font-medium leading-none tracking-[-0.03em] tabular-nums">{local ? formatLocal(lead, local, localeFor()) : eur(lead)}</span>
                             <span className="text-lg text-muted-foreground">{t.perMonth}</span>
-                            {yearly && <s className="font-heading text-2xl text-muted-foreground tabular-nums decoration-[1.5px]">{eur(month)}</s>}
+                            {yearly && (
+                                <s className="font-heading text-2xl text-muted-foreground tabular-nums decoration-[1.5px]">{local ? formatLocal(month, local, localeFor()) : eur(month)}</s>
+                            )}
                         </p>
-                        <p className="mt-3 text-[15px] text-muted-foreground">
+                        {local && (
+                            <p className="mt-3 text-[15px] text-muted-foreground">
+                                {rich(t.local, { strong }, { amount: eur(lead), source: t.sources[local.source] })}
+                            </p>
+                        )}
+                        <p className={cn('text-[15px] text-muted-foreground', local ? 'mt-1.5' : 'mt-3')}>
                             {yearly
                                 ? rich(t.billedYearly, { strong }, { amount: eur(year), seats: seatCount, full: eur(month * 12), saved: eur(month * 12 - year) })
                                 : fmt(t.billedMonthly, { seats: seatCount, yearly: eur(year / 12) })}
                         </p>
-                        {local && (
-                            <p className="mt-2 text-[15px] text-muted-foreground">
-                                {rich(t.local, { strong }, { amount: formatLocal(lead, local, localeFor()), source: t.sources[local.source] })}
-                            </p>
-                        )}
                     </div>
 
                     <div className="rounded-xl bg-secondary px-4 py-4">

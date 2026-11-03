@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { other: '사용자 {n}명' },
         billedMonthly: '{seats} 기준 매월 청구, 부가세 별도. 연간 결제 시 월 {yearly}입니다.',
         billedYearly: '{seats} 기준 {strong}연 1회 {amount} 청구{/strong}, 정가 {full} 대비 {saved} 절약.',
-        local: '오늘 {source} 환율 기준 {strong}월 약 {amount}{/strong}. 청구는 유로로 이루어집니다.',
+        local: '{strong}청구 금액은 월 {amount}(유로){/strong}. 위 금액은 오늘 {source} 환율로 환산했습니다.',
         sources: { stripe: 'Stripe', ecb: '유럽중앙은행' },
         seatQuestion: '회사 계정을 사용하는 인원은 몇 명인가요?',
         removeSeat: '사용자 1명 빼기',

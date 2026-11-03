@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: "{n} gebruiker", other: "{n} gebruikers" },
         billedMonthly: "Maandelijks gefactureerd voor {seats}, excl. btw. Jaarlijks komt neer op {yearly} per maand.",
         billedYearly: "{strong}{amount} eenmaal per jaar gefactureerd{/strong} voor {seats}, in plaats van {full}. Je bespaart {saved}.",
-        local: "{strong}≈ {amount} per maand{/strong} tegen de huidige koers van {source}. Je wordt gefactureerd in euro.",
+        local: "{strong}Gefactureerd: {amount} per maand, in euro{/strong}. Het bedrag hierboven is omgerekend tegen de huidige koers van {source}.",
         sources: { stripe: "Stripe", ecb: "de Europese Centrale Bank" },
         seatQuestion: "Hoeveel mensen werken in het account van je bedrijf?",
         removeSeat: "Gebruiker verwijderen",

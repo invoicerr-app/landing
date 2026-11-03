@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { one: '{n} пользователя', few: '{n} пользователей', many: '{n} пользователей', other: '{n} пользователя' },
         billedMonthly: 'Ежемесячная оплата для {seats}, без НДС. При оплате за год выходит {yearly} в месяц.',
         billedYearly: '{strong}{amount} раз в год{/strong} для {seats} вместо {full}. Экономия {saved}.',
-        local: '{strong}≈ {amount} в месяц{/strong} по сегодняшнему курсу {source}. Оплата списывается в евро.',
+        local: '{strong}К оплате {amount} в месяц, в евро{/strong}. Сумма выше пересчитана по сегодняшнему курсу {source}.',
         sources: { stripe: 'Stripe', ecb: 'Европейского центрального банка' },
         seatQuestion: 'Сколько человек работает в аккаунте вашей компании?',
         removeSeat: 'Убрать пользователя',

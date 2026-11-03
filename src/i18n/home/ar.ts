@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { zero: "{n} مستخدم", one: "مستخدم واحد", two: "مستخدمان", few: "{n} مستخدمين", many: "{n} مستخدمًا", other: "{n} مستخدم" },
         billedMonthly: "فوترة شهرية ({seats})، دون ضريبة القيمة المضافة. الدفع السنوي يعادل {yearly} شهريًا.",
         billedYearly: "{strong}{amount} تُدفع مرة واحدة في السنة{/strong} ({seats})، بدلًا من {full}. توفّر {saved}.",
-        local: "{strong}≈ {amount} شهريًا{/strong} بسعر صرف {source} اليوم. تتم الفوترة باليورو.",
+        local: "{strong}تتم الفوترة {amount} شهريًا باليورو{/strong}. المبلغ أعلاه محوَّل بسعر صرف {source} اليوم.",
         sources: { stripe: "Stripe", ecb: "البنك المركزي الأوروبي" },
         seatQuestion: "كم عدد الأشخاص الذين يعملون على حساب شركتك؟",
         removeSeat: "إزالة مستخدم",

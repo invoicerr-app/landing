@@ -186,7 +186,7 @@ const copy: HomeCopy = {
         seats: { other: '{n} 个席位' },
         billedMonthly: '{seats}，按月计费，不含增值税。按年付费相当于每月 {yearly}。',
         billedYearly: '{seats}，{strong}每年一次性收取 {amount}{/strong}，原价 {full}，节省 {saved}。',
-        local: '按 {source} 今日汇率，{strong}约合每月 {amount}{/strong}。账单以欧元结算。',
+        local: '{strong}每月按 {amount} 以欧元结算{/strong}。上方金额按 {source} 今日汇率换算。',
         sources: { stripe: 'Stripe', ecb: '欧洲中央银行' },
         seatQuestion: '贵公司的账户有多少人使用？',
         removeSeat: '减少一个席位',

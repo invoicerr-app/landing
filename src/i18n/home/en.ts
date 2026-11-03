@@ -201,7 +201,7 @@ export const en = {
         seats: { one: '{n} seat', other: '{n} seats' } as Plural,
         billedMonthly: 'Billed monthly for {seats}, excluding VAT. Yearly comes to {yearly} a month.',
         billedYearly: '{strong}{amount} billed once a year{/strong} for {seats}, instead of {full}. You save {saved}.',
-        local: '{strong}≈ {amount} a month{/strong} at today\'s {source} rate. You are billed in euros.',
+        local: '{strong}You are billed {amount} a month{/strong}, in euros. The figure above is converted at today\'s {source} rate.',
         sources: { stripe: 'Stripe', ecb: 'European Central Bank' },
         seatQuestion: "How many people work in your company's account?",
         removeSeat: 'Remove a seat',
