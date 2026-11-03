@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Eyebrow } from '@/components/desk/tear'
 import { Button } from '@/components/ui/button'
 import { useHome } from '@/i18n/home/context'
-import { fmt, plural, rich } from '@/i18n/home/format'
+import { fmt } from '@/i18n/home/format'
 import { links, waitlistHref } from '@/lib/links'
 import { formatLocal, useLocalPrice } from '@/lib/local-price'
 import { useLocale } from '@/lib/today'
@@ -33,7 +33,6 @@ export function Pricing() {
     // locale otherwise.
     const visitor = useLocale()
     const localeFor = () => (visitor.split('-')[0] === locale.split('-')[0] ? visitor : locale)
-    const strong = (text: string) => <span className="font-medium text-foreground">{text}</span>
     const [seats, setSeats] = useState(3)
     const [yearly, setYearly] = useState(false)
     const local = useLocalPrice()
@@ -41,7 +40,6 @@ export function Pricing() {
     const year = yearlyPrice(seats)
     // The figure that leads is always a month, so the two periods compare at a glance.
     const lead = yearly ? year / 12 : month
-    const seatCount = plural(t.seats, seats, locale)
 
     return (
         <section id="pricing" className="mx-auto max-w-6xl px-5 py-24">
@@ -81,10 +79,9 @@ export function Pricing() {
                     </div>
 
                     <div>
-                        {/* In the visitor's currency when there is one to convert to: the figure they
-                            read first is in money they think in, and the euro amount actually billed
-                            follows right under it. Euros alone for the euro area, and before the rate
-                            arrives (the prerendered page). */}
+                        {/* In the visitor's currency when there is one to convert to, with one line saying
+                            it is an approximation from the euro; the bill below stays in euros. Euros
+                            alone for the euro area, and before the rate arrives (the prerendered page). */}
                         <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                             {local && <span className="font-heading text-4xl font-medium leading-none text-muted-foreground">≈</span>}
                             <span className="font-heading text-6xl font-medium leading-none tracking-[-0.03em] tabular-nums">{local ? formatLocal(lead, local, localeFor()) : eur(lead)}</span>
@@ -93,16 +90,7 @@ export function Pricing() {
                                 <s className="font-heading text-2xl text-muted-foreground tabular-nums decoration-[1.5px]">{local ? formatLocal(month, local, localeFor()) : eur(month)}</s>
                             )}
                         </p>
-                        {local && (
-                            <p className="mt-3 text-[15px] text-muted-foreground">
-                                {rich(t.local, { strong }, { amount: eur(lead), source: t.sources[local.source] })}
-                            </p>
-                        )}
-                        <p className={cn('text-[15px] text-muted-foreground', local ? 'mt-1.5' : 'mt-3')}>
-                            {yearly
-                                ? rich(t.billedYearly, { strong }, { amount: eur(year), seats: seatCount, full: eur(month * 12), saved: eur(month * 12 - year) })
-                                : fmt(t.billedMonthly, { seats: seatCount, yearly: eur(year / 12) })}
-                        </p>
+                        {local && <p className="mt-3 text-[15px] text-muted-foreground">{fmt(t.local, { source: t.sources[local.source] })}</p>}
                     </div>
 
                     <div className="rounded-xl bg-secondary px-4 py-4">
