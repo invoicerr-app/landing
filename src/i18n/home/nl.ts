@@ -72,7 +72,7 @@ const copy: HomeCopy = {
     countries: {
         eyebrow: "Landen",
         title: "De factuurregels van vijf landen, ingebouwd",
-        lead: "Kies vanuit welk land je bedrijf factureert. De identificatienummers, de btw-tarieven, het e-factuurformaat en de manier waarop de factuur bij de belastingdienst komt volgen vanzelf, elk gekoppeld aan de wettekst waar het vandaan komt.",
+        lead: "Kies vanuit welk land je bedrijf factureert. Identificatienummers, btw-tarieven, het e-factuurformaat en de route naar de belastingdienst volgen vanzelf, elk met de wettekst als bron.",
         matrix: "Ondersteuningsmatrix per land",
         tablist: "Land",
         shipping: "Vijf landen zijn vandaag beschikbaar. Een nieuw land voegt zijn gegevensbestanden in dezelfde vorm toe, en de app leest ze in.",
@@ -103,7 +103,7 @@ const copy: HomeCopy = {
     flow: {
         eyebrow: "Het proces",
         title: "Van eerste offerte tot geld op de bank",
-        lead: "Eén documentengine verwerkt offertes, facturen, creditnota's, inkooporders en uitgaven. Niets hoeft ertussen opnieuw te worden ingetypt.",
+        lead: "Eén documentengine verwerkt offertes, facturen, creditnota's, inkooporders en uitgaven. Je typt niets twee keer in.",
         steps: {
             quote: { tab: "Offerte", title: "Offerte maken", body: "Stuur een offerte die je klant online ondertekent met een eenmalige code. Vraag een aanbetaling of verdeel het bedrag in termijnen." },
             invoice: { tab: "Factuur", title: "Factureren", body: "Zet de getekende offerte met één klik om in een factuur. De regels komen uit je catalogus, de btw-tarieven uit je land." },
@@ -140,7 +140,7 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: "Klanten krijgen hun eigen portaal",
-                body: "Hun documenten, hun saldo, pdf's, online betalen en beslissingen over offertes. Geen verzoeken om een overzicht meer per e-mail.",
+                body: "Hun documenten, hun saldo, pdf's, online betalen en beslissingen over offertes. Klanten mailen niet meer om een overzicht.",
             },
             ocr: {
                 title: "Inkoopfacturen, voor je uitgelezen",
@@ -164,7 +164,7 @@ const copy: HomeCopy = {
         facts: [
             { title: "Eén image, twee architecturen.", body: "Gebouwd voor amd64 en arm64. Het draait op een VPS, een NAS of een 64-bit Raspberry Pi (3 en nieuwer)." },
             { title: "Een Helm-chart als één host niet genoeg is.", body: "Aparte API- en workerrollen, je eigen PostgreSQL en Redis, je eigen ingress." },
-            { title: "Alle functies, geen limiet op gebruikers.", body: "De zelf gehoste app is de volledige app. De code voor abonnementen blijft uitgeschakeld." },
+            { title: "Alle functies, onbeperkt gebruikers.", body: "De zelf gehoste app is de volledige app. De code voor abonnementen blijft uitgeschakeld." },
         ],
         installGuide: "Lees de installatiehandleiding",
         source: "Bekijk de broncode",
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: "Prijzen",
         title: "De cloud rekent per gebruiker, zelf hosten is gratis",
-        lead: "De cloudprijs geldt per bedrijf en wordt goedkoper met elke gebruiker. Zelf hosten kost niets en houdt niets achter.",
+        lead: "De cloudprijs geldt per bedrijf en wordt goedkoper met elke gebruiker. Zelf hosten is gratis, met alle functies.",
         cloud: "Cloud",
         period: "Factuurperiode",
         monthly: "Maandelijks",
@@ -191,7 +191,7 @@ const copy: HomeCopy = {
         bands: { first: "Eerste gebruiker", next: "Gebruikers 2 t/m 4", further: "Vanaf gebruiker 5" },
         totalMonth: "Per maand, excl. btw",
         totalYear: "× {charged} maanden, {free} gratis",
-        cloudItems: ["Opent in november 2026", "Gehost en bijgewerkt door ons", "Alle functies van de app", "Proefperiode van {days} dagen bij de opening, zonder limiet behalve verzenden", "Je gegevens geëxporteerd als je vertrekt"],
+        cloudItems: ["Opent in november 2026", "Gehost en bijgewerkt door ons", "Alle functies van de app", "{days} dagen proef vanaf de opening, alles behalve verzenden", "Je gegevens geëxporteerd als je vertrekt"],
         selfHosted: "Zelf gehost",
         forever: "voor altijd",
         selfItems: ["Alle functies van de app", "Onbeperkt gebruikers en bedrijven", "Docker-image en Helm-chart", "AGPL-3.0, ondersteuning door de community"],
@@ -207,7 +207,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Wat kan ik doen tijdens de proefperiode van de cloud?",
-                answer: "De cloud opent in november 2026 en de proefperiode start tegelijk. Alles behalve documenten verzenden: 14 dagen lang kun je je bedrijf inrichten, klanten importeren, offertes en facturen opstellen en je team uitnodigen. Verzenden wordt vrijgegeven zodra je een abonnement neemt.",
+                answer: "De cloud opent in november 2026 en de proefperiode start tegelijk. Alles behalve documenten verzenden: 14 dagen lang kun je je bedrijf inrichten, klanten importeren, offertes en facturen opstellen en je team uitnodigen. Verzenden kan zodra je een abonnement neemt.",
             },
             {
                 question: "Hoe werkt de prijs per gebruiker?",
@@ -219,7 +219,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Welke landen worden ondersteund?",
-                answer: "Duitsland, Frankrijk, Italië, Polen en Portugal worden geleverd met hun regels ingevuld: identificatienummers, btw-tarieven, e-factuurformaten, verzendkanalen en bewaartermijnen. De {link}ondersteuningsmatrix per land{/link} laat precies zien wat elk land dekt.",
+                answer: "Voor Duitsland, Frankrijk, Italië, Polen en Portugal zijn de regels al ingevuld: identificatienummers, btw-tarieven, e-factuurformaten, verzendkanalen en bewaartermijnen. De {link}ondersteuningsmatrix per land{/link} laat precies zien wat elk land dekt.",
             },
             {
                 question: "Wat heb ik nodig om het zelf te hosten?",

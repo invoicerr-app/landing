@@ -63,7 +63,7 @@ const copy: HomeCopy = {
     proof: {
         label: "Factos do projeto",
         stub: "Código aberto",
-        stubText: "Desenvolvido em aberto, com a sua comunidade",
+        stubText: "Desenvolvido em aberto, com a comunidade",
         stars: "estrelas no GitHub",
         contributors: "colaboradores, além dos tradutores",
         catalogs: "catálogos de idiomas",
@@ -103,7 +103,7 @@ const copy: HomeCopy = {
     flow: {
         eyebrow: "O fluxo",
         title: "Do primeiro orçamento ao dinheiro no banco",
-        lead: "Um único motor de documentos gere orçamentos, faturas, notas de crédito, notas de encomenda e despesas. Nada é escrito duas vezes de um para o outro.",
+        lead: "Um único motor de documentos gere orçamentos, faturas, notas de crédito, notas de encomenda e despesas. Nada se escreve duas vezes.",
         steps: {
             quote: { tab: "Orçamento", title: "Orçamentar", body: "Envie um orçamento que o cliente assina online com um código de utilização única. Peça um adiantamento ou divida o valor em prestações." },
             invoice: { tab: "Fatura", title: "Faturar", body: "Transforme o orçamento assinado numa fatura com um clique. As linhas vêm do seu catálogo, as taxas de IVA do seu país." },
@@ -140,11 +140,11 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: "Os clientes têm o seu próprio portal",
-                body: "Os seus documentos, o seu saldo, PDFs, pagamento online e decisões sobre orçamentos. Acabaram-se os pedidos de extrato de conta por e-mail.",
+                body: "Documentos, saldo, PDFs, pagamento online e decisões sobre orçamentos. Os clientes deixam de pedir extratos por e-mail.",
             },
             ocr: {
                 title: "Faturas de fornecedores, lidas por si",
-                body: "Arraste uma fatura recebida. O OCR, alojado no seu servidor, lê-a e transforma-a numa proposta editável que aprova ou rejeita.",
+                body: "Arraste uma fatura recebida. O OCR, alojado no seu servidor, lê-a e transforma-a numa proposta editável para aprovar ou rejeitar.",
             },
             api: {
                 title: "Um servidor MCP e uma API, com permissões por chave",
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: "Preços",
         title: "A cloud cobra por utilizador, o alojamento próprio é gratuito",
-        lead: "O preço da cloud é por empresa e fica mais barato a cada utilizador. O alojamento próprio não custa nada e não deixa nada de fora.",
+        lead: "O preço da cloud é por empresa e fica mais barato a cada utilizador. O alojamento próprio é gratuito e tem todas as funcionalidades.",
         cloud: "Cloud",
         period: "Período de faturação",
         monthly: "Mensal",
@@ -191,11 +191,11 @@ const copy: HomeCopy = {
         bands: { first: "Primeiro utilizador", next: "Utilizadores 2 a 4", further: "A partir do 5.º utilizador" },
         totalMonth: "Por mês, sem IVA",
         totalYear: "× {charged} meses, {free} grátis",
-        cloudItems: ["Abre em novembro de 2026", "Alojada e atualizada por nós", "Todas as funcionalidades da aplicação", "Período experimental de {days} dias na abertura, sem limites exceto o envio", "Os seus dados exportados se sair"],
+        cloudItems: ["Abre em novembro de 2026", "Alojada e atualizada por nós", "Todas as funcionalidades da aplicação", "Período experimental de {days} dias na abertura, tudo exceto o envio", "Os seus dados exportados se sair"],
         selfHosted: "Alojamento próprio",
         forever: "para sempre",
         selfItems: ["Todas as funcionalidades da aplicação", "Utilizadores e empresas ilimitados", "Imagem Docker e chart Helm", "AGPL-3.0, suporte da comunidade"],
-        footnote: "Preços em euros, sem IVA. A faturação anual cobra {charged} meses por doze. Para além dos preços, a verdadeira diferença é quem a gere: a cloud corre na nossa infraestrutura, o alojamento próprio corre na sua.",
+        footnote: "Preços em euros, sem IVA. A faturação anual cobra {charged} meses por doze. Para além dos preços, a verdadeira diferença é quem o gere: a cloud corre na nossa infraestrutura, o alojamento próprio corre na sua.",
     },
     faq: {
         eyebrow: "Perguntas frequentes",

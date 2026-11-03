@@ -75,7 +75,7 @@ const copy: HomeCopy = {
         lead: "Choisissez le pays depuis lequel votre entreprise facture. Les identifiants, les taux de TVA, le format de facture électronique et son mode de transmission à l'administration fiscale suivent, chacun rattaché au texte dont il découle.",
         matrix: 'Tableau de prise en charge par pays',
         tablist: 'Pays',
-        shipping: "Cinq pays sont disponibles aujourd'hui. Un nouveau pays ajoute ses fichiers de données sous la même forme, et l'application les lit.",
+        shipping: "Cinq pays sont disponibles aujourd'hui. Un nouveau pays s'ajoute avec ses fichiers de données au même format, que l'application lit.",
         platformsTitle: 'Déjà connecté aux plateformes agréées françaises',
         platformsBody: 'Quatre plateformes agréées et Chorus Pro en France, le SdI en Italie et KSeF en Pologne. Vous choisissez le canal dans les paramètres de votre entreprise.',
         platformsNote: "Invoicerr est un logiciel de facturation, pas une plateforme agréée : il produit la facture, la plateforme l'achemine.",
@@ -96,7 +96,7 @@ const copy: HomeCopy = {
             FR: 'Plateforme agréée, obligatoire depuis septembre 2026 : SUPER PDP, Iopole, Billit ou Invopop. Chorus Pro pour les acheteurs publics.',
             DE: 'PDF avec le XML de la facture électronique en pièce jointe.',
             IT: "Validation préalable par l'administration, via e-mail certifié (PEC).",
-            PL: "Validation préalable par l'administration : l'administration fiscale renvoie le numéro de la facture.",
+            PL: "Validation préalable : l'administration fiscale renvoie le numéro de la facture.",
             PT: 'PDF avec le XML de la facture électronique en pièce jointe.',
         },
     },
@@ -140,7 +140,7 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: 'Vos clients ont leur propre portail',
-                body: 'Leurs documents, leur solde, les PDF, le paiement en ligne et la réponse aux devis. Fini les demandes de relevé de compte par e-mail.',
+                body: 'Leurs documents, leur solde, les PDF, le paiement en ligne et la réponse aux devis. Ils ne vous demandent plus leurs relevés par e-mail.',
             },
             ocr: {
                 title: 'Les factures fournisseurs, lues pour vous',
@@ -160,7 +160,7 @@ const copy: HomeCopy = {
         badge: 'Auto-hébergé',
         badgeStatus: 'Gratuit',
         title: "Hébergez-le dès aujourd'hui, gratuitement sous AGPL-3.0",
-        lead: "Invoicerr est né comme projet auto-hébergé, et l'est toujours. Faites-le tourner avec Docker sur votre propre machine, gratuitement et pour toujours. Ou laissez-nous l'héberger pour vous et oubliez la maintenance.",
+        lead: "Invoicerr est né auto-hébergé et l'est resté. Faites-le tourner avec Docker sur votre propre machine, gratuitement et pour toujours. Ou laissez-nous l'héberger pour vous et oubliez la maintenance.",
         facts: [
             { title: 'Une image, deux architectures.', body: 'Compilée pour amd64 et arm64. Elle tourne sur un VPS, un NAS ou un Raspberry Pi 64 bits (modèle 3 ou plus récent).' },
             { title: 'Un chart Helm quand un seul serveur ne suffit plus.', body: 'Rôles API et worker séparés, votre propre PostgreSQL et Redis, votre propre ingress.' },
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: 'Tarifs',
         title: "Le cloud est facturé par siège, l'auto-hébergement est gratuit",
-        lead: "Le tarif cloud s'applique par entreprise et baisse à chaque siège ajouté. L'auto-hébergement ne coûte rien et ne retire aucune fonctionnalité.",
+        lead: "Le tarif cloud s'applique par entreprise et baisse à chaque siège ajouté. L'auto-hébergement est gratuit, avec toutes les fonctionnalités.",
         cloud: 'Cloud',
         period: 'Période de facturation',
         monthly: 'Mensuel',
@@ -191,11 +191,11 @@ const copy: HomeCopy = {
         bands: { first: 'Premier siège', next: 'Sièges 2 à 4', further: 'À partir du 5e siège' },
         totalMonth: 'Par mois, HT',
         totalYear: '× {charged} mois, {free} offerts',
-        cloudItems: ['Ouverture en novembre 2026', 'Hébergé et mis à jour par nos soins', "Toutes les fonctionnalités de l'application", "Essai de {days} jours dès l'ouverture, sans limite hormis l'envoi", 'Export de vos données si vous partez'],
+        cloudItems: ['Ouverture en novembre 2026', 'Hébergé et mis à jour par nos soins', "Toutes les fonctionnalités de l'application", "Essai de {days} jours dès l'ouverture, tout sauf l'envoi", 'Export de vos données si vous partez'],
         selfHosted: 'Auto-hébergé',
         forever: 'pour toujours',
         selfItems: ["Toutes les fonctionnalités de l'application", 'Sièges et entreprises illimités', 'Image Docker et chart Helm', 'AGPL-3.0, support communautaire'],
-        footnote: "Prix en euros HT. La facturation annuelle compte {charged} mois sur douze. Au-delà des prix, la vraie différence tient à qui l'exploite : le cloud tourne sur notre infrastructure, l'auto-hébergement sur la vôtre.",
+        footnote: "Prix en euros HT. La facturation annuelle compte {charged} mois sur douze. Au-delà des prix, la différence tient à qui l'exploite : le cloud tourne sur notre infrastructure, l'auto-hébergement sur la vôtre.",
     },
     faq: {
         eyebrow: 'FAQ',
@@ -207,7 +207,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Que pourrai-je faire pendant l'essai du cloud ?",
-                answer: "Le cloud ouvre en novembre 2026, et l'essai en même temps. Tout sauf l'envoi de documents : pendant 14 jours, vous pourrez configurer votre entreprise, importer vos clients, préparer devis et factures et inviter votre équipe. L'envoi se débloque à la souscription de l'abonnement.",
+                answer: "Le cloud ouvre en novembre 2026, et l'essai en même temps. Tout sauf l'envoi de documents : pendant 14 jours, vous pourrez configurer votre entreprise, importer vos clients, préparer devis et factures et inviter votre équipe. L'envoi se débloque quand vous vous abonnez.",
             },
             {
                 question: 'Comment fonctionne la tarification par siège ?',

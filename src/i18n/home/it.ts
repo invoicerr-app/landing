@@ -72,7 +72,7 @@ const copy: HomeCopy = {
     countries: {
         eyebrow: 'Paesi',
         title: 'Le regole di fatturazione di cinque paesi, già integrate',
-        lead: "Scegli da dove fattura la tua azienda. Identificativi, aliquote IVA, formato della fattura elettronica e modalità di invio al fisco si adeguano di conseguenza, ciascuno collegato al testo di legge da cui deriva.",
+        lead: "Scegli da dove fattura la tua azienda. Identificativi, aliquote IVA, formato della fattura elettronica e modalità di invio al fisco si adeguano, ciascuno collegato alla norma da cui deriva.",
         matrix: 'Matrice di copertura per paese',
         tablist: 'Paese',
         shipping: "Oggi sono inclusi cinque paesi. Un nuovo paese aggiunge i suoi file di dati con la stessa struttura e l'app li legge.",
@@ -125,14 +125,14 @@ const copy: HomeCopy = {
     },
     bento: {
         eyebrow: 'Intorno alla fattura',
-        title: 'Anche il lavoro intorno alla fattura, gestito',
+        title: 'Si occupa anche del lavoro intorno alla fattura',
         tryDemo: 'Prova la demo dal vivo',
         readDocs: 'Leggi la documentazione',
         readGuide: 'Leggi la guida',
         features: {
             clearance: {
                 title: 'Passa il controllo del fisco',
-                body: "Dove un paese ha una piattaforma nazionale, Invoicerr invia la fattura tramite questa e ne segue l'esito. Il canale per ogni paese si sceglie una volta sola, nelle impostazioni dell'azienda.",
+                body: "Dove un paese ha una piattaforma nazionale, Invoicerr la usa per inviare la fattura e ne segue l'esito. Il canale per ogni paese si sceglie una volta sola, nelle impostazioni dell'azienda.",
             },
             time: {
                 title: 'Le ore diventano righe di fattura',
@@ -140,7 +140,7 @@ const copy: HomeCopy = {
             },
             portal: {
                 title: 'Un portale dedicato ai tuoi clienti',
-                body: 'I loro documenti, il loro saldo, i PDF, il pagamento online e le decisioni sui preventivi. Basta richieste di estratti conto via e-mail.',
+                body: 'I loro documenti, il loro saldo, i PDF, il pagamento online e le decisioni sui preventivi. I clienti non chiedono più estratti conto via e-mail.',
             },
             ocr: {
                 title: 'Fatture dei fornitori, lette in automatico',
@@ -160,11 +160,11 @@ const copy: HomeCopy = {
         badge: 'Self-hosted',
         badgeStatus: 'Gratis',
         title: 'Installalo oggi sul tuo server, gratis con licenza AGPL-3.0',
-        lead: 'Invoicerr è nato come progetto self-hosted e lo è ancora. Eseguilo con Docker sulla tua macchina, gratis, per sempre. Oppure lascia che lo gestiamo noi e dimentica la manutenzione.',
+        lead: 'Invoicerr è nato come progetto self-hosted e lo è ancora. Eseguilo con Docker sulla tua macchina, gratis, per sempre. Oppure ci pensiamo noi, manutenzione compresa.',
         facts: [
             { title: "Un'immagine, due architetture.", body: 'Compilata per amd64 e arm64. Funziona su un VPS, un NAS o un Raspberry Pi a 64 bit (dal 3 in poi).' },
             { title: 'Un chart Helm quando un solo host non basta.', body: 'Ruoli API e worker separati, il tuo PostgreSQL e Redis, il tuo ingress.' },
-            { title: 'Tutte le funzioni, senza limite di utenti.', body: "L'app self-hosted è l'app completa. Il codice per la fatturazione degli abbonamenti resta disattivato." },
+            { title: 'Tutte le funzioni, quanti utenti vuoi.', body: "L'app self-hosted è l'app completa. Il codice per la fatturazione degli abbonamenti resta disattivato." },
         ],
         installGuide: "Leggi la guida all'installazione",
         source: 'Vedi il codice sorgente',
@@ -177,7 +177,7 @@ const copy: HomeCopy = {
     pricing: {
         eyebrow: 'Prezzi',
         title: 'Il cloud si paga per utente, il self-hosting è gratis',
-        lead: 'Il prezzo del cloud è per azienda e cala a ogni utente in più. Il self-hosting non costa nulla e non ha limitazioni.',
+        lead: 'Il prezzo del cloud è per azienda e cala a ogni utente in più. Il self-hosting è gratis e ha tutte le funzioni.',
         cloud: 'Cloud',
         period: 'Periodo di fatturazione',
         monthly: 'Mensile',
@@ -191,7 +191,7 @@ const copy: HomeCopy = {
         bands: { first: 'Primo utente', next: 'Utenti da 2 a 4', further: 'Dal 5° utente' },
         totalMonth: 'Al mese, IVA esclusa',
         totalYear: '× {charged} mesi, {free} gratis',
-        cloudItems: ['Apre a novembre 2026', 'Ospitato e aggiornato da noi', "Tutte le funzioni dell'app", "Prova di {days} giorni all'apertura, senza limiti tranne l'invio", 'Esportazione dei tuoi dati se te ne vai'],
+        cloudItems: ['Apre a novembre 2026', 'Ospitato e aggiornato da noi', "Tutte le funzioni dell'app", "Prova di {days} giorni all'apertura, tutto tranne l'invio", 'Esportazione dei tuoi dati se te ne vai'],
         selfHosted: 'Self-hosted',
         forever: 'per sempre',
         selfItems: ["Tutte le funzioni dell'app", 'Utenti e aziende illimitati', 'Immagine Docker e chart Helm', 'AGPL-3.0, supporto della community'],
@@ -203,7 +203,7 @@ const copy: HomeCopy = {
         items: [
             {
                 question: 'La versione self-hosted è davvero gratuita?',
-                answer: "Sì. È la stessa app, con tutte le funzioni e senza limite di utenti, distribuita con licenza AGPL-3.0, che consente anche di offrirla ad altri come servizio a pagamento, a condizione che tu metta a disposizione dei tuoi utenti il codice sorgente corrispondente.",
+                answer: "Sì. È la stessa app, con tutte le funzioni e senza limite di utenti, distribuita con licenza AGPL-3.0, che consente anche di offrirla ad altri come servizio a pagamento, purché tu metta a disposizione dei tuoi utenti il codice sorgente corrispondente.",
             },
             {
                 question: 'Cosa potrò fare durante la prova del cloud?',
@@ -223,7 +223,7 @@ const copy: HomeCopy = {
             },
             {
                 question: 'Cosa serve per il self-hosting?',
-                answer: "Docker, PostgreSQL e Redis. L'app non si avvia senza tutti e tre. Il file compose della guida all'installazione li avvia già tutti e tre: l'app, un PostgreSQL 15 e un servizio Redis, e richiede POSTGRES_PASSWORD e BETTER_AUTH_SECRET in un file .env accanto. Per installazioni più grandi c'è un chart Helm.",
+                answer: "Docker, PostgreSQL e Redis. L'app non si avvia senza tutti e tre. Il file compose della guida all'installazione avvia già tutto: l'app, un PostgreSQL 15 e un servizio Redis, e richiede POSTGRES_PASSWORD e BETTER_AUTH_SECRET in un file .env accanto. Per installazioni più grandi c'è un chart Helm.",
             },
         ],
     },
