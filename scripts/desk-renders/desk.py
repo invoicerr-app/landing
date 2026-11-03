@@ -3,7 +3,7 @@
 Blender as a Python module (pip package `bpy`, Python 3.11). From this folder:
 
     uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install bpy==4.5.0
-    python3 textures/shoot.py "$PWD/textures"      # screen and envelope faces, from HTML (Playwright)
+    python3 textures/shoot.py "$PWD/textures"      # the envelope face, from HTML (Playwright)
     .venv/bin/python desk.py <name> <css_rotation_deg> <out.png> [samples]
 
 The site's files are these renders at 96 samples, trimmed and saved as WebP in public/desk/:
@@ -280,15 +280,18 @@ def build_phone():
     assign(glass, mat('bezel', '#05090c', rough=0.08, coat=1.0))
     sw, sh = w - 0.14, h - 0.14
     screen = rounded_rect('screen', sw, sh, r - 0.07, 0.095, 0.0965)
-    m, nt, b = image_mat('screen', f'{TEX}/phone.png', rough=0.05, emission=2.0, coat=1.0)
-    b.inputs['Base Color'].default_value = (0, 0, 0, 1)
-    # Planar UVs over the screen's own bounds.
-    me = screen.data
-    uv = me.uv_layers.new()
-    for poly in me.polygons:
-        for li in poly.loop_indices:
-            co = me.vertices[me.loops[li].vertex_index].co
-            uv.data[li].uv = (co.x / sw + 0.5, co.y / sh + 0.5)
+    # The screen is rendered dark: the page lays the lock screen over it in HTML (components/desk/
+    # phone-screen.tsx), so its date, time and invoice number follow today. PHONE_SCREEN=marker
+    # renders it pure white instead, to measure where the overlay goes.
+    if os.environ.get('PHONE_SCREEN') == 'marker':
+        m = bpy.data.materials.new('marker')
+        m.use_nodes = True
+        bm_ = m.node_tree.nodes['Principled BSDF']
+        bm_.inputs['Base Color'].default_value = (0, 0, 0, 1)
+        bm_.inputs['Emission Color'].default_value = (1, 1, 1, 1)
+        bm_.inputs['Emission Strength'].default_value = 20
+    else:
+        m = mat('screen', '#0c171d', rough=0.05, coat=1.0)
     assign(screen, m)
     # Side buttons.
     parts = [frame, glass, screen]

@@ -1,10 +1,12 @@
 import { Stamp } from '@/components/desk/props'
 import { Button } from '@/components/ui/button'
 import { links } from '@/lib/links'
+import { monthYear, useNow } from '@/lib/today'
 
 // The last call, written on an envelope lying on the desk: addressed, stamped with the mark and
 // postmarked. It sits inside the desk footer (Footer's `desk` variant, home page only).
 export function FinalCta() {
+    const now = useNow()
     return (
         <section className="relative mx-auto max-w-[980px] px-5 pt-24">
             <div className="relative -rotate-[0.8deg] overflow-hidden rounded-lg bg-[oklch(0.985_0.004_230)] px-6 pb-12 pt-14 text-ink shadow-desk sm:px-16 sm:pt-16">
@@ -21,7 +23,7 @@ export function FinalCta() {
                             FRANCE
                         </text>
                         <text x="40" y="48" textAnchor="middle" fontFamily="Space Mono, monospace" fontSize="8" fill="rgb(15 31 42 / 0.55)">
-                            NOV 2026
+                            {monthYear(now)}
                         </text>
                         <path
                             d="M66 26 q7 -5 14 0 t14 0 t14 0 M66 40 q7 -5 14 0 t14 0 t14 0 M66 54 q7 -5 14 0 t14 0 t14 0"

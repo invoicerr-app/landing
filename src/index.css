@@ -134,6 +134,19 @@
       scroll-behavior: auto;
     }
   }
+  /*
+    Wide screens at 100 %: the layout is built for a 1440 px window, and on a 27" or 32" monitor it
+    would sit as a narrow column in the middle with 15 px text. Past 1680 px the whole page is scaled
+    up in steps, objects, shadows and type together, the way the visitor's own zoom would. Below that
+    nothing changes.
+  */
+  @media (min-width: 1680px) { html { zoom: 1.1; } }
+  @media (min-width: 1920px) { html { zoom: 1.2; } }
+  @media (min-width: 2240px) { html { zoom: 1.35; } }
+  @media (min-width: 2560px) { html { zoom: 1.5; } }
+  @media (min-width: 2880px) { html { zoom: 1.65; } }
+  @media (min-width: 3200px) { html { zoom: 1.8; } }
+  @media (min-width: 3600px) { html { zoom: 2; } }
 }
 
 /*
@@ -189,17 +202,55 @@
       repeating-linear-gradient(112deg, rgb(255 255 255 / 0) 0 80px, rgb(255 255 255 / 0.04) 80px 150px);
   }
 
-  /* A row of punched holes along the top edge of a sheet, showing what lies under it. */
-  .perforation-desk,
-  .perforation-page {
-    background-size: 22px 18px;
-    background-repeat: repeat-x;
+  /*
+    The perforated edge of the page's sheet, like a stamp's. The notches are cut out of the paper with
+    a mask, not painted on top of it: what shows through them is the desk itself, its light and its
+    bands included. The drop shadow follows the cut, so each notch has the thickness of the paper
+    around it.
+  */
+  .sheet-edge-top,
+  .sheet-edge-bottom {
+    height: 18px;
+    background-color: var(--background);
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-size: 22px 100%;
+    mask-size: 22px 100%;
   }
-  .perforation-desk {
-    background-image: radial-gradient(circle at 9px 9px, var(--desk) 5px, transparent 5.5px);
+  .sheet-edge-top {
+    -webkit-mask-image: radial-gradient(circle at 11px 0, transparent 6.5px, #000 7px);
+    mask-image: radial-gradient(circle at 11px 0, transparent 6.5px, #000 7px);
   }
-  .perforation-page {
-    background-image: radial-gradient(circle at 9px 9px, var(--background) 5px, transparent 5.5px);
+  .sheet-edge-bottom {
+    -webkit-mask-image: radial-gradient(circle at 11px 100%, transparent 6.5px, #000 7px);
+    mask-image: radial-gradient(circle at 11px 100%, transparent 6.5px, #000 7px);
+  }
+  .sheet-edge-shadow {
+    filter: drop-shadow(0 0 1px rgb(3 12 18 / 0.45)) drop-shadow(0 -3px 6px rgb(3 12 18 / 0.25));
+  }
+  .sheet-edge-shadow-bottom {
+    filter: drop-shadow(0 0 1px rgb(3 12 18 / 0.45)) drop-shadow(0 6px 8px rgb(3 12 18 / 0.35));
+  }
+
+  /*
+    The project facts ticket. From md up, two notches are cut where the stub tears off (208px in, top
+    and bottom). Masked rather than painted over, so the page shows through them in either theme;
+    the outline and the shadow are drop shadows on a wrapper, so they follow the cut.
+  */
+  .ticket-shadow {
+    filter: drop-shadow(0 0 0.5px var(--ticket-edge)) drop-shadow(0 14px 15px rgb(10 40 60 / 0.08));
+    --ticket-edge: oklch(0.8 0.015 230);
+  }
+  .dark .ticket-shadow {
+    --ticket-edge: rgb(255 255 255 / 0.25);
+  }
+  @media (min-width: 768px) {
+    .ticket {
+      -webkit-mask-image: radial-gradient(circle at 209px 0, transparent 11px, #000 11.5px), radial-gradient(circle at 209px 100%, transparent 11px, #000 11.5px);
+      -webkit-mask-composite: source-in;
+      mask-image: radial-gradient(circle at 209px 0, transparent 11px, #000 11.5px), radial-gradient(circle at 209px 100%, transparent 11px, #000 11.5px);
+      mask-composite: intersect;
+    }
   }
 
   /* What a sheet of paper or an object casts on the desk. */

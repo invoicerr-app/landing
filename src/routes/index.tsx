@@ -28,8 +28,13 @@ function Index() {
       <Header overDesk />
       <main>
         <Hero />
-        <div className="relative z-[7] -mt-16 bg-background">
-          <div aria-hidden="true" className="perforation-desk absolute inset-x-0 -top-[9px] h-[18px]" />
+        {/* The sheet: perforated along its top edge, where it lies on the hero's desk, and along its
+            bottom edge, where the footer's desk runs under it. */}
+        <div className="relative z-[7] -mt-16">
+          <div aria-hidden="true" className="sheet-edge-shadow">
+            <div className="sheet-edge-top" />
+          </div>
+          <div className="bg-background">
           <Proof />
           <Countries />
           <Tear />
@@ -40,6 +45,10 @@ function Index() {
           <Pricing />
           <Tear />
           <Faq />
+          </div>
+          <div aria-hidden="true" className="sheet-edge-shadow-bottom">
+            <div className="sheet-edge-bottom" />
+          </div>
         </div>
       </main>
       <Footer variant="desk">
