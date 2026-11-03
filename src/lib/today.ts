@@ -62,8 +62,34 @@ export const monthName = (date: Date) => date.toLocaleDateString('en-GB', { mont
 /** Monday 2 November */
 export const lockScreenDate = (date: Date) => date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }).replace(',', '')
 
-/** 14:32 */
-export const clock = (date: Date) => `${pad(date.getHours())}:${pad(date.getMinutes())}`
+const noop = () => () => {}
+
+/**
+ * The visitor's locale, for the phone's clock: 24-hour in France, 12-hour in the United States. The
+ * prerendered HTML and the hydration use a fixed 24-hour locale, so they match; the browser's own
+ * locale takes over right after.
+ */
+export function useLocale(): string {
+    return useSyncExternalStore(noop, () => navigator.language || 'en-GB', () => 'en-GB')
+}
+
+/**
+ * The time in the visitor's locale, split so the AM/PM can be set smaller: { time: '09:41',
+ * period: '' } where the clock runs on 24 hours, { time: '9:41', period: 'AM' } where it runs on 12.
+ */
+export function clock(date: Date, locale: string): { time: string; period: string } {
+    try {
+        const parts = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).formatToParts(date)
+        const period = parts.find((part) => part.type === 'dayPeriod')?.value ?? ''
+        const time = parts
+            .filter((part) => part.type === 'hour' || part.type === 'minute' || (part.type === 'literal' && part.value.trim()))
+            .map((part) => (period && part.type === 'hour' ? String(Number(part.value)) : part.value))
+            .join('')
+        return { time, period }
+    } catch {
+        return { time: `${pad(date.getHours())}:${pad(date.getMinutes())}`, period: '' }
+    }
+}
 
 /** 2036-11-02 */
 export const isoDate = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`

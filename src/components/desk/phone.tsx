@@ -1,7 +1,7 @@
 import { BrandMark } from '@/components/brand-mark'
 import { sampleStory } from '@/components/desk/sample'
 import { cn } from '@/lib/utils'
-import { clock, lockScreenDate, useNow } from '@/lib/today'
+import { clock, lockScreenDate, useLocale, useNow } from '@/lib/today'
 
 import { DeskObject } from './objects'
 
@@ -10,10 +10,12 @@ import { DeskObject } from './objects'
  * so the date, the time and the invoice number follow today. The screen's place was measured on the
  * render (PHONE_SCREEN=marker in scripts/desk-renders/desk.py): a 196 × 406 px rounded rectangle,
  * centred 167.8 px from the left and 241.8 px from the top of the 360 × 520 image, turned by -14°,
- * the angle the phone is rendered at. Decoration only, like the rest of the desk.
+ * the angle the phone is rendered at. The time follows the visitor's clock and the 12 or 24-hour
+ * convention of their locale. Decoration only, like the rest of the desk.
  */
 export function Phone({ className }: { className?: string }) {
     const now = useNow()
+    const { time, period } = clock(now, useLocale())
     const story = sampleStory(now)
     return (
         <div aria-hidden="true" className={cn('pointer-events-none select-none', className)}>
@@ -30,11 +32,17 @@ export function Phone({ className }: { className?: string }) {
                 >
                     <div className="absolute left-1/2 top-[9px] h-[17px] w-[59px] -translate-x-1/2 rounded-full bg-black" />
                     <div className="absolute inset-x-4 top-[13px] flex justify-between text-[8px] font-semibold leading-none">
-                        <span>{clock(now)}</span>
+                        <span>
+                            {time}
+                            {period && ` ${period}`}
+                        </span>
                         <span>5G</span>
                     </div>
                     <p className="absolute inset-x-0 top-[42px] text-center text-[10px] font-medium text-[rgb(235_239_242/0.85)]">{lockScreenDate(now)}</p>
-                    <p className="absolute inset-x-0 top-[52px] text-center font-heading text-[47px] font-medium leading-none tracking-[-1.2px]">{clock(now)}</p>
+                    <p className="absolute inset-x-0 top-[52px] text-center font-heading text-[47px] font-medium leading-none tracking-[-1.2px]">
+                        {time}
+                        {period && <span className="ml-1 text-[16px] font-medium tracking-normal">{period}</span>}
+                    </p>
 
                     <Notification top={198} when="now" title={`${story.invoice} paid`} body="€2,952.00 matched to the bank statement" />
                     <Notification top={282} when="12 min" title={`Quote ${story.quote} signed`} body="Deposit of 30% requested" faint />
