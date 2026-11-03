@@ -7,6 +7,7 @@ import { useHome } from '@/i18n/home/context'
 import { fmt, plural, rich } from '@/i18n/home/format'
 import { links, waitlistHref } from '@/lib/links'
 import { formatLocal, useLocalPrice } from '@/lib/local-price'
+import { useLocale } from '@/lib/today'
 import { TRIAL_DAYS, YEARLY_DISCOUNT, YEARLY_MONTHS_CHARGED, monthlyPrice, seatBands, yearlyPrice } from '@/lib/pricing'
 import { cn } from '@/lib/utils'
 
@@ -27,6 +28,11 @@ export function Pricing() {
     const eur = (value: number) => euros(value, locale)
     // −17 %: what yearly saves, with a real minus sign, spaced the way the locale spaces a percentage.
     const discount = `−${new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 }).format(YEARLY_DISCOUNT)}`
+    // The local amount in the visitor's own locale when they read the page in their own language
+    // ($27 for a reader in the United States, not the US$27 of British English), in the page's
+    // locale otherwise.
+    const visitor = useLocale()
+    const localeFor = () => (visitor.split('-')[0] === locale.split('-')[0] ? visitor : locale)
     const strong = (text: string) => <span className="font-medium text-foreground">{text}</span>
     const [seats, setSeats] = useState(3)
     const [yearly, setYearly] = useState(false)
@@ -87,7 +93,7 @@ export function Pricing() {
                         </p>
                         {local && (
                             <p className="mt-2 text-[15px] text-muted-foreground">
-                                {rich(t.local, { strong }, { amount: formatLocal(lead, local, locale), source: t.sources[local.source] })}
+                                {rich(t.local, { strong }, { amount: formatLocal(lead, local, localeFor()), source: t.sources[local.source] })}
                             </p>
                         )}
                     </div>
