@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as KsefRouteImport } from './routes/ksef'
 import { Route as FaturacaoEletronicaRouteImport } from './routes/faturacao-eletronica'
 import { Route as FatturazioneElettronicaRouteImport } from './routes/fatturazione-elettronica'
@@ -29,6 +30,11 @@ import { Route as ERechnungXrechnungRouteImport } from './routes/e-rechnung_.xre
 import { Route as EInvoicingPeppolRouteImport } from './routes/e-invoicing.peppol'
 import { Route as EInvoicingEn16931RouteImport } from './routes/e-invoicing.en-16931'
 
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KsefRoute = KsefRouteImport.update({
   id: '/ksef',
   path: '/ksef',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung/xrechnung': typeof ERechnungXrechnungRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/fatturazione-elettronica': typeof FatturazioneElettronicaRoute
   '/faturacao-eletronica': typeof FaturacaoEletronicaRoute
   '/ksef': typeof KsefRoute
+  '/sitemap': typeof SitemapRoute
   '/e-invoicing/en-16931': typeof EInvoicingEn16931Route
   '/e-invoicing/peppol': typeof EInvoicingPeppolRoute
   '/e-rechnung_/xrechnung': typeof ERechnungXrechnungRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung/xrechnung'
@@ -222,6 +232,7 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung/xrechnung'
@@ -243,6 +254,7 @@ export interface FileRouteTypes {
     | '/fatturazione-elettronica'
     | '/faturacao-eletronica'
     | '/ksef'
+    | '/sitemap'
     | '/e-invoicing/en-16931'
     | '/e-invoicing/peppol'
     | '/e-rechnung_/xrechnung'
@@ -265,6 +277,7 @@ export interface RootRouteChildren {
   FatturazioneElettronicaRoute: typeof FatturazioneElettronicaRoute
   FaturacaoEletronicaRoute: typeof FaturacaoEletronicaRoute
   KsefRoute: typeof KsefRoute
+  SitemapRoute: typeof SitemapRoute
   EInvoicingEn16931Route: typeof EInvoicingEn16931Route
   EInvoicingPeppolRoute: typeof EInvoicingPeppolRoute
   ERechnungXrechnungRoute: typeof ERechnungXrechnungRoute
@@ -281,6 +294,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ksef': {
       id: '/ksef'
       path: '/ksef'
@@ -425,6 +445,7 @@ const rootRouteChildren: RootRouteChildren = {
   FatturazioneElettronicaRoute: FatturazioneElettronicaRoute,
   FaturacaoEletronicaRoute: FaturacaoEletronicaRoute,
   KsefRoute: KsefRoute,
+  SitemapRoute: SitemapRoute,
   EInvoicingEn16931Route: EInvoicingEn16931Route,
   EInvoicingPeppolRoute: EInvoicingPeppolRoute,
   ERechnungXrechnungRoute: ERechnungXrechnungRoute,
