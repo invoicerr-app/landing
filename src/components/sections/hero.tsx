@@ -132,8 +132,13 @@ export function Hero() {
                 </p>
 
                 <div className="enter relative mx-auto mt-16 max-w-3xl">
-                    <DeskObject name="paperclip" eager className="absolute -top-14 left-1/2 z-[6] hidden sm:block" />
-                    <SampleInvoice />
+                    {/* The clip holds the sheet by its top edge: its outer loop passes under the paper, its
+                        inner loop lies on it. Both halves share one frame and one position. */}
+                    <DeskObject name="paperclip-back" eager className="absolute -top-[30px] left-1/2 z-0 hidden sm:block" />
+                    <div className="relative z-[1]">
+                        <SampleInvoice />
+                    </div>
+                    <DeskObject name="paperclip-front" eager className="absolute -top-[30px] left-1/2 z-[2] hidden sm:block" />
                 </div>
             </div>
         </section>

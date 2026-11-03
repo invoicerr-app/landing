@@ -15,7 +15,9 @@ const objects = {
     'pen-footer': { src: '/desk/pen-footer.webp', width: 378, height: 239 },
     phone: { src: '/desk/phone.webp', width: 359, height: 520 },
     coins: { src: '/desk/coins.webp', width: 169, height: 130 },
-    paperclip: { src: '/desk/paperclip.webp', width: 89, height: 150 },
+    // The clip on the hero's invoice, in two halves: the back goes under the sheet, the front over it.
+    'paperclip-back': { src: '/desk/paperclip-back.webp', width: 90, height: 150 },
+    'paperclip-front': { src: '/desk/paperclip-front.webp', width: 90, height: 150 },
     'paperclip-host': { src: '/desk/paperclip-host.webp', width: 89, height: 149 },
 } as const
 

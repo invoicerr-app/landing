@@ -8,7 +8,8 @@ Blender as a Python module (pip package `bpy`, Python 3.11). From this folder:
 
 The site's files are these renders at 96 samples, trimmed and saved as WebP in public/desk/:
 cup 0, envelope -9, pen 24, pen-footer (pen) -32, phone -14, coins 0, paperclip -4, paperclip-host
-(paperclip) 18.
+(paperclip) 18, paperclip-front -4 and paperclip-back -4 (the clip on the hero's
+invoice, saved untrimmed so the two halves stay aligned).
 1 Blender unit = 100 CSS px. The render is 2x, so 1 BU = 200 output px.
 Shadows land in the alpha channel (shadow catcher), lit by a large soft area light placed up and to
 the left of the frame, so every object casts its shadow down and to the right, like the CSS shadows.
@@ -348,40 +349,55 @@ def build_coins():
     return e
 
 
-def build_paperclip():
-    # The SVG path of the old drawing, in CSS px with y down, sampled into a polyline.
-    pts = []
+def build_paperclip(part='all'):
+    """The paperclip, whole or in the two halves that clip a sheet.
 
-    def line(x0, y0, x1, y1, n=8):
+    A clip holds a sheet by its edge: the inner loop lies on the sheet, the top bend sits above the
+    edge, and the long outer loop passes under the sheet. `front` is the inner loop and the bend,
+    `back` the outer loop. Both are rendered in the same frame, so the page can lay the back under
+    the sheet and the front over it, and the outer loop disappears under the paper.
+    """
+    # The SVG path of the old drawing, in CSS px with y down, sampled into polylines.
+    front, back = [], []
+
+    def line(pts, x0, y0, x1, y1, n=8):
         for i in range(n):
             pts.append((x0 + (x1 - x0) * i / n, y0 + (y1 - y0) * i / n))
 
-    def arc(cx, cy, r, a0, a1, n=24):
+    def arc(pts, cx, cy, r, a0, a1, n=24):
         for i in range(n):
             a = math.radians(a0 + (a1 - a0) * i / n)
             pts.append((cx + r * math.cos(a), cy + r * math.sin(a)))
 
-    line(18, 42, 18, 98)
-    arc(24, 98, 6, 180, 0, 16)
-    line(30, 98, 30, 18)
-    arc(18, 18, 12, 0, -180, 24)
-    line(6, 18, 6, 104)
-    arc(21, 104, 15, 180, 0, 24)
-    line(36, 104, 36, 46)
-    pts.append((36, 46))
-    cu = bpy.data.curves.new('clip', 'CURVE')
-    cu.dimensions = '3D'
-    cu.bevel_depth = 0.022
-    cu.bevel_resolution = 8
-    sp = cu.splines.new('POLY')
-    sp.points.add(len(pts) - 1)
-    for i, (x, y) in enumerate(pts):
-        sp.points[i].co = ((x - 21) / 100, -(y - 62) / 100, 0.022, 1)
-    o = bpy.data.objects.new('clip', cu)
-    bpy.context.scene.collection.objects.link(o)
-    assign(o, mat('steel', '#dfe5e8', rough=0.15, metal=1.0))
+    line(front, 18, 42, 18, 98)
+    arc(front, 24, 98, 6, 180, 0, 16)
+    line(front, 30, 98, 30, 18)
+    arc(front, 18, 18, 12, 0, -180, 24)
+    front.append((6, 18))
+    line(back, 6, 18, 6, 104)
+    arc(back, 21, 104, 15, 180, 0, 24)
+    line(back, 36, 104, 36, 46)
+    back.append((36, 46))
+    paths = {'all': [front + back], 'front': [front], 'back': [back]}[part]
+
+    steel = mat('steel', '#dfe5e8', rough=0.15, metal=1.0)
     e = new_empty('paperclip')
-    o.parent = e
+    for n, pts in enumerate(paths):
+        cu = bpy.data.curves.new(f'clip{n}', 'CURVE')
+        cu.dimensions = '3D'
+        cu.bevel_depth = 0.022
+        cu.bevel_resolution = 8
+        cu.use_fill_caps = True
+        sp = cu.splines.new('POLY')
+        sp.points.add(len(pts) - 1)
+        # The half on the sheet rests on its thickness, a hair above the desk.
+        z = 0.022 + (0.006 if part == 'front' else 0)
+        for i, (x, y) in enumerate(pts):
+            sp.points[i].co = ((x - 21) / 100, -(y - 62) / 100, z, 1)
+        o = bpy.data.objects.new(f'clip{n}', cu)
+        bpy.context.scene.collection.objects.link(o)
+        assign(o, steel)
+        o.parent = e
     return e
 
 
@@ -419,6 +435,8 @@ BUILDERS = {
     'phone': (build_phone, 360, 520),
     'coins': (build_coins, 170, 130),
     'paperclip': (build_paperclip, 90, 150),
+    'paperclip-front': (lambda: build_paperclip('front'), 90, 150),
+    'paperclip-back': (lambda: build_paperclip('back'), 90, 150),
     'envelope': (build_envelope, 360, 280),
 }
 
