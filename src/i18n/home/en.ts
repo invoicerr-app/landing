@@ -155,7 +155,7 @@ export const en = {
             },
             portal: {
                 title: 'Clients get their own portal',
-                body: 'Their documents, their balance, PDFs, online payment and quote decisions. No more statement requests by e-mail.',
+                body: 'Their documents, their balance, PDFs, online payment and quote decisions. Clients stop asking for statements by e-mail.',
             },
             ocr: {
                 title: 'Supplier invoices, read for you',
@@ -179,7 +179,7 @@ export const en = {
         facts: [
             { title: 'One image, two architectures.', body: 'Built for amd64 and arm64. It runs on a VPS, a NAS or a 64-bit Raspberry Pi (3 and newer).' },
             { title: 'A Helm chart when one host is not enough.', body: 'Separate API and worker roles, your own PostgreSQL and Redis, your own ingress.' },
-            { title: 'Every feature, no seat count.', body: 'The self-hosted app is the whole app. Billing code stays switched off.' },
+            { title: 'Every feature, any number of seats.', body: 'The self-hosted app is the whole app. Billing code stays switched off.' },
         ],
         installGuide: 'Read the install guide',
         source: 'View the source',
@@ -192,7 +192,7 @@ export const en = {
     pricing: {
         eyebrow: 'Pricing',
         title: 'The cloud prices per seat, self-hosting is free',
-        lead: 'Cloud pricing is per company and gets cheaper with every seat. Self-hosting costs nothing and holds nothing back.',
+        lead: 'Cloud pricing is per company and gets cheaper with every seat. Self-hosting is free and has every feature.',
         cloud: 'Cloud',
         period: 'Billing period',
         monthly: 'Monthly',
@@ -206,7 +206,7 @@ export const en = {
         bands: { first: 'First seat', next: 'Seats 2 to 4', further: 'From seat 5' },
         totalMonth: 'Per month, excl. VAT',
         totalYear: '× {charged} months, {free} free',
-        cloudItems: ['Opens in November 2026', 'Hosted and updated by us', 'Every feature of the app', '{days}-day trial when it opens, no limit except sending', 'Your data exported if you leave'],
+        cloudItems: ['Opens in November 2026', 'Hosted and updated by us', 'Every feature of the app', '{days}-day trial when it opens, everything but sending', 'Your data exported if you leave'],
         selfHosted: 'Self-hosted',
         forever: 'forever',
         selfItems: ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support'],
