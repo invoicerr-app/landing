@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: "Invoicerr: Açık kaynaklı fatura yazılımı, bulutta veya sunucunuzda",
-        description:
-            "Teklif, fatura, tahsilat ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Docker ile ücretsiz kurun veya bulut bekleme listesine katılın.",
+        title: "Invoicerr: Serbest çalışanlar, küçük işletmeler ve onların mali müşavirleri için açık kaynaklı fatura ve e-fatura.",
+        description: "Serbest çalışanlar, küçük işletmeler ve onların mali müşavirleri için açık kaynaklı fatura ve e-fatura.",
     },
     language: {
         label: "Dil",
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: "Bulut yakında geliyor",
         badgeStatus: "Bekleme listesi açık",
         title: "Sizinle aynı hızda çalışan fatura uygulaması",
-        lead: "Teklifler, faturalar, tahsilatlar ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Bugün kendi sunucunuzda çalıştırın ya da yakında gelecek bulutumuz için bekleme listesine katılın.",
+        lead: "Serbest çalışanlar, küçük işletmeler ve onların mali müşavirleri için açık kaynaklı fatura ve e-fatura. Bugün kendi sunucunuzda çalıştırın ya da yakında gelecek bulutumuz için bekleme listesine katılın.",
         tryDemo: "Canlı demoyu dene",
         selfHostLine: "Ya da Docker ile {link}kendi sunucunuzda ücretsiz çalıştırın{/link}",
         stickyNote: "Factur-X tamam!\nPDP'den gönder\nCumaya kadar",
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: "Kurulum kılavuzunu oku",
     },
     footer: {
-        tagline: "Açık kaynaklı faturalama, bulutta veya kendi sunucunuzda.",
+        tagline: "Serbest çalışanlar, küçük işletmeler ve onların mali müşavirleri için açık kaynaklı fatura ve e-fatura.",
         columns: { product: "Ürün", guides: "E-fatura kılavuzları", selfHosting: "Kendi sunucunuzda", developers: "Geliştiriciler", legal: "Yasal" },
         items: {
             logIn: "Giriş yap",

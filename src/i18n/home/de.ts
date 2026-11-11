@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr: Open-Source-Rechnungssoftware, Cloud oder Self-Hosting',
-        description:
-            'Angebote, Rechnungen, Zahlungen und E-Rechnungen in einer Open-Source-App. Kostenlos mit Docker selbst hosten oder auf die Warteliste für die Cloud.',
+        title: "Invoicerr: Open-Source-Rechnungsstellung und E-Rechnung für Freiberufler, kleine und mittlere Unternehmen und ihre Steuerberater.",
+        description: "Open-Source-Rechnungsstellung und E-Rechnung für Freiberufler, kleine und mittlere Unternehmen und ihre Steuerberater.",
     },
     language: {
         label: 'Sprache',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: 'Cloud bald verfügbar',
         badgeStatus: 'Warteliste offen',
         title: 'Die Rechnungssoftware, die mit Ihnen Schritt hält',
-        lead: 'Angebote, Rechnungen, Zahlungen und E-Rechnungen bis zur Steuerbehörde, in einer Open-Source-App. Hosten Sie sie schon heute selbst, oder tragen Sie sich in die Warteliste für unsere Cloud ein, die bald startet.',
+        lead: "Open-Source-Rechnungsstellung und E-Rechnung für Freiberufler, kleine und mittlere Unternehmen und ihre Steuerberater. Hosten Sie sie schon heute selbst, oder tragen Sie sich in die Warteliste für unsere Cloud ein, die bald startet.",
         tryDemo: 'Live-Demo ausprobieren',
         selfHostLine: 'Oder mit Docker {link}kostenlos selbst hosten{/link}',
         stickyNote: 'Factur-X ok!\nüber PDP senden\nbis Freitag',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: 'Zur Installationsanleitung',
     },
     footer: {
-        tagline: 'Open-Source-Rechnungsstellung, in der Cloud oder auf Ihrem eigenen Server.',
+        tagline: "Open-Source-Rechnungsstellung und E-Rechnung für Freiberufler, kleine und mittlere Unternehmen und ihre Steuerberater.",
         columns: { product: 'Produkt', guides: 'Leitfäden zur E-Rechnung', selfHosting: 'Selbst hosten', developers: 'Entwickler', legal: 'Rechtliches' },
         items: {
             logIn: 'Anmelden',

@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: "Invoicerr: opensource facturatie, zelf gehost of in de cloud",
-        description:
-            "Offertes, facturen, betalingen en e-facturatie naar de belastingdienst in één opensource-app. Host het gratis zelf met Docker of meld je aan voor de wachtlijst.",
+        title: "Invoicerr: Open-source facturatie en e-facturatie voor zzp'ers, kleine bedrijven en hun accountants.",
+        description: "Open-source facturatie en e-facturatie voor zzp'ers, kleine bedrijven en hun accountants.",
     },
     language: {
         label: "Taal",
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: "Cloud binnenkort beschikbaar",
         badgeStatus: "Wachtlijst open",
         title: "De facturatie-app die je tempo bijhoudt",
-        lead: "Offertes, facturen, betalingen en e-facturatie naar de belastingdienst, in één opensource-app. Host het vandaag zelf, of meld je aan voor de wachtlijst van onze cloud, die binnenkort komt.",
+        lead: "Open-source facturatie en e-facturatie voor zzp'ers, kleine bedrijven en hun accountants. Host het vandaag zelf, of meld je aan voor de wachtlijst van onze cloud, die binnenkort komt.",
         tryDemo: "Probeer de live demo",
         selfHostLine: "Of {link}host het gratis zelf{/link} met Docker",
         stickyNote: "Factur-X ok!\nvia PDP sturen\nvóór vrijdag",
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: "Lees de installatiehandleiding",
     },
     footer: {
-        tagline: "Opensource facturatie, in de cloud of op je eigen server.",
+        tagline: "Open-source facturatie en e-facturatie voor zzp'ers, kleine bedrijven en hun accountants.",
         columns: { product: "Product", guides: "Handleidingen e-facturatie", selfHosting: "Zelf hosten", developers: "Ontwikkelaars", legal: "Juridisch" },
         items: {
             logIn: "Inloggen",

@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr: program do faktur open source, w chmurze lub u siebie',
-        description:
-            'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Uruchom ją za darmo w Dockerze albo zapisz się na listę oczekujących do chmury.',
+        title: "Invoicerr: Fakturowanie i e-fakturowanie open source dla freelancerów, małych i średnich firm oraz ich księgowych.",
+        description: "Fakturowanie i e-fakturowanie open source dla freelancerów, małych i średnich firm oraz ich księgowych.",
     },
     language: {
         label: 'Język',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: 'Chmura wkrótce',
         badgeStatus: 'Lista oczekujących otwarta',
         title: 'Program do faktur, który nadąża za Tobą',
-        lead: 'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Uruchom ją na własnym serwerze już dziś albo zapisz się na listę oczekujących do naszej chmury, która wkrótce ruszy.',
+        lead: "Fakturowanie i e-fakturowanie open source dla freelancerów, małych i średnich firm oraz ich księgowych. Uruchom ją na własnym serwerze już dziś albo zapisz się na listę oczekujących do naszej chmury, która wkrótce ruszy.",
         tryDemo: 'Wypróbuj demo na żywo',
         selfHostLine: 'Albo {link}uruchom za darmo u siebie{/link} w Dockerze',
         stickyNote: 'Factur-X ok!\nwysłać przez PDP\nprzed piątkiem',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: 'Przeczytaj instrukcję instalacji',
     },
     footer: {
-        tagline: 'Fakturowanie open source, w chmurze lub na Twoim serwerze.',
+        tagline: "Fakturowanie i e-fakturowanie open source dla freelancerów, małych i średnich firm oraz ich księgowych.",
         columns: { product: 'Produkt', guides: 'Poradniki o e-fakturach', selfHosting: 'Własny serwer', developers: 'Dla programistów', legal: 'Informacje prawne' },
         items: {
             logIn: 'Zaloguj się',
