@@ -2,7 +2,7 @@
 // English one. Same rule as the five country guides: the reader gets a page that was written for
 // them, not a string table run through a machine.
 //
-// The four warnings (November 2026, Polar's sandbox, draft legal documents, no real invoices) are
+// The four warnings (not open yet, Polar's sandbox, draft legal documents, no real invoices) are
 // the reason this page exists as much as the form is. They say the same thing in every language: if
 // one of them reads vaguer here than it does in English, it is wrong.
 //
@@ -51,23 +51,23 @@ export interface WaitlistCopy {
 const en: WaitlistCopy = {
     nativeName: 'English',
     meta: {
-        title: 'Waiting list: the hosted version of Invoicerr opens in November 2026 · Invoicerr',
+        title: 'Waiting list: the hosted version of Invoicerr is coming soon · Invoicerr',
         description:
             'The hosted version of Invoicerr is not open yet. Leave your e-mail address, your country and your company size, and we will write to you once, on the day it opens.',
     },
     inThisLanguage: 'This page is in English.',
     otherLanguages: 'Read it in:',
     eyebrow: 'Waiting list',
-    heading: 'The hosted version opens in November 2026',
+    heading: 'The hosted version is coming soon',
     intro: [
-        'You clicked a button that does not lead anywhere yet, and that is on us. The hosted version of Invoicerr is not open: it opens on 1 November 2026. Until then there is nothing to subscribe to and nothing to pay.',
+        'You clicked a button that does not lead anywhere yet, and that is on us. The hosted version of Invoicerr is not open: it is not open yet, and we will announce the date when it is ready. Until then there is nothing to subscribe to and nothing to pay.',
         'Leave your address below and we will write to you once, on the day it opens. Your country and the size of your company decide which national platform gets connected first, which is why both are asked.',
     ],
     warningsHeading: 'Four things to know before you leave your address',
     warnings: [
         {
-            title: 'The hosted version opens in November 2026',
-            body: 'Not before. What runs today is a closed beta, and the beta is not the hosted offer. The only thing this page does is remember you until then.',
+            title: 'The hosted version is not open yet',
+            body: 'Not yet. What runs today is a closed beta, and the beta is not the hosted offer. The only thing this page does is remember you until then.',
         },
         {
             title: "Billing runs in Polar's sandbox",
@@ -131,23 +131,23 @@ const en: WaitlistCopy = {
 const fr: WaitlistCopy = {
     nativeName: 'Français',
     meta: {
-        title: "Liste d'attente : la version hébergée d'Invoicerr ouvre en novembre 2026 · Invoicerr",
+        title: "Liste d'attente : la version hébergée d'Invoicerr arrive bientôt · Invoicerr",
         description:
             "La version hébergée d'Invoicerr n'est pas encore ouverte. Laissez votre adresse e-mail, votre pays et la taille de votre entreprise : nous vous écrirons une fois, le jour de l'ouverture.",
     },
     inThisLanguage: 'Cette page est en français.',
     otherLanguages: 'À lire aussi en :',
     eyebrow: "Liste d'attente",
-    heading: 'La version hébergée ouvre en novembre 2026',
+    heading: 'La version hébergée arrive bientôt',
     intro: [
-        "Vous avez cliqué sur un bouton qui ne mène encore nulle part, et c'est notre faute. La version hébergée d'Invoicerr n'est pas ouverte : elle ouvre le 1er novembre 2026. D'ici là, il n'y a rien à souscrire et rien à payer.",
+        "Vous avez cliqué sur un bouton qui ne mène encore nulle part, et c'est notre faute. La version hébergée d'Invoicerr n'est pas ouverte : elle n'est pas encore ouverte : nous annoncerons la date quand elle sera prête. D'ici là, il n'y a rien à souscrire et rien à payer.",
         "Laissez votre adresse ci-dessous et nous vous écrirons une seule fois, le jour de l'ouverture. Votre pays et la taille de votre entreprise décident quelle plateforme nationale sera raccordée en premier : c'est pour cela que les deux sont demandés.",
     ],
     warningsHeading: 'Quatre choses à savoir avant de laisser votre adresse',
     warnings: [
         {
-            title: 'La version hébergée ouvre en novembre 2026',
-            body: "Pas avant. Ce qui tourne aujourd'hui est une bêta fermée, et la bêta n'est pas l'offre hébergée. Tout ce que fait cette page, c'est se souvenir de vous jusque-là.",
+            title: 'La version hébergée n’est pas encore ouverte',
+            body: "Pas encore. Ce qui tourne aujourd'hui est une bêta fermée, et la bêta n'est pas l'offre hébergée. Tout ce que fait cette page, c'est se souvenir de vous jusque-là.",
         },
         {
             title: 'La facturation tourne dans le bac à sable de Polar',
@@ -211,23 +211,23 @@ const fr: WaitlistCopy = {
 const de: WaitlistCopy = {
     nativeName: 'Deutsch',
     meta: {
-        title: 'Warteliste: die gehostete Version von Invoicerr startet im November 2026 · Invoicerr',
+        title: 'Warteliste: die gehostete Version von Invoicerr startet bald · Invoicerr',
         description:
             'Die gehostete Version von Invoicerr ist noch nicht geöffnet. Hinterlassen Sie Ihre E-Mail-Adresse, Ihr Land und Ihre Unternehmensgröße. Wir schreiben Ihnen einmal, am Tag des Starts.',
     },
     inThisLanguage: 'Diese Seite ist auf Deutsch.',
     otherLanguages: 'Auch zu lesen auf:',
     eyebrow: 'Warteliste',
-    heading: 'Die gehostete Version startet im November 2026',
+    heading: 'Die gehostete Version startet bald',
     intro: [
-        'Sie haben auf eine Schaltfläche geklickt, die noch nirgendwohin führt, und daran sind wir schuld. Die gehostete Version von Invoicerr ist nicht geöffnet: Sie startet am 1. November 2026. Bis dahin gibt es nichts zu buchen und nichts zu bezahlen.',
+        'Sie haben auf eine Schaltfläche geklickt, die noch nirgendwohin führt, und daran sind wir schuld. Die gehostete Version von Invoicerr ist nicht geöffnet: den Starttermin geben wir bekannt, sobald sie bereit ist. Bis dahin gibt es nichts zu buchen und nichts zu bezahlen.',
         'Hinterlassen Sie unten Ihre Adresse, dann schreiben wir Ihnen ein einziges Mal, am Tag des Starts. Ihr Land und die Größe Ihres Unternehmens entscheiden, welche nationale Plattform zuerst angebunden wird. Deshalb werden beide gefragt.',
     ],
     warningsHeading: 'Vier Dinge, die Sie wissen sollten, bevor Sie Ihre Adresse hinterlassen',
     warnings: [
         {
-            title: 'Die gehostete Version startet im November 2026',
-            body: 'Nicht früher. Was heute läuft, ist eine geschlossene Beta, und die Beta ist nicht das gehostete Angebot. Diese Seite tut nur eines: sich bis dahin an Sie erinnern.',
+            title: 'Die gehostete Version ist noch nicht geöffnet',
+            body: 'Noch nicht. Was heute läuft, ist eine geschlossene Beta, und die Beta ist nicht das gehostete Angebot. Diese Seite tut nur eines: sich bis dahin an Sie erinnern.',
         },
         {
             title: 'Die Abrechnung läuft in der Sandbox von Polar',
@@ -291,23 +291,23 @@ const de: WaitlistCopy = {
 const it: WaitlistCopy = {
     nativeName: 'Italiano',
     meta: {
-        title: "Lista d'attesa: la versione ospitata di Invoicerr apre a novembre 2026 · Invoicerr",
+        title: "Lista d'attesa: la versione ospitata di Invoicerr arriva presto · Invoicerr",
         description:
             "La versione ospitata di Invoicerr non è ancora aperta. Lascia il tuo indirizzo e-mail, il tuo paese e la dimensione della tua azienda: ti scriveremo una volta, il giorno dell'apertura.",
     },
     inThisLanguage: 'Questa pagina è in italiano.',
     otherLanguages: 'Da leggere anche in:',
     eyebrow: "Lista d'attesa",
-    heading: 'La versione ospitata apre a novembre 2026',
+    heading: 'La versione ospitata arriva presto',
     intro: [
-        "Hai cliccato un pulsante che non porta ancora da nessuna parte, ed è colpa nostra. La versione ospitata di Invoicerr non è aperta: apre il 1° novembre 2026. Fino ad allora non c'è nulla da sottoscrivere e nulla da pagare.",
+        "Hai cliccato un pulsante che non porta ancora da nessuna parte, ed è colpa nostra. La versione ospitata di Invoicerr non è ancora aperta: annunceremo la data quando sarà pronta. Fino ad allora non c'è nulla da sottoscrivere e nulla da pagare.",
         "Lascia qui sotto il tuo indirizzo e ti scriveremo una sola volta, il giorno dell'apertura. Il tuo paese e la dimensione della tua azienda decidono quale piattaforma nazionale verrà collegata per prima: per questo vengono chiesti entrambi.",
     ],
     warningsHeading: 'Quattro cose da sapere prima di lasciare il tuo indirizzo',
     warnings: [
         {
-            title: 'La versione ospitata apre a novembre 2026',
-            body: "Non prima. Quello che gira oggi è una beta chiusa, e la beta non è l'offerta ospitata. L'unica cosa che fa questa pagina è ricordarsi di te fino ad allora.",
+            title: 'La versione ospitata non è ancora aperta',
+            body: "Non ancora. Quello che gira oggi è una beta chiusa, e la beta non è l'offerta ospitata. L'unica cosa che fa questa pagina è ricordarsi di te fino ad allora.",
         },
         {
             title: 'La fatturazione gira nella sandbox di Polar',
@@ -371,23 +371,23 @@ const it: WaitlistCopy = {
 const pl: WaitlistCopy = {
     nativeName: 'Polski',
     meta: {
-        title: 'Lista oczekujących: wersja hostowana Invoicerr rusza w listopadzie 2026 · Invoicerr',
+        title: 'Lista oczekujących: wersja hostowana Invoicerr wkrótce ruszy · Invoicerr',
         description:
             'Hostowana wersja Invoicerr nie jest jeszcze otwarta. Zostaw swój adres e-mail, kraj i wielkość firmy. Napiszemy raz, w dniu uruchomienia.',
     },
     inThisLanguage: 'Ta strona jest po polsku.',
     otherLanguages: 'Przeczytaj także w językach:',
     eyebrow: 'Lista oczekujących',
-    heading: 'Wersja hostowana rusza w listopadzie 2026',
+    heading: 'Wersja hostowana wkrótce ruszy',
     intro: [
-        'Kliknąłeś przycisk, który na razie nigdzie nie prowadzi, i to nasza wina. Hostowana wersja Invoicerr nie jest otwarta: rusza 1 listopada 2026. Do tego czasu nie ma czego wykupić ani za co płacić.',
+        'Kliknąłeś przycisk, który na razie nigdzie nie prowadzi, i to nasza wina. Hostowana wersja Invoicerr nie jest jeszcze otwarta: podamy termin, gdy będzie gotowa. Do tego czasu nie ma czego wykupić ani za co płacić.',
         'Zostaw poniżej swój adres, a napiszemy do Ciebie jeden raz, w dniu uruchomienia. Twój kraj i wielkość Twojej firmy decydują o tym, która krajowa platforma zostanie podłączona jako pierwsza, i dlatego pytamy o jedno i drugie.',
     ],
     warningsHeading: 'Cztery rzeczy, które warto wiedzieć, zanim zostawisz swój adres',
     warnings: [
         {
-            title: 'Wersja hostowana rusza w listopadzie 2026',
-            body: 'Nie wcześniej. To, co działa dzisiaj, jest zamkniętą betą, a beta nie jest ofertą hostowaną. Jedyne, co robi ta strona, to pamięta o Tobie do tego czasu.',
+            title: 'Wersja hostowana nie jest jeszcze otwarta',
+            body: 'Jeszcze nie. To, co działa dzisiaj, jest zamkniętą betą, a beta nie jest ofertą hostowaną. Jedyne, co robi ta strona, to pamięta o Tobie do tego czasu.',
         },
         {
             title: 'Płatności działają w piaskownicy Polar',
@@ -451,23 +451,23 @@ const pl: WaitlistCopy = {
 const pt: WaitlistCopy = {
     nativeName: 'Português',
     meta: {
-        title: 'Lista de espera: a versão alojada do Invoicerr abre em novembro de 2026 · Invoicerr',
+        title: 'Lista de espera: a versão alojada do Invoicerr chega em breve · Invoicerr',
         description:
             'A versão alojada do Invoicerr ainda não está aberta. Deixe o seu endereço de e-mail, o seu país e a dimensão da sua empresa. Escrevemos uma vez, no dia da abertura.',
     },
     inThisLanguage: 'Esta página está em português.',
     otherLanguages: 'Leia também em:',
     eyebrow: 'Lista de espera',
-    heading: 'A versão alojada abre em novembro de 2026',
+    heading: 'A versão alojada chega em breve',
     intro: [
-        'Clicou num botão que ainda não leva a lado nenhum, e a culpa é nossa. A versão alojada do Invoicerr não está aberta: abre a 1 de novembro de 2026. Até lá não há nada para subscrever nem nada para pagar.',
+        'Clicou num botão que ainda não leva a lado nenhum, e a culpa é nossa. A versão alojada do Invoicerr ainda não está aberta: anunciaremos a data quando estiver pronta. Até lá não há nada para subscrever nem nada para pagar.',
         'Deixe o seu endereço abaixo e escrevemos-lhe uma única vez, no dia da abertura. O seu país e a dimensão da sua empresa decidem qual a plataforma nacional que é ligada primeiro, e é por isso que ambos são pedidos.',
     ],
     warningsHeading: 'Quatro coisas a saber antes de deixar o seu endereço',
     warnings: [
         {
-            title: 'A versão alojada abre em novembro de 2026',
-            body: 'Não antes. O que corre hoje é uma beta fechada, e a beta não é a oferta alojada. A única coisa que esta página faz é lembrar-se de si até lá.',
+            title: 'A versão alojada ainda não está aberta',
+            body: 'Ainda não. O que corre hoje é uma beta fechada, e a beta não é a oferta alojada. A única coisa que esta página faz é lembrar-se de si até lá.',
         },
         {
             title: 'A faturação corre na sandbox da Polar',

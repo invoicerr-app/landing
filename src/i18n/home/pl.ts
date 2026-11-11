@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: 'Przełącz na jasny motyw', dark: 'Przełącz na ciemny motyw' },
     },
     hero: {
-        badge: 'Chmura startuje w listopadzie 2026',
+        badge: 'Chmura wkrótce',
         badgeStatus: 'Lista oczekujących otwarta',
         title: 'Program do faktur, który nadąża za Tobą',
-        lead: 'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Uruchom ją na własnym serwerze już dziś albo zapisz się na listę oczekujących do naszej chmury, która startuje w listopadzie 2026.',
+        lead: 'Oferty, faktury, płatności i e-faktury do urzędu skarbowego w jednej aplikacji open source. Uruchom ją na własnym serwerze już dziś albo zapisz się na listę oczekujących do naszej chmury, która wkrótce ruszy.',
         tryDemo: 'Wypróbuj demo na żywo',
         selfHostLine: 'Albo {link}uruchom za darmo u siebie{/link} w Dockerze',
         stickyNote: 'Factur-X ok!\nwysłać przez PDP\nprzed piątkiem',
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: 'Pierwszy użytkownik', next: 'Od 2. do 4. użytkownika', further: 'Od 5. użytkownika' },
         totalMonth: 'Miesięcznie, bez VAT',
         totalYear: '× {charged} mies., {free} gratis',
-        cloudItems: ['Start w listopadzie 2026', 'Hosting i aktualizacje po naszej stronie', 'Wszystkie funkcje aplikacji', '{days}-dniowy okres próbny od startu, wszystko oprócz wysyłki', 'Eksport Twoich danych, jeśli zrezygnujesz'],
+        cloudItems: ['Wkrótce, termin podamy, gdy będzie gotowa', 'Hosting i aktualizacje po naszej stronie', 'Wszystkie funkcje aplikacji', '{days}-dniowy okres próbny od startu, wszystko oprócz wysyłki', 'Eksport Twoich danych, jeśli zrezygnujesz'],
         selfHosted: 'Własny serwer',
         forever: 'na zawsze',
         selfItems: ['Wszystkie funkcje aplikacji', 'Bez limitu użytkowników i firm', 'Obraz Docker i chart Helm', 'AGPL-3.0, wsparcie społeczności'],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: 'Co będzie można robić w okresie próbnym w chmurze?',
-                answer: 'Chmura startuje w listopadzie 2026, a razem z nią okres próbny. Dostępne będzie wszystko oprócz wysyłania dokumentów: przez 14 dni będzie można skonfigurować firmę, zaimportować klientów, przygotować oferty i faktury oraz zaprosić zespół. Wysyłka odblokowuje się po wykupieniu subskrypcji.',
+                answer: 'Chmura wkrótce ruszy: podamy termin, gdy będzie gotowa, a razem z nią okres próbny. Dostępne będzie wszystko oprócz wysyłania dokumentów: przez 14 dni będzie można skonfigurować firmę, zaimportować klientów, przygotować oferty i faktury oraz zaprosić zespół. Wysyłka odblokowuje się po wykupieniu subskrypcji.',
             },
             {
                 question: 'Jak działa cennik za użytkownika?',
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: 'Do: Twój następny klient',
         title: 'Wyślij następną fakturę z Invoicerr',
-        lead: 'Nasza chmura startuje w listopadzie 2026, a lista oczekujących jest już otwarta. Możesz też pobrać obraz i jeszcze dziś wieczorem uruchomić Invoicerr na własnym serwerze.',
+        lead: 'Nasza chmura wkrótce ruszy: podamy termin, gdy będzie gotowa, a lista oczekujących jest już otwarta. Możesz też pobrać obraz i jeszcze dziś wieczorem uruchomić Invoicerr na własnym serwerze.',
         installGuide: 'Przeczytaj instrukcję instalacji',
     },
     footer: {

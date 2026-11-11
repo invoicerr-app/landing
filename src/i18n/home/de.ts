@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: 'Zum hellen Design wechseln', dark: 'Zum dunklen Design wechseln' },
     },
     hero: {
-        badge: 'Cloud startet im November 2026',
+        badge: 'Cloud bald verfügbar',
         badgeStatus: 'Warteliste offen',
         title: 'Die Rechnungssoftware, die mit Ihnen Schritt hält',
-        lead: 'Angebote, Rechnungen, Zahlungen und E-Rechnungen bis zur Steuerbehörde, in einer Open-Source-App. Hosten Sie sie schon heute selbst, oder tragen Sie sich in die Warteliste für unsere Cloud ein, die im November 2026 startet.',
+        lead: 'Angebote, Rechnungen, Zahlungen und E-Rechnungen bis zur Steuerbehörde, in einer Open-Source-App. Hosten Sie sie schon heute selbst, oder tragen Sie sich in die Warteliste für unsere Cloud ein, die bald startet.',
         tryDemo: 'Live-Demo ausprobieren',
         selfHostLine: 'Oder mit Docker {link}kostenlos selbst hosten{/link}',
         stickyNote: 'Factur-X ok!\nüber PDP senden\nbis Freitag',
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: 'Erster Nutzer', next: 'Nutzer 2 bis 4', further: 'Ab Nutzer 5' },
         totalMonth: 'Pro Monat, zzgl. USt.',
         totalYear: '× {charged} Monate, {free} gratis',
-        cloudItems: ['Start im November 2026', 'Von uns gehostet und aktualisiert', 'Alle Funktionen der App', '{days} Tage Testphase ab dem Start, alles außer dem Versand', 'Export Ihrer Daten, wenn Sie gehen'],
+        cloudItems: ['Start bald, Termin wird bekanntgegeben', 'Von uns gehostet und aktualisiert', 'Alle Funktionen der App', '{days} Tage Testphase ab dem Start, alles außer dem Versand', 'Export Ihrer Daten, wenn Sie gehen'],
         selfHosted: 'Selbst gehostet',
         forever: 'für immer',
         selfItems: ['Alle Funktionen der App', 'Unbegrenzt viele Nutzer und Unternehmen', 'Docker-Image und Helm-Chart', 'AGPL-3.0, Community-Support'],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: 'Was kann ich in der Cloud-Testphase tun?',
-                answer: 'Die Cloud startet im November 2026, die Testphase gleichzeitig. Alles außer dem Versand von Dokumenten: 14 Tage lang können Sie Ihr Unternehmen einrichten, Kunden importieren, Angebote und Rechnungen erstellen und Ihr Team einladen. Der Versand wird mit dem Abonnement freigeschaltet.',
+                answer: 'Die Cloud startet bald, den Termin geben wir bekannt, sobald sie bereit ist. Die Testphase startet gleichzeitig. Alles außer dem Versand von Dokumenten: 14 Tage lang können Sie Ihr Unternehmen einrichten, Kunden importieren, Angebote und Rechnungen erstellen und Ihr Team einladen. Der Versand wird mit dem Abonnement freigeschaltet.',
             },
             {
                 question: 'Wie funktioniert die Abrechnung pro Nutzer?',
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: 'An: Ihren nächsten Kunden',
         title: 'Senden Sie Ihre nächste Rechnung mit Invoicerr',
-        lead: 'Unsere Cloud startet im November 2026, die Warteliste ist schon offen. Oder laden Sie das Image und lassen Sie Invoicerr noch heute Abend auf Ihrem eigenen Server laufen.',
+        lead: 'Unsere Cloud startet bald, den Termin geben wir bekannt, sobald sie bereit ist. Die Warteliste ist schon offen. Oder laden Sie das Image und lassen Sie Invoicerr noch heute Abend auf Ihrem eigenen Server laufen.',
         installGuide: 'Zur Installationsanleitung',
     },
     footer: {

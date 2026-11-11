@@ -275,8 +275,7 @@ export function KsefGuidePl() {
                             Invoicerr to jeden ze sposobów spełnienia tych obowiązków: otwartoźródłowe oprogramowanie
                             do fakturowania, które buduje fakturę w formacie FA(3) i łączy się z Krajowym Systemem
                             e-Faktur. To nie jedyny możliwy sposób, i ten akapit nie próbuje przekonać Cię, że jest
-                            inaczej: pytania powyżej dotyczą każdego narzędzia, również tego. Wersja hostowana rusza w
-                            listopadzie 2026, a do tego czasu jest tylko lista oczekujących.
+                            inaczej: pytania powyżej dotyczą każdego narzędzia, również tego. Wersja hostowana wkrótce ruszy: podamy termin, gdy będzie gotowa, a do tego czasu jest tylko lista oczekujących.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">

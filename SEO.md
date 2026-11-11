@@ -12,8 +12,7 @@ Everything below was measured on 2026-09-21. Re-measure before trusting a number
 ## 0. Settled on 2026-09-24: the call-to-action now matches its destination
 
 `https://my.invoicerr.app` no longer sends visitors back to the page they were already on. It
-answers **302 → `/waitlist/<lang>/`** and serves the six-language waiting list page, the hosted
-version being due in November 2026.
+answers **302 → `/waitlist/<lang>/`** and serves the six-language waiting list page, the hosted version not yet open.
 
 The landing was changed to match. The ten buttons pointing at `links.app` now say "Join the waiting
 list" in the language of the page they sit on, reusing the exact wording of the waiting list page

@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: "Mudar para o tema claro", dark: "Mudar para o tema escuro" },
     },
     hero: {
-        badge: "A cloud abre em novembro de 2026",
+        badge: "A cloud chega em breve",
         badgeStatus: "Lista de espera aberta",
         title: "A aplicação de faturação que acompanha o seu ritmo",
-        lead: "Orçamentos, faturas, pagamentos e faturação eletrónica para a administração fiscal, numa só aplicação de código aberto. Aloje-a hoje no seu servidor ou inscreva-se na lista de espera da nossa cloud, que abre em novembro de 2026.",
+        lead: "Orçamentos, faturas, pagamentos e faturação eletrónica para a administração fiscal, numa só aplicação de código aberto. Aloje-a hoje no seu servidor ou inscreva-se na lista de espera da nossa cloud, que chega em breve.",
         tryDemo: "Experimentar a demonstração",
         selfHostLine: "Ou {link}aloje-a gratuitamente{/link} com Docker",
         stickyNote: "Factur-X ok!\nenviar via PDP\naté sexta",
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: "Primeiro utilizador", next: "Utilizadores 2 a 4", further: "A partir do 5.º utilizador" },
         totalMonth: "Por mês, sem IVA",
         totalYear: "× {charged} meses, {free} grátis",
-        cloudItems: ["Abre em novembro de 2026", "Alojada e atualizada por nós", "Todas as funcionalidades da aplicação", "Período experimental de {days} dias na abertura, tudo exceto o envio", "Os seus dados exportados se sair"],
+        cloudItems: ["Em breve, data anunciada quando estiver pronta", "Alojada e atualizada por nós", "Todas as funcionalidades da aplicação", "Período experimental de {days} dias na abertura, tudo exceto o envio", "Os seus dados exportados se sair"],
         selfHosted: "Alojamento próprio",
         forever: "para sempre",
         selfItems: ["Todas as funcionalidades da aplicação", "Utilizadores e empresas ilimitados", "Imagem Docker e chart Helm", "AGPL-3.0, suporte da comunidade"],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "O que vou poder fazer durante o período experimental da cloud?",
-                answer: "A cloud abre em novembro de 2026 e o período experimental abre com ela. Tudo exceto enviar documentos: durante 14 dias poderá configurar a sua empresa, importar clientes, criar orçamentos e faturas e convidar a sua equipa. O envio fica disponível quando subscrever.",
+                answer: "A cloud chega em breve: anunciaremos a data quando estiver pronta, e o período experimental abre com ela. Tudo exceto enviar documentos: durante 14 dias poderá configurar a sua empresa, importar clientes, criar orçamentos e faturas e convidar a sua equipa. O envio fica disponível quando subscrever.",
             },
             {
                 question: "Como funciona o preço por utilizador?",
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: "Para: o seu próximo cliente",
         title: "Envie a sua próxima fatura a partir do Invoicerr",
-        lead: "A nossa cloud abre em novembro de 2026 e a lista de espera já está aberta. Ou descarregue a imagem e tenha o Invoicerr a funcionar no seu próprio servidor ainda esta noite.",
+        lead: "A nossa cloud chega em breve: anunciaremos a data quando estiver pronta, e a lista de espera já está aberta. Ou descarregue a imagem e tenha o Invoicerr a funcionar no seu próprio servidor ainda esta noite.",
         installGuide: "Ler o guia de instalação",
     },
     footer: {
