@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr：开源发票软件，可自托管或使用云服务',
-        description:
-            '报价单、发票、收款以及向税务机关提交电子发票，尽在一款开源应用中。可用 Docker 免费自托管，或加入云服务候补名单。',
+        title: "Invoicerr：面向自由职业者、中小企业及其会计师的开源发票与电子发票软件。",
+        description: "面向自由职业者、中小企业及其会计师的开源发票与电子发票软件。",
     },
     language: {
         label: '语言',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: '云服务即将上线',
         badgeStatus: '候补名单已开放',
         title: '跟得上您节奏的发票应用',
-        lead: '报价单、发票、收款以及向税务机关提交电子发票，尽在一款开源应用中。现在即可自行托管，或加入候补名单，云服务即将上线。',
+        lead: "面向自由职业者、中小企业及其会计师的开源发票与电子发票软件。现在即可自行托管，或加入候补名单，云服务即将上线。",
         tryDemo: '试用在线演示',
         selfHostLine: '或使用 Docker {link}免费自托管{/link}',
         stickyNote: 'Factur-X 搞定！\n周五前\n通过 PDP 发出',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: '阅读安装指南',
     },
     footer: {
-        tagline: '开源发票软件，可在云端运行，也可部署在您自己的服务器上。',
+        tagline: "面向自由职业者、中小企业及其会计师的开源发票与电子发票软件。",
         columns: { product: '产品', guides: '电子发票指南', selfHosting: '自托管', developers: '开发者', legal: '法律信息' },
         items: {
             logIn: '登录',

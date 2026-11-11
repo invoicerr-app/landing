@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: "Invoicerr: faturação de código aberto, alojada por si ou na cloud",
-        description:
-            "Orçamentos, faturas, pagamentos e faturação eletrónica numa só aplicação de código aberto. Aloje-a grátis com Docker ou inscreva-se na lista de espera da cloud.",
+        title: "Invoicerr: Faturação e faturação eletrónica de código aberto, para trabalhadores independentes, pequenas e médias empresas e os seus contabilistas.",
+        description: "Faturação e faturação eletrónica de código aberto, para trabalhadores independentes, pequenas e médias empresas e os seus contabilistas.",
     },
     language: {
         label: "Idioma",
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: "A cloud chega em breve",
         badgeStatus: "Lista de espera aberta",
         title: "A aplicação de faturação que acompanha o seu ritmo",
-        lead: "Orçamentos, faturas, pagamentos e faturação eletrónica para a administração fiscal, numa só aplicação de código aberto. Aloje-a hoje no seu servidor ou inscreva-se na lista de espera da nossa cloud, que chega em breve.",
+        lead: "Faturação e faturação eletrónica de código aberto, para trabalhadores independentes, pequenas e médias empresas e os seus contabilistas. Aloje-a hoje no seu servidor ou inscreva-se na lista de espera da nossa cloud, que chega em breve.",
         tryDemo: "Experimentar a demonstração",
         selfHostLine: "Ou {link}aloje-a gratuitamente{/link} com Docker",
         stickyNote: "Factur-X ok!\nenviar via PDP\naté sexta",
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: "Ler o guia de instalação",
     },
     footer: {
-        tagline: "Faturação de código aberto, na cloud ou no seu próprio servidor.",
+        tagline: "Faturação e faturação eletrónica de código aberto, para trabalhadores independentes, pequenas e médias empresas e os seus contabilistas.",
         columns: { product: "Produto", guides: "Guias de faturação eletrónica", selfHosting: "Alojamento próprio", developers: "Programadores", legal: "Informação legal" },
         items: {
             logIn: "Iniciar sessão",

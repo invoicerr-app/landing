@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr : facturation open source, auto-hébergée ou en cloud',
-        description:
-            "Devis, factures, paiements et facturation électronique dans un logiciel open source. Gratuit en auto-hébergement avec Docker, ou en cloud sur liste d'attente.",
+        title: "Invoicerr: La facturation et la facture électronique open source, pour les indépendants, les TPE-PME et leurs experts-comptables.",
+        description: "La facturation et la facture électronique open source, pour les indépendants, les TPE-PME et leurs experts-comptables.",
     },
     language: {
         label: 'Langue',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: 'Cloud bientôt disponible',
         badgeStatus: "Liste d'attente ouverte",
         title: 'Le logiciel de facturation qui suit votre rythme',
-        lead: "Devis, factures, paiements et facturation électronique jusqu'à l'administration fiscale, dans un seul logiciel open source. Hébergez-le vous-même dès aujourd'hui, ou inscrivez-vous sur la liste d'attente de notre cloud, qui arrive bientôt.",
+        lead: "La facturation et la facture électronique open source, pour les indépendants, les TPE-PME et leurs experts-comptables. Hébergez-le vous-même dès aujourd'hui, ou inscrivez-vous sur la liste d'attente de notre cloud, qui arrive bientôt.",
         tryDemo: 'Essayer la démo en ligne',
         selfHostLine: 'Ou {link}hébergez-le gratuitement{/link} avec Docker',
         stickyNote: 'Factur-X OK !\nenvoyer via PDP\navant vendredi',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: "Lire le guide d'installation",
     },
     footer: {
-        tagline: 'La facturation open source, dans le cloud ou sur votre propre serveur.',
+        tagline: "La facturation et la facture électronique open source, pour les indépendants, les TPE-PME et leurs experts-comptables.",
         columns: { product: 'Produit', guides: 'Guides de facturation électronique', selfHosting: 'Auto-hébergement', developers: 'Développeurs', legal: 'Informations légales' },
         items: {
             logIn: 'Se connecter',

@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr: fatturazione open source, self-hosted o in cloud',
-        description:
-            "Preventivi, fatture, pagamenti e fatturazione elettronica in un'unica app open source. Installala gratis con Docker o iscriviti alla lista d'attesa del cloud.",
+        title: "Invoicerr: Fatturazione e fatturazione elettronica open source, per freelance, piccole e medie imprese e i loro commercialisti.",
+        description: "Fatturazione e fatturazione elettronica open source, per freelance, piccole e medie imprese e i loro commercialisti.",
     },
     language: {
         label: 'Lingua',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: 'Il cloud arriva presto',
         badgeStatus: "Lista d'attesa aperta",
         title: "L'app di fatturazione che tiene il tuo passo",
-        lead: "Preventivi, fatture, pagamenti e fatturazione elettronica verso il fisco, in un'unica app open source. Installala oggi sul tuo server o iscriviti alla lista d'attesa del nostro cloud, che arriva presto.",
+        lead: "Fatturazione e fatturazione elettronica open source, per freelance, piccole e medie imprese e i loro commercialisti. Installala oggi sul tuo server o iscriviti alla lista d'attesa del nostro cloud, che arriva presto.",
         tryDemo: 'Prova la demo dal vivo',
         selfHostLine: 'Oppure {link}installala gratis sul tuo server{/link} con Docker',
         stickyNote: 'Factur-X ok!\ninvio via PDP\nentro venerdì',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: "Leggi la guida all'installazione",
     },
     footer: {
-        tagline: 'Fatturazione open source, in cloud o sul tuo server.',
+        tagline: "Fatturazione e fatturazione elettronica open source, per freelance, piccole e medie imprese e i loro commercialisti.",
         columns: { product: 'Prodotto', guides: 'Guide alla fatturazione elettronica', selfHosting: 'Self-hosting', developers: 'Sviluppatori', legal: 'Informazioni legali' },
         items: {
             logIn: 'Accedi',

@@ -14,9 +14,8 @@ import type { Plural } from './format'
 
 export const en = {
     meta: {
-        title: 'Invoicerr: Open-source invoicing software, self-hosted or cloud',
-        description:
-            'Quotes, invoices, payments and e-invoicing to the tax office in one open-source app. Self-host it free with Docker, or join the cloud waiting list.',
+        title: "Invoicerr: Open-source invoicing and e-invoicing for freelancers, small businesses and their accountants.",
+        description: "Open-source invoicing and e-invoicing for freelancers, small businesses and their accountants.",
     },
     language: {
         label: 'Language',
@@ -45,7 +44,7 @@ export const en = {
         badgeStatus: 'Waiting list open',
         /** Shown in English on every page (the product's line, like its name); the translations are kept in case that changes. */
         title: 'The invoicing app that keeps up with you',
-        lead: 'Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it yourself today, or join the waiting list for our cloud, which is coming soon.',
+        lead: "Open-source invoicing and e-invoicing for freelancers, small businesses and their accountants. Host it yourself today, or join the waiting list for our cloud, which is coming soon.",
         tryDemo: 'Try the live demo',
         selfHostLine: 'Or {link}self-host it free{/link} with Docker',
         stickyNote: 'Factur-X ok!\nsend via PDP\nbefore Friday',
@@ -250,7 +249,7 @@ export const en = {
         installGuide: 'Read the install guide',
     },
     footer: {
-        tagline: 'Open-source invoicing, in the cloud or on your own server.',
+        tagline: "Open-source invoicing and e-invoicing for freelancers, small businesses and their accountants.",
         columns: { product: 'Product', guides: 'E-invoicing guides', selfHosting: 'Self-hosting', developers: 'Developers', legal: 'Legal' },
         items: {
             logIn: 'Log in',

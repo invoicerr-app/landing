@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr: 오픈소스 청구서 소프트웨어, 셀프 호스팅 또는 클라우드',
-        description:
-            '견적서, 청구서, 입금 관리부터 세무 당국 전자 청구서 전송까지, 오픈소스 앱 하나로. Docker로 무료 셀프 호스팅하거나 클라우드 대기자 명단에 등록하세요.',
+        title: "Invoicerr: 프리랜서, 중소기업과 회계사를 위한 오픈소스 청구서 및 전자 청구서.",
+        description: "프리랜서, 중소기업과 회계사를 위한 오픈소스 청구서 및 전자 청구서.",
     },
     language: {
         label: '언어',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: '클라우드 곧 오픈',
         badgeStatus: '대기자 명단 접수 중',
         title: '업무 속도에 맞춰 따라오는 청구서 앱',
-        lead: '견적서, 청구서, 입금 관리, 세무 당국 전자 청구서 전송을 오픈소스 앱 하나로 처리합니다. 지금 바로 직접 호스팅하거나, 곧 오픈할 클라우드 대기자 명단에 등록하세요.',
+        lead: "프리랜서, 중소기업과 회계사를 위한 오픈소스 청구서 및 전자 청구서. 지금 바로 직접 호스팅하거나, 곧 오픈할 클라우드 대기자 명단에 등록하세요.",
         tryDemo: '라이브 데모 체험하기',
         selfHostLine: '또는 Docker로 {link}무료로 셀프 호스팅{/link}하세요',
         stickyNote: 'Factur-X 완료!\nPDP로 전송\n금요일 전까지',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: '설치 가이드 보기',
     },
     footer: {
-        tagline: '클라우드에서도, 자체 서버에서도 쓰는 오픈소스 청구서 관리.',
+        tagline: "프리랜서, 중소기업과 회계사를 위한 오픈소스 청구서 및 전자 청구서.",
         columns: { product: '제품', guides: '전자 청구서 가이드', selfHosting: '셀프 호스팅', developers: '개발자', legal: '법률 정보' },
         items: {
             logIn: '로그인',

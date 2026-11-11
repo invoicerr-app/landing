@@ -2,9 +2,8 @@ import type { HomeCopy } from './en'
 
 const copy: HomeCopy = {
     meta: {
-        title: 'Invoicerr: facturación de código abierto autoalojada o en la nube',
-        description:
-            'Presupuestos, facturas, cobros y factura electrónica en una app de código abierto. Instálala gratis con Docker o apúntate a la lista de espera de la nube.',
+        title: "Invoicerr: Facturación y factura electrónica de código abierto, para autónomos, pymes y sus asesores contables.",
+        description: "Facturación y factura electrónica de código abierto, para autónomos, pymes y sus asesores contables.",
     },
     language: {
         label: 'Idioma',
@@ -31,7 +30,7 @@ const copy: HomeCopy = {
         badge: 'La nube llega pronto',
         badgeStatus: 'Lista de espera abierta',
         title: 'La app de facturación que sigue tu ritmo',
-        lead: 'Presupuestos, facturas, cobros y factura electrónica a la administración tributaria, en una sola app de código abierto. Instálala hoy en tu propio servidor o apúntate a la lista de espera de nuestra nube, que llega pronto.',
+        lead: "Facturación y factura electrónica de código abierto, para autónomos, pymes y sus asesores contables. Instálala hoy en tu propio servidor o apúntate a la lista de espera de nuestra nube, que llega pronto.",
         tryDemo: 'Prueba la demo en vivo',
         selfHostLine: 'O {link}instálala gratis en tu servidor{/link} con Docker',
         stickyNote: '¡Factur-X ok!\nenviar vía PDP\nantes del viernes',
@@ -235,7 +234,7 @@ const copy: HomeCopy = {
         installGuide: 'Lee la guía de instalación',
     },
     footer: {
-        tagline: 'Facturación de código abierto, en la nube o en tu propio servidor.',
+        tagline: "Facturación y factura electrónica de código abierto, para autónomos, pymes y sus asesores contables.",
         columns: { product: 'Producto', guides: 'Guías de factura electrónica', selfHosting: 'Autoalojamiento', developers: 'Desarrolladores', legal: 'Legal' },
         items: {
             logIn: 'Iniciar sesión',
