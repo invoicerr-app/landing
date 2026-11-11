@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: 'Passa al tema chiaro', dark: 'Passa al tema scuro' },
     },
     hero: {
-        badge: 'Il cloud apre a novembre 2026',
+        badge: 'Il cloud arriva presto',
         badgeStatus: "Lista d'attesa aperta",
         title: "L'app di fatturazione che tiene il tuo passo",
-        lead: "Preventivi, fatture, pagamenti e fatturazione elettronica verso il fisco, in un'unica app open source. Installala oggi sul tuo server o iscriviti alla lista d'attesa del nostro cloud, che apre a novembre 2026.",
+        lead: "Preventivi, fatture, pagamenti e fatturazione elettronica verso il fisco, in un'unica app open source. Installala oggi sul tuo server o iscriviti alla lista d'attesa del nostro cloud, che arriva presto.",
         tryDemo: 'Prova la demo dal vivo',
         selfHostLine: 'Oppure {link}installala gratis sul tuo server{/link} con Docker',
         stickyNote: 'Factur-X ok!\ninvio via PDP\nentro venerdì',
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: 'Primo utente', next: 'Utenti da 2 a 4', further: 'Dal 5° utente' },
         totalMonth: 'Al mese, IVA esclusa',
         totalYear: '× {charged} mesi, {free} gratis',
-        cloudItems: ['Apre a novembre 2026', 'Ospitato e aggiornato da noi', "Tutte le funzioni dell'app", "Prova di {days} giorni all'apertura, tutto tranne l'invio", 'Esportazione dei tuoi dati se te ne vai'],
+        cloudItems: ['Presto, data annunciata a tempo debito', 'Ospitato e aggiornato da noi', "Tutte le funzioni dell'app", "Prova di {days} giorni all'apertura, tutto tranne l'invio", 'Esportazione dei tuoi dati se te ne vai'],
         selfHosted: 'Self-hosted',
         forever: 'per sempre',
         selfItems: ["Tutte le funzioni dell'app", 'Utenti e aziende illimitati', 'Immagine Docker e chart Helm', 'AGPL-3.0, supporto della community'],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: 'Cosa potrò fare durante la prova del cloud?',
-                answer: "Il cloud apre a novembre 2026 e la prova parte insieme a lui. Tutto tranne l'invio dei documenti: per 14 giorni potrai configurare la tua azienda, importare i clienti, creare preventivi e fatture e invitare il tuo team. L'invio si sblocca con l'abbonamento.",
+                answer: "Il cloud arriva presto: annunceremo la data quando sarà pronto, e la prova partirà insieme a lui. Tutto tranne l'invio dei documenti: per 14 giorni potrai configurare la tua azienda, importare i clienti, creare preventivi e fatture e invitare il tuo team. L'invio si sblocca con l'abbonamento.",
             },
             {
                 question: 'Come funziona il prezzo per utente?',
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: 'A: il tuo prossimo cliente',
         title: 'Invia la tua prossima fattura con Invoicerr',
-        lead: "Il nostro cloud apre a novembre 2026 e la lista d'attesa è già aperta. Oppure scarica l'immagine e fai girare Invoicerr sul tuo server stasera stessa.",
+        lead: "Il nostro cloud arriva presto: annunceremo la data quando sarà pronto, e la lista d'attesa è già aperta. Oppure scarica l'immagine e fai girare Invoicerr sul tuo server stasera stessa.",
         installGuide: "Leggi la guida all'installazione",
     },
     footer: {

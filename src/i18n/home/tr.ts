@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: "Açık temaya geç", dark: "Koyu temaya geç" },
     },
     hero: {
-        badge: "Bulut Kasım 2026'da açılıyor",
+        badge: "Bulut yakında geliyor",
         badgeStatus: "Bekleme listesi açık",
         title: "Sizinle aynı hızda çalışan fatura uygulaması",
-        lead: "Teklifler, faturalar, tahsilatlar ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Bugün kendi sunucunuzda çalıştırın ya da Kasım 2026'da açılacak bulutumuz için bekleme listesine katılın.",
+        lead: "Teklifler, faturalar, tahsilatlar ve vergi dairesine e-fatura tek bir açık kaynaklı uygulamada toplanır. Bugün kendi sunucunuzda çalıştırın ya da yakında gelecek bulutumuz için bekleme listesine katılın.",
         tryDemo: "Canlı demoyu dene",
         selfHostLine: "Ya da Docker ile {link}kendi sunucunuzda ücretsiz çalıştırın{/link}",
         stickyNote: "Factur-X tamam!\nPDP'den gönder\nCumaya kadar",
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: "İlk kullanıcı", next: "2 ila 4. kullanıcılar", further: "5. kullanıcıdan itibaren" },
         totalMonth: "Aylık, KDV hariç",
         totalYear: "× {charged} ay, {free} ay ücretsiz",
-        cloudItems: ["Kasım 2026'da açılıyor", "Barındırma ve güncellemeler bizden", "Uygulamanın tüm özellikleri", "Açılışta {days} günlük deneme, gönderim dışında her şey açık", "Ayrılırsanız verileriniz dışa aktarılır"],
+        cloudItems: ["Yakında, tarih hazır olduğunda duyurulacak", "Barındırma ve güncellemeler bizden", "Uygulamanın tüm özellikleri", "Açılışta {days} günlük deneme, gönderim dışında her şey açık", "Ayrılırsanız verileriniz dışa aktarılır"],
         selfHosted: "Kendi sunucunuzda",
         forever: "süresiz",
         selfItems: ["Uygulamanın tüm özellikleri", "Sınırsız kullanıcı ve şirket", "Docker imajı ve Helm chart", "AGPL-3.0, topluluk desteği"],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Bulut denemesi sırasında neler yapabileceğim?",
-                answer: "Bulut Kasım 2026'da açılıyor ve deneme de onunla birlikte başlıyor. Belge gönderimi dışında her şey mümkün: 14 gün boyunca şirketinizi kurabilecek, müşterilerinizi içe aktarabilecek, teklif ve fatura hazırlayabilecek ve ekibinizi davet edebileceksiniz. Gönderim, abone olduğunuzda açılır.",
+                answer: "Bulut yakında geliyor: hazır olduğunda tarihini duyuracağız, deneme de onunla birlikte başlıyor. Belge gönderimi dışında her şey mümkün: 14 gün boyunca şirketinizi kurabilecek, müşterilerinizi içe aktarabilecek, teklif ve fatura hazırlayabilecek ve ekibinizi davet edebileceksiniz. Gönderim, abone olduğunuzda açılır.",
             },
             {
                 question: "Kullanıcı başına fiyatlandırma nasıl işliyor?",
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: "Kime: bir sonraki müşteriniz",
         title: "Bir sonraki faturanızı Invoicerr'den gönderin",
-        lead: "Bulutumuz Kasım 2026'da açılıyor ve bekleme listesi şimdiden açık. İsterseniz imajı çekin, Invoicerr bu akşam kendi sunucunuzda çalışsın.",
+        lead: "Bulutumuz yakında geliyor: hazır olduğunda tarihini duyuracağız, bekleme listesi şimdiden açık. İsterseniz imajı çekin, Invoicerr bu akşam kendi sunucunuzda çalışsın.",
         installGuide: "Kurulum kılavuzunu oku",
     },
     footer: {

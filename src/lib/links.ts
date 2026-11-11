@@ -29,7 +29,7 @@ export const links = {
  *
  * It does not today: my.invoicerr.app serves the waiting list page and there is no account to log
  * into, so the three "Log in" links (header on desktop, header in the mobile menu, footer) are
- * hidden. Set this to true on the day the hosted version opens, in November 2026, and all three
+ * hidden. Set this to true on the day the hosted version opens, and all three
  * come back exactly where they were. Nothing else gates them.
  */
 export const hostedLoginOpen = false

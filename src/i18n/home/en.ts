@@ -41,11 +41,11 @@ export const en = {
         theme: { light: 'Switch to light theme', dark: 'Switch to dark theme' },
     },
     hero: {
-        badge: 'Cloud opens November 2026',
+        badge: 'Cloud coming soon',
         badgeStatus: 'Waiting list open',
         /** Shown in English on every page (the product's line, like its name); the translations are kept in case that changes. */
         title: 'The invoicing app that keeps up with you',
-        lead: 'Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it yourself today, or join the waiting list for our cloud, which opens in November 2026.',
+        lead: 'Quotes, invoices, payments and e-invoicing to the tax office, in one open-source app. Host it yourself today, or join the waiting list for our cloud, which is coming soon.',
         tryDemo: 'Try the live demo',
         selfHostLine: 'Or {link}self-host it free{/link} with Docker',
         stickyNote: 'Factur-X ok!\nsend via PDP\nbefore Friday',
@@ -207,7 +207,7 @@ export const en = {
         bands: { first: 'First seat', next: 'Seats 2 to 4', further: 'From seat 5' },
         totalMonth: 'Per month, excl. VAT',
         totalYear: '× {charged} months, {free} free',
-        cloudItems: ['Opens in November 2026', 'Hosted and updated by us', 'Every feature of the app', '{days}-day trial when it opens, everything but sending', 'Your data exported if you leave'],
+        cloudItems: ['Coming soon, date announced when ready', 'Hosted and updated by us', 'Every feature of the app', '{days}-day trial when it opens, everything but sending', 'Your data exported if you leave'],
         selfHosted: 'Self-hosted',
         forever: 'forever',
         selfItems: ['Every feature of the app', 'Unlimited seats and companies', 'Docker image and Helm chart', 'AGPL-3.0, community support'],
@@ -223,7 +223,7 @@ export const en = {
             },
             {
                 question: 'What will I be able to do during the cloud trial?',
-                answer: 'The cloud opens in November 2026, and the trial opens with it. Everything except sending documents: for 14 days you will be able to set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
+                answer: 'The cloud is coming soon: we will announce the date when it is ready, and the trial opens with it. Everything except sending documents: for 14 days you will be able to set up your company, import clients, build quotes and invoices and invite your team. Sending unlocks when you subscribe.',
             },
             {
                 question: 'How does seat pricing work?',
@@ -246,7 +246,7 @@ export const en = {
     finalCta: {
         to: 'To: your next client',
         title: 'Send your next invoice from Invoicerr',
-        lead: 'Our cloud opens in November 2026 and the waiting list is open now. Or pull the image and have Invoicerr running on your own server tonight.',
+        lead: 'Our cloud is coming soon, and the waiting list is open now. Or pull the image and have Invoicerr running on your own server tonight.',
         installGuide: 'Read the install guide',
     },
     footer: {

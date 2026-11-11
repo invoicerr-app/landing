@@ -4,7 +4,7 @@
  * Thirteen call to action buttons point at this hostname: eight on the landing page and one at the
  * foot of each of the five country guides. Until now it answered 301 to the landing root, so every
  * reader those buttons sent here landed back where they started and nothing recorded that they came.
- * The hosted version does not open before 1 November 2026, so what this serves instead is the
+ * The hosted version is not open yet, so what this serves instead is the
  * waiting list page, in the reader's own language, and it takes the form's POST. GitHub Pages
  * serves static files only, which is why the POST cannot live on invoicerr.app.
  *

@@ -336,8 +336,7 @@ export function EInvoicingGuideFr() {
                             électronique à la date que porte votre facture. Invoicerr n'est pas lui-même une
                             plateforme agréée : c'est un logiciel raccordé à ces plateformes. Ce n'est pas la seule façon de faire,
                             et ce paragraphe ne cherche pas à vous convaincre du contraire : les questions
-                            ci-dessus valent pour n'importe quel outil, y compris celui-ci. La version hébergée ouvre en
-                            novembre 2026 : d'ici là, il n'y a qu'une liste d'attente à rejoindre.
+                            ci-dessus valent pour n'importe quel outil, y compris celui-ci. La version hébergée arrive bientôt : nous annoncerons la date quand elle sera prête. D'ici là, il n'y a qu'une liste d'attente à rejoindre.
                         </p>
                         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                             <Button size="lg" asChild className="h-11 px-6 text-base active:scale-[0.98]">

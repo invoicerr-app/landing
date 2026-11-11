@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: "Overschakelen naar licht thema", dark: "Overschakelen naar donker thema" },
     },
     hero: {
-        badge: "Cloud opent in november 2026",
+        badge: "Cloud binnenkort beschikbaar",
         badgeStatus: "Wachtlijst open",
         title: "De facturatie-app die je tempo bijhoudt",
-        lead: "Offertes, facturen, betalingen en e-facturatie naar de belastingdienst, in één opensource-app. Host het vandaag zelf, of meld je aan voor de wachtlijst van onze cloud, die in november 2026 opent.",
+        lead: "Offertes, facturen, betalingen en e-facturatie naar de belastingdienst, in één opensource-app. Host het vandaag zelf, of meld je aan voor de wachtlijst van onze cloud, die binnenkort komt.",
         tryDemo: "Probeer de live demo",
         selfHostLine: "Of {link}host het gratis zelf{/link} met Docker",
         stickyNote: "Factur-X ok!\nvia PDP sturen\nvóór vrijdag",
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: "Eerste gebruiker", next: "Gebruikers 2 t/m 4", further: "Vanaf gebruiker 5" },
         totalMonth: "Per maand, excl. btw",
         totalYear: "× {charged} maanden, {free} gratis",
-        cloudItems: ["Opent in november 2026", "Gehost en bijgewerkt door ons", "Alle functies van de app", "{days} dagen proef vanaf de opening, alles behalve verzenden", "Je gegevens geëxporteerd als je vertrekt"],
+        cloudItems: ["Binnenkort, datum wordt later bekendgemaakt", "Gehost en bijgewerkt door ons", "Alle functies van de app", "{days} dagen proef vanaf de opening, alles behalve verzenden", "Je gegevens geëxporteerd als je vertrekt"],
         selfHosted: "Zelf gehost",
         forever: "voor altijd",
         selfItems: ["Alle functies van de app", "Onbeperkt gebruikers en bedrijven", "Docker-image en Helm-chart", "AGPL-3.0, ondersteuning door de community"],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Wat kan ik doen tijdens de proefperiode van de cloud?",
-                answer: "De cloud opent in november 2026 en de proefperiode start tegelijk. Alles behalve documenten verzenden: 14 dagen lang kun je je bedrijf inrichten, klanten importeren, offertes en facturen opstellen en je team uitnodigen. Verzenden kan zodra je een abonnement neemt.",
+                answer: "De cloud komt binnenkort: we maken de datum bekend zodra hij klaar is, en de proefperiode start tegelijk. Alles behalve documenten verzenden: 14 dagen lang kun je je bedrijf inrichten, klanten importeren, offertes en facturen opstellen en je team uitnodigen. Verzenden kan zodra je een abonnement neemt.",
             },
             {
                 question: "Hoe werkt de prijs per gebruiker?",
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: "Aan: je volgende klant",
         title: "Verstuur je volgende factuur vanuit Invoicerr",
-        lead: "Onze cloud opent in november 2026 en de wachtlijst is nu open. Of pull de image en laat Invoicerr vanavond nog op je eigen server draaien.",
+        lead: "Onze cloud komt binnenkort: we maken de datum bekend zodra hij klaar is, en de wachtlijst is nu open. Of pull de image en laat Invoicerr vanavond nog op je eigen server draaien.",
         installGuide: "Lees de installatiehandleiding",
     },
     footer: {

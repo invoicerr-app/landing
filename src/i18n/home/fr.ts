@@ -28,10 +28,10 @@ const copy: HomeCopy = {
         theme: { light: 'Passer au thème clair', dark: 'Passer au thème sombre' },
     },
     hero: {
-        badge: 'Ouverture du cloud en novembre 2026',
+        badge: 'Cloud bientôt disponible',
         badgeStatus: "Liste d'attente ouverte",
         title: 'Le logiciel de facturation qui suit votre rythme',
-        lead: "Devis, factures, paiements et facturation électronique jusqu'à l'administration fiscale, dans un seul logiciel open source. Hébergez-le vous-même dès aujourd'hui, ou inscrivez-vous sur la liste d'attente de notre cloud, qui ouvre en novembre 2026.",
+        lead: "Devis, factures, paiements et facturation électronique jusqu'à l'administration fiscale, dans un seul logiciel open source. Hébergez-le vous-même dès aujourd'hui, ou inscrivez-vous sur la liste d'attente de notre cloud, qui arrive bientôt.",
         tryDemo: 'Essayer la démo en ligne',
         selfHostLine: 'Ou {link}hébergez-le gratuitement{/link} avec Docker',
         stickyNote: 'Factur-X OK !\nenvoyer via PDP\navant vendredi',
@@ -192,7 +192,7 @@ const copy: HomeCopy = {
         bands: { first: 'Premier siège', next: 'Sièges 2 à 4', further: 'À partir du 5e siège' },
         totalMonth: 'Par mois, HT',
         totalYear: '× {charged} mois, {free} offerts',
-        cloudItems: ['Ouverture en novembre 2026', 'Hébergé et mis à jour par nos soins', "Toutes les fonctionnalités de l'application", "Essai de {days} jours dès l'ouverture, tout sauf l'envoi", 'Export de vos données si vous partez'],
+        cloudItems: ['Bientôt : nous annoncerons la date quand il sera prêt', 'Hébergé et mis à jour par nos soins', "Toutes les fonctionnalités de l'application", "Essai de {days} jours dès l'ouverture, tout sauf l'envoi", 'Export de vos données si vous partez'],
         selfHosted: 'Auto-hébergé',
         forever: 'pour toujours',
         selfItems: ["Toutes les fonctionnalités de l'application", 'Sièges et entreprises illimités', 'Image Docker et chart Helm', 'AGPL-3.0, support communautaire'],
@@ -208,7 +208,7 @@ const copy: HomeCopy = {
             },
             {
                 question: "Que pourrai-je faire pendant l'essai du cloud ?",
-                answer: "Le cloud ouvre en novembre 2026, et l'essai en même temps. Tout sauf l'envoi de documents : pendant 14 jours, vous pourrez configurer votre entreprise, importer vos clients, préparer devis et factures et inviter votre équipe. L'envoi se débloque quand vous vous abonnez.",
+                answer: "Le cloud arrive bientôt : nous annoncerons la date quand il sera prêt, et l'essai ouvre en même temps. Tout sauf l'envoi de documents : pendant 14 jours, vous pourrez configurer votre entreprise, importer vos clients, préparer devis et factures et inviter votre équipe. L'envoi se débloque quand vous vous abonnez.",
             },
             {
                 question: 'Comment fonctionne la tarification par siège ?',
@@ -231,7 +231,7 @@ const copy: HomeCopy = {
     finalCta: {
         to: 'À : votre prochain client',
         title: 'Envoyez votre prochaine facture depuis Invoicerr',
-        lead: "Notre cloud ouvre en novembre 2026 et la liste d'attente est déjà ouverte. Ou récupérez l'image et faites tourner Invoicerr sur votre propre serveur dès ce soir.",
+        lead: "Notre cloud arrive bientôt : nous annoncerons la date quand il sera prêt, et la liste d'attente est déjà ouverte. Ou récupérez l'image et faites tourner Invoicerr sur votre propre serveur dès ce soir.",
         installGuide: "Lire le guide d'installation",
     },
     footer: {
